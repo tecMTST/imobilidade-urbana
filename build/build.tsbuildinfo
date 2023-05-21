@@ -1,0 +1,15 @@
+{
+  "bundle": {
+    "commonSourceDirectory": "../sketch",
+    "sourceFiles": [
+      "../sketch/game/a.ts"
+    ],
+    "js": {
+      "sections": []
+    },
+    "dts": {
+      "sections": []
+    }
+  },
+  "version": "3.8.3"
+}
