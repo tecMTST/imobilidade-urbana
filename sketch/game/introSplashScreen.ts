@@ -1,13 +1,16 @@
-import { GameManager } from "../lib/manager";
-import { GAME_PLAYING_STATE } from "./gameStates/game";
-import { VINHETA_NUCLEO } from "./keyEnums";
+const INTRO_SCREEN = "intro-screen";
 
-export const INTRO_SCREEN = "intro-screen";
-
-export function introSplashScreen(manager: GameManager) {
+function introSplashScreen(manager: GameManager) {
   const introSound = manager.getAsset(VINHETA_NUCLEO) as p5.SoundFile;
+  const logoNucleo = manager.getAsset(LOGO_NUCLEO) as p5.Image;
+  let fadeAlpha = 0;
+
   manager.addState(INTRO_SCREEN, (m) => {
-    introSound.play();
-    if (!introSound.isPlaying()) manager.state = GAME_PLAYING_STATE;
+    background(0);
+    image(logoNucleo, 0, 0, manager.UnitSize * 1.5, manager.UnitSize * 1.5);
+    manager.playAudio(VINHETA_NUCLEO);
+    if (fadeAlpha > 250) manager.state = GAME_PLAYING_STATE;
+    fadeAlpha += 2;
+    background(0, fadeAlpha);
   });
 }

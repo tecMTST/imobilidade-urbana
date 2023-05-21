@@ -1,13 +1,4 @@
-import { BehaviorFunction, Entity } from "./entity";
-import {
-  SpriteAnimation,
-  AnimationCycleName,
-  SpriteIndex,
-  NewCycleInformation,
-} from "./spriteAnimation";
-import { Tileset } from "./tileset";
-
-export class BaseBehaviors {
+class BaseBehaviors {
   static Names = {
     SpriteAnimation: "sprite-animation",
     AddSpriteCycle: "add-sprite-cycle",

@@ -1,8 +1,6 @@
-import { GameManager } from "../../lib/manager";
+const GAME_PLAYING_STATE = "playing-state";
 
-export const GAME_PLAYING_STATE = "playing-state";
-
-export function game(manager: GameManager) {
+function gamePlaying(manager: GameManager) {
   manager.addState(GAME_PLAYING_STATE, (m) => {
     background(200);
   });

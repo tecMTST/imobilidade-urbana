@@ -1,5 +1,4 @@
 {
-  "compileOnSave": true,
   "compilerOptions": {
     "module": "none",
     "noImplicitAny": true,
@@ -7,13 +6,8 @@
     "preserveConstEnums": true,
     "removeComments": true,
     "rootDir": "./sketch/",
-    // "sourceMap": true,
+    "sourceMap": true,
     "target": "ESNext",
-    "moduleResolution": "node",
-    "lib": ["esnext", "DOM"],
-    "composite": true,
-    "noEmit": false
-  },
-  "include": ["./**/*"],
-  "exclude": ["./node_modules/**/*", "./build/**/*"]
+    "moduleResolution": "node"
+  }
 }

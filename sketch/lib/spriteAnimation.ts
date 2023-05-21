@@ -1,27 +1,24 @@
-import { throwCustomError, Size, Position, ColorInterface } from "./helpers";
-import { Tileset } from "./tileset";
+type AnimationCycleName = string;
 
-export type AnimationCycleName = string;
-
-export type SpriteIndex = number;
-export interface SpriteAnimationCycle {
+type SpriteIndex = number;
+interface SpriteAnimationCycle {
   cycle: SpriteIndex[];
   timeBetweenFrames: number;
 }
 
-export interface SpriteAnimationIdentifier {
+interface SpriteAnimationIdentifier {
   name: string;
   idx: SpriteIndex;
   timeSinceFrame: number;
 }
 
-export interface NewCycleInformation {
+interface NewCycleInformation {
   cycleName: AnimationCycleName;
   frames: SpriteIndex[];
   timing: number;
 }
 
-export class SpriteAnimation {
+class SpriteAnimation {
   private current: SpriteAnimationIdentifier;
   private animationCycles: Map<AnimationCycleName, SpriteAnimationCycle>;
   readonly tileset: Tileset;
@@ -33,6 +30,11 @@ export class SpriteAnimation {
   constructor(tileset: Tileset) {
     this.tileset = tileset;
     this.animationCycles = new Map();
+    this.current = {
+      name: "default",
+      idx: 0,
+      timeSinceFrame: 0,
+    };
   }
 
   addCycle(cycle: NewCycleInformation) {
@@ -51,13 +53,18 @@ export class SpriteAnimation {
     };
   }
 
-  draw(position: Position, rotation: number, size: Size, opacity = 255) {
+  draw(
+    position: PositionCoordinates,
+    rotation: number,
+    size: Size,
+    opacity = 255
+  ) {
     const animationFrames = this.animationCycles.get(this.current.name)?.cycle;
 
     if (animationFrames === undefined) {
       throwCustomError(
         SpriteAnimation.ERROR.NoCycle,
-        `Animation cycle called [${this.current.name}] doesn't exist in cycles Ma`
+        `Animation cycle called [${this.current.name}] doesn't exist in cycles Map.`
       );
     }
 
@@ -65,9 +72,13 @@ export class SpriteAnimation {
 
     if (animationFrames.length > 1) {
       if (this.current.timeSinceFrame <= 0) {
-        this.current.timeSinceFrame = this.animationCycles.get(
-          this.current.name
-        ).timeBetweenFrames;
+        const currentCycle = this.animationCycles.get(this.current.name);
+        if (currentCycle === undefined)
+          throwCustomError(
+            SpriteAnimation.ERROR.NoCycle,
+            `Cycle with name ${this.current.name} does not exist.`
+          );
+        this.current.timeSinceFrame = currentCycle.timeBetweenFrames;
         this.current.idx = (this.current.idx + 1) % animationFrames.length;
       }
       this.current.timeSinceFrame--;

@@ -1,29 +1,32 @@
-import { AssetList } from "../assets/assetList";
-import { GameManager } from "../lib/manager";
-import { GAME_PLAYING_STATE } from "./gameStates/game";
-import { INTRO_SCREEN } from "./introSplashScreen";
-import { LOGO_NUCLEO } from "./keyEnums";
+const LOADING_STATE = "loading-state";
 
-export const LOADING_STATE = "loading-state";
-
-export function loadingScreen(manager: GameManager) {
+function loadingScreen(manager: GameManager) {
   for (const [assetName, asset] of Object.entries(AssetList))
     manager.addAsset(assetName, asset.path);
   manager.loadAssets();
+  const logo = manager.getAsset(LOGO_NUCLEO) as p5.Image;
+  let hasInteracted = false;
 
   manager.addState(LOADING_STATE, (m) => {
-    const logo = m.getAsset(LOGO_NUCLEO) as p5.Image;
+    let loadingText = (m.assetsLoadingProgression * 100).toFixed(1) + "%";
+    if (mouseIsPressed) hasInteracted = true;
+
+    if (m.assetsLoadingProgression >= 0.99) loadingText = "Toque para iniciar.";
+
     background(0);
-    push();
-
-    translate(width / 2, height / 2);
-    image(logo, 0, 0, m.UnitSize, m.UnitSize);
+    image(logo, 0, 0, m.UnitSize * 1.5, m.UnitSize * 1.5);
     rectMode(CENTER);
-    rect(0, m.UnitSize, m.assetsLoadingProgression * width * 0.9, m.UnitSize);
+    rect(
+      0,
+      m.UnitSize * 2,
+      m.assetsLoadingProgression * width * 0.9,
+      m.UnitSize / 2
+    );
+    textAlign(CENTER, CENTER);
+    text(loadingText, 0, m.UnitSize * 2);
 
-    pop();
-
-    if (m.assetsLoadingProgression >= 0.99) m.state = INTRO_SCREEN;
+    if (m.assetsLoadingProgression >= 0.99 && hasInteracted)
+      m.state = INTRO_SCREEN;
   });
 
   manager.state = LOADING_STATE;

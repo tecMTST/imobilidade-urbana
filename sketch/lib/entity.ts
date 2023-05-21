@@ -1,9 +1,7 @@
-import { Size, Position, throwCustomError, ERRORS } from "./helpers";
+type BehaviorFunction<T> = (e: T) => void;
+type StateFunction<T> = (e: T) => void;
 
-export type BehaviorFunction<T> = (e: T) => void;
-export type StateFunction<T> = (e: T) => void;
-
-export class Entity {
+class Entity {
   /**
    * ## Entity abstract class
    *
@@ -38,11 +36,13 @@ export class Entity {
   size: Size;
   rotation: number;
 
-  reset: () => void;
-  setup: () => void;
-
   static Assets = {
     sample: "sample",
+  };
+
+  static ERROR = {
+    NoBehavior: new Error("Behavior not in entity."),
+    NoState: new Error("State not in entity."),
   };
 
   constructor(
@@ -66,7 +66,9 @@ export class Entity {
     this.tags = tags;
   }
 
-  get position(): Position {
+  setup() {}
+
+  get position(): PositionCoordinates {
     return { x: this.positionVector.x, y: this.positionVector.y };
   }
 
@@ -127,9 +129,22 @@ export class Entity {
     push();
     translate(this.position.x, this.position.y);
     rotate(this.rotation);
-    for (const behavior of this.activeBehaviors)
-      this.behaviors.get(behavior)(this);
-    this.states.get(this.currentState)(this);
+    for (const behavior of this.activeBehaviors) {
+      const behaviorFunction = this.behaviors.get(behavior);
+      if (behaviorFunction === undefined)
+        throwCustomError(
+          Entity.ERROR.NoBehavior,
+          `[${behavior}] doesn't exist in [${this.id}].`
+        );
+      behaviorFunction(this);
+    }
+    const stateFunction = this.states.get(this.currentState);
+    if (stateFunction === undefined)
+      throwCustomError(
+        Entity.ERROR.NoState,
+        `[${this.currentState}] doesn't exist in [${this.id}].`
+      );
+    stateFunction(this);
     pop();
   }
 }

@@ -1,7 +1,4 @@
-import { GameManager } from "../lib/manager";
-import { LOGO_NUCLEO, VINHETA_NUCLEO } from "./keyEnums";
-
-export function preloadFunction(manager: GameManager) {
+function preloadFunction(manager: GameManager) {
   const loadingLogo = loadImage("../assets/img/logo-ntmtst.png");
   manager.insertAsset(LOGO_NUCLEO, loadingLogo);
   soundFormats("wav");

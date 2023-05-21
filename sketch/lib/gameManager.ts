@@ -1,10 +1,6 @@
-import * as p5 from "p5";
-import { BehaviorFunction, Entity, StateFunction } from "./entity";
-import { gameConfig } from "../game/config";
-
 type Layer = Map<string, Entity>;
 
-export class GameManager {
+class GameManager {
   private loadedAssetsCount: number;
   private currentState: string;
   private events: Map<string, any>;
@@ -22,12 +18,32 @@ export class GameManager {
   readonly states: Map<string, StateFunction<GameManager>>;
 
   private _UnitSize: number;
+  private globalVolume = 0.3;
+
+  static ERROR = {
+    NoState: new Error("State not in manager."),
+  };
 
   constructor() {
     this.behaviors = new Map();
     this.states = new Map();
     this.assets = new Map();
+    this.entityGroups = new Map();
+    this.existingLayers = [];
+    this.layers = new Map();
+    this.entities = new Map();
+    this.events = new Map();
+    this.loadedAssetsCount = 0;
     this.currentState = "";
+    this._UnitSize = 0;
+  }
+
+  set volume(v: number) {
+    this.globalVolume = v;
+  }
+
+  get volume() {
+    return this.globalVolume;
   }
 
   get UnitSize() {
@@ -78,6 +94,7 @@ export class GameManager {
 
   insertAsset(name: string, file: p5.Image | p5.SoundFile) {
     this.assets.set(name, file);
+    this.loadedAssetsCount++;
   }
 
   addBehavior(name: string, behavior: BehaviorFunction<GameManager>) {
@@ -98,12 +115,23 @@ export class GameManager {
 
   runEntities() {
     for (const layer of this.existingLayers)
-      this.layers.get(layer).forEach((entity) => entity.run());
+      this.layers.get(layer)?.forEach((entity) => entity.run());
   }
 
   run() {
+    push();
+
+    imageMode(CENTER);
+    translate(width / 2, height / 2);
     for (const behavior of this.behaviors.values()) behavior(this);
-    this.states.get(this.currentState)(this);
+    const currentStateFunction = this.states.get(this.currentState);
+    if (currentStateFunction === undefined)
+      throwCustomError(
+        GameManager.ERROR.NoState,
+        `${this.currentState} doesn't exist.`
+      );
+    currentStateFunction(this);
+    pop();
   }
 
   set state(state: string) {
@@ -120,9 +148,18 @@ export class GameManager {
       if (typeof asset === "string")
         this.assets.set(
           assetName,
-          loadImage(asset, () => this.loadedAssetsCount++)
+          loadImage(asset, () => {
+            this.loadedAssetsCount++;
+            console.log(`Loaded asset ${assetName}`);
+          })
         );
     }
+  }
+
+  playAudio(audioName: string) {
+    const audio = this.assets.get(audioName) as p5.SoundFile;
+    audio.setVolume(this.globalVolume);
+    if (!audio.isPlaying()) audio.play();
   }
 
   get assetsLoadingProgression() {
