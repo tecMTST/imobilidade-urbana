@@ -2,25 +2,6 @@ type BehaviorFunction<T> = (e: T) => void;
 type StateFunction<T> = (e: T) => void;
 
 class Entity {
-  /**
-   * ## Entity abstract class
-   *
-   * ### Behaviors
-   *
-   * All behaviors inside `Entity.activeBehaviors` are run at `Entity.run()`.
-   *
-   * ### States
-   *
-   * Only `Entity.currentState` is run at `Entity.run()`
-   *
-   * ### Internal Functions
-   *
-   * These are never called by the Entity class or its children.
-   * They are supposed to be called inside of behavior and state functions.
-   *
-   * @date 5/4/2023 - 8:38:52 PM
-   *
-   */
   readonly id: string;
   readonly layer: number;
 
@@ -50,8 +31,8 @@ class Entity {
     layer: number,
     size = { width: 0, height: 0 },
     position = { x: 0, y: 0 },
-    rotation = 0,
-    tags: string[] = []
+    tags: string[] = [],
+    rotation = 0
   ) {
     this.id = id;
     this.positionVector = createVector(position.x, position.y);
@@ -64,6 +45,10 @@ class Entity {
     this.activeBehaviors = new Set();
     this.internalFunctions = new Map();
     this.tags = tags;
+
+    this.addState("run-entity", (e) => {
+      e.run();
+    });
   }
 
   setup() {}

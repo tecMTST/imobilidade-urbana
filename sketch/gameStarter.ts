@@ -6,6 +6,7 @@ function preload() {
 
 function setup() {
   noSmooth();
+  frameRate(30);
   setupFunction(gameManager);
 }
 

@@ -2,9 +2,11 @@ interface AssetSettings {
   columns: number;
   originalTileSize: Size;
   path: string;
+  type: "audio" | "image";
+  name: string;
 }
 
-const AssetList: Record<string, AssetSettings> = {
+const AssetList: { [key: string]: AssetSettings } = {
   PlayerSprite: {
     columns: 8,
     originalTileSize: {
@@ -12,5 +14,7 @@ const AssetList: Record<string, AssetSettings> = {
       height: 256,
     },
     path: "./assets/img/spritesheet_players.png",
+    type: "image",
+    name: "PlayerSprite",
   },
-};
+} as const;

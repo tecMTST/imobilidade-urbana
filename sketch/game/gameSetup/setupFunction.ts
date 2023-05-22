@@ -10,11 +10,16 @@ function setupFunction(manager: GameManager) {
 
   createCanvas(WIDTH, HEIGHT);
 
-  console.log(WIDTH, HEIGHT);
-
   manager.setUnitSize(HEIGHT * manager.configs.UnitSizeProportion);
 
   loadingScreen(manager);
   introSplashScreen(manager);
   gamePlaying(manager);
+}
+
+function addAssetsToManager(manager: GameManager) {
+  for (const asset of Object.keys(AssetList)) {
+    const { path } = AssetList[asset];
+    manager.addAsset(asset, path);
+  }
 }

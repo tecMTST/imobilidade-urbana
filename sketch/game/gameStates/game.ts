@@ -1,7 +1,6 @@
-const GAME_PLAYING_STATE = "playing-state";
-
 function gamePlaying(manager: GameManager) {
-  manager.addState(GAME_PLAYING_STATE, (m) => {
+  manager.addState(GameStates.GAME_PLAYING, (m) => {
     background(200);
+    manager.runEntities();
   });
 }

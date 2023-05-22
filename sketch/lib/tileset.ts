@@ -9,11 +9,12 @@ class Tileset {
   };
 
   constructor(
-    assetSourcePath: string,
+    assetSourcePath: string | p5.Image,
     originalTileSize: Size,
     tilesetColumns: number
   ) {
-    this.sourcePath = assetSourcePath;
+    if (typeof assetSourcePath === "string") this.sourcePath = assetSourcePath;
+    else this.image = assetSourcePath;
     this.sourceSize = originalTileSize;
     this.sourceColumns = tilesetColumns;
   }

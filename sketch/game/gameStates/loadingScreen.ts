@@ -1,13 +1,11 @@
-const LOADING_STATE = "loading-state";
-
 function loadingScreen(manager: GameManager) {
   for (const [assetName, asset] of Object.entries(AssetList))
     manager.addAsset(assetName, asset.path);
   manager.loadAssets();
-  const logo = manager.getAsset(LOGO_NUCLEO) as p5.Image;
+  const logo = manager.getAsset(GameAssets.LOGO_NUCLEO) as p5.Image;
   let hasInteracted = false;
 
-  manager.addState(LOADING_STATE, (m) => {
+  manager.addState(GameStates.LOADING_STATE, (m) => {
     let loadingText = (m.assetsLoadingProgression * 100).toFixed(1) + "%";
     if (mouseIsPressed) hasInteracted = true;
 
@@ -26,8 +24,8 @@ function loadingScreen(manager: GameManager) {
     text(loadingText, 0, m.UnitSize * 2);
 
     if (m.assetsLoadingProgression >= 0.99 && hasInteracted)
-      m.state = INTRO_SCREEN;
+      m.state = GameStates.INTRO_SCREEN;
   });
 
-  manager.state = LOADING_STATE;
+  manager.state = GameStates.LOADING_STATE;
 }
