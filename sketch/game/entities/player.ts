@@ -1,22 +1,21 @@
 class Player {
-  static States = {
-    Draw: "stopped",
-  };
+  static States = {};
 
   static Behaviors = {
     Walk: "walk",
+    WatchMouse: "watch",
   };
 
   static AnimationCycles: { [key: string]: NewCycleInformation } = {
     static: {
       cycleName: "static",
       frames: [32],
-      timing: 15,
+      timing: 5,
     },
     walking: {
-      cycleName: "static",
-      frames: [0, 8, 16],
-      timing: 15,
+      cycleName: "walking",
+      frames: [0, 8],
+      timing: 2,
     },
   };
 
@@ -24,7 +23,7 @@ class Player {
     const player = new Entity(
       "player",
       1,
-      { width: manager.UnitSize, height: manager.UnitSize },
+      { width: manager.UnitSize, height: manager.UnitSize * 2 },
       { x: 0, y: 0 }
     );
 
@@ -47,9 +46,22 @@ class Player {
 
     player.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
 
-    player.addBehavior(Player.Behaviors.Walk, (e) => {
-      if (mouseIsPressed)
-        setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
-    });
+    manager.addEntity(player, player.layer);
+
+    let mouseClickTimer = 0;
+
+    player.addBehavior(
+      Player.Behaviors.WatchMouse,
+      (e) => {
+        mouseClickTimer++;
+        if (mouseIsPressed && mouseClickTimer < 2)
+          setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
+        if (!mouseIsPressed) {
+          mouseClickTimer = 0;
+          setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
+        }
+      },
+      true
+    );
   }
 }

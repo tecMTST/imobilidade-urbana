@@ -5,11 +5,58 @@ function preload() {
 }
 function setup() {
     noSmooth();
+    frameRate(30);
     setupFunction(gameManager);
 }
 function draw() {
     gameManager.run();
 }
+class Gcm {
+    static createGcms(manager) { }
+}
+class Player {
+    static createPlayer(manager) {
+        const player = new Entity("player", 1, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: 0, y: 0 });
+        const { PlayerSprite } = AssetList;
+        const playerSpritesheet = manager.getAsset(PlayerSprite.name);
+        const playerTileset = new Tileset(playerSpritesheet, PlayerSprite.originalTileSize, PlayerSprite.columns);
+        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(player, playerTileset);
+        newCycleFunction(Player.AnimationCycles.static);
+        setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
+        newCycleFunction(Player.AnimationCycles.walking);
+        player.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
+        manager.addEntity(player, player.layer);
+        let mouseClickTimer = 0;
+        player.addBehavior(Player.Behaviors.WatchMouse, (e) => {
+            mouseClickTimer++;
+            if (mouseIsPressed && mouseClickTimer < 2)
+                setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
+            if (!mouseIsPressed) {
+                mouseClickTimer = 0;
+                setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
+            }
+            fill(255);
+            text(frameRate(), -20, -20);
+        }, true);
+    }
+}
+Player.States = {};
+Player.Behaviors = {
+    Walk: "walk",
+    WatchMouse: "watch",
+};
+Player.AnimationCycles = {
+    static: {
+        cycleName: "static",
+        frames: [32],
+        timing: 5,
+    },
+    walking: {
+        cycleName: "walking",
+        frames: [0, 8],
+        timing: 2,
+    },
+};
 const AssetList = {
     PlayerSprite: {
         columns: 8,
@@ -18,37 +65,80 @@ const AssetList = {
             height: 256,
         },
         path: "./assets/img/spritesheet_players.png",
+        type: "image",
+        name: "PlayerSprite",
     },
 };
 const gameConfig = {
     aspectRatio: 9 / 16,
     UnitSizeProportion: 0.1,
 };
-const INTRO_SCREEN = "intro-screen";
+const GameAssets = {
+    LOGO_NUCLEO: "logo-ntmtst",
+    VINHETA_NUCLEO: "vinheta-nucleo",
+};
+const GameStates = {
+    LOADING_STATE: "loading-state",
+    INTRO_SCREEN: "intro-screen",
+    GAME_PLAYING: "game-playing-state",
+};
+const GameTags = {
+    GCM: "gcm-tag",
+    MARMITA: "marmita-tag",
+};
+function preloadFunction(manager) {
+    const loadingLogo = loadImage("../assets/img/logo-ntmtst.png");
+    manager.insertAsset(GameAssets.LOGO_NUCLEO, loadingLogo);
+    soundFormats("wav");
+    const vinheta = loadSound("../assets/sound/bgm_vinheta.wav");
+    manager.insertAsset(GameAssets.VINHETA_NUCLEO, vinheta);
+}
+function setupFunction(manager) {
+    const { configs } = manager;
+    let WIDTH = configs.aspectRatio * windowHeight;
+    let HEIGHT = windowHeight;
+    if (windowHeight > windowWidth) {
+        WIDTH = windowWidth;
+        HEIGHT = windowWidth / configs.aspectRatio;
+    }
+    createCanvas(WIDTH, HEIGHT);
+    manager.setUnitSize(HEIGHT * manager.configs.UnitSizeProportion);
+    loadingScreen(manager);
+    introSplashScreen(manager);
+    gamePlaying(manager);
+}
+function addAssetsToManager(manager) {
+    for (const asset of Object.keys(AssetList)) {
+        const { path } = AssetList[asset];
+        manager.addAsset(asset, path);
+    }
+}
+function gamePlaying(manager) {
+    manager.addState(GameStates.GAME_PLAYING, (m) => {
+        background(0);
+        manager.runEntities();
+    });
+}
 function introSplashScreen(manager) {
-    const introSound = manager.getAsset(VINHETA_NUCLEO);
-    const logoNucleo = manager.getAsset(LOGO_NUCLEO);
+    const logoNucleo = manager.getAsset(GameAssets.LOGO_NUCLEO);
     let fadeAlpha = 0;
-    manager.addState(INTRO_SCREEN, (m) => {
+    manager.addState(GameStates.INTRO_SCREEN, (m) => {
         background(0);
         image(logoNucleo, 0, 0, manager.UnitSize * 1.5, manager.UnitSize * 1.5);
-        manager.playAudio(VINHETA_NUCLEO);
+        manager.playAudio(GameAssets.VINHETA_NUCLEO);
         if (fadeAlpha > 250)
-            manager.state = GAME_PLAYING_STATE;
-        fadeAlpha += 2;
+            manager.state = GameStates.GAME_PLAYING;
+        fadeAlpha += 5;
         background(0, fadeAlpha);
     });
 }
-const LOGO_NUCLEO = "logo-ntmtst";
-const VINHETA_NUCLEO = "vinheta-nucleo";
-const LOADING_STATE = "loading-state";
 function loadingScreen(manager) {
     for (const [assetName, asset] of Object.entries(AssetList))
         manager.addAsset(assetName, asset.path);
     manager.loadAssets();
-    const logo = manager.getAsset(LOGO_NUCLEO);
+    const logo = manager.getAsset(GameAssets.LOGO_NUCLEO);
     let hasInteracted = false;
-    manager.addState(LOADING_STATE, (m) => {
+    manager.addState(GameStates.LOADING_STATE, (m) => {
         let loadingText = (m.assetsLoadingProgression * 100).toFixed(1) + "%";
         if (mouseIsPressed)
             hasInteracted = true;
@@ -61,37 +151,13 @@ function loadingScreen(manager) {
         textAlign(CENTER, CENTER);
         text(loadingText, 0, m.UnitSize * 2);
         if (m.assetsLoadingProgression >= 0.99 && hasInteracted)
-            m.state = INTRO_SCREEN;
+            m.state = GameStates.INTRO_SCREEN;
     });
-    manager.state = LOADING_STATE;
+    manager.state = GameStates.LOADING_STATE;
+    addEntities(manager);
 }
-function preloadFunction(manager) {
-    const loadingLogo = loadImage("../assets/img/logo-ntmtst.png");
-    manager.insertAsset(LOGO_NUCLEO, loadingLogo);
-    soundFormats("wav");
-    const vinheta = loadSound("../assets/sound/bgm_vinheta.wav");
-    manager.insertAsset(VINHETA_NUCLEO, vinheta);
-}
-function setupFunction(manager) {
-    const { configs } = manager;
-    let WIDTH = configs.aspectRatio * windowHeight;
-    let HEIGHT = windowHeight;
-    if (windowHeight > windowWidth) {
-        WIDTH = windowWidth;
-        HEIGHT = windowWidth / configs.aspectRatio;
-    }
-    createCanvas(WIDTH, HEIGHT);
-    console.log(WIDTH, HEIGHT);
-    manager.setUnitSize(HEIGHT * manager.configs.UnitSizeProportion);
-    loadingScreen(manager);
-    introSplashScreen(manager);
-    gamePlaying(manager);
-}
-const GAME_PLAYING_STATE = "playing-state";
-function gamePlaying(manager) {
-    manager.addState(GAME_PLAYING_STATE, (m) => {
-        background(200);
-    });
+function addEntities(manager) {
+    const player = Player.createPlayer(manager);
 }
 class BaseBehaviors {
     static addSpriteAnimation(entity, tileset) {
@@ -117,7 +183,7 @@ BaseBehaviors.Names = {
     SetCurrentSpriteCycle: "set-sprite-cycle",
 };
 class Entity {
-    constructor(id, layer, size = { width: 0, height: 0 }, position = { x: 0, y: 0 }, rotation = 0, tags = []) {
+    constructor(id, layer, size = { width: 0, height: 0 }, position = { x: 0, y: 0 }, tags = [], rotation = 0) {
         this.id = id;
         this.positionVector = createVector(position.x, position.y);
         this.size = size;
@@ -129,6 +195,8 @@ class Entity {
         this.activeBehaviors = new Set();
         this.internalFunctions = new Map();
         this.tags = tags;
+        this.state = "";
+        this.addState("", (e) => { });
     }
     setup() { }
     get position() {
@@ -151,8 +219,10 @@ class Entity {
     deactivateBehavior(name) {
         this.activeBehaviors.delete(name);
     }
-    addBehavior(name, behavior) {
+    addBehavior(name, behavior, doActivate = false) {
         this.behaviors.set(name, behavior);
+        if (doActivate)
+            this.activateBehavior(name);
     }
     removeBehavior(name) {
         this.behaviors.delete(name);
@@ -371,7 +441,7 @@ class SpriteAnimation {
         }
         const currentSprite = animationFrames[this.current.idx];
         if (animationFrames.length > 1) {
-            if (this.current.timeSinceFrame <= 0) {
+            if (this.current.timeSinceFrame < 0) {
                 const currentCycle = this.animationCycles.get(this.current.name);
                 if (currentCycle === undefined)
                     throwCustomError(SpriteAnimation.ERROR.NoCycle, `Cycle with name ${this.current.name} does not exist.`);
@@ -381,7 +451,6 @@ class SpriteAnimation {
             this.current.timeSinceFrame--;
         }
         push();
-        tint(255, opacity);
         translate(position.x, position.y);
         rotate(rotation);
         this.tileset.drawTile(currentSprite, { x: 0, y: 0 }, size);
@@ -393,9 +462,13 @@ SpriteAnimation.ERROR = {
 };
 class Tileset {
     constructor(assetSourcePath, originalTileSize, tilesetColumns) {
-        this.sourcePath = assetSourcePath;
+        if (typeof assetSourcePath === "string")
+            this.sourcePath = assetSourcePath;
+        else
+            this.image = assetSourcePath;
         this.sourceSize = originalTileSize;
         this.sourceColumns = tilesetColumns;
+        this.tilesheetWidth = originalTileSize.width * tilesetColumns;
     }
     preload() {
         this.image = loadImage(this.sourcePath);
@@ -412,7 +485,7 @@ class Tileset {
     tileNumToPos(n) {
         return {
             tileX: (n % this.sourceColumns) * this.sourceSize.width,
-            tileY: Math.floor(n / this.sourceColumns) * this.sourceSize.width,
+            tileY: Math.floor(n / this.sourceColumns) * this.sourceSize.height,
         };
     }
 }

@@ -46,9 +46,8 @@ class Entity {
     this.internalFunctions = new Map();
     this.tags = tags;
 
-    this.addState("run-entity", (e) => {
-      e.run();
-    });
+    this.state = "";
+    this.addState("", (e) => {});
   }
 
   setup() {}
@@ -82,8 +81,13 @@ class Entity {
     this.activeBehaviors.delete(name);
   }
 
-  addBehavior(name: string, behavior: BehaviorFunction<Entity>) {
+  addBehavior(
+    name: string,
+    behavior: BehaviorFunction<Entity>,
+    doActivate = false
+  ) {
     this.behaviors.set(name, behavior);
+    if (doActivate) this.activateBehavior(name);
   }
 
   removeBehavior(name: string) {

@@ -71,7 +71,7 @@ class SpriteAnimation {
     const currentSprite = animationFrames[this.current.idx];
 
     if (animationFrames.length > 1) {
-      if (this.current.timeSinceFrame <= 0) {
+      if (this.current.timeSinceFrame < 0) {
         const currentCycle = this.animationCycles.get(this.current.name);
         if (currentCycle === undefined)
           throwCustomError(
@@ -85,7 +85,7 @@ class SpriteAnimation {
     }
 
     push();
-    tint(255, opacity);
+    // tint(255, opacity);
     translate(position.x, position.y);
     rotate(rotation);
     this.tileset.drawTile(currentSprite, { x: 0, y: 0 }, size);

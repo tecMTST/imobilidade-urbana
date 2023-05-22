@@ -28,4 +28,10 @@ function loadingScreen(manager: GameManager) {
   });
 
   manager.state = GameStates.LOADING_STATE;
+
+  addEntities(manager);
+}
+
+function addEntities(manager: GameManager) {
+  const player = Player.createPlayer(manager);
 }

@@ -3,6 +3,7 @@ class Tileset {
   private sourceSize: Size;
   private sourceColumns: number;
   private image: p5.Image | undefined;
+  private tilesheetWidth: number;
 
   static ERROR = {
     NoImage: new Error("No image file in tileset"),
@@ -17,6 +18,7 @@ class Tileset {
     else this.image = assetSourcePath;
     this.sourceSize = originalTileSize;
     this.sourceColumns = tilesetColumns;
+    this.tilesheetWidth = originalTileSize.width * tilesetColumns;
   }
 
   preload() {
@@ -46,7 +48,7 @@ class Tileset {
   tileNumToPos(n: number) {
     return {
       tileX: (n % this.sourceColumns) * this.sourceSize.width,
-      tileY: Math.floor(n / this.sourceColumns) * this.sourceSize.width,
+      tileY: Math.floor(n / this.sourceColumns) * this.sourceSize.height,
     };
   }
 }
