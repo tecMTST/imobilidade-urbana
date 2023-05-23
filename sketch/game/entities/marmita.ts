@@ -1,7 +1,6 @@
 class Marmitas {
   static Behaviors = {
     Show: "show",
-    Hide: "hide",
     Collision: "collision",
   };
 
@@ -28,6 +27,8 @@ class Marmitas {
     );
 
     Marmitas.drawMarmitaBehavior(marmita, manager);
+    Marmitas.emitPlayerCollision(marmita, manager);
+    Marmitas.hideListener(marmita, manager);
 
     manager.addEntity(marmita, marmita.layer);
   }
@@ -50,6 +51,15 @@ class Marmitas {
     setCurrentSpriteFunction(Marmitas.AnimationCycles.static.cycleName);
 
     marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
+  }
+
+  static hideListener(marmita: Entity, manager: GameManager) {
+    marmita.addListener(
+      Marmitas.Events.CollisionWithPlayer.name,
+      (e: typeof this.Events.CollisionWithPlayer) => {
+        marmita.deactivateBehavior(Marmitas.Behaviors.Show);
+      }
+    );
   }
 
   static emitPlayerCollision(marmita: Entity, manager: GameManager) {
