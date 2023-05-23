@@ -1,8 +1,6 @@
 /// <reference path="../../lib/entity.ts"/>
 
 class Player extends EntityFactory {
-  static States = {};
-
   static Behaviors = {
     Walk: "walk",
     WatchMouse: "watch",

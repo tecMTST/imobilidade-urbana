@@ -20,8 +20,6 @@ class Entity {
 
   private activeBehaviors: Set<string>;
   private behaviors: Map<string, BehaviorFunction<Entity>>;
-  private states: Map<string, StateFunction<Entity>>;
-  private currentState: string;
   private internalFunctions: Map<string, Function>;
   private eventListeners: Map<string, (event: any) => void>;
 
@@ -52,18 +50,11 @@ class Entity {
     this.rotation = rotation;
     this.layer = layer;
     this.behaviors = new Map();
-    this.states = new Map();
-    this.currentState = "";
     this.activeBehaviors = new Set();
     this.internalFunctions = new Map();
     this.eventListeners = new Map();
     this.tags = tags;
-
-    this.state = "";
-    this.addState("", (e) => {});
   }
-
-  setup() {}
 
   addListener<EventData>(eventName: string, func: (event: EventData) => void) {
     this.eventListeners.set(eventName, func);
@@ -115,26 +106,6 @@ class Entity {
     this.behaviors.delete(name);
   }
 
-  addState(name: string, state: StateFunction<Entity>) {
-    this.states.set(name, state);
-  }
-
-  removeState(name: string) {
-    this.states.delete(name);
-  }
-
-  get state() {
-    return this.currentState;
-  }
-
-  set state(newState: string) {
-    this.currentState = newState;
-  }
-
-  get possibleStates() {
-    return new Set(this.states.keys());
-  }
-
   run(manager: GameManager) {
     push();
     translate(this.position.x, this.position.y);
@@ -154,14 +125,6 @@ class Entity {
         );
       behaviorFunction(this);
     }
-
-    const stateFunction = this.states.get(this.currentState);
-    if (stateFunction === undefined)
-      throwCustomError(
-        Entity.ERROR.NoState,
-        `[${this.currentState}] doesn't exist in [${this.id}].`
-      );
-    stateFunction(this);
 
     pop();
   }
