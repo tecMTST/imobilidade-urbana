@@ -62,6 +62,14 @@ class GameManager {
     this.events.delete(name);
   }
 
+  hasEvent(name: string) {
+    return this.events.has(name);
+  }
+
+  getEvent(name: string) {
+    return this.events.get(name);
+  }
+
   addEntity(entity: Entity, layer: number) {
     this.entities.set(entity.id, entity);
     if (!this.layers.has(layer)) this.layers.set(layer, new Map());
@@ -115,7 +123,7 @@ class GameManager {
 
   runEntities() {
     for (const layer of this.existingLayers)
-      this.layers.get(layer)?.forEach((entity) => entity.run());
+      this.layers.get(layer)?.forEach((entity) => entity.run(this));
   }
 
   run() {

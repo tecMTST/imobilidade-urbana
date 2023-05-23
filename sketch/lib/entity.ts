@@ -12,6 +12,7 @@ class Entity {
   private states: Map<string, StateFunction<Entity>>;
   private currentState: string;
   private internalFunctions: Map<string, Function>;
+  private eventListeners: Map<string, (event: any) => {}>;
 
   positionVector: p5.Vector;
   size: Size;
@@ -44,6 +45,7 @@ class Entity {
     this.currentState = "";
     this.activeBehaviors = new Set();
     this.internalFunctions = new Map();
+    this.eventListeners = new Map();
     this.tags = tags;
 
     this.state = "";
@@ -51,6 +53,14 @@ class Entity {
   }
 
   setup() {}
+
+  addListener<EventData>(eventName: string, func: (event: EventData) => {}) {
+    this.eventListeners.set(eventName, func);
+  }
+
+  removeListener(eventName: string) {
+    this.eventListeners.delete(eventName);
+  }
 
   get position(): PositionCoordinates {
     return { x: this.positionVector.x, y: this.positionVector.y };
@@ -114,10 +124,16 @@ class Entity {
     return new Set(this.states.keys());
   }
 
-  run() {
+  run(manager: GameManager) {
     push();
     translate(this.position.x, this.position.y);
     rotate(this.rotation);
+
+    for (const [eventName, eventFunc] of this.eventListeners.entries()) {
+      const event = manager.getEvent(eventName);
+      if (event !== undefined) eventFunc(event);
+    }
+
     for (const behavior of this.activeBehaviors) {
       const behaviorFunction = this.behaviors.get(behavior);
       if (behaviorFunction === undefined)
@@ -127,6 +143,7 @@ class Entity {
         );
       behaviorFunction(this);
     }
+
     const stateFunction = this.states.get(this.currentState);
     if (stateFunction === undefined)
       throwCustomError(
@@ -134,6 +151,7 @@ class Entity {
         `[${this.currentState}] doesn't exist in [${this.id}].`
       );
     stateFunction(this);
+
     pop();
   }
 }
