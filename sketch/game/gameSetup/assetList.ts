@@ -17,4 +17,15 @@ const AssetList: { [key: string]: AssetSettings } = {
     type: "image",
     name: "PlayerSprite",
   },
+
+  Marmita: {
+    columns: 1,
+    originalTileSize: {
+      width: 360,
+      height: 360,
+    },
+    path: "./assets/img/marmita.png",
+    type: "image",
+    name: "Marmita",
+  },
 } as const;
