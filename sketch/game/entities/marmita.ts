@@ -1,4 +1,6 @@
-class Marmitas {
+/// <reference path="../../lib/entity.ts"/>
+
+class Marmitas extends EntityFactory {
   static Behaviors = {
     Show: "show",
     Collision: "collision",

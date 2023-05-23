@@ -1,6 +1,17 @@
 type BehaviorFunction<T> = (e: T) => void;
 type StateFunction<T> = (e: T) => void;
 
+abstract class EntityFactory {
+  static Events?: {
+    [key: string]: any;
+  };
+  static Behaviors?: {
+    [key: string]: string;
+  };
+  static AnimationCycles?: { [key: string]: NewCycleInformation };
+  static create: (manager: GameManager) => void;
+}
+
 class Entity {
   readonly id: string;
   readonly layer: number;
