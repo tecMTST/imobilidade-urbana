@@ -12,7 +12,7 @@ class Entity {
   private states: Map<string, StateFunction<Entity>>;
   private currentState: string;
   private internalFunctions: Map<string, Function>;
-  private eventListeners: Map<string, (event: any) => {}>;
+  private eventListeners: Map<string, (event: any) => void>;
 
   positionVector: p5.Vector;
   size: Size;
@@ -54,7 +54,7 @@ class Entity {
 
   setup() {}
 
-  addListener<EventData>(eventName: string, func: (event: EventData) => {}) {
+  addListener<EventData>(eventName: string, func: (event: EventData) => void) {
     this.eventListeners.set(eventName, func);
   }
 
