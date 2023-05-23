@@ -33,5 +33,5 @@ function loadingScreen(manager: GameManager) {
 }
 
 function addEntities(manager: GameManager) {
-  const player = Player.createPlayer(manager);
+  const player = Player.create(manager);
 }

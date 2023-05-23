@@ -1,3 +1,3 @@
-class Marmitas {
+class Cops {
   static create(manager: GameManager) {}
 }

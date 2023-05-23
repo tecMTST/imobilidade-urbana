@@ -19,7 +19,7 @@ class Player {
     },
   };
 
-  static createPlayer(manager: GameManager) {
+  static create(manager: GameManager) {
     const player = new Entity(
       "player",
       1,
