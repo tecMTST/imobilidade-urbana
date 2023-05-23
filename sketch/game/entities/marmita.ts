@@ -15,6 +15,7 @@ class Marmitas {
   static Events = {
     CollisionWithPlayer: {
       name: "collision-with-player",
+      options: {},
     },
   };
 
@@ -63,6 +64,10 @@ class Marmitas {
   }
 
   static emitPlayerCollision(marmita: Entity, manager: GameManager) {
-    marmita.addBehavior(Marmitas.Behaviors.Collision, (e) => {});
+    marmita.addBehavior(Marmitas.Behaviors.Collision, (e) => {
+      const { name, options } = Marmitas.Events.CollisionWithPlayer;
+      manager.addEvent(name, options);
+    });
+    marmita.activateBehavior(Marmitas.Behaviors.Collision);
   }
 }
