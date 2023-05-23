@@ -13,7 +13,7 @@ const AssetList: { [key: string]: AssetSettings } = {
       width: 128,
       height: 256,
     },
-    path: "./assets/img/spritesheet_players.png",
+    path: "./assets/img/player.png",
     type: "image",
     name: "PlayerSprite",
   },
