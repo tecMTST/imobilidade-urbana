@@ -16,7 +16,7 @@ class Marmitas extends EntityFactory {
 
   static Events = {
     CollisionWithPlayer: {
-      name: "collision-with-player",
+      name: "marmita-collides-with-player",
       options: {},
     },
   };
@@ -66,10 +66,14 @@ class Marmitas extends EntityFactory {
   }
 
   static emitPlayerCollision(marmita: Entity, manager: GameManager) {
-    marmita.addBehavior(Marmitas.Behaviors.Collision, (e) => {
-      const { name, options } = Marmitas.Events.CollisionWithPlayer;
-      manager.addEvent(name, options);
-    });
-    marmita.activateBehavior(Marmitas.Behaviors.Collision);
+    const player = manager.getEntity("player") as Entity;
+    BaseBehaviors.circleCollision(
+      manager,
+      marmita,
+      player,
+      Marmitas.Events.CollisionWithPlayer,
+      Marmitas.Behaviors.Collision,
+      true
+    );
   }
 }
