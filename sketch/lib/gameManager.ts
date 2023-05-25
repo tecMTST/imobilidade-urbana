@@ -139,6 +139,7 @@ class GameManager {
         `${this.currentState} doesn't exist.`
       );
     currentStateFunction(this);
+
     pop();
   }
 
