@@ -33,5 +33,6 @@ function loadingScreen(manager: GameManager) {
 }
 
 function addEntities(manager: GameManager) {
-  const player = Player.create(manager);
+  Player.create(manager);
+  Joystick.create(manager);
 }
