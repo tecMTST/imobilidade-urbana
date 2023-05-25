@@ -58,7 +58,7 @@ class SpriteAnimation {
     position: PositionCoordinates,
     rotation: number,
     size: Size,
-    opacity = 255
+    newScale: Size
   ) {
     const animationFrames = this.animationCycles.get(this.current.name)?.cycle;
 
@@ -89,6 +89,7 @@ class SpriteAnimation {
     // tint(255, opacity);
     translate(position.x, position.y);
     rotate(rotation);
+    scale(newScale.width, newScale.height);
     this.tileset.drawTile(currentSprite, { x: 0, y: 0 }, size);
     pop();
   }

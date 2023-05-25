@@ -23,6 +23,7 @@ class Entity {
   private internalFunctions: Map<string, Function>;
   private eventListeners: Map<string, (event: any) => void>;
 
+  scale: Size;
   positionVector: p5.Vector;
   size: Size;
   rotation: number;
@@ -54,6 +55,7 @@ class Entity {
     this.internalFunctions = new Map();
     this.eventListeners = new Map();
     this.tags = tags;
+    this.scale = { width: 1, height: 1 };
   }
 
   addListener<EventData>(eventName: string, func: (event: EventData) => void) {
@@ -64,8 +66,12 @@ class Entity {
     this.eventListeners.delete(eventName);
   }
 
-  get position(): PositionCoordinates {
-    return { x: this.positionVector.x, y: this.positionVector.y };
+  get position(): p5.Vector {
+    return this.positionVector;
+  }
+
+  setPosition(newVector: p5.Vector) {
+    this.positionVector = newVector;
   }
 
   getFunction(name: string) {
