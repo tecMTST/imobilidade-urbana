@@ -76,7 +76,7 @@ class GameManager {
     this.layers.get(layer)!.set(entity.id, entity);
     if (this.existingLayers.indexOf(layer) === -1)
       this.existingLayers.push(layer);
-    this.existingLayers.sort();
+    this.existingLayers.sort().reverse();
 
     for (const tag of entity.tags) this.entityGroups.set(tag, entity);
   }
