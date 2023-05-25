@@ -313,10 +313,10 @@ const GameTags = {
     MARMITA: "marmita-tag",
 };
 function preloadFunction(manager) {
-    const loadingLogo = loadImage("../assets/img/logo-ntmtst.png");
+    const loadingLogo = loadImage("./assets/img/logo-ntmtst.png");
     manager.insertAsset(GameAssets.LOGO_NUCLEO, loadingLogo);
     soundFormats("wav");
-    const vinheta = loadSound("../assets/sound/bgm_vinheta.wav");
+    const vinheta = loadSound("./assets/sound/bgm_vinheta.wav");
     manager.insertAsset(GameAssets.VINHETA_NUCLEO, vinheta);
 }
 function setupFunction(manager) {
