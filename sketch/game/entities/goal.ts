@@ -20,7 +20,7 @@ class Goal extends EntityFactory {
   create(manager: GameManager) {
     const goal = new Entity(
       "goal",
-      1,
+      2,
       { width: manager.UnitSize, height: manager.UnitSize * 2 },
       { x: 0, y: 0 }
     );
