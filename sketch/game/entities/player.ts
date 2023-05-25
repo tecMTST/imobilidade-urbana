@@ -46,6 +46,36 @@ class Player extends EntityFactory {
 
     player.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
 
+    Player.controlListener(manager, player, setCurrentSpriteFunction);
+
     manager.addEntity(player, player.layer);
+  }
+
+  static controlListener(
+    manager: GameManager,
+    player: Entity,
+    setCurrentSpriteFunction: (name: string) => void
+  ) {
+    player.addListener(
+      Joystick.Events.ControlEvent.name,
+      (event: ControllerOptions) => {
+        const { currentPress, isPressed } = event;
+        const norm = currentPress.copy();
+
+        if (isPressed) {
+          norm.div(manager.UnitSize / 3);
+          player.position.add(norm);
+          setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
+        } else {
+          setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
+        }
+
+        if (
+          (norm.x < 0 && player.scale.width > 0) ||
+          (norm.x > 0 && player.scale.width < 0)
+        )
+          player.scale.width *= -1;
+      }
+    );
   }
 }
