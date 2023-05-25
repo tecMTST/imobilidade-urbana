@@ -17,15 +17,16 @@ class Goal extends EntityFactory {
     },
   };
 
-  create(manager: GameManager) {
+  static create(manager: GameManager) {
     const goal = new Entity(
       "goal",
       2,
-      { width: manager.UnitSize, height: manager.UnitSize * 2 },
-      { x: 0, y: 0 }
+      { width: manager.UnitSize, height: manager.UnitSize },
+      { x: -width / 5, y: -height / 5 }
     );
 
     Goal.drawGoalBehavior(goal, manager);
+    Goal.emitPlayerReachedGoal(goal, manager);
 
     manager.addEntity(goal, goal.layer);
   }
