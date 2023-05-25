@@ -24,7 +24,7 @@ class Marmitas extends EntityFactory {
   static create(manager: GameManager) {
     const marmita = new Entity(
       "marmita",
-      1,
+      2,
       { width: manager.UnitSize, height: manager.UnitSize * 2 },
       { x: 0, y: 0 }
     );
@@ -59,7 +59,7 @@ class Marmitas extends EntityFactory {
   static hideListener(marmita: Entity, manager: GameManager) {
     marmita.addListener(
       Marmitas.Events.CollisionWithPlayer.name,
-      (e: typeof this.Events.CollisionWithPlayer) => {
+      (e: typeof Marmitas.Events.CollisionWithPlayer) => {
         marmita.deactivateBehavior(Marmitas.Behaviors.Show);
       }
     );
