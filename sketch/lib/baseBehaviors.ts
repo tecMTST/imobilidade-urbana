@@ -20,7 +20,7 @@ class BaseBehaviors {
   static addSpriteAnimation(entity: Entity, tileset: Tileset) {
     const spriteAnimation = new SpriteAnimation(tileset);
     const behavior: BehaviorFunction<Entity> = (e) => {
-      spriteAnimation.draw(e.position, e.rotation, e.size);
+      spriteAnimation.draw(e.position, e.rotation, e.size, e.scale);
     };
     entity.addBehavior(BaseBehaviors.Names.SpriteAnimation, behavior);
 
