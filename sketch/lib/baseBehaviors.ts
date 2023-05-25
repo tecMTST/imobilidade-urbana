@@ -44,4 +44,29 @@ class BaseBehaviors {
 
     return { newCycleFunction, setCurrentSpriteFunction };
   }
+
+  static circleCollision(
+    manager: GameManager,
+    entity0: Entity,
+    entity1: Entity,
+    event: { name: string; options: any },
+    behavior: string,
+    doActivate = false
+  ) {
+    const doesCollide = () => {
+      const { x: x0, y: y0 } = entity0.position;
+      const { x: x1, y: y1 } = entity1.position;
+      return (
+        (x0 - x1) ** 2 + (y0 - y1) ** 2 <=
+        ((entity0.size.width + entity1.size.width) / 2) ** 2
+      );
+    };
+
+    entity0.addBehavior(behavior, (e) => {
+      const { name, options } = event;
+      if (doesCollide) manager.addEvent(name, options);
+    });
+
+    if (doActivate) entity0.activateBehavior(behavior);
+  }
 }
