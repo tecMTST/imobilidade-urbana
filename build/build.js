@@ -11,11 +11,222 @@ function setup() {
 function draw() {
     gameManager.run();
 }
-class Gcm {
-    static createGcms(manager) { }
+class EntityFactory {
 }
-class Player {
-    static createPlayer(manager) {
+class Entity {
+    constructor(id, layer, size = { width: 0, height: 0 }, position = { x: 0, y: 0 }, tags = [], rotation = 0) {
+        this.id = id;
+        this.positionVector = createVector(position.x, position.y);
+        this.size = size;
+        this.rotation = rotation;
+        this.layer = layer;
+        this.behaviors = new Map();
+        this.activeBehaviors = new Set();
+        this.internalFunctions = new Map();
+        this.eventListeners = new Map();
+        this.tags = tags;
+        this.scale = { width: 1, height: 1 };
+    }
+    addListener(eventName, func) {
+        this.eventListeners.set(eventName, func);
+    }
+    removeListener(eventName) {
+        this.eventListeners.delete(eventName);
+    }
+    get position() {
+        return this.positionVector;
+    }
+    setPosition(newVector) {
+        this.positionVector = newVector;
+    }
+    getFunction(name) {
+        return this.internalFunctions.get(name);
+    }
+    addInternalFunction(name, func) {
+        this.internalFunctions.set(name, func);
+    }
+    removeInternalFunction(name) {
+        this.internalFunctions.delete(name);
+    }
+    activateBehavior(name) {
+        if (!this.behaviors.has(name))
+            throwCustomError(ERRORS.Entity.NO_BEHAVIOR, `Behavior [${name}] is not in entity [${this.id}]`);
+        this.activeBehaviors.add(name);
+    }
+    deactivateBehavior(name) {
+        this.activeBehaviors.delete(name);
+    }
+    addBehavior(name, behavior, doActivate = false) {
+        this.behaviors.set(name, behavior);
+        if (doActivate)
+            this.activateBehavior(name);
+    }
+    removeBehavior(name) {
+        this.behaviors.delete(name);
+    }
+    run(manager) {
+        push();
+        translate(this.position.x, this.position.y);
+        rotate(this.rotation);
+        for (const [eventName, eventFunc] of this.eventListeners.entries()) {
+            const event = manager.getEvent(eventName);
+            if (event !== undefined)
+                eventFunc(event);
+        }
+        for (const behavior of this.activeBehaviors) {
+            const behaviorFunction = this.behaviors.get(behavior);
+            if (behaviorFunction === undefined)
+                throwCustomError(Entity.ERROR.NoBehavior, `[${behavior}] doesn't exist in [${this.id}].`);
+            behaviorFunction(this);
+        }
+        pop();
+    }
+}
+Entity.Assets = {
+    sample: "sample",
+};
+Entity.ERROR = {
+    NoBehavior: new Error("Behavior not in entity."),
+    NoState: new Error("State not in entity."),
+};
+class Joystick extends EntityFactory {
+    static create(manager) {
+        const joystick = new Entity("joystick", 1, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: 0, y: 0 });
+        Joystick.controlEvent(manager, joystick);
+        Joystick.draw(manager, joystick);
+    }
+    static draw(manager, joystick) {
+        joystick.addListener(Joystick.Events.ControlEvent.name, (options) => {
+            const { currentPress } = options;
+            if (options.isPressed) {
+                fill(255);
+                circle(0, 0, manager.UnitSize * 2);
+                stroke(255, 0, 0);
+                strokeWeight(3);
+                const norm = currentPress.copy();
+                if (norm.x ** 2 + norm.y ** 2 > manager.UnitSize ** 2)
+                    norm.normalize().mult(manager.UnitSize);
+                line(0, 0, norm.x, norm.y);
+            }
+        });
+    }
+    static controlEvent(manager, joystick) {
+        joystick.addBehavior(Joystick.Behaviors.EmitControlEvent, (e) => {
+            let options = manager.getEvent(Joystick.Events.ControlEvent.name);
+            if (options === undefined) {
+                options = {
+                    origin: createVector(0, 0),
+                    isPressed: false,
+                    currentPress: createVector(0, 0),
+                };
+            }
+            const [x, y] = [mouseX, mouseY];
+            if (!options.isPressed)
+                options.origin = createVector(x - width / 2, y - height / 2);
+            options.isPressed = false;
+            if (mouseIsPressed) {
+                options.isPressed = true;
+                options.currentPress = createVector(x - width / 2, y - height / 2);
+                options.currentPress.sub(options.origin);
+                joystick.setPosition(options.origin);
+            }
+            manager.addEvent(Joystick.Events.ControlEvent.name, options);
+        }, true);
+        manager.addEntity(joystick, joystick.layer);
+    }
+}
+Joystick.Behaviors = {
+    EmitControlEvent: "control-event",
+    Draw: "draw",
+};
+Joystick.Events = {
+    ControlEvent: {
+        name: "touch-controls",
+        options: {},
+    },
+};
+class Cops {
+    static create(manager) { }
+}
+class Goal extends EntityFactory {
+    create(manager) {
+        const goal = new Entity("goal", 2, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: 0, y: 0 });
+        Goal.drawGoalBehavior(goal, manager);
+        manager.addEntity(goal, goal.layer);
+    }
+    static drawGoalBehavior(goal, manager) {
+        const { Marmita } = AssetList;
+        const goalSpritesheet = manager.getAsset(Marmita.name);
+        const goalTileset = new Tileset(goalSpritesheet, Marmita.originalTileSize, Marmita.columns);
+        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(goal, goalTileset);
+        newCycleFunction(Goal.AnimationCycles.static);
+        setCurrentSpriteFunction(Goal.AnimationCycles.static.cycleName);
+        goal.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
+    }
+    static emitPlayerReachedGoal(goal, manager) {
+        const player = manager.getEntity("player");
+        BaseBehaviors.circleCollision(manager, goal, player, Goal.Events.CollisionWithPlayer, Goal.Behaviors.EmitPlayerCollision, true);
+    }
+}
+Goal.Behaviors = {
+    EmitPlayerCollision: "emit-collision",
+};
+Goal.Events = {
+    CollisionWithPlayer: { name: "goal-collides-with-player", options: {} },
+};
+Goal.AnimationCycles = {
+    static: {
+        cycleName: "static",
+        frames: [0],
+        timing: 5,
+    },
+};
+class Marmitas extends EntityFactory {
+    static create(manager) {
+        const marmita = new Entity("marmita", 2, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: 0, y: 0 });
+        Marmitas.drawMarmitaBehavior(marmita, manager);
+        Marmitas.emitPlayerCollision(marmita, manager);
+        Marmitas.hideListener(marmita, manager);
+        manager.addEntity(marmita, marmita.layer);
+    }
+    static drawMarmitaBehavior(marmita, manager) {
+        const { Marmita } = AssetList;
+        const marmitaSpritesheet = manager.getAsset(Marmita.name);
+        const marmitaTileset = new Tileset(marmitaSpritesheet, Marmita.originalTileSize, Marmita.columns);
+        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(marmita, marmitaTileset);
+        newCycleFunction(Marmitas.AnimationCycles.static);
+        setCurrentSpriteFunction(Marmitas.AnimationCycles.static.cycleName);
+        marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
+    }
+    static hideListener(marmita, manager) {
+        marmita.addListener(Marmitas.Events.CollisionWithPlayer.name, (e) => {
+            marmita.deactivateBehavior(Marmitas.Behaviors.Show);
+        });
+    }
+    static emitPlayerCollision(marmita, manager) {
+        const player = manager.getEntity("player");
+        BaseBehaviors.circleCollision(manager, marmita, player, Marmitas.Events.CollisionWithPlayer, Marmitas.Behaviors.Collision, true);
+    }
+}
+Marmitas.Behaviors = {
+    Show: "show",
+    Collision: "collision",
+};
+Marmitas.AnimationCycles = {
+    static: {
+        cycleName: "static",
+        frames: [0],
+        timing: 5,
+    },
+};
+Marmitas.Events = {
+    CollisionWithPlayer: {
+        name: "marmita-collides-with-player",
+        options: {},
+    },
+};
+class Player extends EntityFactory {
+    static create(manager) {
         const player = new Entity("player", 1, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: 0, y: 0 });
         const { PlayerSprite } = AssetList;
         const playerSpritesheet = manager.getAsset(PlayerSprite.name);
@@ -25,25 +236,30 @@ class Player {
         setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
         newCycleFunction(Player.AnimationCycles.walking);
         player.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
+        Player.controlListener(manager, player, setCurrentSpriteFunction);
         manager.addEntity(player, player.layer);
-        let mouseClickTimer = 0;
-        player.addBehavior(Player.Behaviors.WatchMouse, (e) => {
-            mouseClickTimer++;
-            if (mouseIsPressed && mouseClickTimer < 2)
+    }
+    static controlListener(manager, player, setCurrentSpriteFunction) {
+        player.addListener(Joystick.Events.ControlEvent.name, (event) => {
+            const { currentPress, isPressed } = event;
+            const norm = currentPress.copy();
+            if (isPressed) {
+                norm.div(manager.UnitSize / 3);
+                player.position.add(norm);
                 setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
-            if (!mouseIsPressed) {
-                mouseClickTimer = 0;
+            }
+            else {
                 setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
             }
-            fill(255);
-            text(frameRate(), -20, -20);
-        }, true);
+            if ((norm.x < 0 && player.scale.width > 0) ||
+                (norm.x > 0 && player.scale.width < 0))
+                player.scale.width *= -1;
+        });
     }
 }
-Player.States = {};
 Player.Behaviors = {
     Walk: "walk",
-    WatchMouse: "watch",
+    Flip: "flip",
 };
 Player.AnimationCycles = {
     static: {
@@ -64,9 +280,19 @@ const AssetList = {
             width: 128,
             height: 256,
         },
-        path: "./assets/img/spritesheet_players.png",
+        path: "./assets/img/player.png",
         type: "image",
         name: "PlayerSprite",
+    },
+    Marmita: {
+        columns: 1,
+        originalTileSize: {
+            width: 360,
+            height: 360,
+        },
+        path: "./assets/img/marmita.png",
+        type: "image",
+        name: "Marmita",
     },
 };
 const gameConfig = {
@@ -157,13 +383,14 @@ function loadingScreen(manager) {
     addEntities(manager);
 }
 function addEntities(manager) {
-    const player = Player.createPlayer(manager);
+    Player.create(manager);
+    Joystick.create(manager);
 }
 class BaseBehaviors {
     static addSpriteAnimation(entity, tileset) {
         const spriteAnimation = new SpriteAnimation(tileset);
         const behavior = (e) => {
-            spriteAnimation.draw(e.position, e.rotation, e.size);
+            spriteAnimation.draw(e.position, e.rotation, e.size, e.scale);
         };
         entity.addBehavior(BaseBehaviors.Names.SpriteAnimation, behavior);
         const newCycleFunction = (newCycle) => {
@@ -176,95 +403,26 @@ class BaseBehaviors {
         entity.addInternalFunction(BaseBehaviors.Names.SetCurrentSpriteCycle, setCurrentSpriteFunction);
         return { newCycleFunction, setCurrentSpriteFunction };
     }
+    static circleCollision(manager, entity0, entity1, event, behavior, doActivate = false) {
+        const doesCollide = () => {
+            const { x: x0, y: y0 } = entity0.position;
+            const { x: x1, y: y1 } = entity1.position;
+            return ((x0 - x1) ** 2 + (y0 - y1) ** 2 <=
+                ((entity0.size.width + entity1.size.width) / 2) ** 2);
+        };
+        entity0.addBehavior(behavior, (e) => {
+            const { name, options } = event;
+            if (doesCollide)
+                manager.addEvent(name, options);
+        });
+        if (doActivate)
+            entity0.activateBehavior(behavior);
+    }
 }
 BaseBehaviors.Names = {
     SpriteAnimation: "sprite-animation",
     AddSpriteCycle: "add-sprite-cycle",
     SetCurrentSpriteCycle: "set-sprite-cycle",
-};
-class Entity {
-    constructor(id, layer, size = { width: 0, height: 0 }, position = { x: 0, y: 0 }, tags = [], rotation = 0) {
-        this.id = id;
-        this.positionVector = createVector(position.x, position.y);
-        this.size = size;
-        this.rotation = rotation;
-        this.layer = layer;
-        this.behaviors = new Map();
-        this.states = new Map();
-        this.currentState = "";
-        this.activeBehaviors = new Set();
-        this.internalFunctions = new Map();
-        this.tags = tags;
-        this.state = "";
-        this.addState("", (e) => { });
-    }
-    setup() { }
-    get position() {
-        return { x: this.positionVector.x, y: this.positionVector.y };
-    }
-    getFunction(name) {
-        return this.internalFunctions.get(name);
-    }
-    addInternalFunction(name, func) {
-        this.internalFunctions.set(name, func);
-    }
-    removeInternalFunction(name) {
-        this.internalFunctions.delete(name);
-    }
-    activateBehavior(name) {
-        if (!this.behaviors.has(name))
-            throwCustomError(ERRORS.Entity.NO_BEHAVIOR, `Behavior [${name}] is not in entity [${this.id}]`);
-        this.activeBehaviors.add(name);
-    }
-    deactivateBehavior(name) {
-        this.activeBehaviors.delete(name);
-    }
-    addBehavior(name, behavior, doActivate = false) {
-        this.behaviors.set(name, behavior);
-        if (doActivate)
-            this.activateBehavior(name);
-    }
-    removeBehavior(name) {
-        this.behaviors.delete(name);
-    }
-    addState(name, state) {
-        this.states.set(name, state);
-    }
-    removeState(name) {
-        this.states.delete(name);
-    }
-    get state() {
-        return this.currentState;
-    }
-    set state(newState) {
-        this.currentState = newState;
-    }
-    get possibleStates() {
-        return new Set(this.states.keys());
-    }
-    run() {
-        push();
-        translate(this.position.x, this.position.y);
-        rotate(this.rotation);
-        for (const behavior of this.activeBehaviors) {
-            const behaviorFunction = this.behaviors.get(behavior);
-            if (behaviorFunction === undefined)
-                throwCustomError(Entity.ERROR.NoBehavior, `[${behavior}] doesn't exist in [${this.id}].`);
-            behaviorFunction(this);
-        }
-        const stateFunction = this.states.get(this.currentState);
-        if (stateFunction === undefined)
-            throwCustomError(Entity.ERROR.NoState, `[${this.currentState}] doesn't exist in [${this.id}].`);
-        stateFunction(this);
-        pop();
-    }
-}
-Entity.Assets = {
-    sample: "sample",
-};
-Entity.ERROR = {
-    NoBehavior: new Error("Behavior not in entity."),
-    NoState: new Error("State not in entity."),
 };
 class GameManager {
     constructor() {
@@ -299,6 +457,12 @@ class GameManager {
     }
     removeEvent(name) {
         this.events.delete(name);
+    }
+    hasEvent(name) {
+        return this.events.has(name);
+    }
+    getEvent(name) {
+        return this.events.get(name);
     }
     addEntity(entity, layer) {
         this.entities.set(entity.id, entity);
@@ -344,7 +508,7 @@ class GameManager {
     }
     runEntities() {
         for (const layer of this.existingLayers)
-            this.layers.get(layer)?.forEach((entity) => entity.run());
+            this.layers.get(layer)?.forEach((entity) => entity.run(this));
     }
     run() {
         push();
@@ -428,13 +592,15 @@ class SpriteAnimation {
         });
     }
     setCurrentAnimation(name) {
+        if (this.current.name === name)
+            return;
         this.current = {
             name,
             idx: 0,
             timeSinceFrame: 0,
         };
     }
-    draw(position, rotation, size, opacity = 255) {
+    draw(position, rotation, size, newScale) {
         const animationFrames = this.animationCycles.get(this.current.name)?.cycle;
         if (animationFrames === undefined) {
             throwCustomError(SpriteAnimation.ERROR.NoCycle, `Animation cycle called [${this.current.name}] doesn't exist in cycles Map.`);
@@ -453,6 +619,7 @@ class SpriteAnimation {
         push();
         translate(position.x, position.y);
         rotate(rotation);
+        scale(newScale.width, newScale.height);
         this.tileset.drawTile(currentSprite, { x: 0, y: 0 }, size);
         pop();
     }
