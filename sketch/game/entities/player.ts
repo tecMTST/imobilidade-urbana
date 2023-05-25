@@ -47,21 +47,5 @@ class Player extends EntityFactory {
     player.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
 
     manager.addEntity(player, player.layer);
-
-    let mouseClickTimer = 0;
-
-    player.addBehavior(
-      Player.Behaviors.WatchMouse,
-      (e) => {
-        mouseClickTimer++;
-        if (mouseIsPressed && mouseClickTimer < 2)
-          setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
-        if (!mouseIsPressed) {
-          mouseClickTimer = 0;
-          setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
-        }
-      },
-      true
-    );
   }
 }
