@@ -109,4 +109,26 @@ class Player extends EntityFactory {
       }
     );
   }
+
+  static collisionWithMarmitaListener(manager: GameManager, player: Entity) {
+    player.addListener(Marmitas.Events.CollisionWithPlayer.name, (e: any) => {
+      const marmita = e.marmita as Entity;
+      marmita.deactivateBehavior(BaseBehaviors.Names.SpriteAnimation);
+      manager.removeEvent(Marmitas.Events.CollisionWithPlayer.name);
+      Player.MarmitaSettings.isHolding = true;
+      Player.MarmitaSettings.marmita = marmita;
+    });
+  }
+
+  static goalListener(manager: GameManager, player: Entity) {
+    player.addListener(Goal.Events.CollisionWithPlayer.name, (e: any) => {
+      if (Player.MarmitaSettings.isHolding) {
+        const marmita = Player.MarmitaSettings.marmita as Entity;
+        Player.MarmitaSettings.isHolding = false;
+        marmita.activateBehavior(Marmitas.Behaviors.Spawn);
+        marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
+      }
+      manager.removeEvent(Goal.Events.CollisionWithPlayer.name);
+    });
+  }
 }
