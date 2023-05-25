@@ -17,6 +17,21 @@ class Player extends EntityFactory {
       frames: [0, 8],
       timing: 2,
     },
+    staticWithMarmita: {
+      cycleName: "static-marmita",
+      frames: [18],
+      timing: 5,
+    },
+    walkingWithMarmita: {
+      cycleName: "walking-marmita",
+      frames: [25, 33],
+      timing: 2,
+    },
+  };
+
+  static MarmitaSettings = {
+    isHolding: false,
+    marmita: {},
   };
 
   static create(manager: GameManager) {
@@ -65,9 +80,19 @@ class Player extends EntityFactory {
         if (isPressed) {
           norm.div(manager.UnitSize / 3);
           player.position.add(norm);
-          setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
+          if (Player.MarmitaSettings.isHolding)
+            setCurrentSpriteFunction(
+              Player.AnimationCycles.walkingWithMarmita.cycleName
+            );
+          else
+            setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
         } else {
-          setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
+          if (Player.MarmitaSettings.isHolding)
+            setCurrentSpriteFunction(
+              Player.AnimationCycles.staticWithMarmita.cycleName
+            );
+          else
+            setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
         }
 
         if (
