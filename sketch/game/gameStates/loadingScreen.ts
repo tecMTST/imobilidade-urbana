@@ -35,4 +35,6 @@ function loadingScreen(manager: GameManager) {
 function addEntities(manager: GameManager) {
   Player.create(manager);
   Joystick.create(manager);
+  Marmitas.create(manager);
+  Goal.create(manager);
 }
