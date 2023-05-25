@@ -29,6 +29,8 @@ class Joystick extends EntityFactory {
 
     Joystick.controlEvent(manager, joystick);
     Joystick.draw(manager, joystick);
+
+    manager.addEntity(joystick, joystick.layer);
   }
 
   static draw(manager: GameManager, joystick: Entity) {
@@ -37,8 +39,8 @@ class Joystick extends EntityFactory {
       (options: ControllerOptions) => {
         const { currentPress } = options;
         if (options.isPressed) {
-          fill(255);
-          circle(0, 0, manager.UnitSize * 2);
+          fill(255, 90);
+          circle(0, 0, manager.UnitSize);
           stroke(255, 0, 0);
           strokeWeight(3);
           const norm = currentPress.copy();
@@ -81,7 +83,5 @@ class Joystick extends EntityFactory {
       },
       true
     );
-
-    manager.addEntity(joystick, joystick.layer);
   }
 }
