@@ -2,10 +2,10 @@ type BehaviorFunction<T> = (e: T) => void;
 type StateFunction<T> = (e: T) => void;
 
 abstract class EntityFactory {
-  static Events?: {
+  static Events: {
     [key: string]: any;
   };
-  static Behaviors?: {
+  static Behaviors: {
     [key: string]: string;
   };
   static AnimationCycles?: { [key: string]: NewCycleInformation };
