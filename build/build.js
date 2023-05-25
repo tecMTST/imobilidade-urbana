@@ -94,13 +94,14 @@ class Joystick extends EntityFactory {
         const joystick = new Entity("joystick", 1, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: 0, y: 0 });
         Joystick.controlEvent(manager, joystick);
         Joystick.draw(manager, joystick);
+        manager.addEntity(joystick, joystick.layer);
     }
     static draw(manager, joystick) {
         joystick.addListener(Joystick.Events.ControlEvent.name, (options) => {
             const { currentPress } = options;
             if (options.isPressed) {
-                fill(255);
-                circle(0, 0, manager.UnitSize * 2);
+                fill(255, 90);
+                circle(0, 0, manager.UnitSize);
                 stroke(255, 0, 0);
                 strokeWeight(3);
                 const norm = currentPress.copy();
@@ -132,7 +133,6 @@ class Joystick extends EntityFactory {
             }
             manager.addEvent(Joystick.Events.ControlEvent.name, options);
         }, true);
-        manager.addEntity(joystick, joystick.layer);
     }
 }
 Joystick.Behaviors = {
@@ -149,9 +149,10 @@ class Cops {
     static create(manager) { }
 }
 class Goal extends EntityFactory {
-    create(manager) {
-        const goal = new Entity("goal", 2, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: 0, y: 0 });
+    static create(manager) {
+        const goal = new Entity("goal", 2, { width: manager.UnitSize, height: manager.UnitSize }, { x: -width / 5, y: -height / 5 });
         Goal.drawGoalBehavior(goal, manager);
+        Goal.emitPlayerReachedGoal(goal, manager);
         manager.addEntity(goal, goal.layer);
     }
     static drawGoalBehavior(goal, manager) {
@@ -183,11 +184,19 @@ Goal.AnimationCycles = {
 };
 class Marmitas extends EntityFactory {
     static create(manager) {
-        const marmita = new Entity("marmita", 2, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: 0, y: 0 });
+        const marmita = new Entity("marmita", 2, { width: manager.UnitSize, height: manager.UnitSize }, { x: 1000, y: 1000 });
         Marmitas.drawMarmitaBehavior(marmita, manager);
         Marmitas.emitPlayerCollision(marmita, manager);
-        Marmitas.hideListener(marmita, manager);
+        Marmitas.spawn(marmita, manager);
         manager.addEntity(marmita, marmita.layer);
+    }
+    static spawn(marmita, manager) {
+        marmita.addBehavior(Marmitas.Behaviors.Spawn, (e) => {
+            marmita.position.x = Helpers.random(-width / 4, width / 4);
+            marmita.position.y = Helpers.random(0, height / 4);
+            marmita.deactivateBehavior(Marmitas.Behaviors.Spawn);
+            manager.removeEvent(Marmitas.Events.CollisionWithPlayer.name);
+        }, true);
     }
     static drawMarmitaBehavior(marmita, manager) {
         const { Marmita } = AssetList;
@@ -198,19 +207,15 @@ class Marmitas extends EntityFactory {
         setCurrentSpriteFunction(Marmitas.AnimationCycles.static.cycleName);
         marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
     }
-    static hideListener(marmita, manager) {
-        marmita.addListener(Marmitas.Events.CollisionWithPlayer.name, (e) => {
-            marmita.deactivateBehavior(Marmitas.Behaviors.Show);
-        });
-    }
     static emitPlayerCollision(marmita, manager) {
         const player = manager.getEntity("player");
-        BaseBehaviors.circleCollision(manager, marmita, player, Marmitas.Events.CollisionWithPlayer, Marmitas.Behaviors.Collision, true);
+        BaseBehaviors.circleCollision(manager, marmita, player, { name: Marmitas.Events.CollisionWithPlayer.name, options: { marmita } }, Marmitas.Behaviors.Collision, true);
     }
 }
 Marmitas.Behaviors = {
     Show: "show",
     Collision: "collision",
+    Spawn: "spawn",
 };
 Marmitas.AnimationCycles = {
     static: {
@@ -235,8 +240,12 @@ class Player extends EntityFactory {
         newCycleFunction(Player.AnimationCycles.static);
         setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
         newCycleFunction(Player.AnimationCycles.walking);
+        newCycleFunction(Player.AnimationCycles.staticWithMarmita);
+        newCycleFunction(Player.AnimationCycles.walkingWithMarmita);
         player.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
         Player.controlListener(manager, player, setCurrentSpriteFunction);
+        Player.collisionWithMarmitaListener(manager, player);
+        Player.goalListener(manager, player);
         manager.addEntity(player, player.layer);
     }
     static controlListener(manager, player, setCurrentSpriteFunction) {
@@ -246,14 +255,40 @@ class Player extends EntityFactory {
             if (isPressed) {
                 norm.div(manager.UnitSize / 3);
                 player.position.add(norm);
-                setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
+                if (Player.MarmitaSettings.isHolding)
+                    setCurrentSpriteFunction(Player.AnimationCycles.walkingWithMarmita.cycleName);
+                else
+                    setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
             }
             else {
-                setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
+                if (Player.MarmitaSettings.isHolding)
+                    setCurrentSpriteFunction(Player.AnimationCycles.staticWithMarmita.cycleName);
+                else
+                    setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
             }
             if ((norm.x < 0 && player.scale.width > 0) ||
                 (norm.x > 0 && player.scale.width < 0))
                 player.scale.width *= -1;
+        });
+    }
+    static collisionWithMarmitaListener(manager, player) {
+        player.addListener(Marmitas.Events.CollisionWithPlayer.name, (e) => {
+            const marmita = e.marmita;
+            marmita.deactivateBehavior(BaseBehaviors.Names.SpriteAnimation);
+            manager.removeEvent(Marmitas.Events.CollisionWithPlayer.name);
+            Player.MarmitaSettings.isHolding = true;
+            Player.MarmitaSettings.marmita = marmita;
+        });
+    }
+    static goalListener(manager, player) {
+        player.addListener(Goal.Events.CollisionWithPlayer.name, (e) => {
+            if (Player.MarmitaSettings.isHolding) {
+                const marmita = Player.MarmitaSettings.marmita;
+                Player.MarmitaSettings.isHolding = false;
+                marmita.activateBehavior(Marmitas.Behaviors.Spawn);
+                marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
+            }
+            manager.removeEvent(Goal.Events.CollisionWithPlayer.name);
         });
     }
 }
@@ -272,6 +307,20 @@ Player.AnimationCycles = {
         frames: [0, 8],
         timing: 2,
     },
+    staticWithMarmita: {
+        cycleName: "static-marmita",
+        frames: [18],
+        timing: 5,
+    },
+    walkingWithMarmita: {
+        cycleName: "walking-marmita",
+        frames: [25, 33],
+        timing: 2,
+    },
+};
+Player.MarmitaSettings = {
+    isHolding: false,
+    marmita: {},
 };
 const AssetList = {
     PlayerSprite: {
@@ -385,6 +434,8 @@ function loadingScreen(manager) {
 function addEntities(manager) {
     Player.create(manager);
     Joystick.create(manager);
+    Marmitas.create(manager);
+    Goal.create(manager);
 }
 class BaseBehaviors {
     static addSpriteAnimation(entity, tileset) {
@@ -408,11 +459,11 @@ class BaseBehaviors {
             const { x: x0, y: y0 } = entity0.position;
             const { x: x1, y: y1 } = entity1.position;
             return ((x0 - x1) ** 2 + (y0 - y1) ** 2 <=
-                ((entity0.size.width + entity1.size.width) / 2) ** 2);
+                ((entity0.size.width + entity1.size.width) / 5) ** 2);
         };
         entity0.addBehavior(behavior, (e) => {
             const { name, options } = event;
-            if (doesCollide)
+            if (doesCollide())
                 manager.addEvent(name, options);
         });
         if (doActivate)
@@ -471,7 +522,7 @@ class GameManager {
         this.layers.get(layer).set(entity.id, entity);
         if (this.existingLayers.indexOf(layer) === -1)
             this.existingLayers.push(layer);
-        this.existingLayers.sort();
+        this.existingLayers.sort().reverse();
         for (const tag of entity.tags)
             this.entityGroups.set(tag, entity);
     }
