@@ -58,10 +58,16 @@ class Player extends EntityFactory {
     newCycleFunction(Player.AnimationCycles.static);
     setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
     newCycleFunction(Player.AnimationCycles.walking);
+    newCycleFunction(Player.AnimationCycles.staticWithMarmita);
+    newCycleFunction(Player.AnimationCycles.walkingWithMarmita);
 
     player.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
 
     Player.controlListener(manager, player, setCurrentSpriteFunction);
+
+    Player.collisionWithMarmitaListener(manager, player);
+
+    Player.goalListener(manager, player);
 
     manager.addEntity(player, player.layer);
   }
