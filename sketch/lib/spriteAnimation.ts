@@ -46,6 +46,7 @@ class SpriteAnimation {
   }
 
   setCurrentAnimation(name: string) {
+    if (this.current.name === name) return;
     this.current = {
       name,
       idx: 0,
