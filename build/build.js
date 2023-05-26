@@ -191,13 +191,14 @@ class Cops {
         const { CopAsset } = AssetList;
         const copSpritesheet = manager.getAsset(CopAsset.name);
         const copTileset = new Tileset(copSpritesheet, CopAsset.originalTileSize, CopAsset.columns);
-        const { newCycleFunction, setCurrentSpriteFunction, } = BaseBehaviors.addSpriteAnimation(cop, copTileset);
+        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(cop, copTileset);
         newCycleFunction(Cops.AnimationCycles.static);
         setCurrentSpriteFunction(Cops.AnimationCycles.static.cycleName);
         newCycleFunction(Cops.AnimationCycles.walking);
         cop.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
         Cops.pursuePlayer(manager, cop, setCurrentSpriteFunction);
         Cops.moveAwayListener(manager, cop);
+        Cops.emitCollisionWithPlayer(manager, cop);
         manager.addEntity(cop, cop.layer);
     }
     static moveAwayListener(manager, cop) {
@@ -213,6 +214,10 @@ class Cops {
                 cop.scale.width = 1;
             cop.position.add(delta);
         });
+    }
+    static emitCollisionWithPlayer(manager, cop) {
+        const player = manager.getEntity("player");
+        BaseBehaviors.circleCollision(manager, cop, player, Cops.Events.CollisionWithPlayer, Cops.Behaviors.CollidesWithPlayer, true);
     }
     static pursuePlayer(manager, cop, setCurrentAnimation) {
         cop.addBehavior(Cops.Behaviors.Walk, (e) => {
@@ -247,9 +252,11 @@ class Cops {
 }
 Cops.Behaviors = {
     Walk: "walk",
+    CollidesWithPlayer: "player-collision",
 };
 Cops.Events = {
     MoveOut: "move-out",
+    CollisionWithPlayer: { name: "cop-collides-player", options: {} },
 };
 Cops.AnimationCycles = {
     static: {
@@ -353,7 +360,7 @@ class Player extends EntityFactory {
         const { PlayerSprite } = AssetList;
         const playerSpritesheet = manager.getAsset(PlayerSprite.name);
         const playerTileset = new Tileset(playerSpritesheet, PlayerSprite.originalTileSize, PlayerSprite.columns);
-        const { newCycleFunction, setCurrentSpriteFunction, } = BaseBehaviors.addSpriteAnimation(player, playerTileset);
+        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(player, playerTileset);
         newCycleFunction(Player.AnimationCycles.static);
         setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
         newCycleFunction(Player.AnimationCycles.walking);
@@ -364,8 +371,19 @@ class Player extends EntityFactory {
         Player.collisionWithMarmitaListener(manager, player);
         Player.goalListener(manager, player);
         Player.dropMarmitaListener(manager, player);
+        Player.listenToCop(manager, player);
         BaseBehaviors.constrainToScreen(manager, player, true);
         manager.addEntity(player, player.layer);
+    }
+    static listenToCop(manager, player) {
+        player.addListener(Cops.Events.CollisionWithPlayer.name, (e) => {
+            if (Player.MarmitaSettings.isHolding) {
+                const marmita = manager.getEntity("marmita");
+                Player.dropMarmita(marmita);
+                navigator.vibrate(100);
+                BaseBehaviors.shake(manager, 15);
+            }
+        });
     }
     static dropMarmita(marmita) {
         console.log("dropping marmita");
@@ -383,7 +401,7 @@ class Player extends EntityFactory {
             const { currentPress, isPressed } = event;
             const norm = currentPress.copy();
             if (isPressed) {
-                norm.div(manager.UnitSize / 3);
+                norm.div(manager.UnitSize / 2);
                 player.position.add(norm);
                 if (Player.MarmitaSettings.isHolding)
                     setCurrentSpriteFunction(Player.AnimationCycles.walkingWithMarmita.cycleName);
@@ -543,6 +561,7 @@ function gamePlaying(manager) {
 function introSplashScreen(manager) {
     const logoNucleo = manager.getAsset(GameAssets.LOGO_NUCLEO);
     let fadeAlpha = 0;
+    manager.position = createVector(width / 2, height / 2);
     manager.addState(GameStates.INTRO_SCREEN, (m) => {
         background(0);
         image(logoNucleo, 0, 0, manager.UnitSize * 1.5, manager.UnitSize * 1.5);
@@ -585,6 +604,56 @@ function addEntities(manager) {
     MarmitaDrop.create(manager);
     for (let i = 0; i < Cops.CopCount; i++)
         Cops.create(manager, { min: 100 * i, max: 300 * i });
+}
+class Animate {
+    static getAnimation(animation, animationConfig, options = []) {
+        let currentFrame = 0;
+        return {
+            apply: (entity) => {
+                currentFrame++;
+                animation({
+                    entity,
+                    currentFrame,
+                    animationConfig,
+                    options,
+                });
+            },
+            reset: () => {
+                currentFrame = 0;
+            },
+            copy: () => Animate.getAnimation(animation, animationConfig, options),
+        };
+    }
+    static sine(x, args) {
+        const { a, b, c, d } = args;
+        return a * Math.sin(b * x + c) + d;
+    }
+    static linear(x, args) {
+        return x * args.a + args.b;
+    }
+    static quadratic(x, args) {
+        const { a, b, c } = args;
+        return a * x * x + b * x + c;
+    }
+    static turn(entityAnimation) {
+        const { func, funcArgs } = entityAnimation.animationConfig;
+        const { entity, currentFrame } = entityAnimation;
+        entity.rotation = func(currentFrame, funcArgs);
+    }
+    static stretch(entityAnimation) {
+        const { func, funcArgs } = entityAnimation.animationConfig;
+        const { entity, currentFrame, options } = entityAnimation;
+        for (const side of options) {
+            entity.size[side] = func(currentFrame, funcArgs);
+        }
+    }
+    static move(entityAnimation) {
+        const { func, funcArgs } = entityAnimation.animationConfig;
+        const { entity, currentFrame, options } = entityAnimation;
+        for (const direction of options) {
+            entity.position[direction] = func(currentFrame, funcArgs);
+        }
+    }
 }
 class BaseBehaviors {
     static addSpriteAnimation(entity, tileset) {
@@ -630,12 +699,36 @@ class BaseBehaviors {
                 entity.position.y = -height / 2;
         }, doActivate);
     }
+    static shake(entity, duration) {
+        const shakeAnimation = Animate.getAnimation(Animate.move, {
+            func: Animate.sine,
+            funcArgs: {
+                a: 2,
+                b: -1.3,
+                c: 0,
+                d: 0,
+            },
+        }, ["x"]);
+        const originalPosition = entity.position.x;
+        entity.addBehavior(BaseBehaviors.Names.Shake, (_) => {
+            if (duration-- < 0) {
+                entity.removeBehavior(BaseBehaviors.Names.Shake);
+                entity.position.x = originalPosition;
+            }
+            else {
+                const tempX = { position: { x: 0 } };
+                shakeAnimation.apply(tempX);
+                entity.position.x = originalPosition + tempX.position.x;
+            }
+        }, true);
+    }
 }
 BaseBehaviors.Names = {
     SpriteAnimation: "sprite-animation",
     AddSpriteCycle: "add-sprite-cycle",
     SetCurrentSpriteCycle: "set-sprite-cycle",
     ConstrainToScreen: "constrain-entity-to-screen",
+    Shake: "shake-base-behavior",
 };
 class GameManager {
     constructor() {
@@ -652,6 +745,8 @@ class GameManager {
         this.loadedAssetsCount = 0;
         this.currentState = "";
         this._UnitSize = 0;
+        this.position = createVector(0, 0);
+        this.rotation = 0;
     }
     set volume(v) {
         this.globalVolume = v;
@@ -736,7 +831,8 @@ class GameManager {
         }
         push();
         imageMode(CENTER);
-        translate(width / 2, height / 2);
+        translate(this.position.x, this.position.y);
+        rotate(this.rotation);
         for (const behavior of this.behaviors.values())
             behavior(this);
         const currentStateFunction = this.states.get(this.currentState);

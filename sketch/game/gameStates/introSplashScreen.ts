@@ -2,6 +2,8 @@ function introSplashScreen(manager: GameManager) {
   const logoNucleo = manager.getAsset(GameAssets.LOGO_NUCLEO) as p5.Image;
   let fadeAlpha = 0;
 
+  manager.position = createVector(width / 2, height / 2);
+
   manager.addState(GameStates.INTRO_SCREEN, (m) => {
     background(0);
     image(logoNucleo, 0, 0, manager.UnitSize * 1.5, manager.UnitSize * 1.5);

@@ -1,10 +1,12 @@
 class Cops {
   static Behaviors = {
     Walk: "walk",
+    CollidesWithPlayer: "player-collision",
   };
 
   static Events = {
     MoveOut: "move-out",
+    CollisionWithPlayer: { name: "cop-collides-player", options: {} },
   };
 
   static AnimationCycles: { [key: string]: NewCycleInformation } = {
@@ -50,10 +52,8 @@ class Cops {
       CopAsset.columns
     );
 
-    const {
-      newCycleFunction,
-      setCurrentSpriteFunction,
-    } = BaseBehaviors.addSpriteAnimation(cop, copTileset);
+    const { newCycleFunction, setCurrentSpriteFunction } =
+      BaseBehaviors.addSpriteAnimation(cop, copTileset);
 
     newCycleFunction(Cops.AnimationCycles.static);
     setCurrentSpriteFunction(Cops.AnimationCycles.static.cycleName);
@@ -63,6 +63,7 @@ class Cops {
 
     Cops.pursuePlayer(manager, cop, setCurrentSpriteFunction);
     Cops.moveAwayListener(manager, cop);
+    Cops.emitCollisionWithPlayer(manager, cop);
 
     manager.addEntity(cop, cop.layer);
   }
@@ -82,6 +83,18 @@ class Cops {
 
         cop.position.add(delta);
       }
+    );
+  }
+
+  static emitCollisionWithPlayer(manager: GameManager, cop: Entity) {
+    const player = manager.getEntity("player") as Entity;
+    BaseBehaviors.circleCollision(
+      manager,
+      cop,
+      player,
+      Cops.Events.CollisionWithPlayer,
+      Cops.Behaviors.CollidesWithPlayer,
+      true
     );
   }
 

@@ -26,6 +26,9 @@ class GameManager {
   private _UnitSize: number;
   private globalVolume = 0.3;
 
+  position: p5.Vector;
+  rotation: number;
+
   static ERROR = {
     NoState: new Error("State not in manager."),
   };
@@ -42,6 +45,8 @@ class GameManager {
     this.loadedAssetsCount = 0;
     this.currentState = "";
     this._UnitSize = 0;
+    this.position = createVector(0, 0);
+    this.rotation = 0;
   }
 
   set volume(v: number) {
@@ -145,7 +150,8 @@ class GameManager {
     push();
 
     imageMode(CENTER);
-    translate(width / 2, height / 2);
+    translate(this.position.x, this.position.y);
+    rotate(this.rotation);
     for (const behavior of this.behaviors.values()) behavior(this);
     const currentStateFunction = this.states.get(this.currentState);
     if (currentStateFunction === undefined)

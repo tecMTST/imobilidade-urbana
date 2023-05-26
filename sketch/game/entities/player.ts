@@ -51,10 +51,8 @@ class Player extends EntityFactory {
       PlayerSprite.columns
     );
 
-    const {
-      newCycleFunction,
-      setCurrentSpriteFunction,
-    } = BaseBehaviors.addSpriteAnimation(player, playerTileset);
+    const { newCycleFunction, setCurrentSpriteFunction } =
+      BaseBehaviors.addSpriteAnimation(player, playerTileset);
 
     newCycleFunction(Player.AnimationCycles.static);
     setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
@@ -72,9 +70,22 @@ class Player extends EntityFactory {
 
     Player.dropMarmitaListener(manager, player);
 
+    Player.listenToCop(manager, player);
+
     BaseBehaviors.constrainToScreen(manager, player, true);
 
     manager.addEntity(player, player.layer);
+  }
+
+  static listenToCop(manager: GameManager, player: Entity) {
+    player.addListener(Cops.Events.CollisionWithPlayer.name, (e) => {
+      if (Player.MarmitaSettings.isHolding) {
+        const marmita = manager.getEntity("marmita") as Entity;
+        Player.dropMarmita(marmita);
+        navigator.vibrate(100);
+        BaseBehaviors.shake(manager, 15);
+      }
+    });
   }
 
   static dropMarmita(marmita: Entity) {

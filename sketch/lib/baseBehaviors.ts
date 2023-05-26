@@ -4,6 +4,7 @@ class BaseBehaviors {
     AddSpriteCycle: "add-sprite-cycle",
     SetCurrentSpriteCycle: "set-sprite-cycle",
     ConstrainToScreen: "constrain-entity-to-screen",
+    Shake: "shake-base-behavior",
   };
 
   /**
@@ -85,6 +86,40 @@ class BaseBehaviors {
         if (entity.position.y < -height / 2) entity.position.y = -height / 2;
       },
       doActivate
+    );
+  }
+
+  static shake(entity: Entity | GameManager, duration: number) {
+    const shakeAnimation = Animate.getAnimation(
+      Animate.move,
+      {
+        func: Animate.sine,
+        funcArgs: {
+          a: 2,
+          b: -1.3,
+          c: 0,
+          d: 0,
+        },
+      },
+      ["x"]
+    );
+
+    const originalPosition = entity.position.x;
+
+    // TODO: change to deactivate behavior
+    entity.addBehavior(
+      BaseBehaviors.Names.Shake,
+      (_: any) => {
+        if (duration-- < 0) {
+          entity.removeBehavior(BaseBehaviors.Names.Shake);
+          entity.position.x = originalPosition;
+        } else {
+          const tempX = { position: { x: 0 } };
+          shakeAnimation.apply(tempX);
+          entity.position.x = originalPosition + tempX.position.x;
+        }
+      },
+      true
     );
   }
 }
