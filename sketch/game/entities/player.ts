@@ -70,9 +70,25 @@ class Player extends EntityFactory {
 
     Player.goalListener(manager, player);
 
+    Player.dropMarmitaListener(manager, player);
+
     BaseBehaviors.constrainToScreen(manager, player, true);
 
     manager.addEntity(player, player.layer);
+  }
+
+  static dropMarmita(marmita: Entity) {
+    console.log("dropping marmita");
+    Player.MarmitaSettings.isHolding = false;
+    marmita.activateBehavior(Marmitas.Behaviors.Spawn);
+    marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
+  }
+
+  static dropMarmitaListener(manager: GameManager, player: Entity) {
+    player.addListener(MarmitaDrop.Events.DropMarmita, (e: any) => {
+      const marmita = manager.getEntity("marmita") as Entity;
+      Player.dropMarmita(marmita);
+    });
   }
 
   static controlListener(
@@ -117,7 +133,6 @@ class Player extends EntityFactory {
     player.addListener(Marmitas.Events.CollisionWithPlayer.name, (e: any) => {
       const marmita = e.marmita as Entity;
       marmita.deactivateBehavior(BaseBehaviors.Names.SpriteAnimation);
-      // manager.removeEvent(Marmitas.Events.CollisionWithPlayer.name);
       Player.MarmitaSettings.isHolding = true;
       Player.MarmitaSettings.marmita = marmita;
     });
@@ -127,11 +142,8 @@ class Player extends EntityFactory {
     player.addListener(Goal.Events.CollisionWithPlayer.name, (e: any) => {
       if (Player.MarmitaSettings.isHolding) {
         const marmita = Player.MarmitaSettings.marmita as Entity;
-        Player.MarmitaSettings.isHolding = false;
-        marmita.activateBehavior(Marmitas.Behaviors.Spawn);
-        marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
+        Player.dropMarmita(marmita);
       }
-      // manager.removeEvent(Goal.Events.CollisionWithPlayer.name);
     });
   }
 }

@@ -11,6 +11,34 @@ function setup() {
 function draw() {
     gameManager.run();
 }
+class MarmitaDrop {
+    static create(manager) {
+        const dropper = new Entity("dropper", 0);
+        MarmitaDrop.checkTap(manager, dropper);
+        manager.addEntity(dropper, dropper.layer);
+    }
+    static checkTap(manager, dropper) {
+        let countDownTimer = 0;
+        dropper.addBehavior(MarmitaDrop.Behaviors.TapCheck, (e) => {
+            if (mouseIsPressed)
+                countDownTimer++;
+            else {
+                if (countDownTimer < 15 &&
+                    countDownTimer !== 0 &&
+                    Player.MarmitaSettings.isHolding) {
+                    manager.addEvent(MarmitaDrop.Events.DropMarmita, {});
+                }
+                countDownTimer = 0;
+            }
+        }, true);
+    }
+}
+MarmitaDrop.Behaviors = {
+    TapCheck: "tap-check",
+};
+MarmitaDrop.Events = {
+    DropMarmita: "drop-marmita",
+};
 class EntityFactory {
 }
 class Entity {
@@ -334,8 +362,21 @@ class Player extends EntityFactory {
         Player.controlListener(manager, player, setCurrentSpriteFunction);
         Player.collisionWithMarmitaListener(manager, player);
         Player.goalListener(manager, player);
+        Player.dropMarmitaListener(manager, player);
         BaseBehaviors.constrainToScreen(manager, player, true);
         manager.addEntity(player, player.layer);
+    }
+    static dropMarmita(marmita) {
+        console.log("dropping marmita");
+        Player.MarmitaSettings.isHolding = false;
+        marmita.activateBehavior(Marmitas.Behaviors.Spawn);
+        marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
+    }
+    static dropMarmitaListener(manager, player) {
+        player.addListener(MarmitaDrop.Events.DropMarmita, (e) => {
+            const marmita = manager.getEntity("marmita");
+            Player.dropMarmita(marmita);
+        });
     }
     static controlListener(manager, player, setCurrentSpriteFunction) {
         player.addListener(Joystick.Events.ControlEvent.name, (event) => {
@@ -372,9 +413,7 @@ class Player extends EntityFactory {
         player.addListener(Goal.Events.CollisionWithPlayer.name, (e) => {
             if (Player.MarmitaSettings.isHolding) {
                 const marmita = Player.MarmitaSettings.marmita;
-                Player.MarmitaSettings.isHolding = false;
-                marmita.activateBehavior(Marmitas.Behaviors.Spawn);
-                marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
+                Player.dropMarmita(marmita);
             }
         });
     }
@@ -542,6 +581,7 @@ function addEntities(manager) {
     Joystick.create(manager);
     Marmitas.create(manager);
     Goal.create(manager);
+    MarmitaDrop.create(manager);
     for (let i = 0; i < Cops.CopCount; i++)
         Cops.create(manager, { min: 100 * i, max: 300 * i });
 }
