@@ -40,13 +40,17 @@ class Joystick extends EntityFactory {
         const { currentPress } = options;
         if (options.isPressed) {
           fill(255, 90);
-          circle(0, 0, manager.UnitSize);
+          circle(0, 0, manager.UnitSize * 0.7);
           stroke(255, 0, 0);
           strokeWeight(3);
           const norm = currentPress.copy();
-          if (norm.x ** 2 + norm.y ** 2 > manager.UnitSize ** 2)
-            norm.normalize().mult(manager.UnitSize);
+          if (norm.x ** 2 + norm.y ** 2 > (manager.UnitSize * 0.3) ** 2)
+            norm.normalize().mult(manager.UnitSize * 0.3);
           line(0, 0, norm.x, norm.y);
+          fill(255);
+          strokeWeight(1);
+          stroke(0);
+          circle(norm.x, norm.y, manager.UnitSize * 0.5);
         }
       }
     );
