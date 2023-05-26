@@ -102,7 +102,7 @@ class Player extends EntityFactory {
         const norm = currentPress.copy();
 
         if (isPressed) {
-          norm.div(manager.UnitSize / 3);
+          norm.div(manager.UnitSize / 2);
           player.position.add(norm);
           if (Player.MarmitaSettings.isHolding)
             setCurrentSpriteFunction(
