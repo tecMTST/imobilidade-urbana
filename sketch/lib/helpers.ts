@@ -29,8 +29,16 @@ class Helpers {
     return Math.floor(Helpers.random(min, max));
   }
 
-  randElement<T>(list: Array<T>): T {
+  static randSign() {
+    return Math.sign(Math.random() - 0.5);
+  }
+
+  static randElement<T>(list: Array<T>): T {
     return list[Helpers.randint(0, list.length)];
+  }
+
+  static randVector(): p5.Vector {
+    return createVector(Math.random() - 0.5, Math.random() - 0.5).normalize();
   }
 }
 

@@ -25,7 +25,7 @@ class Marmitas extends EntityFactory {
   static create(manager: GameManager) {
     const marmita = new Entity(
       "marmita",
-      2,
+      4,
       { width: manager.UnitSize, height: manager.UnitSize },
       { x: 1000, y: 1000 }
     );

@@ -92,7 +92,7 @@ Entity.ERROR = {
 };
 class Joystick extends EntityFactory {
     static create(manager) {
-        const joystick = new Entity("joystick", 1, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: 0, y: 0 });
+        const joystick = new Entity("joystick", 0, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: 0, y: 0 });
         Joystick.controlEvent(manager, joystick);
         Joystick.draw(manager, joystick);
         manager.addEntity(joystick, joystick.layer);
@@ -152,20 +152,101 @@ Joystick.Events = {
     },
 };
 class Cops {
-    static create(manager) { }
-    static pursuePlayer() { }
+    static create(manager, range = { min: 500, max: 1000 }) {
+        const widLoc = Helpers.randSign();
+        const heiLoc = Helpers.randSign();
+        const cop = new Entity(`cop${Cops.CurrentCopID++}`, 3, { width: manager.UnitSize, height: manager.UnitSize * 2 }, {
+            x: widLoc * width + widLoc * Helpers.random(range.min, range.max),
+            y: heiLoc * height + heiLoc * Helpers.random(range.min, range.max),
+        });
+        const { CopAsset } = AssetList;
+        const copSpritesheet = manager.getAsset(CopAsset.name);
+        const copTileset = new Tileset(copSpritesheet, CopAsset.originalTileSize, CopAsset.columns);
+        const { newCycleFunction, setCurrentSpriteFunction, } = BaseBehaviors.addSpriteAnimation(cop, copTileset);
+        newCycleFunction(Cops.AnimationCycles.static);
+        setCurrentSpriteFunction(Cops.AnimationCycles.static.cycleName);
+        newCycleFunction(Cops.AnimationCycles.walking);
+        cop.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
+        Cops.pursuePlayer(manager, cop, setCurrentSpriteFunction);
+        Cops.moveAwayListener(manager, cop);
+        manager.addEntity(cop, cop.layer);
+    }
+    static moveAwayListener(manager, cop) {
+        cop.addListener(Cops.eventNameFor(cop), (eventOptions) => {
+            const { loc } = eventOptions;
+            const delta = loc
+                .copy()
+                .normalize()
+                .mult(manager.UnitSize * 0.05);
+            if (delta.x < 0)
+                cop.scale.width = -1;
+            else
+                cop.scale.width = 1;
+            cop.position.add(delta);
+        });
+    }
+    static pursuePlayer(manager, cop, setCurrentAnimation) {
+        cop.addBehavior(Cops.Behaviors.Walk, (e) => {
+            if (Player.MarmitaSettings.isHolding) {
+                manager.removePermanentEvent(Cops.eventNameFor(cop));
+                setCurrentAnimation(Cops.AnimationCycles.walking.cycleName);
+                const player = manager.getEntity("player");
+                const normalPlayerVector = player.position.copy();
+                normalPlayerVector
+                    .sub(cop.position)
+                    .normalize()
+                    .mult(manager.UnitSize * 0.06);
+                cop.position.add(normalPlayerVector);
+                if (normalPlayerVector.x < 0)
+                    cop.scale.width = -1;
+                else
+                    cop.scale.width = 1;
+            }
+            else {
+                if (!manager.hasEvent(Cops.eventNameFor(cop))) {
+                    manager.addEvent(Cops.eventNameFor(cop), { loc: Cops.randomLoc(manager.UnitSize) }, true);
+                }
+            }
+        }, true);
+    }
+    static randomLoc(unit) {
+        return Helpers.randVector().mult(unit * 5);
+    }
+    static eventNameFor(cop) {
+        return `${cop.id}-${Cops.Events.MoveOut}`;
+    }
 }
+Cops.Behaviors = {
+    Walk: "walk",
+};
+Cops.Events = {
+    MoveOut: "move-out",
+};
+Cops.AnimationCycles = {
+    static: {
+        cycleName: "static",
+        frames: [5],
+        timing: 5,
+    },
+    walking: {
+        cycleName: "walking",
+        frames: [20, 12],
+        timing: 2,
+    },
+};
+Cops.CurrentCopID = 0;
+Cops.CopCount = 10;
 class Goal extends EntityFactory {
     static create(manager) {
-        const goal = new Entity("goal", 2, { width: manager.UnitSize, height: manager.UnitSize }, { x: -width * 0.4, y: -height * 0.4 });
+        const goal = new Entity("goal", 4, { width: manager.UnitSize, height: manager.UnitSize }, { x: -width * 0.4, y: -height * 0.4 });
         Goal.drawGoalBehavior(goal, manager);
         Goal.emitPlayerReachedGoal(goal, manager);
         manager.addEntity(goal, goal.layer);
     }
     static drawGoalBehavior(goal, manager) {
-        const { Marmita } = AssetList;
-        const goalSpritesheet = manager.getAsset(Marmita.name);
-        const goalTileset = new Tileset(goalSpritesheet, Marmita.originalTileSize, Marmita.columns);
+        const { GoalAsset } = AssetList;
+        const goalSpritesheet = manager.getAsset(GoalAsset.name);
+        const goalTileset = new Tileset(goalSpritesheet, GoalAsset.originalTileSize, GoalAsset.columns);
         const { newCycleFunction, setCurrentSpriteFunction, } = BaseBehaviors.addSpriteAnimation(goal, goalTileset);
         newCycleFunction(Goal.AnimationCycles.static);
         setCurrentSpriteFunction(Goal.AnimationCycles.static.cycleName);
@@ -191,7 +272,7 @@ Goal.AnimationCycles = {
 };
 class Marmitas extends EntityFactory {
     static create(manager) {
-        const marmita = new Entity("marmita", 2, { width: manager.UnitSize, height: manager.UnitSize }, { x: 1000, y: 1000 });
+        const marmita = new Entity("marmita", 4, { width: manager.UnitSize, height: manager.UnitSize }, { x: 1000, y: 1000 });
         Marmitas.drawMarmitaBehavior(marmita, manager);
         Marmitas.emitPlayerCollision(marmita, manager);
         Marmitas.spawn(marmita, manager);
@@ -299,7 +380,6 @@ class Player extends EntityFactory {
 }
 Player.Behaviors = {
     Walk: "walk",
-    Flip: "flip",
 };
 Player.AnimationCycles = {
     static: {
@@ -348,10 +428,30 @@ const AssetList = {
         type: "image",
         name: "Marmita",
     },
+    GoalAsset: {
+        columns: 1,
+        originalTileSize: {
+            width: 360,
+            height: 360,
+        },
+        path: "./assets/img/marmita.png",
+        type: "image",
+        name: "Marmita",
+    },
+    CopAsset: {
+        columns: 8,
+        originalTileSize: {
+            width: 128,
+            height: 256,
+        },
+        path: "./assets/img/player.png",
+        type: "image",
+        name: "PlayerSprite",
+    },
 };
 const gameConfig = {
     aspectRatio: 9 / 16,
-    UnitSizeProportion: 0.1,
+    UnitSizeProportion: 0.09,
 };
 const GameAssets = {
     LOGO_NUCLEO: "logo-ntmtst",
@@ -441,6 +541,8 @@ function addEntities(manager) {
     Joystick.create(manager);
     Marmitas.create(manager);
     Goal.create(manager);
+    for (let i = 0; i < Cops.CopCount; i++)
+        Cops.create(manager, { min: 100 * i, max: 300 * i });
 }
 class BaseBehaviors {
     static addSpriteAnimation(entity, tileset) {
@@ -525,6 +627,9 @@ class GameManager {
         this.events.set(name, { hasCycled: false, isPermanent, options });
     }
     removeEvent(name) {
+        this.events.delete(name);
+    }
+    removePermanentEvent(name) {
         this.events.delete(name);
     }
     hasEvent(name) {
@@ -641,8 +746,14 @@ class Helpers {
     static randint(min, max) {
         return Math.floor(Helpers.random(min, max));
     }
-    randElement(list) {
+    static randSign() {
+        return Math.sign(Math.random() - 0.5);
+    }
+    static randElement(list) {
         return list[Helpers.randint(0, list.length)];
+    }
+    static randVector() {
+        return createVector(Math.random() - 0.5, Math.random() - 0.5).normalize();
     }
 }
 class ERRORS {

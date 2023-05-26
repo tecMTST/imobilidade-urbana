@@ -3,7 +3,6 @@
 class Player extends EntityFactory {
   static Behaviors = {
     Walk: "walk",
-    Flip: "flip",
   };
 
   static AnimationCycles: { [key: string]: NewCycleInformation } = {

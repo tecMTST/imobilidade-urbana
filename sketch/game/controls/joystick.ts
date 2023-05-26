@@ -22,7 +22,7 @@ class Joystick extends EntityFactory {
   static create(manager: GameManager) {
     const joystick = new Entity(
       "joystick",
-      1,
+      0,
       { width: manager.UnitSize, height: manager.UnitSize * 2 },
       { x: 0, y: 0 }
     );

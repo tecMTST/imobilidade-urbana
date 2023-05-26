@@ -20,7 +20,7 @@ class Goal extends EntityFactory {
   static create(manager: GameManager) {
     const goal = new Entity(
       "goal",
-      2,
+      4,
       { width: manager.UnitSize, height: manager.UnitSize },
       { x: -width * 0.4, y: -height * 0.4 }
     );
@@ -32,14 +32,14 @@ class Goal extends EntityFactory {
   }
 
   static drawGoalBehavior(goal: Entity, manager: GameManager) {
-    const { Marmita } = AssetList;
+    const { GoalAsset } = AssetList;
 
-    const goalSpritesheet = manager.getAsset(Marmita.name) as p5.Image;
+    const goalSpritesheet = manager.getAsset(GoalAsset.name) as p5.Image;
 
     const goalTileset = new Tileset(
       goalSpritesheet,
-      Marmita.originalTileSize,
-      Marmita.columns
+      GoalAsset.originalTileSize,
+      GoalAsset.columns
     );
 
     const {

@@ -68,6 +68,10 @@ class GameManager {
     this.events.delete(name);
   }
 
+  removePermanentEvent(name: string) {
+    this.events.delete(name);
+  }
+
   hasEvent(name: string) {
     return this.events.get(name)?.hasCycled;
   }
