@@ -71,6 +71,8 @@ class Player extends EntityFactory {
 
     Player.goalListener(manager, player);
 
+    BaseBehaviors.constrainToScreen(manager, player, true);
+
     manager.addEntity(player, player.layer);
   }
 

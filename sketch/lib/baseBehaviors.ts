@@ -3,6 +3,7 @@ class BaseBehaviors {
     SpriteAnimation: "sprite-animation",
     AddSpriteCycle: "add-sprite-cycle",
     SetCurrentSpriteCycle: "set-sprite-cycle",
+    ConstrainToScreen: "constrain-entity-to-screen",
   };
 
   /**
@@ -68,5 +69,22 @@ class BaseBehaviors {
     });
 
     if (doActivate) entity0.activateBehavior(behavior);
+  }
+
+  static constrainToScreen(
+    manager: GameManager,
+    entity: Entity,
+    doActivate = false
+  ) {
+    entity.addBehavior(
+      BaseBehaviors.Names.ConstrainToScreen,
+      (e) => {
+        if (entity.position.x > width / 2) entity.position.x = width / 2;
+        if (entity.position.x < -width / 2) entity.position.x = -width / 2;
+        if (entity.position.y > height / 2) entity.position.y = height / 2;
+        if (entity.position.y < -height / 2) entity.position.y = -height / 2;
+      },
+      doActivate
+    );
   }
 }

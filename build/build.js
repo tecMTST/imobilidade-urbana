@@ -68,6 +68,7 @@ class Entity {
         push();
         translate(this.position.x, this.position.y);
         rotate(this.rotation);
+        scale(this.scale.width, this.scale.height);
         for (const [eventName, eventFunc] of this.eventListeners.entries()) {
             const event = manager.getEvent(eventName);
             if (event !== undefined)
@@ -154,7 +155,7 @@ class Cops {
 }
 class Goal extends EntityFactory {
     static create(manager) {
-        const goal = new Entity("goal", 2, { width: manager.UnitSize, height: manager.UnitSize }, { x: -width / 5, y: -height / 5 });
+        const goal = new Entity("goal", 2, { width: manager.UnitSize, height: manager.UnitSize }, { x: -width * 0.4, y: -height * 0.4 });
         Goal.drawGoalBehavior(goal, manager);
         Goal.emitPlayerReachedGoal(goal, manager);
         manager.addEntity(goal, goal.layer);
@@ -163,7 +164,7 @@ class Goal extends EntityFactory {
         const { Marmita } = AssetList;
         const goalSpritesheet = manager.getAsset(Marmita.name);
         const goalTileset = new Tileset(goalSpritesheet, Marmita.originalTileSize, Marmita.columns);
-        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(goal, goalTileset);
+        const { newCycleFunction, setCurrentSpriteFunction, } = BaseBehaviors.addSpriteAnimation(goal, goalTileset);
         newCycleFunction(Goal.AnimationCycles.static);
         setCurrentSpriteFunction(Goal.AnimationCycles.static.cycleName);
         goal.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
@@ -196,8 +197,8 @@ class Marmitas extends EntityFactory {
     }
     static spawn(marmita, manager) {
         marmita.addBehavior(Marmitas.Behaviors.Spawn, (e) => {
-            marmita.position.x = Helpers.random(-width / 4, width / 4);
-            marmita.position.y = Helpers.random(0, height / 4);
+            marmita.position.x = Helpers.random(-width / 2, width / 2);
+            marmita.position.y = Helpers.random(height / 4, height / 2);
             marmita.deactivateBehavior(Marmitas.Behaviors.Spawn);
             manager.removeEvent(Marmitas.Events.CollisionWithPlayer.name);
         }, true);
@@ -206,7 +207,7 @@ class Marmitas extends EntityFactory {
         const { Marmita } = AssetList;
         const marmitaSpritesheet = manager.getAsset(Marmita.name);
         const marmitaTileset = new Tileset(marmitaSpritesheet, Marmita.originalTileSize, Marmita.columns);
-        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(marmita, marmitaTileset);
+        const { newCycleFunction, setCurrentSpriteFunction, } = BaseBehaviors.addSpriteAnimation(marmita, marmitaTileset);
         newCycleFunction(Marmitas.AnimationCycles.static);
         setCurrentSpriteFunction(Marmitas.AnimationCycles.static.cycleName);
         marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
@@ -240,7 +241,7 @@ class Player extends EntityFactory {
         const { PlayerSprite } = AssetList;
         const playerSpritesheet = manager.getAsset(PlayerSprite.name);
         const playerTileset = new Tileset(playerSpritesheet, PlayerSprite.originalTileSize, PlayerSprite.columns);
-        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(player, playerTileset);
+        const { newCycleFunction, setCurrentSpriteFunction, } = BaseBehaviors.addSpriteAnimation(player, playerTileset);
         newCycleFunction(Player.AnimationCycles.static);
         setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
         newCycleFunction(Player.AnimationCycles.walking);
@@ -250,6 +251,7 @@ class Player extends EntityFactory {
         Player.controlListener(manager, player, setCurrentSpriteFunction);
         Player.collisionWithMarmitaListener(manager, player);
         Player.goalListener(manager, player);
+        BaseBehaviors.constrainToScreen(manager, player, true);
         manager.addEntity(player, player.layer);
     }
     static controlListener(manager, player, setCurrentSpriteFunction) {
@@ -445,7 +447,7 @@ class BaseBehaviors {
     static addSpriteAnimation(entity, tileset) {
         const spriteAnimation = new SpriteAnimation(tileset);
         const behavior = (e) => {
-            spriteAnimation.draw(e.position, e.rotation, e.size, e.scale);
+            spriteAnimation.draw(e.size);
         };
         entity.addBehavior(BaseBehaviors.Names.SpriteAnimation, behavior);
         const newCycleFunction = (newCycle) => {
@@ -473,11 +475,24 @@ class BaseBehaviors {
         if (doActivate)
             entity0.activateBehavior(behavior);
     }
+    static constrainToScreen(manager, entity, doActivate = false) {
+        entity.addBehavior(BaseBehaviors.Names.ConstrainToScreen, (e) => {
+            if (entity.position.x > width / 2)
+                entity.position.x = width / 2;
+            if (entity.position.x < -width / 2)
+                entity.position.x = -width / 2;
+            if (entity.position.y > height / 2)
+                entity.position.y = height / 2;
+            if (entity.position.y < -height / 2)
+                entity.position.y = -height / 2;
+        }, doActivate);
+    }
 }
 BaseBehaviors.Names = {
     SpriteAnimation: "sprite-animation",
     AddSpriteCycle: "add-sprite-cycle",
     SetCurrentSpriteCycle: "set-sprite-cycle",
+    ConstrainToScreen: "constrain-entity-to-screen",
 };
 class GameManager {
     constructor() {
@@ -655,7 +670,7 @@ class SpriteAnimation {
             timeSinceFrame: 0,
         };
     }
-    draw(position, rotation, size, newScale) {
+    draw(size) {
         const animationFrames = this.animationCycles.get(this.current.name)?.cycle;
         if (animationFrames === undefined) {
             throwCustomError(SpriteAnimation.ERROR.NoCycle, `Animation cycle called [${this.current.name}] doesn't exist in cycles Map.`);
@@ -671,12 +686,7 @@ class SpriteAnimation {
             }
             this.current.timeSinceFrame--;
         }
-        push();
-        translate(position.x, position.y);
-        rotate(rotation);
-        scale(newScale.width, newScale.height);
         this.tileset.drawTile(currentSprite, { x: 0, y: 0 }, size);
-        pop();
     }
 }
 SpriteAnimation.ERROR = {
