@@ -120,7 +120,7 @@ class Entity {
 
     for (const [eventName, eventFunc] of this.eventListeners.entries()) {
       const event = manager.getEvent(eventName);
-      if (event !== undefined) eventFunc(event);
+      if (event !== undefined) eventFunc(event.options);
     }
 
     for (const behavior of this.activeBehaviors) {

@@ -37,8 +37,8 @@ class Joystick extends EntityFactory {
     joystick.addListener(
       Joystick.Events.ControlEvent.name,
       (options: ControllerOptions) => {
-        const { currentPress } = options;
-        if (options.isPressed) {
+        const { currentPress, isPressed } = options;
+        if (isPressed) {
           fill(255, 90);
           circle(0, 0, manager.UnitSize * 0.7);
           stroke(255, 0, 0);
@@ -60,9 +60,8 @@ class Joystick extends EntityFactory {
     joystick.addBehavior(
       Joystick.Behaviors.EmitControlEvent,
       (e) => {
-        let options = manager.getEvent(Joystick.Events.ControlEvent.name) as
-          | ControllerOptions
-          | undefined;
+        let options = manager.getEvent(Joystick.Events.ControlEvent.name)
+          ?.options as ControllerOptions | undefined;
 
         if (options === undefined) {
           options = {
@@ -83,7 +82,7 @@ class Joystick extends EntityFactory {
           joystick.setPosition(options.origin);
         }
 
-        manager.addEvent(Joystick.Events.ControlEvent.name, options);
+        manager.addEvent(Joystick.Events.ControlEvent.name, options, true);
       },
       true
     );

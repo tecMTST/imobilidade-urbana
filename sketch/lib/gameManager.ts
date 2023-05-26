@@ -1,9 +1,15 @@
 type Layer = Map<string, Entity>;
 
+interface BasicEvent {
+  hasCycled: boolean;
+  isPermanent: boolean;
+  options: any;
+}
+
 class GameManager {
   private loadedAssetsCount: number;
   private currentState: string;
-  private events: Map<string, any>;
+  private events: Map<string, BasicEvent>;
 
   readonly assets: Map<string, p5.Image | string | p5.SoundFile>;
   readonly configs = gameConfig;
@@ -54,16 +60,16 @@ class GameManager {
     this._UnitSize = unitSize;
   }
 
-  addEvent(name: string, options: any) {
-    this.events.set(name, options);
+  addEvent(name: string, options: any, isPermanent = false) {
+    this.events.set(name, { hasCycled: false, isPermanent, options });
   }
 
-  removeEvent(name: string) {
+  private removeEvent(name: string) {
     this.events.delete(name);
   }
 
   hasEvent(name: string) {
-    return this.events.has(name);
+    return this.events.get(name)?.hasCycled;
   }
 
   getEvent(name: string) {
@@ -127,6 +133,11 @@ class GameManager {
   }
 
   run() {
+    for (const [eventName, event] of this.events.entries()) {
+      if (event.hasCycled && !event.isPermanent) {
+        this.events.delete(eventName);
+      } else event.hasCycled = true;
+    }
     push();
 
     imageMode(CENTER);

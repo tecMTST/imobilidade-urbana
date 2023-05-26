@@ -72,7 +72,7 @@ class Entity {
         for (const [eventName, eventFunc] of this.eventListeners.entries()) {
             const event = manager.getEvent(eventName);
             if (event !== undefined)
-                eventFunc(event);
+                eventFunc(event.options);
         }
         for (const behavior of this.activeBehaviors) {
             const behaviorFunction = this.behaviors.get(behavior);
@@ -99,8 +99,8 @@ class Joystick extends EntityFactory {
     }
     static draw(manager, joystick) {
         joystick.addListener(Joystick.Events.ControlEvent.name, (options) => {
-            const { currentPress } = options;
-            if (options.isPressed) {
+            const { currentPress, isPressed } = options;
+            if (isPressed) {
                 fill(255, 90);
                 circle(0, 0, manager.UnitSize * 0.7);
                 stroke(255, 0, 0);
@@ -118,7 +118,8 @@ class Joystick extends EntityFactory {
     }
     static controlEvent(manager, joystick) {
         joystick.addBehavior(Joystick.Behaviors.EmitControlEvent, (e) => {
-            let options = manager.getEvent(Joystick.Events.ControlEvent.name);
+            let options = manager.getEvent(Joystick.Events.ControlEvent.name)
+                ?.options;
             if (options === undefined) {
                 options = {
                     origin: createVector(0, 0),
@@ -136,7 +137,7 @@ class Joystick extends EntityFactory {
                 options.currentPress.sub(options.origin);
                 joystick.setPosition(options.origin);
             }
-            manager.addEvent(Joystick.Events.ControlEvent.name, options);
+            manager.addEvent(Joystick.Events.ControlEvent.name, options, true);
         }, true);
     }
 }
@@ -152,6 +153,7 @@ Joystick.Events = {
 };
 class Cops {
     static create(manager) { }
+    static pursuePlayer() { }
 }
 class Goal extends EntityFactory {
     static create(manager) {
@@ -200,7 +202,6 @@ class Marmitas extends EntityFactory {
             marmita.position.x = Helpers.random(-width / 2, width / 2);
             marmita.position.y = Helpers.random(height / 4, height / 2);
             marmita.deactivateBehavior(Marmitas.Behaviors.Spawn);
-            manager.removeEvent(Marmitas.Events.CollisionWithPlayer.name);
         }, true);
     }
     static drawMarmitaBehavior(marmita, manager) {
@@ -281,7 +282,6 @@ class Player extends EntityFactory {
         player.addListener(Marmitas.Events.CollisionWithPlayer.name, (e) => {
             const marmita = e.marmita;
             marmita.deactivateBehavior(BaseBehaviors.Names.SpriteAnimation);
-            manager.removeEvent(Marmitas.Events.CollisionWithPlayer.name);
             Player.MarmitaSettings.isHolding = true;
             Player.MarmitaSettings.marmita = marmita;
         });
@@ -294,7 +294,6 @@ class Player extends EntityFactory {
                 marmita.activateBehavior(Marmitas.Behaviors.Spawn);
                 marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
             }
-            manager.removeEvent(Goal.Events.CollisionWithPlayer.name);
         });
     }
 }
@@ -522,14 +521,14 @@ class GameManager {
     setUnitSize(unitSize) {
         this._UnitSize = unitSize;
     }
-    addEvent(name, options) {
-        this.events.set(name, options);
+    addEvent(name, options, isPermanent = false) {
+        this.events.set(name, { hasCycled: false, isPermanent, options });
     }
     removeEvent(name) {
         this.events.delete(name);
     }
     hasEvent(name) {
-        return this.events.has(name);
+        return this.events.get(name)?.hasCycled;
     }
     getEvent(name) {
         return this.events.get(name);
@@ -581,6 +580,13 @@ class GameManager {
             this.layers.get(layer)?.forEach((entity) => entity.run(this));
     }
     run() {
+        for (const [eventName, event] of this.events.entries()) {
+            if (event.hasCycled && !event.isPermanent) {
+                this.events.delete(eventName);
+            }
+            else
+                event.hasCycled = true;
+        }
         push();
         imageMode(CENTER);
         translate(width / 2, height / 2);

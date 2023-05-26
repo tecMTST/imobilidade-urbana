@@ -118,7 +118,7 @@ class Player extends EntityFactory {
     player.addListener(Marmitas.Events.CollisionWithPlayer.name, (e: any) => {
       const marmita = e.marmita as Entity;
       marmita.deactivateBehavior(BaseBehaviors.Names.SpriteAnimation);
-      manager.removeEvent(Marmitas.Events.CollisionWithPlayer.name);
+      // manager.removeEvent(Marmitas.Events.CollisionWithPlayer.name);
       Player.MarmitaSettings.isHolding = true;
       Player.MarmitaSettings.marmita = marmita;
     });
@@ -132,7 +132,7 @@ class Player extends EntityFactory {
         marmita.activateBehavior(Marmitas.Behaviors.Spawn);
         marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
       }
-      manager.removeEvent(Goal.Events.CollisionWithPlayer.name);
+      // manager.removeEvent(Goal.Events.CollisionWithPlayer.name);
     });
   }
 }
