@@ -44,6 +44,7 @@ class Marmitas extends EntityFactory {
         marmita.position.x = Helpers.random(-width / 2, width / 2);
         marmita.position.y = Helpers.random(height / 4, height / 2);
         marmita.deactivateBehavior(Marmitas.Behaviors.Spawn);
+        marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
       },
       true
     );

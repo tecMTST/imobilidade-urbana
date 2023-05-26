@@ -81,7 +81,6 @@ class Player extends EntityFactory {
     console.log("dropping marmita");
     Player.MarmitaSettings.isHolding = false;
     marmita.activateBehavior(Marmitas.Behaviors.Spawn);
-    marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
   }
 
   static dropMarmitaListener(manager: GameManager, player: Entity) {
@@ -133,6 +132,7 @@ class Player extends EntityFactory {
     player.addListener(Marmitas.Events.CollisionWithPlayer.name, (e: any) => {
       const marmita = e.marmita as Entity;
       marmita.deactivateBehavior(BaseBehaviors.Names.SpriteAnimation);
+      marmita.position.x = -1000;
       Player.MarmitaSettings.isHolding = true;
       Player.MarmitaSettings.marmita = marmita;
     });
