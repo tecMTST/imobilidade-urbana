@@ -116,6 +116,7 @@ class Entity {
     push();
     translate(this.position.x, this.position.y);
     rotate(this.rotation);
+    scale(this.scale.width, this.scale.height);
 
     for (const [eventName, eventFunc] of this.eventListeners.entries()) {
       const event = manager.getEvent(eventName);

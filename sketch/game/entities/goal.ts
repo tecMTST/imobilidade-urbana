@@ -22,7 +22,7 @@ class Goal extends EntityFactory {
       "goal",
       2,
       { width: manager.UnitSize, height: manager.UnitSize },
-      { x: -width / 5, y: -height / 5 }
+      { x: -width * 0.4, y: -height * 0.4 }
     );
 
     Goal.drawGoalBehavior(goal, manager);
@@ -42,8 +42,10 @@ class Goal extends EntityFactory {
       Marmita.columns
     );
 
-    const { newCycleFunction, setCurrentSpriteFunction } =
-      BaseBehaviors.addSpriteAnimation(goal, goalTileset);
+    const {
+      newCycleFunction,
+      setCurrentSpriteFunction,
+    } = BaseBehaviors.addSpriteAnimation(goal, goalTileset);
 
     newCycleFunction(Goal.AnimationCycles.static);
     setCurrentSpriteFunction(Goal.AnimationCycles.static.cycleName);

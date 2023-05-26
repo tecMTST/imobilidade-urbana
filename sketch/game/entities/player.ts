@@ -52,8 +52,10 @@ class Player extends EntityFactory {
       PlayerSprite.columns
     );
 
-    const { newCycleFunction, setCurrentSpriteFunction } =
-      BaseBehaviors.addSpriteAnimation(player, playerTileset);
+    const {
+      newCycleFunction,
+      setCurrentSpriteFunction,
+    } = BaseBehaviors.addSpriteAnimation(player, playerTileset);
 
     newCycleFunction(Player.AnimationCycles.static);
     setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);

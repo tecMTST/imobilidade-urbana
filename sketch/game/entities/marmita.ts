@@ -41,8 +41,8 @@ class Marmitas extends EntityFactory {
     marmita.addBehavior(
       Marmitas.Behaviors.Spawn,
       (e) => {
-        marmita.position.x = Helpers.random(-width / 4, width / 4);
-        marmita.position.y = Helpers.random(0, height / 4);
+        marmita.position.x = Helpers.random(-width / 2, width / 2);
+        marmita.position.y = Helpers.random(height / 4, height / 2);
         marmita.deactivateBehavior(Marmitas.Behaviors.Spawn);
         manager.removeEvent(Marmitas.Events.CollisionWithPlayer.name);
       },
@@ -61,8 +61,10 @@ class Marmitas extends EntityFactory {
       Marmita.columns
     );
 
-    const { newCycleFunction, setCurrentSpriteFunction } =
-      BaseBehaviors.addSpriteAnimation(marmita, marmitaTileset);
+    const {
+      newCycleFunction,
+      setCurrentSpriteFunction,
+    } = BaseBehaviors.addSpriteAnimation(marmita, marmitaTileset);
 
     newCycleFunction(Marmitas.AnimationCycles.static);
     setCurrentSpriteFunction(Marmitas.AnimationCycles.static.cycleName);
