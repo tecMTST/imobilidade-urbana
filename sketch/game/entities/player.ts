@@ -82,7 +82,7 @@ class Player extends EntityFactory {
       if (Player.MarmitaSettings.isHolding) {
         const marmita = manager.getEntity("marmita") as Entity;
         Player.dropMarmita(marmita);
-        navigator.vibrate(100);
+        // navigator.vibrate(100);
         BaseBehaviors.shake(manager, 15);
       }
     });
