@@ -513,10 +513,21 @@ const AssetList = {
         type: "image",
         name: "PlayerSprite",
     },
+    TitleScreen: {
+        columns: 1,
+        originalTileSize: {
+            width: 90,
+            height: 160,
+        },
+        path: "./assets/img/titulo.png",
+        type: "image",
+        name: "TitleScreen",
+    },
 };
 const gameConfig = {
     aspectRatio: 9 / 16,
     UnitSizeProportion: 0.09,
+    fadeInSpeed: 100,
 };
 const GameAssets = {
     LOGO_NUCLEO: "logo-ntmtst",
@@ -526,6 +537,7 @@ const GameStates = {
     LOADING_STATE: "loading-state",
     INTRO_SCREEN: "intro-screen",
     GAME_PLAYING: "game-playing-state",
+    TITLE_SCREEN: "title-screen",
 };
 const GameTags = {
     GCM: "gcm-tag",
@@ -540,17 +552,20 @@ function preloadFunction(manager) {
 }
 function setupFunction(manager) {
     const { configs } = manager;
-    let WIDTH = configs.aspectRatio * windowHeight;
-    let HEIGHT = windowHeight;
-    if (windowHeight > windowWidth) {
-        WIDTH = windowWidth;
-        HEIGHT = windowWidth / configs.aspectRatio;
+    const clientHeight = document.documentElement.clientHeight;
+    const clientWidth = document.documentElement.clientWidth;
+    let WIDTH = configs.aspectRatio * clientHeight;
+    let HEIGHT = clientHeight;
+    if (clientHeight > clientWidth) {
+        WIDTH = clientWidth;
+        HEIGHT = clientWidth / configs.aspectRatio;
     }
     createCanvas(WIDTH, HEIGHT);
     manager.setUnitSize(HEIGHT * manager.configs.UnitSizeProportion);
     loadingScreen(manager);
     introSplashScreen(manager);
     gamePlaying(manager);
+    titleScreen(manager);
 }
 function addAssetsToManager(manager) {
     for (const asset of Object.keys(AssetList)) {
@@ -559,9 +574,14 @@ function addAssetsToManager(manager) {
     }
 }
 function gamePlaying(manager) {
+    let fadeIn = 255;
     manager.addState(GameStates.GAME_PLAYING, (m) => {
         background(0);
         manager.runEntities();
+        if (fadeIn > 0) {
+            fadeIn -= gameConfig.fadeInSpeed;
+            background(0, fadeIn);
+        }
     });
 }
 function introSplashScreen(manager) {
@@ -573,7 +593,7 @@ function introSplashScreen(manager) {
         image(logoNucleo, 0, 0, manager.UnitSize * 1.5, manager.UnitSize * 1.5);
         manager.playAudio(GameAssets.VINHETA_NUCLEO);
         if (fadeAlpha > 250)
-            manager.state = GameStates.GAME_PLAYING;
+            manager.state = GameStates.TITLE_SCREEN;
         fadeAlpha += 5;
         background(0, fadeAlpha);
     });
@@ -610,6 +630,26 @@ function addEntities(manager) {
     MarmitaDrop.create(manager);
     for (let i = 0; i < Cops.CopCount; i++)
         Cops.create(manager, { min: 100 * i, max: 300 * i });
+}
+function titleScreen(manager) {
+    let fadeIn = 255;
+    let fadeOut = 0;
+    const tituloImage = manager.getAsset(AssetList.TitleScreen.name);
+    noSmooth();
+    manager.addState(GameStates.TITLE_SCREEN, (m) => {
+        background(0);
+        image(tituloImage, 0, 0, width, height);
+        if (fadeIn > 0) {
+            fadeIn -= gameConfig.fadeInSpeed;
+            background(0, fadeIn);
+        }
+        if (fadeOut > 250)
+            manager.state = GameStates.GAME_PLAYING;
+        if (mouseIsPressed || fadeOut >= gameConfig.fadeInSpeed) {
+            fadeOut += gameConfig.fadeInSpeed;
+            background(0, fadeOut);
+        }
+    });
 }
 class Animate {
     static getAnimation(animation, animationConfig, options = []) {
@@ -735,6 +775,7 @@ BaseBehaviors.Names = {
     SetCurrentSpriteCycle: "set-sprite-cycle",
     ConstrainToScreen: "constrain-entity-to-screen",
     Shake: "shake-base-behavior",
+    TrasitionState: "transition-between-states",
 };
 class GameManager {
     constructor() {

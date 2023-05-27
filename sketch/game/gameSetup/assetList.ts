@@ -47,4 +47,14 @@ const AssetList: { [key: string]: AssetSettings } = {
     type: "image",
     name: "PlayerSprite",
   },
+  TitleScreen: {
+    columns: 1,
+    originalTileSize: {
+      width: 90,
+      height: 160,
+    },
+    path: "./assets/img/titulo.png",
+    type: "image",
+    name: "TitleScreen",
+  },
 } as const;

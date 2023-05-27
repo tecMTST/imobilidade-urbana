@@ -8,7 +8,8 @@ function introSplashScreen(manager: GameManager) {
     background(0);
     image(logoNucleo, 0, 0, manager.UnitSize * 1.5, manager.UnitSize * 1.5);
     manager.playAudio(GameAssets.VINHETA_NUCLEO);
-    if (fadeAlpha > 250) manager.state = GameStates.GAME_PLAYING;
+
+    if (fadeAlpha > 250) manager.state = GameStates.TITLE_SCREEN;
     fadeAlpha += 5;
     background(0, fadeAlpha);
   });

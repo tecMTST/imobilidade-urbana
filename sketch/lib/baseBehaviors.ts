@@ -5,6 +5,7 @@ class BaseBehaviors {
     SetCurrentSpriteCycle: "set-sprite-cycle",
     ConstrainToScreen: "constrain-entity-to-screen",
     Shake: "shake-base-behavior",
+    TrasitionState: "transition-between-states",
   };
 
   /**

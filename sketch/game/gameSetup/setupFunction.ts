@@ -1,11 +1,13 @@
 function setupFunction(manager: GameManager) {
   const { configs } = manager;
+  const clientHeight = document.documentElement.clientHeight;
+  const clientWidth = document.documentElement.clientWidth;
 
-  let WIDTH = configs.aspectRatio * windowHeight;
-  let HEIGHT = windowHeight;
-  if (windowHeight > windowWidth) {
-    WIDTH = windowWidth;
-    HEIGHT = windowWidth / configs.aspectRatio;
+  let WIDTH = configs.aspectRatio * clientHeight;
+  let HEIGHT = clientHeight;
+  if (clientHeight > clientWidth) {
+    WIDTH = clientWidth;
+    HEIGHT = clientWidth / configs.aspectRatio;
   }
 
   createCanvas(WIDTH, HEIGHT);
@@ -15,6 +17,7 @@ function setupFunction(manager: GameManager) {
   loadingScreen(manager);
   introSplashScreen(manager);
   gamePlaying(manager);
+  titleScreen(manager);
 }
 
 function addAssetsToManager(manager: GameManager) {
