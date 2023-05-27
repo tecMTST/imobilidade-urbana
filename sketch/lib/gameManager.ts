@@ -26,6 +26,8 @@ class GameManager {
   private _UnitSize: number;
   private globalVolume = 0.3;
 
+  private _UnitRoot: number;
+
   position: p5.Vector;
   rotation: number;
 
@@ -47,6 +49,11 @@ class GameManager {
     this._UnitSize = 0;
     this.position = createVector(0, 0);
     this.rotation = 0;
+  }
+
+  get UnitRoot() {
+    if (!this._UnitRoot) this._UnitRoot = Math.sqrt(this._UnitSize);
+    return this._UnitRoot;
   }
 
   set volume(v: number) {

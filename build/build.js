@@ -193,11 +193,10 @@ class Cops {
         const copTileset = new Tileset(copSpritesheet, CopAsset.originalTileSize, CopAsset.columns);
         const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(cop, copTileset);
         newCycleFunction(Cops.AnimationCycles.static);
-        setCurrentSpriteFunction(Cops.AnimationCycles.static.cycleName);
         newCycleFunction(Cops.AnimationCycles.walking);
+        setCurrentSpriteFunction(Cops.AnimationCycles.static.cycleName);
         cop.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
         Cops.pursuePlayer(manager, cop, setCurrentSpriteFunction);
-        Cops.moveAwayListener(manager, cop);
         Cops.emitCollisionWithPlayer(manager, cop);
         manager.addEntity(cop, cop.layer);
     }
@@ -237,6 +236,7 @@ class Cops {
                     cop.scale.width = 1;
             }
             else {
+                setCurrentAnimation(Cops.AnimationCycles.static.cycleName);
                 if (!manager.hasEvent(Cops.eventNameFor(cop))) {
                     manager.addEvent(Cops.eventNameFor(cop), { loc: Cops.randomLoc(manager.UnitSize) }, true);
                 }
@@ -271,7 +271,7 @@ Cops.AnimationCycles = {
     },
 };
 Cops.CurrentCopID = 0;
-Cops.CopCount = 10;
+Cops.CopCount = 1;
 class Goal extends EntityFactory {
     static create(manager) {
         const goal = new Entity("goal", 4, { width: manager.UnitSize, height: manager.UnitSize }, { x: -width * 0.4, y: -height * 0.4 });
@@ -400,8 +400,15 @@ class Player extends EntityFactory {
             const { currentPress, isPressed } = event;
             const norm = currentPress.copy();
             if (isPressed) {
-                norm.div(manager.UnitSize / 2);
-                player.position.add(norm);
+                norm.div(manager.UnitSize / 8);
+                const normalized = norm
+                    .copy()
+                    .normalize()
+                    .mult(manager.UnitSize * 0.05);
+                if (norm.magSq() < manager.UnitSize * 2)
+                    player.position.add(norm.add(normalized));
+                else
+                    player.position.add(norm.normalize().mult(manager.UnitRoot * 1.4));
                 if (Player.MarmitaSettings.isHolding)
                     setCurrentSpriteFunction(Player.AnimationCycles.walkingWithMarmita.cycleName);
                 else
@@ -553,7 +560,7 @@ function addAssetsToManager(manager) {
 }
 function gamePlaying(manager) {
     manager.addState(GameStates.GAME_PLAYING, (m) => {
-        background(150, 50, 50);
+        background(0);
         manager.runEntities();
     });
 }
@@ -746,6 +753,11 @@ class GameManager {
         this._UnitSize = 0;
         this.position = createVector(0, 0);
         this.rotation = 0;
+    }
+    get UnitRoot() {
+        if (!this._UnitRoot)
+            this._UnitRoot = Math.sqrt(this._UnitSize);
+        return this._UnitRoot;
     }
     set volume(v) {
         this.globalVolume = v;

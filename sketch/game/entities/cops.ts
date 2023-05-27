@@ -23,7 +23,7 @@ class Cops {
   };
 
   static CurrentCopID = 0;
-  static CopCount = 10;
+  static CopCount = 1;
 
   static create(
     manager: GameManager,
@@ -56,13 +56,13 @@ class Cops {
       BaseBehaviors.addSpriteAnimation(cop, copTileset);
 
     newCycleFunction(Cops.AnimationCycles.static);
-    setCurrentSpriteFunction(Cops.AnimationCycles.static.cycleName);
     newCycleFunction(Cops.AnimationCycles.walking);
+    setCurrentSpriteFunction(Cops.AnimationCycles.static.cycleName);
 
     cop.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
 
     Cops.pursuePlayer(manager, cop, setCurrentSpriteFunction);
-    Cops.moveAwayListener(manager, cop);
+    // Cops.moveAwayListener(manager, cop);
     Cops.emitCollisionWithPlayer(manager, cop);
 
     manager.addEntity(cop, cop.layer);
@@ -119,7 +119,7 @@ class Cops {
           if (normalPlayerVector.x < 0) cop.scale.width = -1;
           else cop.scale.width = 1;
         } else {
-          // setCurrentAnimation(Cops.AnimationCycles.static.cycleName);
+          setCurrentAnimation(Cops.AnimationCycles.static.cycleName);
           if (!manager.hasEvent(Cops.eventNameFor(cop))) {
             manager.addEvent(
               Cops.eventNameFor(cop),

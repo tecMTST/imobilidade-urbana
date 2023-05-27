@@ -82,7 +82,6 @@ class Player extends EntityFactory {
       if (Player.MarmitaSettings.isHolding) {
         const marmita = manager.getEntity("marmita") as Entity;
         Player.dropMarmita(marmita);
-        // navigator.vibrate(100);
         BaseBehaviors.shake(manager, 15);
       }
     });
@@ -113,8 +112,18 @@ class Player extends EntityFactory {
         const norm = currentPress.copy();
 
         if (isPressed) {
-          norm.div(manager.UnitSize / 2);
-          player.position.add(norm);
+          // norm.normalize();
+          norm.div(manager.UnitSize / 8);
+          const normalized = norm
+            .copy()
+            .normalize()
+            .mult(manager.UnitSize * 0.05);
+
+          if (norm.magSq() < manager.UnitSize * 2)
+            player.position.add(norm.add(normalized));
+          else
+            player.position.add(norm.normalize().mult(manager.UnitRoot * 1.4));
+
           if (Player.MarmitaSettings.isHolding)
             setCurrentSpriteFunction(
               Player.AnimationCycles.walkingWithMarmita.cycleName
