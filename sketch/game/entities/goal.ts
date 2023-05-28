@@ -17,32 +17,35 @@ class Goal extends EntityFactory {
     },
   };
 
-  create(manager: GameManager) {
+  static create(manager: GameManager) {
     const goal = new Entity(
       "goal",
-      2,
-      { width: manager.UnitSize, height: manager.UnitSize * 2 },
-      { x: 0, y: 0 }
+      4,
+      { width: manager.UnitSize, height: manager.UnitSize },
+      { x: -width * 0.4, y: -height * 0.4 }
     );
 
     Goal.drawGoalBehavior(goal, manager);
+    Goal.emitPlayerReachedGoal(goal, manager);
 
     manager.addEntity(goal, goal.layer);
   }
 
   static drawGoalBehavior(goal: Entity, manager: GameManager) {
-    const { Marmita } = AssetList;
+    const { GoalAsset } = AssetList;
 
-    const goalSpritesheet = manager.getAsset(Marmita.name) as p5.Image;
+    const goalSpritesheet = manager.getAsset(GoalAsset.name) as p5.Image;
 
     const goalTileset = new Tileset(
       goalSpritesheet,
-      Marmita.originalTileSize,
-      Marmita.columns
+      GoalAsset.originalTileSize,
+      GoalAsset.columns
     );
 
-    const { newCycleFunction, setCurrentSpriteFunction } =
-      BaseBehaviors.addSpriteAnimation(goal, goalTileset);
+    const {
+      newCycleFunction,
+      setCurrentSpriteFunction,
+    } = BaseBehaviors.addSpriteAnimation(goal, goalTileset);
 
     newCycleFunction(Goal.AnimationCycles.static);
     setCurrentSpriteFunction(Goal.AnimationCycles.static.cycleName);

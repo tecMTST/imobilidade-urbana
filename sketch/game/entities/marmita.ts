@@ -4,6 +4,7 @@ class Marmitas extends EntityFactory {
   static Behaviors = {
     Show: "show",
     Collision: "collision",
+    Spawn: "spawn",
   };
 
   static AnimationCycles: { [key: string]: NewCycleInformation } = {
@@ -24,16 +25,29 @@ class Marmitas extends EntityFactory {
   static create(manager: GameManager) {
     const marmita = new Entity(
       "marmita",
-      2,
-      { width: manager.UnitSize, height: manager.UnitSize * 2 },
-      { x: 0, y: 0 }
+      4,
+      { width: manager.UnitSize, height: manager.UnitSize },
+      { x: 1000, y: 1000 }
     );
 
     Marmitas.drawMarmitaBehavior(marmita, manager);
     Marmitas.emitPlayerCollision(marmita, manager);
-    Marmitas.hideListener(marmita, manager);
+    Marmitas.spawn(marmita, manager);
 
     manager.addEntity(marmita, marmita.layer);
+  }
+
+  static spawn(marmita: Entity, manager: GameManager) {
+    marmita.addBehavior(
+      Marmitas.Behaviors.Spawn,
+      (e) => {
+        marmita.position.x = Helpers.random(-width / 2, width / 2);
+        marmita.position.y = Helpers.random(height / 4, height / 2);
+        marmita.deactivateBehavior(Marmitas.Behaviors.Spawn);
+        marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
+      },
+      true
+    );
   }
 
   static drawMarmitaBehavior(marmita: Entity, manager: GameManager) {
@@ -47,22 +61,15 @@ class Marmitas extends EntityFactory {
       Marmita.columns
     );
 
-    const { newCycleFunction, setCurrentSpriteFunction } =
-      BaseBehaviors.addSpriteAnimation(marmita, marmitaTileset);
+    const {
+      newCycleFunction,
+      setCurrentSpriteFunction,
+    } = BaseBehaviors.addSpriteAnimation(marmita, marmitaTileset);
 
     newCycleFunction(Marmitas.AnimationCycles.static);
     setCurrentSpriteFunction(Marmitas.AnimationCycles.static.cycleName);
 
     marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
-  }
-
-  static hideListener(marmita: Entity, manager: GameManager) {
-    marmita.addListener(
-      Marmitas.Events.CollisionWithPlayer.name,
-      (e: typeof Marmitas.Events.CollisionWithPlayer) => {
-        marmita.deactivateBehavior(Marmitas.Behaviors.Show);
-      }
-    );
   }
 
   static emitPlayerCollision(marmita: Entity, manager: GameManager) {
@@ -71,7 +78,7 @@ class Marmitas extends EntityFactory {
       manager,
       marmita,
       player,
-      Marmitas.Events.CollisionWithPlayer,
+      { name: Marmitas.Events.CollisionWithPlayer.name, options: { marmita } },
       Marmitas.Behaviors.Collision,
       true
     );

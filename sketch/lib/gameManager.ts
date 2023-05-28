@@ -1,9 +1,15 @@
 type Layer = Map<string, Entity>;
 
+interface BasicEvent {
+  hasCycled: boolean;
+  isPermanent: boolean;
+  options: any;
+}
+
 class GameManager {
   private loadedAssetsCount: number;
   private currentState: string;
-  private events: Map<string, any>;
+  private events: Map<string, BasicEvent>;
 
   readonly assets: Map<string, p5.Image | string | p5.SoundFile>;
   readonly configs = gameConfig;
@@ -19,6 +25,11 @@ class GameManager {
 
   private _UnitSize: number;
   private globalVolume = 0.3;
+
+  private _UnitRoot: number;
+
+  position: p5.Vector;
+  rotation: number;
 
   static ERROR = {
     NoState: new Error("State not in manager."),
@@ -36,6 +47,13 @@ class GameManager {
     this.loadedAssetsCount = 0;
     this.currentState = "";
     this._UnitSize = 0;
+    this.position = createVector(0, 0);
+    this.rotation = 0;
+  }
+
+  get UnitRoot() {
+    if (!this._UnitRoot) this._UnitRoot = Math.sqrt(this._UnitSize);
+    return this._UnitRoot;
   }
 
   set volume(v: number) {
@@ -54,16 +72,20 @@ class GameManager {
     this._UnitSize = unitSize;
   }
 
-  addEvent(name: string, options: any) {
-    this.events.set(name, options);
+  addEvent(name: string, options: any, isPermanent = false) {
+    this.events.set(name, { hasCycled: false, isPermanent, options });
   }
 
-  removeEvent(name: string) {
+  private removeEvent(name: string) {
+    this.events.delete(name);
+  }
+
+  removePermanentEvent(name: string) {
     this.events.delete(name);
   }
 
   hasEvent(name: string) {
-    return this.events.has(name);
+    return this.events.get(name)?.hasCycled;
   }
 
   getEvent(name: string) {
@@ -76,7 +98,7 @@ class GameManager {
     this.layers.get(layer)!.set(entity.id, entity);
     if (this.existingLayers.indexOf(layer) === -1)
       this.existingLayers.push(layer);
-    this.existingLayers.sort();
+    this.existingLayers.sort().reverse();
 
     for (const tag of entity.tags) this.entityGroups.set(tag, entity);
   }
@@ -127,10 +149,16 @@ class GameManager {
   }
 
   run() {
+    for (const [eventName, event] of this.events.entries()) {
+      if (event.hasCycled && !event.isPermanent) {
+        this.events.delete(eventName);
+      } else event.hasCycled = true;
+    }
     push();
 
     imageMode(CENTER);
-    translate(width / 2, height / 2);
+    translate(this.position.x, this.position.y);
+    rotate(this.rotation);
     for (const behavior of this.behaviors.values()) behavior(this);
     const currentStateFunction = this.states.get(this.currentState);
     if (currentStateFunction === undefined)

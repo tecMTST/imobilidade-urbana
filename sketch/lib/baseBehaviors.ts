@@ -3,6 +3,9 @@ class BaseBehaviors {
     SpriteAnimation: "sprite-animation",
     AddSpriteCycle: "add-sprite-cycle",
     SetCurrentSpriteCycle: "set-sprite-cycle",
+    ConstrainToScreen: "constrain-entity-to-screen",
+    Shake: "shake-base-behavior",
+    TrasitionState: "transition-between-states",
   };
 
   /**
@@ -20,7 +23,7 @@ class BaseBehaviors {
   static addSpriteAnimation(entity: Entity, tileset: Tileset) {
     const spriteAnimation = new SpriteAnimation(tileset);
     const behavior: BehaviorFunction<Entity> = (e) => {
-      spriteAnimation.draw(e.position, e.rotation, e.size, e.scale);
+      spriteAnimation.draw(e.size);
     };
     entity.addBehavior(BaseBehaviors.Names.SpriteAnimation, behavior);
 
@@ -58,15 +61,66 @@ class BaseBehaviors {
       const { x: x1, y: y1 } = entity1.position;
       return (
         (x0 - x1) ** 2 + (y0 - y1) ** 2 <=
-        ((entity0.size.width + entity1.size.width) / 2) ** 2
+        ((entity0.size.width + entity1.size.width) / 5) ** 2
       );
     };
 
     entity0.addBehavior(behavior, (e) => {
       const { name, options } = event;
-      if (doesCollide) manager.addEvent(name, options);
+      if (doesCollide()) manager.addEvent(name, options);
     });
 
     if (doActivate) entity0.activateBehavior(behavior);
+  }
+
+  static constrainToScreen(
+    manager: GameManager,
+    entity: Entity,
+    doActivate = false
+  ) {
+    entity.addBehavior(
+      BaseBehaviors.Names.ConstrainToScreen,
+      (e) => {
+        if (entity.position.x > width / 2) entity.position.x = width / 2;
+        if (entity.position.x < -width / 2) entity.position.x = -width / 2;
+        if (entity.position.y > height / 2) entity.position.y = height / 2;
+        if (entity.position.y < -height / 2) entity.position.y = -height / 2;
+      },
+      doActivate
+    );
+  }
+
+  static shake(entity: Entity | GameManager, duration: number) {
+    const shakeAnimation = Animate.getAnimation(
+      Animate.move,
+      {
+        func: Animate.sine,
+        funcArgs: {
+          a: 2,
+          b: -1.3,
+          c: 0,
+          d: 0,
+        },
+      },
+      ["x"]
+    );
+
+    const originalPosition = entity.position.x;
+
+    // TODO: change to deactivate behavior
+    entity.addBehavior(
+      BaseBehaviors.Names.Shake,
+      (_: any) => {
+        if (duration-- < 0) {
+          entity.removeBehavior(BaseBehaviors.Names.Shake);
+          entity.position.x = originalPosition;
+        } else {
+          const tempX = { position: { x: 0 } };
+          shakeAnimation.apply(tempX);
+          entity.position.x = originalPosition + tempX.position.x;
+        }
+      },
+      true
+    );
   }
 }

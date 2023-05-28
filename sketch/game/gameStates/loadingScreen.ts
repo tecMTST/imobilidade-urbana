@@ -35,4 +35,9 @@ function loadingScreen(manager: GameManager) {
 function addEntities(manager: GameManager) {
   Player.create(manager);
   Joystick.create(manager);
+  Marmitas.create(manager);
+  Goal.create(manager);
+  MarmitaDrop.create(manager);
+  for (let i = 0; i < Cops.CopCount; i++)
+    Cops.create(manager, { min: 100 * i, max: 300 * i });
 }

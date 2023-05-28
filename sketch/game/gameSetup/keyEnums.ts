@@ -7,6 +7,7 @@ const GameStates = {
   LOADING_STATE: "loading-state",
   INTRO_SCREEN: "intro-screen",
   GAME_PLAYING: "game-playing-state",
+  TITLE_SCREEN: "title-screen",
 };
 
 const GameTags = {
