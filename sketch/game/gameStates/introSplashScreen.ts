@@ -7,7 +7,7 @@ function introSplashScreen(manager: GameManager) {
   manager.addState(GameStates.INTRO_SCREEN, (m) => {
     background(0);
     image(logoNucleo, 0, 0, manager.UnitSize * 3, manager.UnitSize * 3);
-    manager.playAudio(GameAssets.VINHETA_NUCLEO);
+    // manager.playAudio(GameAssets.VINHETA_NUCLEO);
 
     if (fadeAlpha > 250) manager.state = GameStates.TITLE_SCREEN;
     fadeAlpha += 5;
