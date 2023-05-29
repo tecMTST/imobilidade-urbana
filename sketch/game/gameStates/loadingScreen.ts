@@ -39,13 +39,13 @@ function addEntities(manager: GameManager) {
   Goal.create(manager);
   Goal.create(
     manager,
+    { x: -width * 0.6, y: height / 4 },
     { x: width * 0.8, y: height / 4 },
-    { x: -width, y: height / 4 },
-    2
+    3
   );
   MarmitaDrop.create(manager);
   for (let i = 0; i < Cops.CopCount; i++)
-    Cops.create(manager, { min: 100 * i, max: 300 * i });
+    Cops.create(manager, -1, { min: 100 * i, max: 300 * i });
 
   ScoreTracker.create(manager);
 }

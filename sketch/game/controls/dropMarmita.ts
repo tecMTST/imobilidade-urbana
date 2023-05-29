@@ -27,6 +27,7 @@ class MarmitaDrop {
             countDownTimer !== 0 &&
             Player.MarmitaSettings.isHolding
           ) {
+            manager.playAudio(AssetList.MarmitaPerdida.name, 0.2);
             manager.addEvent(MarmitaDrop.Events.DropMarmita, {});
           }
           countDownTimer = 0;

@@ -27,10 +27,14 @@ class Cops {
 
   static create(
     manager: GameManager,
-    range: { min: number; max: number } = { min: 500, max: 1000 }
+    initialHei = -1,
+    range: { min: number; max: number } = {
+      min: manager.UnitSize * 2,
+      max: manager.UnitSize * 5,
+    }
   ) {
     const widLoc = Helpers.randSign();
-    const heiLoc = -1;
+    const heiLoc = initialHei;
 
     const cop = new Entity(
       `cop${Cops.CurrentCopID++}`,
@@ -66,6 +70,7 @@ class Cops {
     Cops.emitCollisionWithPlayer(manager, cop);
 
     manager.addEntity(cop, cop.layer);
+    return cop;
   }
 
   static moveAwayListener(manager: GameManager, cop: Entity) {
@@ -107,7 +112,10 @@ class Cops {
     cop.addBehavior(
       Cops.Behaviors.Walk,
       (e) => {
-        if (Player.MarmitaSettings.isHolding) {
+        if (
+          Player.MarmitaSettings.isHolding ||
+          Player.MarmitaSettings.timer < 2
+        ) {
           manager.removePermanentEvent(Cops.eventNameFor(cop));
           setCurrentAnimation(Cops.AnimationCycles.walking.cycleName);
           const player = manager.getEntity("player") as Entity;
@@ -115,7 +123,7 @@ class Cops {
           normalPlayerVector
             .sub(cop.position)
             .normalize()
-            .mult(manager.UnitSize * 0.08);
+            .mult(manager.UnitSize * 0.1);
           cop.position.add(normalPlayerVector);
           if (normalPlayerVector.x < 0) cop.scale.width = -1;
           else cop.scale.width = 1;

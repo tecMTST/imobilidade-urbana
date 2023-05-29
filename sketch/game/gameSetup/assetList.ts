@@ -7,6 +7,66 @@ interface AssetSettings {
 }
 
 const AssetList: { [key: string]: AssetSettings } = {
+  MarmitaEntregueAlt: {
+    columns: 2,
+    originalTileSize: {
+      width: 32,
+      height: 64,
+    },
+    path: "./assets/sound/marmita_entrega_2.wav",
+    type: "audio",
+    name: "MarmitaEntregueAlt",
+  },
+  MarmitaEntregue: {
+    columns: 2,
+    originalTileSize: {
+      width: 32,
+      height: 64,
+    },
+    path: "./assets/sound/marmita_entrega_1.wav",
+    type: "audio",
+    name: "MarmitaEntregue",
+  },
+  SireneCurta: {
+    columns: 2,
+    originalTileSize: {
+      width: 32,
+      height: 64,
+    },
+    path: "./assets/sound/sirene_curta_1.wav",
+    type: "audio",
+    name: "SireneCurta",
+  },
+  MarmitaPerdida: {
+    columns: 2,
+    originalTileSize: {
+      width: 32,
+      height: 64,
+    },
+    path: "./assets/sound/marmita_perdida.wav",
+    type: "audio",
+    name: "MarmitaPerdida",
+  },
+  RetiradaSFX: {
+    columns: 2,
+    originalTileSize: {
+      width: 32,
+      height: 64,
+    },
+    path: "./assets/sound/marmita_retirada.wav",
+    type: "audio",
+    name: "RetiradaSFX",
+  },
+  SireneDerrotaSFX: {
+    columns: 2,
+    originalTileSize: {
+      width: 32,
+      height: 64,
+    },
+    path: "./assets/sound/sirene_longa_1.wav",
+    type: "audio",
+    name: "SireneDerrotaSFX",
+  },
   PlayerSprite: {
     columns: 2,
     originalTileSize: {

@@ -67,7 +67,8 @@ class Goal extends EntityFactory {
         goal.position.x += xDelta * deltaSign;
         if (Math.abs(goal.position.x) >= Math.abs(destination.x)) {
           xDelta = Helpers.random(manager.UnitSize / 4, manager.UnitSize / 7);
-          goal.position.x = origin.x;
+          goal.position.x =
+            origin.x - deltaSign * Helpers.random(0, manager.UnitSize * 2);
           const cycle = Helpers.randElement(["a", "b", "c"]);
           setCurrentAnimation(cycle);
         }

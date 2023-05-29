@@ -69,7 +69,9 @@ class BaseBehaviors {
 
     entity0.addBehavior(behavior, (e) => {
       const { name, options } = event;
-      if (doesCollide()) manager.addEvent(name, options);
+      if (doesCollide()) {
+        manager.addEvent(name, options);
+      }
     });
 
     if (doActivate) entity0.activateBehavior(behavior);

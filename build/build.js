@@ -26,6 +26,7 @@ class MarmitaDrop {
                 if (countDownTimer < 5 &&
                     countDownTimer !== 0 &&
                     Player.MarmitaSettings.isHolding) {
+                    manager.playAudio(AssetList.MarmitaPerdida.name, 0.2);
                     manager.addEvent(MarmitaDrop.Events.DropMarmita, {});
                 }
                 countDownTimer = 0;
@@ -181,9 +182,12 @@ Joystick.Events = {
     },
 };
 class Cops {
-    static create(manager, range = { min: 500, max: 1000 }) {
+    static create(manager, initialHei = -1, range = {
+        min: manager.UnitSize * 2,
+        max: manager.UnitSize * 5,
+    }) {
         const widLoc = Helpers.randSign();
-        const heiLoc = -1;
+        const heiLoc = initialHei;
         const cop = new Entity(`cop${Cops.CurrentCopID++}`, 3, { width: manager.UnitSize, height: manager.UnitSize * 2 }, {
             x: widLoc * width + widLoc * Helpers.random(range.min, range.max),
             y: heiLoc * height + heiLoc * Helpers.random(range.min, range.max),
@@ -199,6 +203,7 @@ class Cops {
         Cops.pursuePlayer(manager, cop, setCurrentSpriteFunction);
         Cops.emitCollisionWithPlayer(manager, cop);
         manager.addEntity(cop, cop.layer);
+        return cop;
     }
     static moveAwayListener(manager, cop) {
         cop.addListener(Cops.eventNameFor(cop), (eventOptions) => {
@@ -220,7 +225,8 @@ class Cops {
     }
     static pursuePlayer(manager, cop, setCurrentAnimation) {
         cop.addBehavior(Cops.Behaviors.Walk, (e) => {
-            if (Player.MarmitaSettings.isHolding) {
+            if (Player.MarmitaSettings.isHolding ||
+                Player.MarmitaSettings.timer < 2) {
                 manager.removePermanentEvent(Cops.eventNameFor(cop));
                 setCurrentAnimation(Cops.AnimationCycles.walking.cycleName);
                 const player = manager.getEntity("player");
@@ -228,7 +234,7 @@ class Cops {
                 normalPlayerVector
                     .sub(cop.position)
                     .normalize()
-                    .mult(manager.UnitSize * 0.08);
+                    .mult(manager.UnitSize * 0.1);
                 cop.position.add(normalPlayerVector);
                 if (normalPlayerVector.x < 0)
                     cop.scale.width = -1;
@@ -290,7 +296,8 @@ class Goal extends EntityFactory {
             goal.position.x += xDelta * deltaSign;
             if (Math.abs(goal.position.x) >= Math.abs(destination.x)) {
                 xDelta = Helpers.random(manager.UnitSize / 4, manager.UnitSize / 7);
-                goal.position.x = origin.x;
+                goal.position.x =
+                    origin.x - deltaSign * Helpers.random(0, manager.UnitSize * 2);
                 const cycle = Helpers.randElement(["a", "b", "c"]);
                 setCurrentAnimation(cycle);
             }
@@ -426,6 +433,8 @@ class Player extends EntityFactory {
     static listenToCop(manager, player) {
         player.addListener(Cops.Events.CollisionWithPlayer.name, (e) => {
             if (Player.MarmitaSettings.isHolding) {
+                manager.playAudio(AssetList.SireneCurta.name);
+                manager.playAudio(AssetList.MarmitaPerdida.name, 0.2);
                 const marmita = manager.getEntity("marmita");
                 Player.dropMarmita(marmita);
                 BaseBehaviors.shake(manager, 15);
@@ -433,7 +442,6 @@ class Player extends EntityFactory {
         });
     }
     static dropMarmita(marmita) {
-        console.log("dropping marmita");
         Player.MarmitaSettings.isHolding = false;
     }
     static dropMarmitaListener(manager, player) {
@@ -468,14 +476,21 @@ class Player extends EntityFactory {
     }
     static collisionWithMarmitaListener(manager, player) {
         player.addListener(Marmitas.Events.CollisionWithPlayer.name, (e) => {
-            const marmita = e.marmita;
-            Player.MarmitaSettings.isHolding = true;
-            Player.MarmitaSettings.marmita = marmita;
+            if (!Player.MarmitaSettings.isHolding) {
+                manager.playAudio(AssetList.RetiradaSFX.name);
+                const marmita = e.marmita;
+                Player.MarmitaSettings.isHolding = true;
+                Player.MarmitaSettings.marmita = marmita;
+            }
         });
     }
     static goalListener(manager, player) {
         player.addListener(Goal.Events.CollisionWithPlayer.name, (e) => {
             if (Player.MarmitaSettings.isHolding) {
+                manager.playAudio(Helpers.randElement([
+                    AssetList.MarmitaEntregue.name,
+                    AssetList.MarmitaEntregueAlt.name,
+                ]));
                 const marmita = Player.MarmitaSettings.marmita;
                 Player.dropMarmita(marmita);
                 Player.MarmitaSettings.deliverCount++;
@@ -502,9 +517,9 @@ Player.AnimationCycles = {
 Player.MarmitaSettings = {
     isHolding: false,
     marmita: {},
-    timer: 1600,
+    timer: 30 * 60,
     deliverCount: 0,
-    maxTime: 1600,
+    maxTime: 30 * 60,
 };
 class ScoreTracker {
     static create(manager) {
@@ -515,6 +530,18 @@ class ScoreTracker {
         manager.addEntity(score, score.layer);
     }
     static display(manager, score) {
+        let copList = [];
+        const resetGame = () => {
+            Player.MarmitaSettings.timer = Player.MarmitaSettings.maxTime;
+            Player.MarmitaSettings.deliverCount = 0;
+            for (const cop of copList) {
+                manager.removeEntity(cop);
+            }
+            copList = [];
+            manager.getEntity(`cop0`).position.y = -height * 0.8;
+            manager.getEntity("player").position.x = 0;
+            manager.getEntity("player").position.y = height * 0.4;
+        };
         score.addBehavior(ScoreTracker.Behaviors.Display, (e) => {
             textAlign(LEFT, TOP);
             fill(255);
@@ -522,17 +549,25 @@ class ScoreTracker {
             text(Player.MarmitaSettings.timer--, 0, 0);
             textAlign(RIGHT);
             text(Player.MarmitaSettings.deliverCount, width, 0);
-            if (Player.MarmitaSettings.timer < 0) {
-                defeatScreen(manager);
-                manager.state = GameStates.DEFEAT_SCREEN;
-                Player.MarmitaSettings.timer = Player.MarmitaSettings.maxTime;
-                Player.MarmitaSettings.deliverCount = 0;
+            if (Player.MarmitaSettings.timer < 2) {
+                if (Player.MarmitaSettings.timer === 1) {
+                    manager.playAudio(AssetList.SireneDerrotaSFX.name);
+                    for (let i = 1; i < 10; i++) {
+                        copList.push(Cops.create(manager, Helpers.randSign()));
+                    }
+                }
+                const hasEvent = manager.getEvent(Cops.Events.CollisionWithPlayer.name);
+                Player.MarmitaSettings.timer = 0;
+                if (hasEvent !== undefined) {
+                    defeatScreen(manager);
+                    manager.state = GameStates.DEFEAT_SCREEN;
+                    resetGame();
+                }
             }
             if (Player.MarmitaSettings.deliverCount > 10) {
                 victoryScreen(manager);
                 manager.state = GameStates.VICTORY_SCREEN;
-                Player.MarmitaSettings.timer = Player.MarmitaSettings.maxTime;
-                Player.MarmitaSettings.deliverCount = 0;
+                resetGame();
             }
         }, true);
     }
@@ -541,6 +576,66 @@ ScoreTracker.Behaviors = {
     Display: "display",
 };
 const AssetList = {
+    MarmitaEntregueAlt: {
+        columns: 2,
+        originalTileSize: {
+            width: 32,
+            height: 64,
+        },
+        path: "./assets/sound/marmita_entrega_2.wav",
+        type: "audio",
+        name: "MarmitaEntregueAlt",
+    },
+    MarmitaEntregue: {
+        columns: 2,
+        originalTileSize: {
+            width: 32,
+            height: 64,
+        },
+        path: "./assets/sound/marmita_entrega_1.wav",
+        type: "audio",
+        name: "MarmitaEntregue",
+    },
+    SireneCurta: {
+        columns: 2,
+        originalTileSize: {
+            width: 32,
+            height: 64,
+        },
+        path: "./assets/sound/sirene_curta_1.wav",
+        type: "audio",
+        name: "SireneCurta",
+    },
+    MarmitaPerdida: {
+        columns: 2,
+        originalTileSize: {
+            width: 32,
+            height: 64,
+        },
+        path: "./assets/sound/marmita_perdida.wav",
+        type: "audio",
+        name: "MarmitaPerdida",
+    },
+    RetiradaSFX: {
+        columns: 2,
+        originalTileSize: {
+            width: 32,
+            height: 64,
+        },
+        path: "./assets/sound/marmita_retirada.wav",
+        type: "audio",
+        name: "RetiradaSFX",
+    },
+    SireneDerrotaSFX: {
+        columns: 2,
+        originalTileSize: {
+            width: 32,
+            height: 64,
+        },
+        path: "./assets/sound/sirene_longa_1.wav",
+        type: "audio",
+        name: "SireneDerrotaSFX",
+    },
     PlayerSprite: {
         columns: 2,
         originalTileSize: {
@@ -751,10 +846,10 @@ function addEntities(manager) {
     Joystick.create(manager);
     Marmitas.create(manager);
     Goal.create(manager);
-    Goal.create(manager, { x: width * 0.8, y: height / 4 }, { x: -width, y: height / 4 }, 2);
+    Goal.create(manager, { x: -width * 0.6, y: height / 4 }, { x: width * 0.8, y: height / 4 }, 3);
     MarmitaDrop.create(manager);
     for (let i = 0; i < Cops.CopCount; i++)
-        Cops.create(manager, { min: 100 * i, max: 300 * i });
+        Cops.create(manager, -1, { min: 100 * i, max: 300 * i });
     ScoreTracker.create(manager);
 }
 function titleScreen(manager) {
@@ -876,8 +971,9 @@ class BaseBehaviors {
         };
         entity0.addBehavior(behavior, (e) => {
             const { name, options } = event;
-            if (doesCollide())
+            if (doesCollide()) {
                 manager.addEvent(name, options);
+            }
         });
         if (doActivate)
             entity0.activateBehavior(behavior);
@@ -1098,11 +1194,11 @@ class GameManager {
             }
         }
     }
-    playAudio(audioName) {
+    playAudio(audioName, delay = 0) {
         const audio = this.assets.get(audioName);
         audio.setVolume(this.globalVolume);
         if (!audio.isPlaying())
-            audio.play();
+            audio.play(delay);
     }
     get assetsLoadingProgression() {
         return this.loadedAssetsCount / this.assets.size;

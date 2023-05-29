@@ -22,9 +22,9 @@ class Player extends EntityFactory {
   static MarmitaSettings = {
     isHolding: false,
     marmita: {},
-    timer: 1600,
+    timer: 30 * 60,
     deliverCount: 0,
-    maxTime: 1600,
+    maxTime: 30 * 60,
   };
 
   static create(manager: GameManager) {
@@ -110,6 +110,8 @@ class Player extends EntityFactory {
   static listenToCop(manager: GameManager, player: Entity) {
     player.addListener(Cops.Events.CollisionWithPlayer.name, (e) => {
       if (Player.MarmitaSettings.isHolding) {
+        manager.playAudio(AssetList.SireneCurta.name);
+        manager.playAudio(AssetList.MarmitaPerdida.name, 0.2);
         const marmita = manager.getEntity("marmita") as Entity;
         Player.dropMarmita(marmita);
         BaseBehaviors.shake(manager, 15);
@@ -118,7 +120,6 @@ class Player extends EntityFactory {
   }
 
   static dropMarmita(marmita: Entity) {
-    console.log("dropping marmita");
     Player.MarmitaSettings.isHolding = false;
     // marmita.activateBehavior(BaseBehaviors.Names.Spawn);
   }
@@ -169,15 +170,24 @@ class Player extends EntityFactory {
 
   static collisionWithMarmitaListener(manager: GameManager, player: Entity) {
     player.addListener(Marmitas.Events.CollisionWithPlayer.name, (e: any) => {
-      const marmita = e.marmita as Entity;
-      Player.MarmitaSettings.isHolding = true;
-      Player.MarmitaSettings.marmita = marmita;
+      if (!Player.MarmitaSettings.isHolding) {
+        manager.playAudio(AssetList.RetiradaSFX.name);
+        const marmita = e.marmita as Entity;
+        Player.MarmitaSettings.isHolding = true;
+        Player.MarmitaSettings.marmita = marmita;
+      }
     });
   }
 
   static goalListener(manager: GameManager, player: Entity) {
     player.addListener(Goal.Events.CollisionWithPlayer.name, (e: any) => {
       if (Player.MarmitaSettings.isHolding) {
+        manager.playAudio(
+          Helpers.randElement([
+            AssetList.MarmitaEntregue.name,
+            AssetList.MarmitaEntregueAlt.name,
+          ])
+        );
         const marmita = Player.MarmitaSettings.marmita as Entity;
         Player.dropMarmita(marmita);
         Player.MarmitaSettings.deliverCount++;
