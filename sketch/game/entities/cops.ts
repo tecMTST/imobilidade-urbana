@@ -12,12 +12,12 @@ class Cops {
   static AnimationCycles: { [key: string]: NewCycleInformation } = {
     static: {
       cycleName: "static",
-      frames: [5],
+      frames: [0],
       timing: 5,
     },
     walking: {
       cycleName: "walking",
-      frames: [20, 12],
+      frames: [0, 1],
       timing: 2,
     },
   };
@@ -30,7 +30,7 @@ class Cops {
     range: { min: number; max: number } = { min: 500, max: 1000 }
   ) {
     const widLoc = Helpers.randSign();
-    const heiLoc = Helpers.randSign();
+    const heiLoc = -1;
 
     const cop = new Entity(
       `cop${Cops.CurrentCopID++}`,
@@ -94,6 +94,7 @@ class Cops {
       player,
       Cops.Events.CollisionWithPlayer,
       Cops.Behaviors.CollidesWithPlayer,
+      0.5,
       true
     );
   }
@@ -114,7 +115,7 @@ class Cops {
           normalPlayerVector
             .sub(cop.position)
             .normalize()
-            .mult(manager.UnitSize * 0.06);
+            .mult(manager.UnitSize * 0.08);
           cop.position.add(normalPlayerVector);
           if (normalPlayerVector.x < 0) cop.scale.width = -1;
           else cop.scale.width = 1;

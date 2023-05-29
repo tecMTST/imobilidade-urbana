@@ -12,7 +12,7 @@ function loadingScreen(manager: GameManager) {
     if (m.assetsLoadingProgression >= 0.99) loadingText = "Toque para iniciar.";
 
     background(0);
-    image(logo, 0, 0, m.UnitSize * 1.5, m.UnitSize * 1.5);
+    image(logo, 0, 0, m.UnitSize * 3, m.UnitSize * 3);
     rectMode(CENTER);
     rect(
       0,
@@ -37,7 +37,15 @@ function addEntities(manager: GameManager) {
   Joystick.create(manager);
   Marmitas.create(manager);
   Goal.create(manager);
+  Goal.create(
+    manager,
+    { x: width * 0.8, y: height / 4 },
+    { x: -width, y: height / 4 },
+    2
+  );
   MarmitaDrop.create(manager);
   for (let i = 0; i < Cops.CopCount; i++)
     Cops.create(manager, { min: 100 * i, max: 300 * i });
+
+  ScoreTracker.create(manager);
 }

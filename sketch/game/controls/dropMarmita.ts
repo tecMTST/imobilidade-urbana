@@ -23,7 +23,7 @@ class MarmitaDrop {
         if (mouseIsPressed) countDownTimer++;
         else {
           if (
-            countDownTimer < 15 &&
+            countDownTimer < 5 &&
             countDownTimer !== 0 &&
             Player.MarmitaSettings.isHolding
           ) {

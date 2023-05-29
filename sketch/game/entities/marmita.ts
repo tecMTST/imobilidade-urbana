@@ -4,7 +4,7 @@ class Marmitas extends EntityFactory {
   static Behaviors = {
     Show: "show",
     Collision: "collision",
-    Spawn: "spawn",
+    Move: "move",
   };
 
   static AnimationCycles: { [key: string]: NewCycleInformation } = {
@@ -26,45 +26,45 @@ class Marmitas extends EntityFactory {
     const marmita = new Entity(
       "marmita",
       4,
-      { width: manager.UnitSize, height: manager.UnitSize },
-      { x: 1000, y: 1000 }
+      { width: 2 * manager.UnitSize, height: 2 * manager.UnitSize },
+      { x: width, y: 0 }
     );
 
     Marmitas.drawMarmitaBehavior(marmita, manager);
     Marmitas.emitPlayerCollision(marmita, manager);
-    Marmitas.spawn(marmita, manager);
+    Marmitas.move(manager, marmita);
 
     manager.addEntity(marmita, marmita.layer);
   }
 
-  static spawn(marmita: Entity, manager: GameManager) {
+  static move(manager: GameManager, marmita: Entity) {
     marmita.addBehavior(
-      Marmitas.Behaviors.Spawn,
+      Marmitas.Behaviors.Move,
       (e) => {
-        marmita.position.x = Helpers.random(-width / 2, width / 2);
-        marmita.position.y = Helpers.random(height / 4, height / 2);
-        marmita.deactivateBehavior(Marmitas.Behaviors.Spawn);
-        marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
+        marmita.position.x -= manager.UnitSize / 5;
+        if (marmita.position.x < -marmita.size.width - width / 2)
+          marmita.position.x = Helpers.random(
+            width,
+            marmita.size.width + width / 2
+          );
       },
       true
     );
   }
 
   static drawMarmitaBehavior(marmita: Entity, manager: GameManager) {
-    const { Marmita } = AssetList;
+    const { Carrinho } = AssetList;
 
-    const marmitaSpritesheet = manager.getAsset(Marmita.name) as p5.Image;
+    const marmitaSpritesheet = manager.getAsset(Carrinho.name) as p5.Image;
 
     const marmitaTileset = new Tileset(
       marmitaSpritesheet,
-      Marmita.originalTileSize,
-      Marmita.columns
+      Carrinho.originalTileSize,
+      Carrinho.columns
     );
 
-    const {
-      newCycleFunction,
-      setCurrentSpriteFunction,
-    } = BaseBehaviors.addSpriteAnimation(marmita, marmitaTileset);
+    const { newCycleFunction, setCurrentSpriteFunction } =
+      BaseBehaviors.addSpriteAnimation(marmita, marmitaTileset);
 
     newCycleFunction(Marmitas.AnimationCycles.static);
     setCurrentSpriteFunction(Marmitas.AnimationCycles.static.cycleName);
@@ -80,6 +80,7 @@ class Marmitas extends EntityFactory {
       player,
       { name: Marmitas.Events.CollisionWithPlayer.name, options: { marmita } },
       Marmitas.Behaviors.Collision,
+      1,
       true
     );
   }

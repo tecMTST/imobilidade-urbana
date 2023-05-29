@@ -182,14 +182,25 @@ class GameManager {
   loadAssets() {
     for (const assetName of this.assets.keys()) {
       const asset = this.assets.get(assetName);
-      if (typeof asset === "string")
-        this.assets.set(
-          assetName,
-          loadImage(asset, () => {
-            this.loadedAssetsCount++;
-            console.log(`Loaded asset ${assetName}`);
-          })
-        );
+      if (typeof asset === "string") {
+        if (AssetList[assetName].type === "image")
+          this.assets.set(
+            assetName,
+            loadImage(asset, () => {
+              this.loadedAssetsCount++;
+              console.log(`Loaded asset ${assetName}`);
+            })
+          );
+        else
+          this.assets.set(
+            assetName,
+            //@ts-ignore
+            loadSound(asset, () => {
+              this.loadedAssetsCount++;
+              console.log(`Loaded asset ${assetName}`);
+            })
+          );
+      }
     }
   }
 
