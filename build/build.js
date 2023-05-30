@@ -23,9 +23,10 @@ class MarmitaDrop {
             if (mouseIsPressed)
                 countDownTimer++;
             else {
-                if (countDownTimer < 15 &&
+                if (countDownTimer < 5 &&
                     countDownTimer !== 0 &&
                     Player.MarmitaSettings.isHolding) {
+                    manager.playAudio(AssetList.MarmitaPerdida.name, 0.2);
                     manager.addEvent(MarmitaDrop.Events.DropMarmita, {});
                 }
                 countDownTimer = 0;
@@ -181,9 +182,12 @@ Joystick.Events = {
     },
 };
 class Cops {
-    static create(manager, range = { min: 500, max: 1000 }) {
+    static create(manager, initialHei = -1, range = {
+        min: manager.UnitSize * 2,
+        max: manager.UnitSize * 5,
+    }) {
         const widLoc = Helpers.randSign();
-        const heiLoc = Helpers.randSign();
+        const heiLoc = initialHei;
         const cop = new Entity(`cop${Cops.CurrentCopID++}`, 3, { width: manager.UnitSize, height: manager.UnitSize * 2 }, {
             x: widLoc * width + widLoc * Helpers.random(range.min, range.max),
             y: heiLoc * height + heiLoc * Helpers.random(range.min, range.max),
@@ -199,6 +203,7 @@ class Cops {
         Cops.pursuePlayer(manager, cop, setCurrentSpriteFunction);
         Cops.emitCollisionWithPlayer(manager, cop);
         manager.addEntity(cop, cop.layer);
+        return cop;
     }
     static moveAwayListener(manager, cop) {
         cop.addListener(Cops.eventNameFor(cop), (eventOptions) => {
@@ -216,11 +221,12 @@ class Cops {
     }
     static emitCollisionWithPlayer(manager, cop) {
         const player = manager.getEntity("player");
-        BaseBehaviors.circleCollision(manager, cop, player, Cops.Events.CollisionWithPlayer, Cops.Behaviors.CollidesWithPlayer, true);
+        BaseBehaviors.circleCollision(manager, cop, player, Cops.Events.CollisionWithPlayer, Cops.Behaviors.CollidesWithPlayer, 0.5, true);
     }
     static pursuePlayer(manager, cop, setCurrentAnimation) {
         cop.addBehavior(Cops.Behaviors.Walk, (e) => {
-            if (Player.MarmitaSettings.isHolding) {
+            if (Player.MarmitaSettings.isHolding ||
+                Player.MarmitaSettings.timer < 2) {
                 manager.removePermanentEvent(Cops.eventNameFor(cop));
                 setCurrentAnimation(Cops.AnimationCycles.walking.cycleName);
                 const player = manager.getEntity("player");
@@ -228,7 +234,7 @@ class Cops {
                 normalPlayerVector
                     .sub(cop.position)
                     .normalize()
-                    .mult(manager.UnitSize * 0.06);
+                    .mult(manager.UnitSize * 0.1);
                 cop.position.add(normalPlayerVector);
                 if (normalPlayerVector.x < 0)
                     cop.scale.width = -1;
@@ -261,85 +267,115 @@ Cops.Events = {
 Cops.AnimationCycles = {
     static: {
         cycleName: "static",
-        frames: [5],
+        frames: [0],
         timing: 5,
     },
     walking: {
         cycleName: "walking",
-        frames: [20, 12],
+        frames: [0, 1],
         timing: 2,
     },
 };
 Cops.CurrentCopID = 0;
 Cops.CopCount = 1;
 class Goal extends EntityFactory {
-    static create(manager) {
-        const goal = new Entity("goal", 4, { width: manager.UnitSize, height: manager.UnitSize }, { x: -width * 0.4, y: -height * 0.4 });
+    static create(manager, origin = { x: -width, y: -height / 4 }, destination = { x: width, y: -height / 4 }, id = 1) {
+        const goal = new Entity(`goal-${id}`, 4, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: origin.x, y: origin.y });
+        if (destination.x < 0)
+            goal.scale.width = -1;
         Goal.drawGoalBehavior(goal, manager);
         Goal.emitPlayerReachedGoal(goal, manager);
+        Goal.moveToDestination(goal, manager, origin, destination);
         manager.addEntity(goal, goal.layer);
+    }
+    static moveToDestination(goal, manager, origin, destination) {
+        let xDelta = Helpers.random(manager.UnitSize / 4, manager.UnitSize / 7);
+        let deltaSign = Math.sign(destination.x);
+        const setCurrentAnimation = goal.getFunction(BaseBehaviors.Names.SetCurrentSpriteCycle);
+        goal.addBehavior(Goal.Behaviors.MoveToDestination, (e) => {
+            goal.position.x += xDelta * deltaSign;
+            if (Math.abs(goal.position.x) >= Math.abs(destination.x)) {
+                xDelta = Helpers.random(manager.UnitSize / 4, manager.UnitSize / 7);
+                goal.position.x =
+                    origin.x - deltaSign * Helpers.random(0, manager.UnitSize * 2);
+                const cycle = Helpers.randElement(["a", "b", "c"]);
+                setCurrentAnimation(cycle);
+            }
+        }, true);
     }
     static drawGoalBehavior(goal, manager) {
         const { GoalAsset } = AssetList;
         const goalSpritesheet = manager.getAsset(GoalAsset.name);
         const goalTileset = new Tileset(goalSpritesheet, GoalAsset.originalTileSize, GoalAsset.columns);
-        const { newCycleFunction, setCurrentSpriteFunction, } = BaseBehaviors.addSpriteAnimation(goal, goalTileset);
-        newCycleFunction(Goal.AnimationCycles.static);
-        setCurrentSpriteFunction(Goal.AnimationCycles.static.cycleName);
+        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(goal, goalTileset);
+        newCycleFunction(Goal.AnimationCycles.a);
+        newCycleFunction(Goal.AnimationCycles.b);
+        newCycleFunction(Goal.AnimationCycles.c);
+        setCurrentSpriteFunction(Helpers.randElement(["a", "b", "c"]));
         goal.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
     }
     static emitPlayerReachedGoal(goal, manager) {
         const player = manager.getEntity("player");
-        BaseBehaviors.circleCollision(manager, goal, player, Goal.Events.CollisionWithPlayer, Goal.Behaviors.EmitPlayerCollision, true);
+        BaseBehaviors.rectCollision(manager, goal, player, Goal.Events.CollisionWithPlayer, Goal.Behaviors.EmitPlayerCollision, true);
     }
 }
 Goal.Behaviors = {
     EmitPlayerCollision: "emit-collision",
+    MoveToDestination: "move-destination",
 };
 Goal.Events = {
     CollisionWithPlayer: { name: "goal-collides-with-player", options: {} },
 };
 Goal.AnimationCycles = {
-    static: {
-        cycleName: "static",
+    a: {
+        cycleName: "a",
         frames: [0],
+        timing: 5,
+    },
+    b: {
+        cycleName: "b",
+        frames: [1],
+        timing: 5,
+    },
+    c: {
+        cycleName: "c",
+        frames: [2],
         timing: 5,
     },
 };
 class Marmitas extends EntityFactory {
     static create(manager) {
-        const marmita = new Entity("marmita", 4, { width: manager.UnitSize, height: manager.UnitSize }, { x: 1000, y: 1000 });
+        const marmita = new Entity("marmita", 4, { width: 2 * manager.UnitSize, height: 2 * manager.UnitSize }, { x: width, y: 0 });
         Marmitas.drawMarmitaBehavior(marmita, manager);
         Marmitas.emitPlayerCollision(marmita, manager);
-        Marmitas.spawn(marmita, manager);
+        Marmitas.move(manager, marmita);
         manager.addEntity(marmita, marmita.layer);
     }
-    static spawn(marmita, manager) {
-        marmita.addBehavior(Marmitas.Behaviors.Spawn, (e) => {
-            marmita.position.x = Helpers.random(-width / 2, width / 2);
-            marmita.position.y = Helpers.random(height / 4, height / 2);
-            marmita.deactivateBehavior(Marmitas.Behaviors.Spawn);
-            marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
+    static move(manager, marmita) {
+        marmita.addBehavior(Marmitas.Behaviors.Move, (e) => {
+            marmita.position.x -= manager.UnitSize / 5;
+            if (marmita.position.x < -marmita.size.width - width / 2)
+                marmita.position.x = Helpers.random(width, marmita.size.width + width / 2);
         }, true);
     }
     static drawMarmitaBehavior(marmita, manager) {
-        const { Marmita } = AssetList;
-        const marmitaSpritesheet = manager.getAsset(Marmita.name);
-        const marmitaTileset = new Tileset(marmitaSpritesheet, Marmita.originalTileSize, Marmita.columns);
-        const { newCycleFunction, setCurrentSpriteFunction, } = BaseBehaviors.addSpriteAnimation(marmita, marmitaTileset);
+        const { Carrinho } = AssetList;
+        const marmitaSpritesheet = manager.getAsset(Carrinho.name);
+        const marmitaTileset = new Tileset(marmitaSpritesheet, Carrinho.originalTileSize, Carrinho.columns);
+        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(marmita, marmitaTileset);
         newCycleFunction(Marmitas.AnimationCycles.static);
         setCurrentSpriteFunction(Marmitas.AnimationCycles.static.cycleName);
         marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
     }
     static emitPlayerCollision(marmita, manager) {
         const player = manager.getEntity("player");
-        BaseBehaviors.circleCollision(manager, marmita, player, { name: Marmitas.Events.CollisionWithPlayer.name, options: { marmita } }, Marmitas.Behaviors.Collision, true);
+        BaseBehaviors.circleCollision(manager, marmita, player, { name: Marmitas.Events.CollisionWithPlayer.name, options: { marmita } }, Marmitas.Behaviors.Collision, 1, true);
     }
 }
 Marmitas.Behaviors = {
     Show: "show",
     Collision: "collision",
-    Spawn: "spawn",
+    Move: "move",
 };
 Marmitas.AnimationCycles = {
     static: {
@@ -356,7 +392,7 @@ Marmitas.Events = {
 };
 class Player extends EntityFactory {
     static create(manager) {
-        const player = new Entity("player", 1, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: 0, y: 0 });
+        const player = new Entity("player", 1, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: 0, y: height * 0.4 });
         const { PlayerSprite } = AssetList;
         const playerSpritesheet = manager.getAsset(PlayerSprite.name);
         const playerTileset = new Tileset(playerSpritesheet, PlayerSprite.originalTileSize, PlayerSprite.columns);
@@ -364,20 +400,41 @@ class Player extends EntityFactory {
         newCycleFunction(Player.AnimationCycles.static);
         setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
         newCycleFunction(Player.AnimationCycles.walking);
-        newCycleFunction(Player.AnimationCycles.staticWithMarmita);
-        newCycleFunction(Player.AnimationCycles.walkingWithMarmita);
         player.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
         Player.controlListener(manager, player, setCurrentSpriteFunction);
         Player.collisionWithMarmitaListener(manager, player);
         Player.goalListener(manager, player);
         Player.dropMarmitaListener(manager, player);
         Player.listenToCop(manager, player);
+        Player.showMarmita(manager, player);
         BaseBehaviors.constrainToScreen(manager, player, true);
         manager.addEntity(player, player.layer);
+    }
+    static showMarmita(manager, player) {
+        const marmitaAsset = AssetList.Marmita;
+        const marmitaSprite = manager.getAsset(marmitaAsset.name);
+        const floatingAnimation = Animate.getAnimation(Animate.move, {
+            func: Animate.sine,
+            funcArgs: {
+                a: 4,
+                b: -0.5,
+                c: 0,
+                d: 0,
+            },
+        }, ["y"]);
+        const posModifier = { position: { y: 0 } };
+        player.addBehavior(Player.Behaviors.ShowMarmita, (e) => {
+            if (Player.MarmitaSettings.isHolding) {
+                floatingAnimation.apply(posModifier);
+                image(marmitaSprite, 0, -manager.UnitSize + posModifier.position.y, manager.UnitSize * 0.5, manager.UnitSize * 0.5);
+            }
+        }, true);
     }
     static listenToCop(manager, player) {
         player.addListener(Cops.Events.CollisionWithPlayer.name, (e) => {
             if (Player.MarmitaSettings.isHolding) {
+                manager.playAudio(AssetList.SireneCurta.name);
+                manager.playAudio(AssetList.MarmitaPerdida.name, 0.2);
                 const marmita = manager.getEntity("marmita");
                 Player.dropMarmita(marmita);
                 BaseBehaviors.shake(manager, 15);
@@ -385,9 +442,7 @@ class Player extends EntityFactory {
         });
     }
     static dropMarmita(marmita) {
-        console.log("dropping marmita");
         Player.MarmitaSettings.isHolding = false;
-        marmita.activateBehavior(Marmitas.Behaviors.Spawn);
     }
     static dropMarmitaListener(manager, player) {
         player.addListener(MarmitaDrop.Events.DropMarmita, (e) => {
@@ -409,16 +464,10 @@ class Player extends EntityFactory {
                     player.position.add(norm.add(normalized));
                 else
                     player.position.add(norm.normalize().mult(manager.UnitRoot * 1.4));
-                if (Player.MarmitaSettings.isHolding)
-                    setCurrentSpriteFunction(Player.AnimationCycles.walkingWithMarmita.cycleName);
-                else
-                    setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
+                setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
             }
             else {
-                if (Player.MarmitaSettings.isHolding)
-                    setCurrentSpriteFunction(Player.AnimationCycles.staticWithMarmita.cycleName);
-                else
-                    setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
+                setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
             }
             if ((norm.x < 0 && player.scale.width > 0) ||
                 (norm.x > 0 && player.scale.width < 0))
@@ -427,91 +476,215 @@ class Player extends EntityFactory {
     }
     static collisionWithMarmitaListener(manager, player) {
         player.addListener(Marmitas.Events.CollisionWithPlayer.name, (e) => {
-            const marmita = e.marmita;
-            marmita.deactivateBehavior(BaseBehaviors.Names.SpriteAnimation);
-            marmita.position.x = -1000;
-            Player.MarmitaSettings.isHolding = true;
-            Player.MarmitaSettings.marmita = marmita;
+            if (!Player.MarmitaSettings.isHolding) {
+                manager.playAudio(AssetList.RetiradaSFX.name);
+                const marmita = e.marmita;
+                Player.MarmitaSettings.isHolding = true;
+                Player.MarmitaSettings.marmita = marmita;
+            }
         });
     }
     static goalListener(manager, player) {
         player.addListener(Goal.Events.CollisionWithPlayer.name, (e) => {
             if (Player.MarmitaSettings.isHolding) {
+                manager.playAudio(Helpers.randElement([
+                    AssetList.MarmitaEntregue.name,
+                    AssetList.MarmitaEntregueAlt.name,
+                ]));
                 const marmita = Player.MarmitaSettings.marmita;
                 Player.dropMarmita(marmita);
+                Player.MarmitaSettings.deliverCount++;
             }
         });
     }
 }
 Player.Behaviors = {
     Walk: "walk",
+    ShowMarmita: "show-marmita",
 };
 Player.AnimationCycles = {
     static: {
         cycleName: "static",
-        frames: [32],
+        frames: [0],
         timing: 5,
     },
     walking: {
         cycleName: "walking",
-        frames: [0, 8],
-        timing: 2,
-    },
-    staticWithMarmita: {
-        cycleName: "static-marmita",
-        frames: [18],
-        timing: 5,
-    },
-    walkingWithMarmita: {
-        cycleName: "walking-marmita",
-        frames: [25, 33],
+        frames: [0, 1],
         timing: 2,
     },
 };
 Player.MarmitaSettings = {
     isHolding: false,
     marmita: {},
+    timer: 30 * 60,
+    deliverCount: 0,
+    maxTime: 30 * 60,
+};
+class ScoreTracker {
+    static create(manager) {
+        const score = new Entity("score-tracker", 0);
+        score.position.x = -width / 2;
+        score.position.y = -height / 2;
+        ScoreTracker.display(manager, score);
+        manager.addEntity(score, score.layer);
+    }
+    static display(manager, score) {
+        let copList = [];
+        const resetGame = () => {
+            Player.MarmitaSettings.timer = Player.MarmitaSettings.maxTime;
+            Player.MarmitaSettings.deliverCount = 0;
+            for (const cop of copList) {
+                manager.removeEntity(cop);
+            }
+            copList = [];
+            manager.getEntity(`cop0`).position.y = -height * 0.8;
+            manager.getEntity("player").position.x = 0;
+            manager.getEntity("player").position.y = height * 0.4;
+        };
+        score.addBehavior(ScoreTracker.Behaviors.Display, (e) => {
+            textAlign(LEFT, TOP);
+            fill(255);
+            textSize(manager.UnitSize / 3);
+            text(Player.MarmitaSettings.timer--, 0, 0);
+            textAlign(RIGHT);
+            text(Player.MarmitaSettings.deliverCount, width, 0);
+            if (Player.MarmitaSettings.timer < 2) {
+                if (Player.MarmitaSettings.timer === 1) {
+                    manager.playAudio(AssetList.SireneDerrotaSFX.name);
+                    for (let i = 1; i < 10; i++) {
+                        copList.push(Cops.create(manager, Helpers.randSign()));
+                    }
+                }
+                const hasEvent = manager.getEvent(Cops.Events.CollisionWithPlayer.name);
+                Player.MarmitaSettings.timer = 0;
+                if (hasEvent !== undefined) {
+                    defeatScreen(manager);
+                    manager.state = GameStates.DEFEAT_SCREEN;
+                    resetGame();
+                }
+            }
+            if (Player.MarmitaSettings.deliverCount > 10) {
+                victoryScreen(manager);
+                manager.state = GameStates.VICTORY_SCREEN;
+                resetGame();
+            }
+        }, true);
+    }
+}
+ScoreTracker.Behaviors = {
+    Display: "display",
 };
 const AssetList = {
-    PlayerSprite: {
-        columns: 8,
+    MarmitaEntregueAlt: {
+        columns: 2,
         originalTileSize: {
-            width: 128,
-            height: 256,
+            width: 32,
+            height: 64,
         },
-        path: "./assets/img/player.png",
+        path: "./assets/sound/marmita_entrega_2.wav",
+        type: "audio",
+        name: "MarmitaEntregueAlt",
+    },
+    MarmitaEntregue: {
+        columns: 2,
+        originalTileSize: {
+            width: 32,
+            height: 64,
+        },
+        path: "./assets/sound/marmita_entrega_1.wav",
+        type: "audio",
+        name: "MarmitaEntregue",
+    },
+    SireneCurta: {
+        columns: 2,
+        originalTileSize: {
+            width: 32,
+            height: 64,
+        },
+        path: "./assets/sound/sirene_curta_1.wav",
+        type: "audio",
+        name: "SireneCurta",
+    },
+    MarmitaPerdida: {
+        columns: 2,
+        originalTileSize: {
+            width: 32,
+            height: 64,
+        },
+        path: "./assets/sound/marmita_perdida.wav",
+        type: "audio",
+        name: "MarmitaPerdida",
+    },
+    RetiradaSFX: {
+        columns: 2,
+        originalTileSize: {
+            width: 32,
+            height: 64,
+        },
+        path: "./assets/sound/marmita_retirada.wav",
+        type: "audio",
+        name: "RetiradaSFX",
+    },
+    SireneDerrotaSFX: {
+        columns: 2,
+        originalTileSize: {
+            width: 32,
+            height: 64,
+        },
+        path: "./assets/sound/sirene_longa_1.wav",
+        type: "audio",
+        name: "SireneDerrotaSFX",
+    },
+    PlayerSprite: {
+        columns: 2,
+        originalTileSize: {
+            width: 32,
+            height: 64,
+        },
+        path: "./assets/img/tia cozinha-Sheet.png",
         type: "image",
         name: "PlayerSprite",
     },
     Marmita: {
         columns: 1,
         originalTileSize: {
-            width: 360,
-            height: 360,
+            width: 32,
+            height: 32,
         },
         path: "./assets/img/marmita.png",
         type: "image",
         name: "Marmita",
     },
-    GoalAsset: {
+    Carrinho: {
         columns: 1,
         originalTileSize: {
-            width: 360,
-            height: 360,
+            width: 64,
+            height: 64,
         },
-        path: "./assets/img/marmita.png",
+        path: "./assets/img/carrinho da marmita.png",
         type: "image",
-        name: "Marmita",
+        name: "Carrinho",
+    },
+    GoalAsset: {
+        columns: 3,
+        originalTileSize: {
+            width: 32,
+            height: 64,
+        },
+        path: "./assets/img/morador de rua.png",
+        type: "image",
+        name: "GoalAsset",
     },
     CopAsset: {
         columns: 8,
         originalTileSize: {
-            width: 128,
-            height: 256,
+            width: 32,
+            height: 64,
         },
-        path: "./assets/img/player.png",
+        path: "./assets/img/gcm-Sheet.png",
         type: "image",
-        name: "PlayerSprite",
+        name: "CopAsset",
     },
     TitleScreen: {
         columns: 1,
@@ -523,10 +696,30 @@ const AssetList = {
         type: "image",
         name: "TitleScreen",
     },
+    Vitoria: {
+        columns: 1,
+        originalTileSize: {
+            width: 90,
+            height: 160,
+        },
+        path: "./assets/img/vitoria.png",
+        type: "image",
+        name: "Vitoria",
+    },
+    Derrota: {
+        columns: 1,
+        originalTileSize: {
+            width: 90,
+            height: 160,
+        },
+        path: "./assets/img/derrota.png",
+        type: "image",
+        name: "Derrota",
+    },
 };
 const gameConfig = {
     aspectRatio: 9 / 16,
-    UnitSizeProportion: 0.09,
+    UnitSizeProportion: 0.07,
     fadeInSpeed: 100,
 };
 const GameAssets = {
@@ -538,6 +731,8 @@ const GameStates = {
     INTRO_SCREEN: "intro-screen",
     GAME_PLAYING: "game-playing-state",
     TITLE_SCREEN: "title-screen",
+    DEFEAT_SCREEN: "defear-screen",
+    VICTORY_SCREEN: "victory-screen",
 };
 const GameTags = {
     GCM: "gcm-tag",
@@ -566,12 +761,36 @@ function setupFunction(manager) {
     introSplashScreen(manager);
     gamePlaying(manager);
     titleScreen(manager);
+    defeatScreen(manager);
 }
 function addAssetsToManager(manager) {
     for (const asset of Object.keys(AssetList)) {
         const { path } = AssetList[asset];
         manager.addAsset(asset, path);
     }
+}
+function defeatScreen(manager) {
+    let fadeIn = 255;
+    let fadeOut = 0;
+    const defeat = manager.getAsset(AssetList.Derrota.name);
+    let interactionCountdown = 30;
+    manager.addState(GameStates.DEFEAT_SCREEN, (m) => {
+        background(0);
+        image(defeat, 0, 0, width, height);
+        if (fadeIn > 0) {
+            fadeIn -= gameConfig.fadeInSpeed;
+            background(0, fadeIn);
+        }
+        if (fadeOut > 250) {
+            manager.state = GameStates.GAME_PLAYING;
+            titleScreen(manager);
+        }
+        if (interactionCountdown-- < 0 &&
+            (mouseIsPressed || fadeOut >= gameConfig.fadeInSpeed)) {
+            fadeOut += gameConfig.fadeInSpeed;
+            background(0, fadeOut);
+        }
+    });
 }
 function gamePlaying(manager) {
     let fadeIn = 255;
@@ -590,8 +809,7 @@ function introSplashScreen(manager) {
     manager.position = createVector(width / 2, height / 2);
     manager.addState(GameStates.INTRO_SCREEN, (m) => {
         background(0);
-        image(logoNucleo, 0, 0, manager.UnitSize * 1.5, manager.UnitSize * 1.5);
-        manager.playAudio(GameAssets.VINHETA_NUCLEO);
+        image(logoNucleo, 0, 0, manager.UnitSize * 3, manager.UnitSize * 3);
         if (fadeAlpha > 250)
             manager.state = GameStates.TITLE_SCREEN;
         fadeAlpha += 5;
@@ -611,7 +829,7 @@ function loadingScreen(manager) {
         if (m.assetsLoadingProgression >= 0.99)
             loadingText = "Toque para iniciar.";
         background(0);
-        image(logo, 0, 0, m.UnitSize * 1.5, m.UnitSize * 1.5);
+        image(logo, 0, 0, m.UnitSize * 3, m.UnitSize * 3);
         rectMode(CENTER);
         rect(0, m.UnitSize * 2, m.assetsLoadingProgression * width * 0.9, m.UnitSize / 2);
         textAlign(CENTER, CENTER);
@@ -627,9 +845,11 @@ function addEntities(manager) {
     Joystick.create(manager);
     Marmitas.create(manager);
     Goal.create(manager);
+    Goal.create(manager, { x: -width * 0.6, y: height / 4 }, { x: width * 0.8, y: height / 4 }, 3);
     MarmitaDrop.create(manager);
     for (let i = 0; i < Cops.CopCount; i++)
-        Cops.create(manager, { min: 100 * i, max: 300 * i });
+        Cops.create(manager, -1, { min: 100 * i, max: 300 * i });
+    ScoreTracker.create(manager);
 }
 function titleScreen(manager) {
     let fadeIn = 255;
@@ -646,6 +866,29 @@ function titleScreen(manager) {
         if (fadeOut > 250)
             manager.state = GameStates.GAME_PLAYING;
         if (mouseIsPressed || fadeOut >= gameConfig.fadeInSpeed) {
+            fadeOut += gameConfig.fadeInSpeed;
+            background(0, fadeOut);
+        }
+    });
+}
+function victoryScreen(manager) {
+    let fadeIn = 255;
+    let fadeOut = 0;
+    const victory = manager.getAsset(AssetList.Vitoria.name);
+    let interactionCountdown = 30;
+    manager.addState(GameStates.VICTORY_SCREEN, (m) => {
+        background(0);
+        image(victory, 0, 0, width, height);
+        if (fadeIn > 0) {
+            fadeIn -= gameConfig.fadeInSpeed;
+            background(0, fadeIn);
+        }
+        if (fadeOut > 250) {
+            manager.state = GameStates.GAME_PLAYING;
+            titleScreen(manager);
+        }
+        if (interactionCountdown-- < 0 &&
+            (mouseIsPressed || fadeOut >= gameConfig.fadeInSpeed)) {
             fadeOut += gameConfig.fadeInSpeed;
             background(0, fadeOut);
         }
@@ -718,12 +961,35 @@ class BaseBehaviors {
         entity.addInternalFunction(BaseBehaviors.Names.SetCurrentSpriteCycle, setCurrentSpriteFunction);
         return { newCycleFunction, setCurrentSpriteFunction };
     }
-    static circleCollision(manager, entity0, entity1, event, behavior, doActivate = false) {
+    static circleCollision(manager, entity0, entity1, event, behavior, multiplier = 1, doActivate = false) {
         const doesCollide = () => {
             const { x: x0, y: y0 } = entity0.position;
             const { x: x1, y: y1 } = entity1.position;
             return ((x0 - x1) ** 2 + (y0 - y1) ** 2 <=
-                ((entity0.size.width + entity1.size.width) / 5) ** 2);
+                (((entity0.size.width + entity1.size.width) * multiplier) / 2) ** 2);
+        };
+        entity0.addBehavior(behavior, (e) => {
+            const { name, options } = event;
+            if (doesCollide()) {
+                manager.addEvent(name, options);
+            }
+        });
+        if (doActivate)
+            entity0.activateBehavior(behavior);
+    }
+    static rectCollision(manager, entity0, entity1, event, behavior, doActivate = false) {
+        const pointInRect = (x, y, rx, ry, rw, rh) => {
+            return (x < rx + rw / 2 && x > rx - rw / 2 && y < ry + rh / 2 && y > ry - rh / 2);
+        };
+        const doesCollide = () => {
+            const { x: x0, y: y0 } = entity0.position;
+            const { width: w0, height: h0 } = entity0.size;
+            const { x: x1, y: y1 } = entity1.position;
+            const { width: w1, height: h1 } = entity1.size;
+            return (pointInRect(x0 - w0 / 2, y0 - h0 / 2, x1, y1, w1, h1) ||
+                pointInRect(x0 + w0 / 2, y0 + h0 / 2, x1, y1, w1, h1) ||
+                pointInRect(x0 - w0 / 2, y0 + h0 / 2, x1, y1, w1, h1) ||
+                pointInRect(x0 + w0 / 2, y0 - h0 / 2, x1, y1, w1, h1));
         };
         entity0.addBehavior(behavior, (e) => {
             const { name, options } = event;
@@ -755,7 +1021,9 @@ class BaseBehaviors {
                 d: 0,
             },
         }, ["x"]);
-        const originalPosition = entity.position.x;
+        let originalPosition = entity.position.x;
+        if (entity instanceof GameManager)
+            originalPosition = width / 2;
         entity.addBehavior(BaseBehaviors.Names.Shake, (_) => {
             if (duration-- < 0) {
                 entity.removeBehavior(BaseBehaviors.Names.Shake);
@@ -768,6 +1036,14 @@ class BaseBehaviors {
             }
         }, true);
     }
+    static spawnAtRegion(manager, entity, widLimit, heiLimit) {
+        entity.addBehavior(BaseBehaviors.Names.Spawn, (e) => {
+            entity.position.x = Helpers.random(widLimit.min, widLimit.max);
+            entity.position.y = Helpers.random(heiLimit.min, heiLimit.max);
+            entity.deactivateBehavior(BaseBehaviors.Names.Spawn);
+            entity.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
+        }, true);
+    }
 }
 BaseBehaviors.Names = {
     SpriteAnimation: "sprite-animation",
@@ -776,6 +1052,7 @@ BaseBehaviors.Names = {
     ConstrainToScreen: "constrain-entity-to-screen",
     Shake: "shake-base-behavior",
     TrasitionState: "transition-between-states",
+    Spawn: "spawn-base-behavior",
 };
 class GameManager {
     constructor() {
@@ -902,18 +1179,25 @@ class GameManager {
     loadAssets() {
         for (const assetName of this.assets.keys()) {
             const asset = this.assets.get(assetName);
-            if (typeof asset === "string")
-                this.assets.set(assetName, loadImage(asset, () => {
-                    this.loadedAssetsCount++;
-                    console.log(`Loaded asset ${assetName}`);
-                }));
+            if (typeof asset === "string") {
+                if (AssetList[assetName].type === "image")
+                    this.assets.set(assetName, loadImage(asset, () => {
+                        this.loadedAssetsCount++;
+                        console.log(`Loaded asset ${assetName}`);
+                    }));
+                else
+                    this.assets.set(assetName, loadSound(asset, () => {
+                        this.loadedAssetsCount++;
+                        console.log(`Loaded asset ${assetName}`);
+                    }));
+            }
         }
     }
-    playAudio(audioName) {
+    playAudio(audioName, delay = 0) {
         const audio = this.assets.get(audioName);
         audio.setVolume(this.globalVolume);
         if (!audio.isPlaying())
-            audio.play();
+            audio.play(delay);
     }
     get assetsLoadingProgression() {
         return this.loadedAssetsCount / this.assets.size;

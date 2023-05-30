@@ -182,21 +182,32 @@ class GameManager {
   loadAssets() {
     for (const assetName of this.assets.keys()) {
       const asset = this.assets.get(assetName);
-      if (typeof asset === "string")
-        this.assets.set(
-          assetName,
-          loadImage(asset, () => {
-            this.loadedAssetsCount++;
-            console.log(`Loaded asset ${assetName}`);
-          })
-        );
+      if (typeof asset === "string") {
+        if (AssetList[assetName].type === "image")
+          this.assets.set(
+            assetName,
+            loadImage(asset, () => {
+              this.loadedAssetsCount++;
+              console.log(`Loaded asset ${assetName}`);
+            })
+          );
+        else
+          this.assets.set(
+            assetName,
+            //@ts-ignore
+            loadSound(asset, () => {
+              this.loadedAssetsCount++;
+              console.log(`Loaded asset ${assetName}`);
+            })
+          );
+      }
     }
   }
 
-  playAudio(audioName: string) {
+  playAudio(audioName: string, delay = 0) {
     const audio = this.assets.get(audioName) as p5.SoundFile;
     audio.setVolume(this.globalVolume);
-    if (!audio.isPlaying()) audio.play();
+    if (!audio.isPlaying()) audio.play(delay);
   }
 
   get assetsLoadingProgression() {

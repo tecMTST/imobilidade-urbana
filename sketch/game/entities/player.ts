@@ -3,27 +3,18 @@
 class Player extends EntityFactory {
   static Behaviors = {
     Walk: "walk",
+    ShowMarmita: "show-marmita",
   };
 
   static AnimationCycles: { [key: string]: NewCycleInformation } = {
     static: {
       cycleName: "static",
-      frames: [32],
+      frames: [0],
       timing: 5,
     },
     walking: {
       cycleName: "walking",
-      frames: [0, 8],
-      timing: 2,
-    },
-    staticWithMarmita: {
-      cycleName: "static-marmita",
-      frames: [18],
-      timing: 5,
-    },
-    walkingWithMarmita: {
-      cycleName: "walking-marmita",
-      frames: [25, 33],
+      frames: [0, 1],
       timing: 2,
     },
   };
@@ -31,6 +22,9 @@ class Player extends EntityFactory {
   static MarmitaSettings = {
     isHolding: false,
     marmita: {},
+    timer: 30 * 60,
+    deliverCount: 0,
+    maxTime: 30 * 60,
   };
 
   static create(manager: GameManager) {
@@ -38,7 +32,7 @@ class Player extends EntityFactory {
       "player",
       1,
       { width: manager.UnitSize, height: manager.UnitSize * 2 },
-      { x: 0, y: 0 }
+      { x: 0, y: height * 0.4 }
     );
 
     const { PlayerSprite } = AssetList;
@@ -57,8 +51,6 @@ class Player extends EntityFactory {
     newCycleFunction(Player.AnimationCycles.static);
     setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
     newCycleFunction(Player.AnimationCycles.walking);
-    newCycleFunction(Player.AnimationCycles.staticWithMarmita);
-    newCycleFunction(Player.AnimationCycles.walkingWithMarmita);
 
     player.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
 
@@ -72,14 +64,54 @@ class Player extends EntityFactory {
 
     Player.listenToCop(manager, player);
 
+    Player.showMarmita(manager, player);
+
     BaseBehaviors.constrainToScreen(manager, player, true);
 
     manager.addEntity(player, player.layer);
   }
 
+  static showMarmita(manager: GameManager, player: Entity) {
+    const marmitaAsset = AssetList.Marmita;
+    const marmitaSprite = manager.getAsset(marmitaAsset.name) as p5.Image;
+
+    const floatingAnimation = Animate.getAnimation(
+      Animate.move,
+      {
+        func: Animate.sine,
+        funcArgs: {
+          a: 4,
+          b: -0.5,
+          c: 0,
+          d: 0,
+        },
+      },
+      ["y"]
+    );
+    const posModifier = { position: { y: 0 } };
+    player.addBehavior(
+      Player.Behaviors.ShowMarmita,
+      (e) => {
+        if (Player.MarmitaSettings.isHolding) {
+          floatingAnimation.apply(posModifier);
+          image(
+            marmitaSprite,
+            0,
+            -manager.UnitSize + posModifier.position.y,
+            manager.UnitSize * 0.5,
+            manager.UnitSize * 0.5
+          );
+        }
+      },
+      true
+    );
+  }
+
   static listenToCop(manager: GameManager, player: Entity) {
     player.addListener(Cops.Events.CollisionWithPlayer.name, (e) => {
       if (Player.MarmitaSettings.isHolding) {
+        manager.playAudio(AssetList.SireneCurta.name);
+        manager.playAudio(AssetList.MarmitaPerdida.name, 0.2);
         const marmita = manager.getEntity("marmita") as Entity;
         Player.dropMarmita(marmita);
         BaseBehaviors.shake(manager, 15);
@@ -88,9 +120,8 @@ class Player extends EntityFactory {
   }
 
   static dropMarmita(marmita: Entity) {
-    console.log("dropping marmita");
     Player.MarmitaSettings.isHolding = false;
-    marmita.activateBehavior(Marmitas.Behaviors.Spawn);
+    // marmita.activateBehavior(BaseBehaviors.Names.Spawn);
   }
 
   static dropMarmitaListener(manager: GameManager, player: Entity) {
@@ -112,7 +143,6 @@ class Player extends EntityFactory {
         const norm = currentPress.copy();
 
         if (isPressed) {
-          // norm.normalize();
           norm.div(manager.UnitSize / 8);
           const normalized = norm
             .copy()
@@ -124,19 +154,9 @@ class Player extends EntityFactory {
           else
             player.position.add(norm.normalize().mult(manager.UnitRoot * 1.4));
 
-          if (Player.MarmitaSettings.isHolding)
-            setCurrentSpriteFunction(
-              Player.AnimationCycles.walkingWithMarmita.cycleName
-            );
-          else
-            setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
+          setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
         } else {
-          if (Player.MarmitaSettings.isHolding)
-            setCurrentSpriteFunction(
-              Player.AnimationCycles.staticWithMarmita.cycleName
-            );
-          else
-            setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
+          setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
         }
 
         if (
@@ -150,19 +170,27 @@ class Player extends EntityFactory {
 
   static collisionWithMarmitaListener(manager: GameManager, player: Entity) {
     player.addListener(Marmitas.Events.CollisionWithPlayer.name, (e: any) => {
-      const marmita = e.marmita as Entity;
-      marmita.deactivateBehavior(BaseBehaviors.Names.SpriteAnimation);
-      marmita.position.x = -1000;
-      Player.MarmitaSettings.isHolding = true;
-      Player.MarmitaSettings.marmita = marmita;
+      if (!Player.MarmitaSettings.isHolding) {
+        manager.playAudio(AssetList.RetiradaSFX.name);
+        const marmita = e.marmita as Entity;
+        Player.MarmitaSettings.isHolding = true;
+        Player.MarmitaSettings.marmita = marmita;
+      }
     });
   }
 
   static goalListener(manager: GameManager, player: Entity) {
     player.addListener(Goal.Events.CollisionWithPlayer.name, (e: any) => {
       if (Player.MarmitaSettings.isHolding) {
+        manager.playAudio(
+          Helpers.randElement([
+            AssetList.MarmitaEntregue.name,
+            AssetList.MarmitaEntregueAlt.name,
+          ])
+        );
         const marmita = Player.MarmitaSettings.marmita as Entity;
         Player.dropMarmita(marmita);
+        Player.MarmitaSettings.deliverCount++;
       }
     });
   }

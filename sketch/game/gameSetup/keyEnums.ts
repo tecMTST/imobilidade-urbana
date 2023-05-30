@@ -8,6 +8,8 @@ const GameStates = {
   INTRO_SCREEN: "intro-screen",
   GAME_PLAYING: "game-playing-state",
   TITLE_SCREEN: "title-screen",
+  DEFEAT_SCREEN: "defear-screen",
+  VICTORY_SCREEN: "victory-screen",
 };
 
 const GameTags = {

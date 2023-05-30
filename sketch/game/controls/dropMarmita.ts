@@ -23,10 +23,11 @@ class MarmitaDrop {
         if (mouseIsPressed) countDownTimer++;
         else {
           if (
-            countDownTimer < 15 &&
+            countDownTimer < 5 &&
             countDownTimer !== 0 &&
             Player.MarmitaSettings.isHolding
           ) {
+            manager.playAudio(AssetList.MarmitaPerdida.name, 0.2);
             manager.addEvent(MarmitaDrop.Events.DropMarmita, {});
           }
           countDownTimer = 0;
