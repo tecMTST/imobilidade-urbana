@@ -116,6 +116,7 @@ class Cops {
     cop: Entity,
     setCurrentAnimation: (name: string) => void
   ) {
+    let speedAdder = 0;
     cop.addBehavior(
       Cops.Behaviors.Walk,
       (e) => {
@@ -130,7 +131,10 @@ class Cops {
           normalPlayerVector
             .sub(cop.position)
             .normalize()
-            .mult(manager.UnitSize * 0.1);
+            .mult(manager.UnitSize * 0.1 + speedAdder);
+
+          speedAdder += 0.01;
+
           cop.position.add(normalPlayerVector);
           if (normalPlayerVector.x < 0) cop.scale.width = -1;
           else cop.scale.width = 1;

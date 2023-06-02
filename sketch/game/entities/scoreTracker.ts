@@ -55,7 +55,7 @@ class ScoreTracker {
             resetGame();
           }
         }
-        if (Player.MarmitaSettings.deliverCount > 10) {
+        if (Player.MarmitaSettings.deliverCount >= 10) {
           victoryScreen(manager);
           manager.state = GameStates.VICTORY_SCREEN;
           resetGame();

@@ -228,6 +228,7 @@ class Cops {
         BaseBehaviors.circleCollision(manager, cop, player, Cops.Events.CollisionWithPlayer, Cops.Behaviors.CollidesWithPlayer, 0.5, true);
     }
     static pursuePlayer(manager, cop, setCurrentAnimation) {
+        let speedAdder = 0;
         cop.addBehavior(Cops.Behaviors.Walk, (e) => {
             if (Player.MarmitaSettings.isHolding ||
                 Player.MarmitaSettings.timer < 2) {
@@ -238,7 +239,8 @@ class Cops {
                 normalPlayerVector
                     .sub(cop.position)
                     .normalize()
-                    .mult(manager.UnitSize * 0.1);
+                    .mult(manager.UnitSize * 0.1 + speedAdder);
+                speedAdder += 0.01;
                 cop.position.add(normalPlayerVector);
                 if (normalPlayerVector.x < 0)
                     cop.scale.width = -1;
@@ -571,7 +573,7 @@ class ScoreTracker {
                     resetGame();
                 }
             }
-            if (Player.MarmitaSettings.deliverCount > 10) {
+            if (Player.MarmitaSettings.deliverCount >= 10) {
                 victoryScreen(manager);
                 manager.state = GameStates.VICTORY_SCREEN;
                 resetGame();
