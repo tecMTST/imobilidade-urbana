@@ -998,7 +998,7 @@ function gamePlaying(manager) {
     let fadeIn = 255;
     let fundoSe = manager.getAsset(AssetList.PracaDaSe.name);
     manager.addState(GameStates.GAME_PLAYING, (m) => {
-        manager.playAudio("OST", 0, true);
+        manager.playAudio("OST", 0, true, 0.4);
         image(fundoSe, 0, 0, width, height);
         manager.runEntities();
         if (fadeIn > 0) {
@@ -1442,9 +1442,9 @@ class GameManager {
             }
         }
     }
-    playAudio(audioName, delay = 0, doLoop = false) {
+    playAudio(audioName, delay = 0, doLoop = false, volume = this.globalVolume) {
         const audio = this.assets.get(audioName);
-        audio.setVolume(this.globalVolume);
+        audio.setVolume(volume);
         if (!audio.isPlaying()) {
             if (doLoop)
                 audio.loop();
