@@ -286,7 +286,7 @@ Cops.AnimationCycles = {
 Cops.CurrentCopID = 0;
 Cops.CopCount = 1;
 Cops.speedDelta = 0.01;
-Cops.speedLimit = 4;
+Cops.speedLimit = 3;
 Cops.currentSpeed = 0;
 class Goal extends EntityFactory {
     static create(manager, origin = { x: -width, y: -height / 4 }, destination = { x: width, y: -height / 4 }, id = 1) {
@@ -906,7 +906,7 @@ function addEntities(manager) {
     Marmitas.create(manager);
     Goal.create(manager, {
         x: width / 2 - manager.UnitSize * 0.75,
-        y: height / 2 - manager.UnitSize,
+        y: height / 2 - manager.UnitSize * 1.02,
     }, { x: width * 0.8, y: height / 4 }, 3);
     MarmitaDrop.create(manager);
     for (let i = 0; i < Cops.CopCount; i++)

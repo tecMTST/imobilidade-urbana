@@ -41,7 +41,7 @@ function addEntities(manager: GameManager) {
     manager,
     {
       x: width / 2 - manager.UnitSize * 0.75,
-      y: height / 2 - manager.UnitSize * 0.95,
+      y: height / 2 - manager.UnitSize * 1.02,
     },
     { x: width * 0.8, y: height / 4 },
     3
