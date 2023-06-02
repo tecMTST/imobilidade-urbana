@@ -25,7 +25,7 @@ class Cops {
   static CurrentCopID = 0;
   static CopCount = 1;
   static speedDelta = 0.01;
-  static speedLimit = 3;
+  static speedLimit = 3.5;
   static currentSpeed = 0;
 
   static create(

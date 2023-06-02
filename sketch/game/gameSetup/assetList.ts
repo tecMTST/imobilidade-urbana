@@ -7,6 +7,16 @@ interface AssetSettings {
 }
 
 const AssetList: { [key: string]: AssetSettings } = {
+  Brilho: {
+    columns: 10,
+    originalTileSize: {
+      width: 32,
+      height: 32,
+    },
+    path: "./assets/img/brilho.png",
+    type: "image",
+    name: "Brilho",
+  },
   RisadaSFX: {
     columns: 1,
     originalTileSize: {

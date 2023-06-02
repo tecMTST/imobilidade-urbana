@@ -37,6 +37,7 @@ function addEntities(manager: GameManager) {
   Player.create(manager);
   Joystick.create(manager);
   Marmitas.create(manager);
+  Brilho.create(manager);
   // Goal.create(manager);
   Goal.create(
     manager,
