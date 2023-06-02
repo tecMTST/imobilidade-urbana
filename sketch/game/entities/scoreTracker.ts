@@ -26,8 +26,8 @@ class ScoreTracker {
       Cops.currentSpeed = 0;
       manager.getEntity(`cop0`).position.y = height / 2 - manager.UnitSize;
       manager.getEntity(`cop0`).position.x = -width / 2 + manager.UnitSize / 2;
-      manager.getEntity("player").position.x = manager.UnitSize;
-      manager.getEntity("player").position.y = height * 0.4;
+      manager.getEntity("player").position.x = 0;
+      manager.getEntity("player").position.y = 0;
     };
 
     const marmitaImage = manager.getAsset(AssetList.Marmita.name) as p5.Image;

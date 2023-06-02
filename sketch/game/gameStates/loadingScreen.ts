@@ -42,7 +42,7 @@ function addEntities(manager: GameManager) {
   Goal.create(
     manager,
     {
-      x: 0,
+      x: manager.UnitSize,
       y: height / 2 - manager.UnitSize * 1.02,
     },
     { x: width * 0.8, y: height / 4 },

@@ -121,7 +121,7 @@ Entity.ERROR = {
 };
 class Joystick extends EntityFactory {
     static create(manager) {
-        const joystick = new Entity("joystick", 0, { width: manager.UnitSize * 2, height: manager.UnitSize * 3 }, { x: width * 0.3, y: height * 0.38 });
+        const joystick = new Entity("joystick", 0, { width: manager.UnitSize * 2, height: manager.UnitSize * 3 }, { x: width * 0.18, y: height * 0.25 });
         Joystick.controlEvent(manager, joystick);
         Joystick.draw(manager, joystick);
         manager.addEntity(joystick, joystick.layer);
@@ -129,7 +129,7 @@ class Joystick extends EntityFactory {
     static draw(manager, joystick) {
     }
     static controlEvent(manager, joystick) {
-        const joystickSize = manager.UnitSize * 1.9;
+        const joystickSize = manager.UnitSize * 2;
         joystick.addBehavior(Joystick.Behaviors.EmitControlEvent, (e) => {
             let options = manager.getEvent(Joystick.Events.ControlEvent.name)
                 ?.options;
@@ -458,11 +458,11 @@ Marmitas.Events = {
 };
 class Player extends EntityFactory {
     static create(manager) {
-        const player = new Entity("player", 1, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: manager.UnitSize, y: height * 0.4 });
+        const player = new Entity("player", 1, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: 0, y: 0 });
         const { PlayerSprite } = AssetList;
         const playerSpritesheet = manager.getAsset(PlayerSprite.name);
         const playerTileset = new Tileset(playerSpritesheet, PlayerSprite.originalTileSize, PlayerSprite.columns);
-        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(player, playerTileset);
+        const { newCycleFunction, setCurrentSpriteFunction, } = BaseBehaviors.addSpriteAnimation(player, playerTileset);
         newCycleFunction(Player.AnimationCycles.static);
         setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
         newCycleFunction(Player.AnimationCycles.walking);
@@ -608,8 +608,8 @@ class ScoreTracker {
             Cops.currentSpeed = 0;
             manager.getEntity(`cop0`).position.y = height / 2 - manager.UnitSize;
             manager.getEntity(`cop0`).position.x = -width / 2 + manager.UnitSize / 2;
-            manager.getEntity("player").position.x = manager.UnitSize;
-            manager.getEntity("player").position.y = height * 0.4;
+            manager.getEntity("player").position.x = 0;
+            manager.getEntity("player").position.y = 0;
         };
         const marmitaImage = manager.getAsset(AssetList.Marmita.name);
         const timerImage = manager.getAsset(AssetList.Timer.name);
@@ -1046,7 +1046,7 @@ function addEntities(manager) {
     Joystick.create(manager);
     Marmitas.create(manager);
     Goal.create(manager, {
-        x: 0,
+        x: manager.UnitSize,
         y: height / 2 - manager.UnitSize * 1.02,
     }, { x: width * 0.8, y: height / 4 }, 1);
     MarmitaDrop.create(manager);

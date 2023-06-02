@@ -32,7 +32,7 @@ class Player extends EntityFactory {
       "player",
       1,
       { width: manager.UnitSize, height: manager.UnitSize * 2 },
-      { x: manager.UnitSize, y: height * 0.4 }
+      { x: 0, y: 0 }
     );
 
     const { PlayerSprite } = AssetList;
@@ -45,8 +45,10 @@ class Player extends EntityFactory {
       PlayerSprite.columns
     );
 
-    const { newCycleFunction, setCurrentSpriteFunction } =
-      BaseBehaviors.addSpriteAnimation(player, playerTileset);
+    const {
+      newCycleFunction,
+      setCurrentSpriteFunction,
+    } = BaseBehaviors.addSpriteAnimation(player, playerTileset);
 
     newCycleFunction(Player.AnimationCycles.static);
     setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);

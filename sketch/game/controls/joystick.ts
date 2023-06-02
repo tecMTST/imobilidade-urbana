@@ -24,7 +24,7 @@ class Joystick extends EntityFactory {
       "joystick",
       0,
       { width: manager.UnitSize * 2, height: manager.UnitSize * 3 },
-      { x: width * 0.3, y: height * 0.38 }
+      { x: width * 0.18, y: height * 0.25 }
     );
 
     Joystick.controlEvent(manager, joystick);
@@ -58,7 +58,7 @@ class Joystick extends EntityFactory {
   }
 
   static controlEvent(manager: GameManager, joystick: Entity) {
-    const joystickSize = manager.UnitSize * 1.9;
+    const joystickSize = manager.UnitSize * 2;
 
     joystick.addBehavior(
       Joystick.Behaviors.EmitControlEvent,
