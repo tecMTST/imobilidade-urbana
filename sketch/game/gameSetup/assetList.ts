@@ -7,6 +7,16 @@ interface AssetSettings {
 }
 
 const AssetList: { [key: string]: AssetSettings } = {
+  RisadaSFX: {
+    columns: 1,
+    originalTileSize: {
+      width: 288,
+      height: 512,
+    },
+    path: "./assets/sound/risada.mp3",
+    type: "audio",
+    name: "RisadaSFX",
+  },
   OST: {
     columns: 1,
     originalTileSize: {

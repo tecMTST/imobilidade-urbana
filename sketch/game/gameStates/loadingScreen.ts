@@ -18,9 +18,10 @@ function loadingScreen(manager: GameManager) {
       0,
       m.UnitSize * 2,
       m.assetsLoadingProgression * width * 0.9,
-      m.UnitSize / 2
+      m.UnitSize * 0.6
     );
     textAlign(CENTER, CENTER);
+    textSize(m.UnitSize * 0.4);
     text(loadingText, 0, m.UnitSize * 2);
 
     if (m.assetsLoadingProgression >= 0.99 && hasInteracted)
@@ -39,9 +40,12 @@ function addEntities(manager: GameManager) {
   // Goal.create(manager);
   Goal.create(
     manager,
-    { x: width / 2 - manager.UnitSize / 2, y: height / 2 - manager.UnitSize },
+    {
+      x: width / 2 - manager.UnitSize * 0.75,
+      y: height / 2 - manager.UnitSize * 1.02,
+    },
     { x: width * 0.8, y: height / 4 },
-    3
+    1
   );
   MarmitaDrop.create(manager);
   for (let i = 0; i < Cops.CopCount; i++)

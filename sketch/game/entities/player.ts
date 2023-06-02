@@ -110,8 +110,8 @@ class Player extends EntityFactory {
   static listenToCop(manager: GameManager, player: Entity) {
     player.addListener(Cops.Events.CollisionWithPlayer.name, (e) => {
       if (Player.MarmitaSettings.isHolding) {
-        manager.playAudio(AssetList.SireneCurta.name);
-        manager.playAudio(AssetList.MarmitaPerdida.name, 0.2);
+        manager.playAudio(AssetList.MarmitaPerdida.name);
+        manager.playAudio(AssetList.RisadaSFX.name, 0.2);
         const marmita = manager.getEntity("marmita") as Entity;
         Player.dropMarmita(marmita);
         BaseBehaviors.shake(manager, 15);
@@ -149,10 +149,10 @@ class Player extends EntityFactory {
             .normalize()
             .mult(manager.UnitSize * 0.05);
 
-          if (norm.magSq() < manager.UnitSize * 2)
-            player.position.add(norm.add(normalized));
-          else
-            player.position.add(norm.normalize().mult(manager.UnitRoot * 1.4));
+          // if (norm.magSq() < manager.UnitSize * 2)
+          //   player.position.add(norm.add(normalized));
+          // else
+          player.position.add(norm.normalize().mult(manager.UnitRoot * 1.4));
 
           setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
         } else {
@@ -171,7 +171,7 @@ class Player extends EntityFactory {
   static collisionWithMarmitaListener(manager: GameManager, player: Entity) {
     player.addListener(Marmitas.Events.CollisionWithPlayer.name, (e: any) => {
       if (!Player.MarmitaSettings.isHolding) {
-        manager.playAudio(AssetList.RetiradaSFX.name);
+        manager.playAudio(AssetList.SireneCurta.name);
         const marmita = e.marmita as Entity;
         Player.MarmitaSettings.isHolding = true;
         Player.MarmitaSettings.marmita = marmita;
@@ -192,6 +192,10 @@ class Player extends EntityFactory {
         const marmita = Player.MarmitaSettings.marmita as Entity;
         Player.dropMarmita(marmita);
         Player.MarmitaSettings.deliverCount++;
+
+        const goal = manager.getEntity("goal-1");
+        goal.position.x = -goal.position.x;
+        goal.scale.width *= -1;
       }
     });
   }

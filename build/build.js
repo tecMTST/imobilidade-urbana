@@ -129,7 +129,7 @@ class Joystick extends EntityFactory {
     static draw(manager, joystick) {
         const joystickSize = manager.UnitSize * 1.5;
         joystick.addListener(Joystick.Events.ControlEvent.name, (options) => {
-            const { currentPress, isPressed } = options;
+            let { currentPress, isPressed } = options;
             if (isPressed) {
                 fill(255, 90);
                 circle(0, 0, joystickSize);
@@ -285,14 +285,13 @@ Cops.AnimationCycles = {
 };
 Cops.CurrentCopID = 0;
 Cops.CopCount = 1;
-Cops.speedDelta = 0.1;
-Cops.speedLimit = 1;
+Cops.speedDelta = 0.01;
+Cops.speedLimit = 3;
 Cops.currentSpeed = 0;
 class Goal extends EntityFactory {
     static create(manager, origin = { x: -width, y: -height / 4 }, destination = { x: width, y: -height / 4 }, id = 1) {
         const goal = new Entity(`goal-${id}`, 4, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: origin.x, y: origin.y });
-        if (destination.x < 0)
-            goal.scale.width = -1;
+        goal.scale.width = -1;
         Goal.drawGoalBehavior(goal, manager);
         Goal.emitPlayerReachedGoal(goal, manager);
         manager.addEntity(goal, goal.layer);
@@ -445,8 +444,8 @@ class Player extends EntityFactory {
     static listenToCop(manager, player) {
         player.addListener(Cops.Events.CollisionWithPlayer.name, (e) => {
             if (Player.MarmitaSettings.isHolding) {
-                manager.playAudio(AssetList.SireneCurta.name);
-                manager.playAudio(AssetList.MarmitaPerdida.name, 0.2);
+                manager.playAudio(AssetList.MarmitaPerdida.name);
+                manager.playAudio(AssetList.RisadaSFX.name, 0.2);
                 const marmita = manager.getEntity("marmita");
                 Player.dropMarmita(marmita);
                 BaseBehaviors.shake(manager, 15);
@@ -472,10 +471,7 @@ class Player extends EntityFactory {
                     .copy()
                     .normalize()
                     .mult(manager.UnitSize * 0.05);
-                if (norm.magSq() < manager.UnitSize * 2)
-                    player.position.add(norm.add(normalized));
-                else
-                    player.position.add(norm.normalize().mult(manager.UnitRoot * 1.4));
+                player.position.add(norm.normalize().mult(manager.UnitRoot * 1.4));
                 setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
             }
             else {
@@ -489,7 +485,7 @@ class Player extends EntityFactory {
     static collisionWithMarmitaListener(manager, player) {
         player.addListener(Marmitas.Events.CollisionWithPlayer.name, (e) => {
             if (!Player.MarmitaSettings.isHolding) {
-                manager.playAudio(AssetList.RetiradaSFX.name);
+                manager.playAudio(AssetList.SireneCurta.name);
                 const marmita = e.marmita;
                 Player.MarmitaSettings.isHolding = true;
                 Player.MarmitaSettings.marmita = marmita;
@@ -507,6 +503,9 @@ class Player extends EntityFactory {
                 const marmita = Player.MarmitaSettings.marmita;
                 Player.dropMarmita(marmita);
                 Player.MarmitaSettings.deliverCount++;
+                const goal = manager.getEntity("goal-1");
+                goal.position.x = -goal.position.x;
+                goal.scale.width *= -1;
             }
         });
     }
@@ -551,17 +550,24 @@ class ScoreTracker {
                 manager.removeEntity(cop);
             }
             copList = [];
+            Cops.currentSpeed = 0;
             manager.getEntity(`cop0`).position.y = height / 2 - manager.UnitSize;
+            manager.getEntity(`cop0`).position.x = -width / 2 + manager.UnitSize / 2;
             manager.getEntity("player").position.x = 0;
             manager.getEntity("player").position.y = height * 0.4;
         };
+        const copImage = manager.getAsset(AssetList.Marmita.name);
         score.addBehavior(ScoreTracker.Behaviors.Display, (e) => {
             textAlign(LEFT, TOP);
             fill(255);
-            textSize(manager.UnitSize / 3);
+            textSize(manager.UnitSize / 2);
             text(Player.MarmitaSettings.timer--, 0, 0);
+            noStroke();
+            rect(0, 0, ((width - manager.UnitSize * 1.5) * Player.MarmitaSettings.timer) /
+                Player.MarmitaSettings.maxTime, manager.UnitSize / 2);
             textAlign(RIGHT);
             text(Player.MarmitaSettings.deliverCount, width, 0);
+            image(copImage, width - manager.UnitSize * 0.75, manager.UnitSize / 4, manager.UnitSize / 2, manager.UnitSize / 2);
             if (Player.MarmitaSettings.timer < 2) {
                 if (Player.MarmitaSettings.timer === 1) {
                     manager.playAudio(AssetList.SireneDerrotaSFX.name);
@@ -589,6 +595,16 @@ ScoreTracker.Behaviors = {
     Display: "display",
 };
 const AssetList = {
+    RisadaSFX: {
+        columns: 1,
+        originalTileSize: {
+            width: 288,
+            height: 512,
+        },
+        path: "./assets/sound/risada.mp3",
+        type: "audio",
+        name: "RisadaSFX",
+    },
     OST: {
         columns: 1,
         originalTileSize: {
@@ -828,7 +844,7 @@ function gamePlaying(manager) {
     let fadeIn = 255;
     let fundoSe = manager.getAsset(AssetList.PracaDaSe.name);
     manager.addState(GameStates.GAME_PLAYING, (m) => {
-        manager.playAudio("OST");
+        manager.playAudio("OST", 0, true);
         image(fundoSe, 0, 0, width, height);
         manager.runEntities();
         if (fadeIn > 0) {
@@ -865,8 +881,9 @@ function loadingScreen(manager) {
         background(0);
         image(logo, 0, 0, m.UnitSize * 3, m.UnitSize * 3);
         rectMode(CENTER);
-        rect(0, m.UnitSize * 2, m.assetsLoadingProgression * width * 0.9, m.UnitSize / 2);
+        rect(0, m.UnitSize * 2, m.assetsLoadingProgression * width * 0.9, m.UnitSize * 0.6);
         textAlign(CENTER, CENTER);
+        textSize(m.UnitSize * 0.4);
         text(loadingText, 0, m.UnitSize * 2);
         if (m.assetsLoadingProgression >= 0.99 && hasInteracted)
             m.state = GameStates.INTRO_SCREEN;
@@ -878,7 +895,10 @@ function addEntities(manager) {
     Player.create(manager);
     Joystick.create(manager);
     Marmitas.create(manager);
-    Goal.create(manager, { x: width / 2 - manager.UnitSize / 2, y: height / 2 - manager.UnitSize }, { x: width * 0.8, y: height / 4 }, 3);
+    Goal.create(manager, {
+        x: width / 2 - manager.UnitSize * 0.75,
+        y: height / 2 - manager.UnitSize * 1.02,
+    }, { x: width * 0.8, y: height / 4 }, 1);
     MarmitaDrop.create(manager);
     for (let i = 0; i < Cops.CopCount; i++)
         Cops.create(manager, 1, { min: -manager.UnitSize, max: -manager.UnitSize }, { x: -width / 2 + manager.UnitSize / 2, y: height / 2 - manager.UnitSize });
@@ -1022,7 +1042,8 @@ class BaseBehaviors {
             return (pointInRect(x0 - w0 / 2, y0 - h0 / 2, x1, y1, w1, h1) ||
                 pointInRect(x0 + w0 / 2, y0 + h0 / 2, x1, y1, w1, h1) ||
                 pointInRect(x0 - w0 / 2, y0 + h0 / 2, x1, y1, w1, h1) ||
-                pointInRect(x0 + w0 / 2, y0 - h0 / 2, x1, y1, w1, h1));
+                pointInRect(x0 + w0 / 2, y0 - h0 / 2, x1, y1, w1, h1) ||
+                pointInRect(x0, y0, x1, y1, w1, h1));
         };
         entity0.addBehavior(behavior, (e) => {
             const { name, options } = event;
@@ -1034,12 +1055,12 @@ class BaseBehaviors {
     }
     static constrainToScreen(manager, entity, doActivate = false) {
         entity.addBehavior(BaseBehaviors.Names.ConstrainToScreen, (e) => {
-            if (entity.position.x > width / 2)
-                entity.position.x = width / 2;
-            if (entity.position.x < -width / 2)
-                entity.position.x = -width / 2;
-            if (entity.position.y > height / 2)
-                entity.position.y = height / 2;
+            if (entity.position.x > width / 2 - manager.UnitSize / 2)
+                entity.position.x = width / 2 - manager.UnitSize / 2;
+            if (entity.position.x < -width / 2 + manager.UnitSize / 2)
+                entity.position.x = -width / 2 + manager.UnitSize / 2;
+            if (entity.position.y > height / 2 - manager.UnitSize)
+                entity.position.y = height / 2 - manager.UnitSize;
             if (entity.position.y < -height * 0.23)
                 entity.position.y = -height * 0.23;
         }, doActivate);
@@ -1226,11 +1247,15 @@ class GameManager {
             }
         }
     }
-    playAudio(audioName, delay = 0) {
+    playAudio(audioName, delay = 0, doLoop = false) {
         const audio = this.assets.get(audioName);
         audio.setVolume(this.globalVolume);
-        if (!audio.isPlaying())
-            audio.play(delay);
+        if (!audio.isPlaying()) {
+            if (doLoop)
+                audio.loop();
+            else
+                audio.play(delay);
+        }
     }
     get assetsLoadingProgression() {
         return this.loadedAssetsCount / this.assets.size;

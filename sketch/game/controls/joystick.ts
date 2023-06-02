@@ -38,7 +38,7 @@ class Joystick extends EntityFactory {
     joystick.addListener(
       Joystick.Events.ControlEvent.name,
       (options: ControllerOptions) => {
-        const { currentPress, isPressed } = options;
+        let { currentPress, isPressed } = options;
         if (isPressed) {
           fill(255, 90);
           circle(0, 0, joystickSize);
