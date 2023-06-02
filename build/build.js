@@ -289,7 +289,6 @@ class Goal extends EntityFactory {
             goal.scale.width = -1;
         Goal.drawGoalBehavior(goal, manager);
         Goal.emitPlayerReachedGoal(goal, manager);
-        Goal.moveToDestination(goal, manager, origin, destination);
         manager.addEntity(goal, goal.layer);
     }
     static moveToDestination(goal, manager, origin, destination) {
@@ -868,11 +867,10 @@ function addEntities(manager) {
     Player.create(manager);
     Joystick.create(manager);
     Marmitas.create(manager);
-    Goal.create(manager);
-    Goal.create(manager, { x: -width * 0.6, y: height / 4 }, { x: width * 0.8, y: height / 4 }, 3);
+    Goal.create(manager, { x: width / 2 - manager.UnitSize / 2, y: height / 2 - manager.UnitSize }, { x: width * 0.8, y: height / 4 }, 3);
     MarmitaDrop.create(manager);
     for (let i = 0; i < Cops.CopCount; i++)
-        Cops.create(manager, 1, { min: -manager.UnitSize, max: -manager.UnitSize }, { x: width / 2 - manager.UnitSize / 2, y: height / 2 - manager.UnitSize });
+        Cops.create(manager, 1, { min: -manager.UnitSize, max: -manager.UnitSize }, { x: -width / 2 + manager.UnitSize / 2, y: height / 2 - manager.UnitSize });
     ScoreTracker.create(manager);
 }
 function titleScreen(manager) {

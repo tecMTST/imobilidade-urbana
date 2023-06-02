@@ -45,7 +45,7 @@ class Goal extends EntityFactory {
 
     Goal.drawGoalBehavior(goal, manager);
     Goal.emitPlayerReachedGoal(goal, manager);
-    Goal.moveToDestination(goal, manager, origin, destination);
+    // Goal.moveToDestination(goal, manager, origin, destination);
 
     manager.addEntity(goal, goal.layer);
   }

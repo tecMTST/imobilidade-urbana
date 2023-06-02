@@ -36,10 +36,10 @@ function addEntities(manager: GameManager) {
   Player.create(manager);
   Joystick.create(manager);
   Marmitas.create(manager);
-  Goal.create(manager);
+  // Goal.create(manager);
   Goal.create(
     manager,
-    { x: -width * 0.6, y: height / 4 },
+    { x: width / 2 - manager.UnitSize / 2, y: height / 2 - manager.UnitSize },
     { x: width * 0.8, y: height / 4 },
     3
   );
@@ -49,7 +49,7 @@ function addEntities(manager: GameManager) {
       manager,
       1,
       { min: -manager.UnitSize, max: -manager.UnitSize },
-      { x: width / 2 - manager.UnitSize / 2, y: height / 2 - manager.UnitSize }
+      { x: -width / 2 + manager.UnitSize / 2, y: height / 2 - manager.UnitSize }
     );
 
   ScoreTracker.create(manager);
