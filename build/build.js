@@ -129,7 +129,7 @@ class Joystick extends EntityFactory {
     static draw(manager, joystick) {
         const joystickSize = manager.UnitSize * 1.5;
         joystick.addListener(Joystick.Events.ControlEvent.name, (options) => {
-            const { currentPress, isPressed } = options;
+            let { currentPress, isPressed } = options;
             if (isPressed) {
                 fill(255, 90);
                 circle(0, 0, joystickSize);
@@ -238,7 +238,7 @@ class Cops {
                 normalPlayerVector
                     .sub(cop.position)
                     .normalize()
-                    .mult(manager.UnitSize * 0.08 + Cops.currentSpeed);
+                    .mult(manager.UnitSize * 0.1 + Cops.currentSpeed);
                 Cops.currentSpeed += Cops.speedDelta;
                 if (Cops.currentSpeed > Cops.speedLimit)
                     Cops.currentSpeed = Cops.speedLimit;
@@ -286,7 +286,7 @@ Cops.AnimationCycles = {
 Cops.CurrentCopID = 0;
 Cops.CopCount = 1;
 Cops.speedDelta = 0.01;
-Cops.speedLimit = 3;
+Cops.speedLimit = 4;
 Cops.currentSpeed = 0;
 class Goal extends EntityFactory {
     static create(manager, origin = { x: -width, y: -height / 4 }, destination = { x: width, y: -height / 4 }, id = 1) {
@@ -444,8 +444,8 @@ class Player extends EntityFactory {
     static listenToCop(manager, player) {
         player.addListener(Cops.Events.CollisionWithPlayer.name, (e) => {
             if (Player.MarmitaSettings.isHolding) {
-                manager.playAudio(AssetList.SireneCurta.name);
-                manager.playAudio(AssetList.MarmitaPerdida.name, 0.2);
+                manager.playAudio(AssetList.MarmitaPerdida.name);
+                manager.playAudio(AssetList.RisadaSFX.name, 0.5);
                 const marmita = manager.getEntity("marmita");
                 Player.dropMarmita(marmita);
                 BaseBehaviors.shake(manager, 15);
@@ -589,6 +589,16 @@ ScoreTracker.Behaviors = {
     Display: "display",
 };
 const AssetList = {
+    RisadaSFX: {
+        columns: 1,
+        originalTileSize: {
+            width: 288,
+            height: 512,
+        },
+        path: "./assets/sound/risada.mp3",
+        type: "audio",
+        name: "RisadaSFX",
+    },
     OST: {
         columns: 1,
         originalTileSize: {

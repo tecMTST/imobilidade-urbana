@@ -110,8 +110,8 @@ class Player extends EntityFactory {
   static listenToCop(manager: GameManager, player: Entity) {
     player.addListener(Cops.Events.CollisionWithPlayer.name, (e) => {
       if (Player.MarmitaSettings.isHolding) {
-        manager.playAudio(AssetList.SireneCurta.name);
-        manager.playAudio(AssetList.MarmitaPerdida.name, 0.2);
+        manager.playAudio(AssetList.MarmitaPerdida.name);
+        manager.playAudio(AssetList.RisadaSFX.name, 0.5);
         const marmita = manager.getEntity("marmita") as Entity;
         Player.dropMarmita(marmita);
         BaseBehaviors.shake(manager, 15);
