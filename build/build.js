@@ -185,13 +185,17 @@ class Cops {
     static create(manager, initialHei = -1, range = {
         min: manager.UnitSize * 2,
         max: manager.UnitSize * 5,
-    }) {
+    }, exact = undefined) {
         const widLoc = Helpers.randSign();
         const heiLoc = initialHei;
-        const cop = new Entity(`cop${Cops.CurrentCopID++}`, 3, { width: manager.UnitSize, height: manager.UnitSize * 2 }, {
+        let initialPos = {
             x: widLoc * width + widLoc * Helpers.random(range.min, range.max),
             y: heiLoc * height + heiLoc * Helpers.random(range.min, range.max),
-        });
+        };
+        if (exact !== undefined) {
+            initialPos = exact;
+        }
+        const cop = new Entity(`cop${Cops.CurrentCopID++}`, 3, { width: manager.UnitSize, height: manager.UnitSize * 2 }, initialPos);
         const { CopAsset } = AssetList;
         const copSpritesheet = manager.getAsset(CopAsset.name);
         const copTileset = new Tileset(copSpritesheet, CopAsset.originalTileSize, CopAsset.columns);
@@ -868,7 +872,7 @@ function addEntities(manager) {
     Goal.create(manager, { x: -width * 0.6, y: height / 4 }, { x: width * 0.8, y: height / 4 }, 3);
     MarmitaDrop.create(manager);
     for (let i = 0; i < Cops.CopCount; i++)
-        Cops.create(manager, -1, { min: 100 * i, max: 300 * i });
+        Cops.create(manager, 1, { min: -manager.UnitSize, max: -manager.UnitSize }, { x: width / 2 - manager.UnitSize / 2, y: height / 2 - manager.UnitSize });
     ScoreTracker.create(manager);
 }
 function titleScreen(manager) {

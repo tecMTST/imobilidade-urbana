@@ -31,19 +31,26 @@ class Cops {
     range: { min: number; max: number } = {
       min: manager.UnitSize * 2,
       max: manager.UnitSize * 5,
-    }
+    },
+    exact: PositionCoordinates | undefined = undefined
   ) {
     const widLoc = Helpers.randSign();
     const heiLoc = initialHei;
+
+    let initialPos = {
+      x: widLoc * width + widLoc * Helpers.random(range.min, range.max),
+      y: heiLoc * height + heiLoc * Helpers.random(range.min, range.max),
+    };
+
+    if (exact !== undefined) {
+      initialPos = exact;
+    }
 
     const cop = new Entity(
       `cop${Cops.CurrentCopID++}`,
       3,
       { width: manager.UnitSize, height: manager.UnitSize * 2 },
-      {
-        x: widLoc * width + widLoc * Helpers.random(range.min, range.max),
-        y: heiLoc * height + heiLoc * Helpers.random(range.min, range.max),
-      }
+      initialPos
     );
 
     const { CopAsset } = AssetList;

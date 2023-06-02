@@ -45,7 +45,12 @@ function addEntities(manager: GameManager) {
   );
   MarmitaDrop.create(manager);
   for (let i = 0; i < Cops.CopCount; i++)
-    Cops.create(manager, -1, { min: 100 * i, max: 300 * i });
+    Cops.create(
+      manager,
+      1,
+      { min: -manager.UnitSize, max: -manager.UnitSize },
+      { x: width / 2 - manager.UnitSize / 2, y: height / 2 - manager.UnitSize }
+    );
 
   ScoreTracker.create(manager);
 }
