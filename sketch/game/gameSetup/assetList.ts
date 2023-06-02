@@ -7,6 +7,16 @@ interface AssetSettings {
 }
 
 const AssetList: { [key: string]: AssetSettings } = {
+  PracaDaSe: {
+    columns: 1,
+    originalTileSize: {
+      width: 288,
+      height: 512,
+    },
+    path: "./assets/img/praca_da_se.png",
+    type: "image",
+    name: "PracaDaSe",
+  },
   MarmitaEntregueAlt: {
     columns: 2,
     originalTileSize: {

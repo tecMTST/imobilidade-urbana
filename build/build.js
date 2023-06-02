@@ -576,6 +576,16 @@ ScoreTracker.Behaviors = {
     Display: "display",
 };
 const AssetList = {
+    PracaDaSe: {
+        columns: 1,
+        originalTileSize: {
+            width: 288,
+            height: 512,
+        },
+        path: "./assets/img/praca_da_se.png",
+        type: "image",
+        name: "PracaDaSe",
+    },
     MarmitaEntregueAlt: {
         columns: 2,
         originalTileSize: {
@@ -794,8 +804,9 @@ function defeatScreen(manager) {
 }
 function gamePlaying(manager) {
     let fadeIn = 255;
+    let fundoSe = manager.getAsset(AssetList.PracaDaSe.name);
     manager.addState(GameStates.GAME_PLAYING, (m) => {
-        background(0);
+        image(fundoSe, 0, 0, width, height);
         manager.runEntities();
         if (fadeIn > 0) {
             fadeIn -= gameConfig.fadeInSpeed;
