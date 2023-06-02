@@ -39,7 +39,10 @@ function addEntities(manager: GameManager) {
   // Goal.create(manager);
   Goal.create(
     manager,
-    { x: width / 2 - manager.UnitSize / 2, y: height / 2 - manager.UnitSize },
+    {
+      x: width / 2 - manager.UnitSize * 0.75,
+      y: height / 2 - manager.UnitSize * 0.95,
+    },
     { x: width * 0.8, y: height / 4 },
     3
   );

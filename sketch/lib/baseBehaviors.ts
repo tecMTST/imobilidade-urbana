@@ -107,7 +107,8 @@ class BaseBehaviors {
         pointInRect(x0 - w0 / 2, y0 - h0 / 2, x1, y1, w1, h1) ||
         pointInRect(x0 + w0 / 2, y0 + h0 / 2, x1, y1, w1, h1) ||
         pointInRect(x0 - w0 / 2, y0 + h0 / 2, x1, y1, w1, h1) ||
-        pointInRect(x0 + w0 / 2, y0 - h0 / 2, x1, y1, w1, h1)
+        pointInRect(x0 + w0 / 2, y0 - h0 / 2, x1, y1, w1, h1) ||
+        pointInRect(x0, y0, x1, y1, w1, h1)
       );
     };
 

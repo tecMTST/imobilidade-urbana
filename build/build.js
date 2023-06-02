@@ -445,7 +445,7 @@ class Player extends EntityFactory {
         player.addListener(Cops.Events.CollisionWithPlayer.name, (e) => {
             if (Player.MarmitaSettings.isHolding) {
                 manager.playAudio(AssetList.MarmitaPerdida.name);
-                manager.playAudio(AssetList.RisadaSFX.name, 0.5);
+                manager.playAudio(AssetList.RisadaSFX.name, 0.2);
                 const marmita = manager.getEntity("marmita");
                 Player.dropMarmita(marmita);
                 BaseBehaviors.shake(manager, 15);
@@ -583,10 +583,26 @@ class ScoreTracker {
                 resetGame();
             }
         }, true);
+        const fm = ScoreTracker.FlyingMarmita;
+        fm.pos.x = 0;
+        fm.pos.y = 0;
+        score.addListener(Goal.Events.CollisionWithPlayer.name, (e) => {
+            push();
+            rotate(fm.rot);
+            fm.rot += PI * 0.1;
+            fm.pos.x += 2;
+            fm.siz += 2;
+            pop();
+        });
     }
 }
 ScoreTracker.Behaviors = {
     Display: "display",
+};
+ScoreTracker.FlyingMarmita = {
+    pos: { x: 0, y: 0 },
+    rot: 0,
+    siz: 0,
 };
 const AssetList = {
     RisadaSFX: {
@@ -888,7 +904,10 @@ function addEntities(manager) {
     Player.create(manager);
     Joystick.create(manager);
     Marmitas.create(manager);
-    Goal.create(manager, { x: width / 2 - manager.UnitSize / 2, y: height / 2 - manager.UnitSize }, { x: width * 0.8, y: height / 4 }, 3);
+    Goal.create(manager, {
+        x: width / 2 - manager.UnitSize * 0.75,
+        y: height / 2 - manager.UnitSize,
+    }, { x: width * 0.8, y: height / 4 }, 3);
     MarmitaDrop.create(manager);
     for (let i = 0; i < Cops.CopCount; i++)
         Cops.create(manager, 1, { min: -manager.UnitSize, max: -manager.UnitSize }, { x: -width / 2 + manager.UnitSize / 2, y: height / 2 - manager.UnitSize });
@@ -1032,7 +1051,8 @@ class BaseBehaviors {
             return (pointInRect(x0 - w0 / 2, y0 - h0 / 2, x1, y1, w1, h1) ||
                 pointInRect(x0 + w0 / 2, y0 + h0 / 2, x1, y1, w1, h1) ||
                 pointInRect(x0 - w0 / 2, y0 + h0 / 2, x1, y1, w1, h1) ||
-                pointInRect(x0 + w0 / 2, y0 - h0 / 2, x1, y1, w1, h1));
+                pointInRect(x0 + w0 / 2, y0 - h0 / 2, x1, y1, w1, h1) ||
+                pointInRect(x0, y0, x1, y1, w1, h1));
         };
         entity0.addBehavior(behavior, (e) => {
             const { name, options } = event;
