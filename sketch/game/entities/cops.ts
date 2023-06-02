@@ -24,6 +24,9 @@ class Cops {
 
   static CurrentCopID = 0;
   static CopCount = 1;
+  static speedDelta = 0.1;
+  static speedLimit = 1;
+  static currentSpeed = 0;
 
   static create(
     manager: GameManager,
@@ -31,19 +34,26 @@ class Cops {
     range: { min: number; max: number } = {
       min: manager.UnitSize * 2,
       max: manager.UnitSize * 5,
-    }
+    },
+    exact: PositionCoordinates | undefined = undefined
   ) {
     const widLoc = Helpers.randSign();
     const heiLoc = initialHei;
+
+    let initialPos = {
+      x: widLoc * width + widLoc * Helpers.random(range.min, range.max),
+      y: heiLoc * height + heiLoc * Helpers.random(range.min, range.max),
+    };
+
+    if (exact !== undefined) {
+      initialPos = exact;
+    }
 
     const cop = new Entity(
       `cop${Cops.CurrentCopID++}`,
       3,
       { width: manager.UnitSize, height: manager.UnitSize * 2 },
-      {
-        x: widLoc * width + widLoc * Helpers.random(range.min, range.max),
-        y: heiLoc * height + heiLoc * Helpers.random(range.min, range.max),
-      }
+      initialPos
     );
 
     const { CopAsset } = AssetList;
@@ -123,7 +133,12 @@ class Cops {
           normalPlayerVector
             .sub(cop.position)
             .normalize()
-            .mult(manager.UnitSize * 0.1);
+            .mult(manager.UnitSize * 0.1 + Cops.currentSpeed);
+
+          Cops.currentSpeed += Cops.speedDelta;
+          if (Cops.currentSpeed > Cops.speedLimit)
+            Cops.currentSpeed = Cops.speedLimit;
+
           cop.position.add(normalPlayerVector);
           if (normalPlayerVector.x < 0) cop.scale.width = -1;
           else cop.scale.width = 1;

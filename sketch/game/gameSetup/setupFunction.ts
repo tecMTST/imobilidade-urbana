@@ -5,7 +5,7 @@ function setupFunction(manager: GameManager) {
 
   let WIDTH = configs.aspectRatio * clientHeight;
   let HEIGHT = clientHeight;
-  if (clientHeight > clientWidth) {
+  if (clientWidth / clientHeight < configs.aspectRatio) {
     WIDTH = clientWidth;
     HEIGHT = clientWidth / configs.aspectRatio;
   }
