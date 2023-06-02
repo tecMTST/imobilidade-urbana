@@ -28,6 +28,7 @@ class ScoreTracker {
       manager.getEntity(`cop0`).position.x = -width / 2 + manager.UnitSize / 2;
       manager.getEntity("player").position.x = 0;
       manager.getEntity("player").position.y = 0;
+      Brilho.create(manager);
     };
 
     const marmitaImage = manager.getAsset(AssetList.Marmita.name) as p5.Image;
