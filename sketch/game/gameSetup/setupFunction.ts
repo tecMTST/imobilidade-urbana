@@ -18,6 +18,8 @@ function setupFunction(manager: GameManager) {
   introSplashScreen(manager);
   gamePlaying(manager);
   titleScreen(manager);
+  tutorialScreen1(manager);
+  tutorialScreen2(manager);
   defeatScreen(manager);
 }
 

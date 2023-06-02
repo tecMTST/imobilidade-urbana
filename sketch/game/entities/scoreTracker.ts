@@ -26,7 +26,7 @@ class ScoreTracker {
       Cops.currentSpeed = 0;
       manager.getEntity(`cop0`).position.y = height / 2 - manager.UnitSize;
       manager.getEntity(`cop0`).position.x = -width / 2 + manager.UnitSize / 2;
-      manager.getEntity("player").position.x = 0;
+      manager.getEntity("player").position.x = manager.UnitSize;
       manager.getEntity("player").position.y = height * 0.4;
     };
 
@@ -38,6 +38,7 @@ class ScoreTracker {
         textAlign(LEFT, TOP);
         fill(255);
         textSize(manager.UnitSize / 2);
+        Player.MarmitaSettings.timer--;
         // text(Player.MarmitaSettings.timer--, 0, 0);
         // noStroke();
         rect(

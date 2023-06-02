@@ -10,6 +10,8 @@ const GameStates = {
   TITLE_SCREEN: "title-screen",
   DEFEAT_SCREEN: "defear-screen",
   VICTORY_SCREEN: "victory-screen",
+  TUTORIAL_1: "tela-tutorial-1",
+  TUTORIAL_2: "tela-tutorial-2",
 };
 
 const GameTags = {

@@ -7,6 +7,26 @@ interface AssetSettings {
 }
 
 const AssetList: { [key: string]: AssetSettings } = {
+  Tutorial2: {
+    columns: 10,
+    originalTileSize: {
+      width: 32,
+      height: 32,
+    },
+    path: "./assets/img/tela tutorial 2.png",
+    type: "image",
+    name: "Tutorial2",
+  },
+  Tutorial1: {
+    columns: 10,
+    originalTileSize: {
+      width: 32,
+      height: 32,
+    },
+    path: "./assets/img/tela tutorial 1.png",
+    type: "image",
+    name: "Tutorial1",
+  },
   Brilho: {
     columns: 10,
     originalTileSize: {
@@ -170,10 +190,10 @@ const AssetList: { [key: string]: AssetSettings } = {
   Vitoria: {
     columns: 1,
     originalTileSize: {
-      width: 90,
-      height: 160,
+      width: 288,
+      height: 512,
     },
-    path: "./assets/img/vitoria.png",
+    path: "./assets/img/tela vitoria.png",
     type: "image",
     name: "Vitoria",
   },

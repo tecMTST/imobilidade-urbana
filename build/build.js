@@ -598,7 +598,7 @@ class ScoreTracker {
             Cops.currentSpeed = 0;
             manager.getEntity(`cop0`).position.y = height / 2 - manager.UnitSize;
             manager.getEntity(`cop0`).position.x = -width / 2 + manager.UnitSize / 2;
-            manager.getEntity("player").position.x = 0;
+            manager.getEntity("player").position.x = manager.UnitSize;
             manager.getEntity("player").position.y = height * 0.4;
         };
         const copImage = manager.getAsset(AssetList.Marmita.name);
@@ -606,6 +606,7 @@ class ScoreTracker {
             textAlign(LEFT, TOP);
             fill(255);
             textSize(manager.UnitSize / 2);
+            Player.MarmitaSettings.timer--;
             rect(5, 5, ((width - manager.UnitSize * 1.5) * Player.MarmitaSettings.timer) /
                 Player.MarmitaSettings.maxTime, manager.UnitSize / 2, 5);
             textAlign(RIGHT);
@@ -638,6 +639,26 @@ ScoreTracker.Behaviors = {
     Display: "display",
 };
 const AssetList = {
+    Tutorial2: {
+        columns: 10,
+        originalTileSize: {
+            width: 32,
+            height: 32,
+        },
+        path: "./assets/img/tela tutorial 2.png",
+        type: "image",
+        name: "Tutorial2",
+    },
+    Tutorial1: {
+        columns: 10,
+        originalTileSize: {
+            width: 32,
+            height: 32,
+        },
+        path: "./assets/img/tela tutorial 1.png",
+        type: "image",
+        name: "Tutorial1",
+    },
     Brilho: {
         columns: 10,
         originalTileSize: {
@@ -801,10 +822,10 @@ const AssetList = {
     Vitoria: {
         columns: 1,
         originalTileSize: {
-            width: 90,
-            height: 160,
+            width: 288,
+            height: 512,
         },
-        path: "./assets/img/vitoria.png",
+        path: "./assets/img/tela vitoria.png",
         type: "image",
         name: "Vitoria",
     },
@@ -835,6 +856,8 @@ const GameStates = {
     TITLE_SCREEN: "title-screen",
     DEFEAT_SCREEN: "defear-screen",
     VICTORY_SCREEN: "victory-screen",
+    TUTORIAL_1: "tela-tutorial-1",
+    TUTORIAL_2: "tela-tutorial-2",
 };
 const GameTags = {
     GCM: "gcm-tag",
@@ -862,6 +885,8 @@ function setupFunction(manager) {
     introSplashScreen(manager);
     gamePlaying(manager);
     titleScreen(manager);
+    tutorialScreen1(manager);
+    tutorialScreen2(manager);
     defeatScreen(manager);
 }
 function addAssetsToManager(manager) {
@@ -964,6 +989,46 @@ function titleScreen(manager) {
     const tituloImage = manager.getAsset(AssetList.TitleScreen.name);
     noSmooth();
     manager.addState(GameStates.TITLE_SCREEN, (m) => {
+        background(0);
+        image(tituloImage, 0, 0, width, height);
+        if (fadeIn > 0) {
+            fadeIn -= gameConfig.fadeInSpeed;
+            background(0, fadeIn);
+        }
+        if (fadeOut > 250)
+            manager.state = GameStates.TUTORIAL_1;
+        if (mouseIsPressed || fadeOut >= gameConfig.fadeInSpeed) {
+            fadeOut += gameConfig.fadeInSpeed;
+            background(0, fadeOut);
+        }
+    });
+}
+function tutorialScreen1(manager) {
+    let fadeIn = 255;
+    let fadeOut = 0;
+    const tituloImage = manager.getAsset(AssetList.Tutorial1.name);
+    noSmooth();
+    manager.addState(GameStates.TUTORIAL_1, (m) => {
+        background(0);
+        image(tituloImage, 0, 0, width, height);
+        if (fadeIn > 0) {
+            fadeIn -= gameConfig.fadeInSpeed;
+            background(0, fadeIn);
+        }
+        if (fadeOut > 250)
+            manager.state = GameStates.TUTORIAL_2;
+        if (mouseIsPressed || fadeOut >= gameConfig.fadeInSpeed) {
+            fadeOut += gameConfig.fadeInSpeed;
+            background(0, fadeOut);
+        }
+    });
+}
+function tutorialScreen2(manager) {
+    let fadeIn = 255;
+    let fadeOut = 0;
+    const tituloImage = manager.getAsset(AssetList.Tutorial2.name);
+    noSmooth();
+    manager.addState(GameStates.TUTORIAL_2, (m) => {
         background(0);
         image(tituloImage, 0, 0, width, height);
         if (fadeIn > 0) {
