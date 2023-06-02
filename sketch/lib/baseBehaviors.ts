@@ -133,9 +133,12 @@ class BaseBehaviors {
     entity.addBehavior(
       BaseBehaviors.Names.ConstrainToScreen,
       (e) => {
-        if (entity.position.x > width / 2) entity.position.x = width / 2;
-        if (entity.position.x < -width / 2) entity.position.x = -width / 2;
-        if (entity.position.y > height / 2) entity.position.y = height / 2;
+        if (entity.position.x > width / 2 - manager.UnitSize / 2)
+          entity.position.x = width / 2 - manager.UnitSize / 2;
+        if (entity.position.x < -width / 2 + manager.UnitSize / 2)
+          entity.position.x = -width / 2 + manager.UnitSize / 2;
+        if (entity.position.y > height / 2 - manager.UnitSize)
+          entity.position.y = height / 2 - manager.UnitSize;
         if (entity.position.y < -height * 0.23)
           entity.position.y = -height * 0.23;
       },

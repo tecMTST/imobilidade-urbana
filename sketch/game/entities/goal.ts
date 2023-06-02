@@ -41,7 +41,7 @@ class Goal extends EntityFactory {
       { x: origin.x, y: origin.y }
     );
 
-    if (destination.x < 0) goal.scale.width = -1;
+    goal.scale.width = -1;
 
     Goal.drawGoalBehavior(goal, manager);
     Goal.emitPlayerReachedGoal(goal, manager);

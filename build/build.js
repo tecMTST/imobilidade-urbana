@@ -291,8 +291,7 @@ Cops.currentSpeed = 0;
 class Goal extends EntityFactory {
     static create(manager, origin = { x: -width, y: -height / 4 }, destination = { x: width, y: -height / 4 }, id = 1) {
         const goal = new Entity(`goal-${id}`, 4, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: origin.x, y: origin.y });
-        if (destination.x < 0)
-            goal.scale.width = -1;
+        goal.scale.width = -1;
         Goal.drawGoalBehavior(goal, manager);
         Goal.emitPlayerReachedGoal(goal, manager);
         manager.addEntity(goal, goal.layer);
@@ -472,10 +471,7 @@ class Player extends EntityFactory {
                     .copy()
                     .normalize()
                     .mult(manager.UnitSize * 0.05);
-                if (norm.magSq() < manager.UnitSize * 2)
-                    player.position.add(norm.add(normalized));
-                else
-                    player.position.add(norm.normalize().mult(manager.UnitRoot * 1.4));
+                player.position.add(norm.normalize().mult(manager.UnitRoot * 1.4));
                 setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
             }
             else {
@@ -1038,12 +1034,12 @@ class BaseBehaviors {
     }
     static constrainToScreen(manager, entity, doActivate = false) {
         entity.addBehavior(BaseBehaviors.Names.ConstrainToScreen, (e) => {
-            if (entity.position.x > width / 2)
-                entity.position.x = width / 2;
-            if (entity.position.x < -width / 2)
-                entity.position.x = -width / 2;
-            if (entity.position.y > height / 2)
-                entity.position.y = height / 2;
+            if (entity.position.x > width / 2 - manager.UnitSize / 2)
+                entity.position.x = width / 2 - manager.UnitSize / 2;
+            if (entity.position.x < -width / 2 + manager.UnitSize / 2)
+                entity.position.x = -width / 2 + manager.UnitSize / 2;
+            if (entity.position.y > height / 2 - manager.UnitSize)
+                entity.position.y = height / 2 - manager.UnitSize;
             if (entity.position.y < -height * 0.23)
                 entity.position.y = -height * 0.23;
         }, doActivate);

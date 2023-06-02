@@ -149,10 +149,10 @@ class Player extends EntityFactory {
             .normalize()
             .mult(manager.UnitSize * 0.05);
 
-          if (norm.magSq() < manager.UnitSize * 2)
-            player.position.add(norm.add(normalized));
-          else
-            player.position.add(norm.normalize().mult(manager.UnitRoot * 1.4));
+          // if (norm.magSq() < manager.UnitSize * 2)
+          //   player.position.add(norm.add(normalized));
+          // else
+          player.position.add(norm.normalize().mult(manager.UnitRoot * 1.4));
 
           setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
         } else {
