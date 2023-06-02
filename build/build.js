@@ -285,8 +285,8 @@ Cops.AnimationCycles = {
 };
 Cops.CurrentCopID = 0;
 Cops.CopCount = 1;
-Cops.speedDelta = 0.1;
-Cops.speedLimit = 1;
+Cops.speedDelta = 0.01;
+Cops.speedLimit = 4;
 Cops.currentSpeed = 0;
 class Goal extends EntityFactory {
     static create(manager, origin = { x: -width, y: -height / 4 }, destination = { x: width, y: -height / 4 }, id = 1) {
@@ -489,7 +489,7 @@ class Player extends EntityFactory {
     static collisionWithMarmitaListener(manager, player) {
         player.addListener(Marmitas.Events.CollisionWithPlayer.name, (e) => {
             if (!Player.MarmitaSettings.isHolding) {
-                manager.playAudio(AssetList.RetiradaSFX.name);
+                manager.playAudio(AssetList.SireneCurta.name);
                 const marmita = e.marmita;
                 Player.MarmitaSettings.isHolding = true;
                 Player.MarmitaSettings.marmita = marmita;
@@ -551,7 +551,9 @@ class ScoreTracker {
                 manager.removeEntity(cop);
             }
             copList = [];
+            Cops.currentSpeed = 0;
             manager.getEntity(`cop0`).position.y = height / 2 - manager.UnitSize;
+            manager.getEntity(`cop0`).position.x = -width / 2 + manager.UnitSize / 2;
             manager.getEntity("player").position.x = 0;
             manager.getEntity("player").position.y = height * 0.4;
         };
@@ -828,7 +830,7 @@ function gamePlaying(manager) {
     let fadeIn = 255;
     let fundoSe = manager.getAsset(AssetList.PracaDaSe.name);
     manager.addState(GameStates.GAME_PLAYING, (m) => {
-        manager.playAudio("OST");
+        manager.playAudio("OST", 0, true);
         image(fundoSe, 0, 0, width, height);
         manager.runEntities();
         if (fadeIn > 0) {
@@ -1226,11 +1228,15 @@ class GameManager {
             }
         }
     }
-    playAudio(audioName, delay = 0) {
+    playAudio(audioName, delay = 0, doLoop = false) {
         const audio = this.assets.get(audioName);
         audio.setVolume(this.globalVolume);
-        if (!audio.isPlaying())
-            audio.play(delay);
+        if (!audio.isPlaying()) {
+            if (doLoop)
+                audio.loop();
+            else
+                audio.play(delay);
+        }
     }
     get assetsLoadingProgression() {
         return this.loadedAssetsCount / this.assets.size;

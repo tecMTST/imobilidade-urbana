@@ -204,10 +204,13 @@ class GameManager {
     }
   }
 
-  playAudio(audioName: string, delay = 0) {
+  playAudio(audioName: string, delay = 0, doLoop = false) {
     const audio = this.assets.get(audioName) as p5.SoundFile;
     audio.setVolume(this.globalVolume);
-    if (!audio.isPlaying()) audio.play(delay);
+    if (!audio.isPlaying()) {
+      if (doLoop) audio.loop();
+      else audio.play(delay);
+    }
   }
 
   get assetsLoadingProgression() {
