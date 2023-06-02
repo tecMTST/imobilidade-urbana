@@ -136,7 +136,8 @@ class BaseBehaviors {
         if (entity.position.x > width / 2) entity.position.x = width / 2;
         if (entity.position.x < -width / 2) entity.position.x = -width / 2;
         if (entity.position.y > height / 2) entity.position.y = height / 2;
-        if (entity.position.y < -height / 2) entity.position.y = -height / 2;
+        if (entity.position.y < -height * 0.23)
+          entity.position.y = -height * 0.23;
       },
       doActivate
     );

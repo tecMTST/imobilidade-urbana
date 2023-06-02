@@ -345,10 +345,9 @@ Goal.AnimationCycles = {
 };
 class Marmitas extends EntityFactory {
     static create(manager) {
-        const marmita = new Entity("marmita", 4, { width: 2 * manager.UnitSize, height: 2 * manager.UnitSize }, { x: width, y: 0 });
+        const marmita = new Entity("marmita", 4, { width: 2 * manager.UnitSize, height: 2 * manager.UnitSize }, { x: 0, y: -height * 0.2 });
         Marmitas.drawMarmitaBehavior(marmita, manager);
         Marmitas.emitPlayerCollision(marmita, manager);
-        Marmitas.move(manager, marmita);
         manager.addEntity(marmita, marmita.layer);
     }
     static move(manager, marmita) {
@@ -761,7 +760,7 @@ function setupFunction(manager) {
     const clientWidth = document.documentElement.clientWidth;
     let WIDTH = configs.aspectRatio * clientHeight;
     let HEIGHT = clientHeight;
-    if (clientHeight > clientWidth) {
+    if (clientWidth / clientHeight < configs.aspectRatio) {
         WIDTH = clientWidth;
         HEIGHT = clientWidth / configs.aspectRatio;
     }
@@ -1018,8 +1017,8 @@ class BaseBehaviors {
                 entity.position.x = -width / 2;
             if (entity.position.y > height / 2)
                 entity.position.y = height / 2;
-            if (entity.position.y < -height / 2)
-                entity.position.y = -height / 2;
+            if (entity.position.y < -height * 0.23)
+                entity.position.y = -height * 0.23;
         }, doActivate);
     }
     static shake(entity, duration) {

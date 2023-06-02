@@ -27,12 +27,12 @@ class Marmitas extends EntityFactory {
       "marmita",
       4,
       { width: 2 * manager.UnitSize, height: 2 * manager.UnitSize },
-      { x: width, y: 0 }
+      { x: 0, y: -height * 0.2 }
     );
 
     Marmitas.drawMarmitaBehavior(marmita, manager);
     Marmitas.emitPlayerCollision(marmita, manager);
-    Marmitas.move(manager, marmita);
+    // Marmitas.move(manager, marmita);
 
     manager.addEntity(marmita, marmita.layer);
   }
