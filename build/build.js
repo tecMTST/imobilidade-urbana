@@ -551,7 +551,7 @@ class ScoreTracker {
                 manager.removeEntity(cop);
             }
             copList = [];
-            manager.getEntity(`cop0`).position.y = -height * 0.8;
+            manager.getEntity(`cop0`).position.y = height / 2 - manager.UnitSize;
             manager.getEntity("player").position.x = 0;
             manager.getEntity("player").position.y = height * 0.4;
         };
