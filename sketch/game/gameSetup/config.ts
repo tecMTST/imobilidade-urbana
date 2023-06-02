@@ -1,7 +1,7 @@
 const gameConfig = {
   aspectRatio: 9 / 16,
   UnitSizeProportion: 0.07, // percent of height
-  fadeInSpeed: 100,
+  fadeInSpeed: 50,
 };
 
 type Config = typeof gameConfig;

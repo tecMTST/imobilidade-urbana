@@ -150,10 +150,10 @@ const AssetList: { [key: string]: AssetSettings } = {
   TitleScreen: {
     columns: 1,
     originalTileSize: {
-      width: 90,
-      height: 160,
+      width: 288,
+      height: 512,
     },
-    path: "./assets/img/titulo.png",
+    path: "./assets/img/tela inicio.png",
     type: "image",
     name: "TitleScreen",
   },
@@ -170,10 +170,10 @@ const AssetList: { [key: string]: AssetSettings } = {
   Derrota: {
     columns: 1,
     originalTileSize: {
-      width: 90,
-      height: 160,
+      width: 288,
+      height: 512,
     },
-    path: "./assets/img/derrota.png",
+    path: "./assets/img/tela derrota.png",
     type: "image",
     name: "Derrota",
   },

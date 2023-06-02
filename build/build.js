@@ -738,10 +738,10 @@ const AssetList = {
     TitleScreen: {
         columns: 1,
         originalTileSize: {
-            width: 90,
-            height: 160,
+            width: 288,
+            height: 512,
         },
-        path: "./assets/img/titulo.png",
+        path: "./assets/img/tela inicio.png",
         type: "image",
         name: "TitleScreen",
     },
@@ -758,10 +758,10 @@ const AssetList = {
     Derrota: {
         columns: 1,
         originalTileSize: {
-            width: 90,
-            height: 160,
+            width: 288,
+            height: 512,
         },
-        path: "./assets/img/derrota.png",
+        path: "./assets/img/tela derrota.png",
         type: "image",
         name: "Derrota",
     },
@@ -769,7 +769,7 @@ const AssetList = {
 const gameConfig = {
     aspectRatio: 9 / 16,
     UnitSizeProportion: 0.07,
-    fadeInSpeed: 100,
+    fadeInSpeed: 50,
 };
 const GameAssets = {
     LOGO_NUCLEO: "logo-ntmtst",
