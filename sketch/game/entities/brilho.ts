@@ -27,8 +27,10 @@ class Brilho {
       10
     );
 
-    const { newCycleFunction, setCurrentSpriteFunction } =
-      BaseBehaviors.addSpriteAnimation(brilho, tileset);
+    const {
+      newCycleFunction,
+      setCurrentSpriteFunction,
+    } = BaseBehaviors.addSpriteAnimation(brilho, tileset);
 
     newCycleFunction(Brilho.AnimationCycles.a);
     newCycleFunction(Brilho.AnimationCycles.static);
@@ -38,20 +40,23 @@ class Brilho {
 
     const timeProp = Brilho.AnimationCycles.a.timing / 30;
     let count = timeProp * 15;
+    let deliverCount = 0;
 
     brilho.addBehavior(
       "listen-to-goal",
       (e) => {
         const event = manager.getEvent(Goal.Events.CollisionWithPlayer.name);
+        count += timeProp;
         if (
-          Player.MarmitaSettings.isHolding &&
+          (deliverCount < Player.MarmitaSettings.deliverCount ||
+            count < timeProp * 14) &&
           (event !== undefined || count < timeProp * 14)
         ) {
-          count += timeProp;
+          if (deliverCount < Player.MarmitaSettings.deliverCount)
+            deliverCount++;
           if (count >= timeProp * 15) {
             const goal = manager.getEntity("goal-1");
             count = 0;
-            console.log(goal.position.x);
             brilho.position.x = -goal.position.x;
           }
           setCurrentSpriteFunction("a");

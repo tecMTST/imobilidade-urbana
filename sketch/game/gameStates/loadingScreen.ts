@@ -34,10 +34,10 @@ function loadingScreen(manager: GameManager) {
 }
 
 function addEntities(manager: GameManager) {
+  Brilho.create(manager);
   Player.create(manager);
   Joystick.create(manager);
   Marmitas.create(manager);
-  Brilho.create(manager);
   // Goal.create(manager);
   Goal.create(
     manager,

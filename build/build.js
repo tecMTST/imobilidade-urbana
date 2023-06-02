@@ -186,22 +186,25 @@ class Brilho {
         const brilho = new Entity(`brilho`, -1, { width: manager.UnitSize * 1.5, height: manager.UnitSize * 1.5 }, { x: -1000, y: height / 2 - manager.UnitSize * 1.02 });
         const tilesImage = manager.getAsset(AssetList.Brilho.name);
         const tileset = new Tileset(tilesImage, AssetList.Brilho.originalTileSize, 10);
-        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(brilho, tileset);
+        const { newCycleFunction, setCurrentSpriteFunction, } = BaseBehaviors.addSpriteAnimation(brilho, tileset);
         newCycleFunction(Brilho.AnimationCycles.a);
         newCycleFunction(Brilho.AnimationCycles.static);
         setCurrentSpriteFunction("static");
         brilho.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
         const timeProp = Brilho.AnimationCycles.a.timing / 30;
         let count = timeProp * 15;
+        let deliverCount = 0;
         brilho.addBehavior("listen-to-goal", (e) => {
             const event = manager.getEvent(Goal.Events.CollisionWithPlayer.name);
-            if (Player.MarmitaSettings.isHolding &&
+            count += timeProp;
+            if ((deliverCount < Player.MarmitaSettings.deliverCount ||
+                count < timeProp * 14) &&
                 (event !== undefined || count < timeProp * 14)) {
-                count += timeProp;
+                if (deliverCount < Player.MarmitaSettings.deliverCount)
+                    deliverCount++;
                 if (count >= timeProp * 15) {
                     const goal = manager.getEntity("goal-1");
                     count = 0;
-                    console.log(goal.position.x);
                     brilho.position.x = -goal.position.x;
                 }
                 setCurrentSpriteFunction("a");
@@ -688,7 +691,7 @@ const AssetList = {
             width: 32,
             height: 32,
         },
-        path: "./assets/img/volume preto.png",
+        path: "./assets/img/mudo branco.png",
         type: "image",
         name: "VolumeOff",
     },
@@ -798,7 +801,7 @@ const AssetList = {
             width: 32,
             height: 64,
         },
-        path: "./assets/sound/sirene_curta_1.wav",
+        path: "./assets/sound/sirene_curta_2.wav",
         type: "audio",
         name: "SireneCurta",
     },
@@ -1043,10 +1046,10 @@ function loadingScreen(manager) {
     addEntities(manager);
 }
 function addEntities(manager) {
+    Brilho.create(manager);
     Player.create(manager);
     Joystick.create(manager);
     Marmitas.create(manager);
-    Brilho.create(manager);
     Goal.create(manager, {
         x: 0,
         y: height / 2 - manager.UnitSize * 1.02,
