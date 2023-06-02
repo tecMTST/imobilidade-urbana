@@ -24,6 +24,8 @@ class Cops {
 
   static CurrentCopID = 0;
   static CopCount = 1;
+  static speedDelta = 0.1;
+  static speedLimit = 1;
 
   static create(
     manager: GameManager,
@@ -133,7 +135,8 @@ class Cops {
             .normalize()
             .mult(manager.UnitSize * 0.1 + speedAdder);
 
-          speedAdder += 0.01;
+          speedAdder += Cops.speedDelta;
+          if (speedAdder > Cops.speedLimit) speedAdder = Cops.speedLimit;
 
           cop.position.add(normalPlayerVector);
           if (normalPlayerVector.x < 0) cop.scale.width = -1;

@@ -240,7 +240,9 @@ class Cops {
                     .sub(cop.position)
                     .normalize()
                     .mult(manager.UnitSize * 0.1 + speedAdder);
-                speedAdder += 0.01;
+                speedAdder += Cops.speedDelta;
+                if (speedAdder > Cops.speedLimit)
+                    speedAdder = Cops.speedLimit;
                 cop.position.add(normalPlayerVector);
                 if (normalPlayerVector.x < 0)
                     cop.scale.width = -1;
@@ -284,6 +286,8 @@ Cops.AnimationCycles = {
 };
 Cops.CurrentCopID = 0;
 Cops.CopCount = 1;
+Cops.speedDelta = 0.1;
+Cops.speedLimit = 1;
 class Goal extends EntityFactory {
     static create(manager, origin = { x: -width, y: -height / 4 }, destination = { x: width, y: -height / 4 }, id = 1) {
         const goal = new Entity(`goal-${id}`, 4, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: origin.x, y: origin.y });
