@@ -195,7 +195,8 @@ class Brilho {
         let count = timeProp * 15;
         brilho.addBehavior("listen-to-goal", (e) => {
             const event = manager.getEvent(Goal.Events.CollisionWithPlayer.name);
-            if (event !== undefined || count < timeProp * 14) {
+            if (Player.MarmitaSettings.isHolding &&
+                (event !== undefined || count < timeProp * 14)) {
                 count += timeProp;
                 if (count >= timeProp * 15) {
                     const goal = manager.getEntity("goal-1");
@@ -951,7 +952,7 @@ function addEntities(manager) {
     Marmitas.create(manager);
     Brilho.create(manager);
     Goal.create(manager, {
-        x: width / 2 - manager.UnitSize * 0.75,
+        x: 0,
         y: height / 2 - manager.UnitSize * 1.02,
     }, { x: width * 0.8, y: height / 4 }, 1);
     MarmitaDrop.create(manager);

@@ -43,7 +43,10 @@ class Brilho {
       "listen-to-goal",
       (e) => {
         const event = manager.getEvent(Goal.Events.CollisionWithPlayer.name);
-        if (event !== undefined || count < timeProp * 14) {
+        if (
+          Player.MarmitaSettings.isHolding &&
+          (event !== undefined || count < timeProp * 14)
+        ) {
           count += timeProp;
           if (count >= timeProp * 15) {
             const goal = manager.getEntity("goal-1");
