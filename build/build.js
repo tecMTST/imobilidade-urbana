@@ -318,8 +318,12 @@ class Goal extends EntityFactory {
         goal.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
     }
     static emitPlayerReachedGoal(goal, manager) {
+        const setCurrentSpriteFunction = goal.getFunction(BaseBehaviors.Names.SetCurrentSpriteCycle);
         const player = manager.getEntity("player");
-        BaseBehaviors.rectCollision(manager, goal, player, Goal.Events.CollisionWithPlayer, Goal.Behaviors.EmitPlayerCollision, true);
+        BaseBehaviors.rectCollision(manager, goal, player, {
+            name: Goal.Events.CollisionWithPlayer.name,
+            options: setCurrentSpriteFunction,
+        }, Goal.Behaviors.EmitPlayerCollision, true);
     }
 }
 Goal.Behaviors = {
@@ -493,6 +497,7 @@ class Player extends EntityFactory {
                     AssetList.MarmitaEntregue.name,
                     AssetList.MarmitaEntregueAlt.name,
                 ]));
+                e(Helpers.randElement(["a", "b", "c"]));
                 const marmita = Player.MarmitaSettings.marmita;
                 Player.dropMarmita(marmita);
                 Player.MarmitaSettings.deliverCount++;
