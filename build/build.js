@@ -448,7 +448,7 @@ Marmitas.Events = {
 };
 class Player extends EntityFactory {
     static create(manager) {
-        const player = new Entity("player", 1, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: 0, y: height * 0.4 });
+        const player = new Entity("player", 1, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: manager.UnitSize, y: height * 0.4 });
         const { PlayerSprite } = AssetList;
         const playerSpritesheet = manager.getAsset(PlayerSprite.name);
         const playerTileset = new Tileset(playerSpritesheet, PlayerSprite.originalTileSize, PlayerSprite.columns);
@@ -606,10 +606,8 @@ class ScoreTracker {
             textAlign(LEFT, TOP);
             fill(255);
             textSize(manager.UnitSize / 2);
-            text(Player.MarmitaSettings.timer--, 0, 0);
-            noStroke();
-            rect(0, 0, ((width - manager.UnitSize * 1.5) * Player.MarmitaSettings.timer) /
-                Player.MarmitaSettings.maxTime, manager.UnitSize / 2);
+            rect(5, 5, ((width - manager.UnitSize * 1.5) * Player.MarmitaSettings.timer) /
+                Player.MarmitaSettings.maxTime, manager.UnitSize / 2, 5);
             textAlign(RIGHT);
             text(Player.MarmitaSettings.deliverCount, width, 0);
             image(copImage, width - manager.UnitSize * 0.75, manager.UnitSize / 4, manager.UnitSize / 2, manager.UnitSize / 2);

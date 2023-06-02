@@ -32,7 +32,7 @@ class Player extends EntityFactory {
       "player",
       1,
       { width: manager.UnitSize, height: manager.UnitSize * 2 },
-      { x: 0, y: height * 0.4 }
+      { x: manager.UnitSize, y: height * 0.4 }
     );
 
     const { PlayerSprite } = AssetList;

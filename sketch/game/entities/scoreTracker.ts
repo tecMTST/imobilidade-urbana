@@ -38,14 +38,15 @@ class ScoreTracker {
         textAlign(LEFT, TOP);
         fill(255);
         textSize(manager.UnitSize / 2);
-        text(Player.MarmitaSettings.timer--, 0, 0);
-        noStroke();
+        // text(Player.MarmitaSettings.timer--, 0, 0);
+        // noStroke();
         rect(
-          0,
-          0,
+          5,
+          5,
           ((width - manager.UnitSize * 1.5) * Player.MarmitaSettings.timer) /
             Player.MarmitaSettings.maxTime,
-          manager.UnitSize / 2
+          manager.UnitSize / 2,
+          5
         );
         textAlign(RIGHT);
         text(Player.MarmitaSettings.deliverCount, width, 0);
