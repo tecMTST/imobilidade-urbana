@@ -228,7 +228,6 @@ class Cops {
         BaseBehaviors.circleCollision(manager, cop, player, Cops.Events.CollisionWithPlayer, Cops.Behaviors.CollidesWithPlayer, 0.5, true);
     }
     static pursuePlayer(manager, cop, setCurrentAnimation) {
-        let speedAdder = 0;
         cop.addBehavior(Cops.Behaviors.Walk, (e) => {
             if (Player.MarmitaSettings.isHolding ||
                 Player.MarmitaSettings.timer < 2) {
@@ -239,10 +238,10 @@ class Cops {
                 normalPlayerVector
                     .sub(cop.position)
                     .normalize()
-                    .mult(manager.UnitSize * 0.1 + speedAdder);
-                speedAdder += Cops.speedDelta;
-                if (speedAdder > Cops.speedLimit)
-                    speedAdder = Cops.speedLimit;
+                    .mult(manager.UnitSize * 0.1 + Cops.currentSpeed);
+                Cops.currentSpeed += Cops.speedDelta;
+                if (Cops.currentSpeed > Cops.speedLimit)
+                    Cops.currentSpeed = Cops.speedLimit;
                 cop.position.add(normalPlayerVector);
                 if (normalPlayerVector.x < 0)
                     cop.scale.width = -1;
@@ -288,6 +287,7 @@ Cops.CurrentCopID = 0;
 Cops.CopCount = 1;
 Cops.speedDelta = 0.1;
 Cops.speedLimit = 1;
+Cops.currentSpeed = 0;
 class Goal extends EntityFactory {
     static create(manager, origin = { x: -width, y: -height / 4 }, destination = { x: width, y: -height / 4 }, id = 1) {
         const goal = new Entity(`goal-${id}`, 4, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: origin.x, y: origin.y });

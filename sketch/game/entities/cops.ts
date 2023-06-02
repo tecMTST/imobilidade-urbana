@@ -26,6 +26,7 @@ class Cops {
   static CopCount = 1;
   static speedDelta = 0.1;
   static speedLimit = 1;
+  static currentSpeed = 0;
 
   static create(
     manager: GameManager,
@@ -118,7 +119,6 @@ class Cops {
     cop: Entity,
     setCurrentAnimation: (name: string) => void
   ) {
-    let speedAdder = 0;
     cop.addBehavior(
       Cops.Behaviors.Walk,
       (e) => {
@@ -133,10 +133,11 @@ class Cops {
           normalPlayerVector
             .sub(cop.position)
             .normalize()
-            .mult(manager.UnitSize * 0.1 + speedAdder);
+            .mult(manager.UnitSize * 0.1 + Cops.currentSpeed);
 
-          speedAdder += Cops.speedDelta;
-          if (speedAdder > Cops.speedLimit) speedAdder = Cops.speedLimit;
+          Cops.currentSpeed += Cops.speedDelta;
+          if (Cops.currentSpeed > Cops.speedLimit)
+            Cops.currentSpeed = Cops.speedLimit;
 
           cop.position.add(normalPlayerVector);
           if (normalPlayerVector.x < 0) cop.scale.width = -1;
