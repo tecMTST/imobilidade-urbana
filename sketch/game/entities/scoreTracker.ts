@@ -30,7 +30,21 @@ class ScoreTracker {
       manager.getEntity("player").position.y = height * 0.4;
     };
 
-    const copImage = manager.getAsset(AssetList.Marmita.name) as p5.Image;
+    const marmitaImage = manager.getAsset(AssetList.Marmita.name) as p5.Image;
+    const timerImage = manager.getAsset(AssetList.Timer.name) as p5.Image;
+    const volumeOnImage = manager.getAsset(AssetList.Volume.name) as p5.Image;
+    const volumeOffImage = manager.getAsset(
+      AssetList.VolumeOff.name
+    ) as p5.Image;
+    const originalVolume = manager.volume;
+
+    const volumeButton = {
+      stateImage: volumeOnImage,
+      x: width - manager.UnitSize * 0.75,
+      y: manager.UnitSize * 0.85,
+      size: manager.UnitSize / 2,
+      countDown: 0,
+    };
 
     score.addBehavior(
       ScoreTracker.Behaviors.Display,
@@ -42,22 +56,62 @@ class ScoreTracker {
         // text(Player.MarmitaSettings.timer--, 0, 0);
         // noStroke();
         rect(
-          5,
-          5,
+          manager.UnitSize * 0.07,
+          manager.UnitSize * 0.07,
           ((width - manager.UnitSize * 1.5) * Player.MarmitaSettings.timer) /
             Player.MarmitaSettings.maxTime,
           manager.UnitSize / 2,
           5
         );
-        textAlign(RIGHT);
-        text(Player.MarmitaSettings.deliverCount, width, 0);
+        imageMode(CORNER);
         image(
-          copImage,
-          width - manager.UnitSize * 0.75,
-          manager.UnitSize / 4,
+          timerImage,
+          manager.UnitSize * 0.13,
+          manager.UnitSize * 0.13,
+          manager.UnitSize * 0.4,
+          manager.UnitSize * 0.4
+        );
+        textAlign(RIGHT);
+        text(
+          Player.MarmitaSettings.deliverCount,
+          width - manager.UnitSize * 0.1,
+          manager.UnitSize * 0.15
+        );
+        image(
+          marmitaImage,
+          width - manager.UnitSize,
+          manager.UnitSize * 0.1,
           manager.UnitSize / 2,
           manager.UnitSize / 2
         );
+
+        image(
+          volumeButton.stateImage,
+          volumeButton.x,
+          volumeButton.y,
+          volumeButton.size,
+          volumeButton.size
+        );
+
+        volumeButton.countDown++;
+
+        if (
+          volumeButton.countDown > 15 &&
+          mouseIsPressed &&
+          mouseX > volumeButton.x &&
+          mouseX < volumeButton.x + volumeButton.size &&
+          mouseY > volumeButton.y &&
+          mouseY < volumeButton.y + volumeButton.size
+        ) {
+          volumeButton.countDown = 0;
+          if (manager.volume === 0) {
+            manager.volume = originalVolume;
+            volumeButton.stateImage = volumeOnImage;
+          } else {
+            manager.volume = 0;
+            volumeButton.stateImage = volumeOffImage;
+          }
+        }
 
         if (Player.MarmitaSettings.timer < 2) {
           if (Player.MarmitaSettings.timer === 1) {

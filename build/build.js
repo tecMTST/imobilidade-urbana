@@ -351,7 +351,7 @@ class Goal extends EntityFactory {
                 xDelta = Helpers.random(manager.UnitSize / 4, manager.UnitSize / 7);
                 goal.position.x =
                     origin.x - deltaSign * Helpers.random(0, manager.UnitSize * 2);
-                const cycle = Helpers.randElement(["a", "b", "c"]);
+                const cycle = Helpers.randElement(["a", "b", "c", "d", "e"]);
                 setCurrentAnimation(cycle);
             }
         }, true);
@@ -364,7 +364,9 @@ class Goal extends EntityFactory {
         newCycleFunction(Goal.AnimationCycles.a);
         newCycleFunction(Goal.AnimationCycles.b);
         newCycleFunction(Goal.AnimationCycles.c);
-        setCurrentSpriteFunction(Helpers.randElement(["a", "b", "c"]));
+        newCycleFunction(Goal.AnimationCycles.d);
+        newCycleFunction(Goal.AnimationCycles.e);
+        setCurrentSpriteFunction(Helpers.randElement(["a", "b", "c", "d", "e"]));
         goal.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
     }
     static emitPlayerReachedGoal(goal, manager) {
@@ -397,6 +399,16 @@ Goal.AnimationCycles = {
     c: {
         cycleName: "c",
         frames: [2],
+        timing: 5,
+    },
+    d: {
+        cycleName: "d",
+        frames: [3],
+        timing: 5,
+    },
+    e: {
+        cycleName: "e",
+        frames: [4],
         timing: 5,
     },
 };
@@ -544,7 +556,7 @@ class Player extends EntityFactory {
                     AssetList.MarmitaEntregue.name,
                     AssetList.MarmitaEntregueAlt.name,
                 ]));
-                e(Helpers.randElement(["a", "b", "c"]));
+                e(Helpers.randElement(["a", "b", "c", "d", "e"]));
                 const marmita = Player.MarmitaSettings.marmita;
                 Player.dropMarmita(marmita);
                 Player.MarmitaSettings.deliverCount++;
@@ -601,17 +613,48 @@ class ScoreTracker {
             manager.getEntity("player").position.x = manager.UnitSize;
             manager.getEntity("player").position.y = height * 0.4;
         };
-        const copImage = manager.getAsset(AssetList.Marmita.name);
+        const marmitaImage = manager.getAsset(AssetList.Marmita.name);
+        const timerImage = manager.getAsset(AssetList.Timer.name);
+        const volumeOnImage = manager.getAsset(AssetList.Volume.name);
+        const volumeOffImage = manager.getAsset(AssetList.VolumeOff.name);
+        const originalVolume = manager.volume;
+        const volumeButton = {
+            stateImage: volumeOnImage,
+            x: width - manager.UnitSize * 0.75,
+            y: manager.UnitSize * 0.85,
+            size: manager.UnitSize / 2,
+            countDown: 0,
+        };
         score.addBehavior(ScoreTracker.Behaviors.Display, (e) => {
             textAlign(LEFT, TOP);
             fill(255);
             textSize(manager.UnitSize / 2);
             Player.MarmitaSettings.timer--;
-            rect(5, 5, ((width - manager.UnitSize * 1.5) * Player.MarmitaSettings.timer) /
+            rect(manager.UnitSize * 0.07, manager.UnitSize * 0.07, ((width - manager.UnitSize * 1.5) * Player.MarmitaSettings.timer) /
                 Player.MarmitaSettings.maxTime, manager.UnitSize / 2, 5);
+            imageMode(CORNER);
+            image(timerImage, manager.UnitSize * 0.13, manager.UnitSize * 0.13, manager.UnitSize * 0.4, manager.UnitSize * 0.4);
             textAlign(RIGHT);
-            text(Player.MarmitaSettings.deliverCount, width, 0);
-            image(copImage, width - manager.UnitSize * 0.75, manager.UnitSize / 4, manager.UnitSize / 2, manager.UnitSize / 2);
+            text(Player.MarmitaSettings.deliverCount, width - manager.UnitSize * 0.1, manager.UnitSize * 0.15);
+            image(marmitaImage, width - manager.UnitSize, manager.UnitSize * 0.1, manager.UnitSize / 2, manager.UnitSize / 2);
+            image(volumeButton.stateImage, volumeButton.x, volumeButton.y, volumeButton.size, volumeButton.size);
+            volumeButton.countDown++;
+            if (volumeButton.countDown > 15 &&
+                mouseIsPressed &&
+                mouseX > volumeButton.x &&
+                mouseX < volumeButton.x + volumeButton.size &&
+                mouseY > volumeButton.y &&
+                mouseY < volumeButton.y + volumeButton.size) {
+                volumeButton.countDown = 0;
+                if (manager.volume === 0) {
+                    manager.volume = originalVolume;
+                    volumeButton.stateImage = volumeOnImage;
+                }
+                else {
+                    manager.volume = 0;
+                    volumeButton.stateImage = volumeOffImage;
+                }
+            }
             if (Player.MarmitaSettings.timer < 2) {
                 if (Player.MarmitaSettings.timer === 1) {
                     manager.playAudio(AssetList.SireneDerrotaSFX.name);
@@ -639,6 +682,36 @@ ScoreTracker.Behaviors = {
     Display: "display",
 };
 const AssetList = {
+    VolumeOff: {
+        columns: 1,
+        originalTileSize: {
+            width: 32,
+            height: 32,
+        },
+        path: "./assets/img/volume preto.png",
+        type: "image",
+        name: "VolumeOff",
+    },
+    Volume: {
+        columns: 1,
+        originalTileSize: {
+            width: 32,
+            height: 32,
+        },
+        path: "./assets/img/volume branco.png",
+        type: "image",
+        name: "Volume",
+    },
+    Timer: {
+        columns: 1,
+        originalTileSize: {
+            width: 32,
+            height: 32,
+        },
+        path: "./assets/img/timer preto.png",
+        type: "image",
+        name: "Timer",
+    },
     Tutorial2: {
         columns: 10,
         originalTileSize: {
@@ -790,7 +863,7 @@ const AssetList = {
         name: "Carrinho",
     },
     GoalAsset: {
-        columns: 3,
+        columns: 5,
         originalTileSize: {
             width: 32,
             height: 64,

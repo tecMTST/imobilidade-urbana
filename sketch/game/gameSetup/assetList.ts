@@ -7,6 +7,36 @@ interface AssetSettings {
 }
 
 const AssetList: { [key: string]: AssetSettings } = {
+  VolumeOff: {
+    columns: 1,
+    originalTileSize: {
+      width: 32,
+      height: 32,
+    },
+    path: "./assets/img/volume preto.png",
+    type: "image",
+    name: "VolumeOff",
+  },
+  Volume: {
+    columns: 1,
+    originalTileSize: {
+      width: 32,
+      height: 32,
+    },
+    path: "./assets/img/volume branco.png",
+    type: "image",
+    name: "Volume",
+  },
+  Timer: {
+    columns: 1,
+    originalTileSize: {
+      width: 32,
+      height: 32,
+    },
+    path: "./assets/img/timer preto.png",
+    type: "image",
+    name: "Timer",
+  },
   Tutorial2: {
     columns: 10,
     originalTileSize: {
@@ -158,7 +188,7 @@ const AssetList: { [key: string]: AssetSettings } = {
     name: "Carrinho",
   },
   GoalAsset: {
-    columns: 3,
+    columns: 5,
     originalTileSize: {
       width: 32,
       height: 64,

@@ -26,6 +26,16 @@ class Goal extends EntityFactory {
       frames: [2],
       timing: 5,
     },
+    d: {
+      cycleName: "d",
+      frames: [3],
+      timing: 5,
+    },
+    e: {
+      cycleName: "e",
+      frames: [4],
+      timing: 5,
+    },
   };
 
   static create(
@@ -69,7 +79,7 @@ class Goal extends EntityFactory {
           xDelta = Helpers.random(manager.UnitSize / 4, manager.UnitSize / 7);
           goal.position.x =
             origin.x - deltaSign * Helpers.random(0, manager.UnitSize * 2);
-          const cycle = Helpers.randElement(["a", "b", "c"]);
+          const cycle = Helpers.randElement(["a", "b", "c", "d", "e"]);
           setCurrentAnimation(cycle);
         }
       },
@@ -94,7 +104,9 @@ class Goal extends EntityFactory {
     newCycleFunction(Goal.AnimationCycles.a);
     newCycleFunction(Goal.AnimationCycles.b);
     newCycleFunction(Goal.AnimationCycles.c);
-    setCurrentSpriteFunction(Helpers.randElement(["a", "b", "c"]));
+    newCycleFunction(Goal.AnimationCycles.d);
+    newCycleFunction(Goal.AnimationCycles.e);
+    setCurrentSpriteFunction(Helpers.randElement(["a", "b", "c", "d", "e"]));
 
     // goal.addListener(Goal.Events.CollisionWithPlayer.name, (e) => {
     //   setCurrentSpriteFunction(Helpers.randElement(["a", "b", "c"]));
