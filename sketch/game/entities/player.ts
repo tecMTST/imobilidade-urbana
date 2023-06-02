@@ -188,6 +188,7 @@ class Player extends EntityFactory {
             AssetList.MarmitaEntregueAlt.name,
           ])
         );
+        e(Helpers.randElement(["a", "b", "c"]));
         const marmita = Player.MarmitaSettings.marmita as Entity;
         Player.dropMarmita(marmita);
         Player.MarmitaSettings.deliverCount++;

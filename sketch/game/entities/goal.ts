@@ -96,16 +96,26 @@ class Goal extends EntityFactory {
     newCycleFunction(Goal.AnimationCycles.c);
     setCurrentSpriteFunction(Helpers.randElement(["a", "b", "c"]));
 
+    // goal.addListener(Goal.Events.CollisionWithPlayer.name, (e) => {
+    //   setCurrentSpriteFunction(Helpers.randElement(["a", "b", "c"]));
+    // });
+
     goal.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
   }
 
   static emitPlayerReachedGoal(goal: Entity, manager: GameManager) {
+    const setCurrentSpriteFunction = goal.getFunction(
+      BaseBehaviors.Names.SetCurrentSpriteCycle
+    );
     const player = manager.getEntity("player") as Entity;
     BaseBehaviors.rectCollision(
       manager,
       goal,
       player,
-      Goal.Events.CollisionWithPlayer,
+      {
+        name: Goal.Events.CollisionWithPlayer.name,
+        options: setCurrentSpriteFunction,
+      },
       Goal.Behaviors.EmitPlayerCollision,
       true
     );
