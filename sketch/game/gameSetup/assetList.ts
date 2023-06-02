@@ -7,6 +7,16 @@ interface AssetSettings {
 }
 
 const AssetList: { [key: string]: AssetSettings } = {
+  OST: {
+    columns: 1,
+    originalTileSize: {
+      width: 288,
+      height: 512,
+    },
+    path: "./assets/sound/qtf.mp3",
+    type: "audio",
+    name: "OST",
+  },
   PracaDaSe: {
     columns: 1,
     originalTileSize: {

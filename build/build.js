@@ -575,6 +575,16 @@ ScoreTracker.Behaviors = {
     Display: "display",
 };
 const AssetList = {
+    OST: {
+        columns: 1,
+        originalTileSize: {
+            width: 288,
+            height: 512,
+        },
+        path: "./assets/sound/qtf.mp3",
+        type: "audio",
+        name: "OST",
+    },
     PracaDaSe: {
         columns: 1,
         originalTileSize: {
@@ -750,7 +760,6 @@ const GameTags = {
 function preloadFunction(manager) {
     const loadingLogo = loadImage("./assets/img/logo-ntmtst.png");
     manager.insertAsset(GameAssets.LOGO_NUCLEO, loadingLogo);
-    soundFormats("wav");
     const vinheta = loadSound("./assets/sound/bgm_vinheta.wav");
     manager.insertAsset(GameAssets.VINHETA_NUCLEO, vinheta);
 }
@@ -805,6 +814,7 @@ function gamePlaying(manager) {
     let fadeIn = 255;
     let fundoSe = manager.getAsset(AssetList.PracaDaSe.name);
     manager.addState(GameStates.GAME_PLAYING, (m) => {
+        manager.playAudio("OST");
         image(fundoSe, 0, 0, width, height);
         manager.runEntities();
         if (fadeIn > 0) {
