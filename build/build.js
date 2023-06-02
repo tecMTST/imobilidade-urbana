@@ -560,7 +560,7 @@ class ScoreTracker {
         score.addBehavior(ScoreTracker.Behaviors.Display, (e) => {
             textAlign(LEFT, TOP);
             fill(255);
-            textSize(manager.UnitSize / 3);
+            textSize(manager.UnitSize / 2);
             text(Player.MarmitaSettings.timer--, 0, 0);
             textAlign(RIGHT);
             text(Player.MarmitaSettings.deliverCount, width, 0);
