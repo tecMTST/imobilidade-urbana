@@ -238,7 +238,7 @@ class Cops {
                 normalPlayerVector
                     .sub(cop.position)
                     .normalize()
-                    .mult(manager.UnitSize * 0.1 + Cops.currentSpeed);
+                    .mult(manager.UnitSize * 0.08 + Cops.currentSpeed);
                 Cops.currentSpeed += Cops.speedDelta;
                 if (Cops.currentSpeed > Cops.speedLimit)
                     Cops.currentSpeed = Cops.speedLimit;
@@ -286,7 +286,7 @@ Cops.AnimationCycles = {
 Cops.CurrentCopID = 0;
 Cops.CopCount = 1;
 Cops.speedDelta = 0.01;
-Cops.speedLimit = 4;
+Cops.speedLimit = 3;
 Cops.currentSpeed = 0;
 class Goal extends EntityFactory {
     static create(manager, origin = { x: -width, y: -height / 4 }, destination = { x: width, y: -height / 4 }, id = 1) {
@@ -557,6 +557,7 @@ class ScoreTracker {
             manager.getEntity("player").position.x = 0;
             manager.getEntity("player").position.y = height * 0.4;
         };
+        const copImage = manager.getAsset(AssetList.Marmita.name);
         score.addBehavior(ScoreTracker.Behaviors.Display, (e) => {
             textAlign(LEFT, TOP);
             fill(255);
@@ -564,6 +565,7 @@ class ScoreTracker {
             text(Player.MarmitaSettings.timer--, 0, 0);
             textAlign(RIGHT);
             text(Player.MarmitaSettings.deliverCount, width, 0);
+            image(copImage, width - manager.UnitSize * 0.75, manager.UnitSize / 4, manager.UnitSize / 2, manager.UnitSize / 2);
             if (Player.MarmitaSettings.timer < 2) {
                 if (Player.MarmitaSettings.timer === 1) {
                     manager.playAudio(AssetList.SireneDerrotaSFX.name);

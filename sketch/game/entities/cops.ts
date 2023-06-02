@@ -25,7 +25,7 @@ class Cops {
   static CurrentCopID = 0;
   static CopCount = 1;
   static speedDelta = 0.01;
-  static speedLimit = 4;
+  static speedLimit = 3;
   static currentSpeed = 0;
 
   static create(
@@ -133,7 +133,7 @@ class Cops {
           normalPlayerVector
             .sub(cop.position)
             .normalize()
-            .mult(manager.UnitSize * 0.1 + Cops.currentSpeed);
+            .mult(manager.UnitSize * 0.08 + Cops.currentSpeed);
 
           Cops.currentSpeed += Cops.speedDelta;
           if (Cops.currentSpeed > Cops.speedLimit)

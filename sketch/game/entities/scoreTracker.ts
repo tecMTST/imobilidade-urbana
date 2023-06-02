@@ -30,6 +30,8 @@ class ScoreTracker {
       manager.getEntity("player").position.y = height * 0.4;
     };
 
+    const copImage = manager.getAsset(AssetList.Marmita.name) as p5.Image;
+
     score.addBehavior(
       ScoreTracker.Behaviors.Display,
       (e) => {
@@ -39,6 +41,13 @@ class ScoreTracker {
         text(Player.MarmitaSettings.timer--, 0, 0);
         textAlign(RIGHT);
         text(Player.MarmitaSettings.deliverCount, width, 0);
+        image(
+          copImage,
+          width - manager.UnitSize * 0.75,
+          manager.UnitSize / 4,
+          manager.UnitSize / 2,
+          manager.UnitSize / 2
+        );
 
         if (Player.MarmitaSettings.timer < 2) {
           if (Player.MarmitaSettings.timer === 1) {
