@@ -192,6 +192,10 @@ class Player extends EntityFactory {
         const marmita = Player.MarmitaSettings.marmita as Entity;
         Player.dropMarmita(marmita);
         Player.MarmitaSettings.deliverCount++;
+
+        const goal = manager.getEntity("goal-1");
+        goal.position.x = -goal.position.x;
+        goal.scale.width *= -1;
       }
     });
   }

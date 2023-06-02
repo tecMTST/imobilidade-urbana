@@ -503,6 +503,9 @@ class Player extends EntityFactory {
                 const marmita = Player.MarmitaSettings.marmita;
                 Player.dropMarmita(marmita);
                 Player.MarmitaSettings.deliverCount++;
+                const goal = manager.getEntity("goal-1");
+                goal.position.x = -goal.position.x;
+                goal.scale.width *= -1;
             }
         });
     }
@@ -895,7 +898,7 @@ function addEntities(manager) {
     Goal.create(manager, {
         x: width / 2 - manager.UnitSize * 0.75,
         y: height / 2 - manager.UnitSize * 1.02,
-    }, { x: width * 0.8, y: height / 4 }, 3);
+    }, { x: width * 0.8, y: height / 4 }, 1);
     MarmitaDrop.create(manager);
     for (let i = 0; i < Cops.CopCount; i++)
         Cops.create(manager, 1, { min: -manager.UnitSize, max: -manager.UnitSize }, { x: -width / 2 + manager.UnitSize / 2, y: height / 2 - manager.UnitSize });

@@ -45,7 +45,7 @@ function addEntities(manager: GameManager) {
       y: height / 2 - manager.UnitSize * 1.02,
     },
     { x: width * 0.8, y: height / 4 },
-    3
+    1
   );
   MarmitaDrop.create(manager);
   for (let i = 0; i < Cops.CopCount; i++)
