@@ -18,9 +18,10 @@ function loadingScreen(manager: GameManager) {
       0,
       m.UnitSize * 2,
       m.assetsLoadingProgression * width * 0.9,
-      m.UnitSize / 2
+      m.UnitSize * 0.6
     );
     textAlign(CENTER, CENTER);
+    textSize(m.UnitSize * 0.4);
     text(loadingText, 0, m.UnitSize * 2);
 
     if (m.assetsLoadingProgression >= 0.99 && hasInteracted)

@@ -3,12 +3,6 @@ class ScoreTracker {
     Display: "display",
   };
 
-  static FlyingMarmita = {
-    pos: { x: 0, y: 0 },
-    rot: 0,
-    siz: 0,
-  };
-
   static create(manager: GameManager) {
     const score = new Entity("score-tracker", 0);
     score.position.x = -width / 2;
@@ -45,6 +39,14 @@ class ScoreTracker {
         fill(255);
         textSize(manager.UnitSize / 2);
         text(Player.MarmitaSettings.timer--, 0, 0);
+        noStroke();
+        rect(
+          0,
+          0,
+          ((width - manager.UnitSize * 1.5) * Player.MarmitaSettings.timer) /
+            Player.MarmitaSettings.maxTime,
+          manager.UnitSize / 2
+        );
         textAlign(RIGHT);
         text(Player.MarmitaSettings.deliverCount, width, 0);
         image(
@@ -80,22 +82,5 @@ class ScoreTracker {
       },
       true
     );
-
-    const fm = ScoreTracker.FlyingMarmita;
-
-    fm.pos.x = 0;
-    fm.pos.y = 0;
-
-    // const marmitaAsset = manager.getAsset(AssetList.Marmita)
-
-    score.addListener(Goal.Events.CollisionWithPlayer.name, (e) => {
-      push();
-      rotate(fm.rot);
-      fm.rot += PI * 0.1;
-      fm.pos.x += 2;
-      fm.siz += 2;
-      // image()
-      pop();
-    });
   }
 }

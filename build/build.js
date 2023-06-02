@@ -559,6 +559,9 @@ class ScoreTracker {
             fill(255);
             textSize(manager.UnitSize / 2);
             text(Player.MarmitaSettings.timer--, 0, 0);
+            noStroke();
+            rect(0, 0, ((width - manager.UnitSize * 1.5) * Player.MarmitaSettings.timer) /
+                Player.MarmitaSettings.maxTime, manager.UnitSize / 2);
             textAlign(RIGHT);
             text(Player.MarmitaSettings.deliverCount, width, 0);
             image(copImage, width - manager.UnitSize * 0.75, manager.UnitSize / 4, manager.UnitSize / 2, manager.UnitSize / 2);
@@ -583,26 +586,10 @@ class ScoreTracker {
                 resetGame();
             }
         }, true);
-        const fm = ScoreTracker.FlyingMarmita;
-        fm.pos.x = 0;
-        fm.pos.y = 0;
-        score.addListener(Goal.Events.CollisionWithPlayer.name, (e) => {
-            push();
-            rotate(fm.rot);
-            fm.rot += PI * 0.1;
-            fm.pos.x += 2;
-            fm.siz += 2;
-            pop();
-        });
     }
 }
 ScoreTracker.Behaviors = {
     Display: "display",
-};
-ScoreTracker.FlyingMarmita = {
-    pos: { x: 0, y: 0 },
-    rot: 0,
-    siz: 0,
 };
 const AssetList = {
     RisadaSFX: {
@@ -891,8 +878,9 @@ function loadingScreen(manager) {
         background(0);
         image(logo, 0, 0, m.UnitSize * 3, m.UnitSize * 3);
         rectMode(CENTER);
-        rect(0, m.UnitSize * 2, m.assetsLoadingProgression * width * 0.9, m.UnitSize / 2);
+        rect(0, m.UnitSize * 2, m.assetsLoadingProgression * width * 0.9, m.UnitSize * 0.6);
         textAlign(CENTER, CENTER);
+        textSize(m.UnitSize * 0.4);
         text(loadingText, 0, m.UnitSize * 2);
         if (m.assetsLoadingProgression >= 0.99 && hasInteracted)
             m.state = GameStates.INTRO_SCREEN;
