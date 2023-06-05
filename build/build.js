@@ -121,48 +121,53 @@ Entity.ERROR = {
 };
 class Joystick extends EntityFactory {
     static create(manager) {
-        const joystick = new Entity("joystick", 0, { width: manager.UnitSize * 2, height: manager.UnitSize * 3 }, { x: width * 0.18, y: height * 0.25 });
+        const joystick = new Entity("joystick", 0, { width: manager.UnitSize * 2, height: manager.UnitSize * 3 }, { x: 0, y: 0 });
         Joystick.controlEvent(manager, joystick);
         Joystick.draw(manager, joystick);
         manager.addEntity(joystick, joystick.layer);
     }
     static draw(manager, joystick) {
+        const joystickSize = manager.UnitSize * 1.5;
+        joystick.addListener(Joystick.Events.ControlEvent.name, (options) => {
+            let { currentPress, isPressed } = options;
+            if (isPressed) {
+                fill(255, 90);
+                circle(0, 0, joystickSize);
+                stroke(255, 0, 0);
+                strokeWeight(3);
+                const norm = currentPress.copy();
+                if (norm.x ** 2 + norm.y ** 2 > (joystickSize * 0.4) ** 2)
+                    norm.normalize().mult(joystickSize * 0.4);
+                line(0, 0, norm.x, norm.y);
+                fill(255);
+                strokeWeight(1);
+                stroke(0);
+                circle(norm.x, norm.y, joystickSize * 0.7);
+            }
+        });
     }
     static controlEvent(manager, joystick) {
-        const joystickSize = manager.UnitSize * 2;
         joystick.addBehavior(Joystick.Behaviors.EmitControlEvent, (e) => {
             let options = manager.getEvent(Joystick.Events.ControlEvent.name)
                 ?.options;
             if (options === undefined) {
                 options = {
-                    origin: joystick.position.copy(),
+                    origin: createVector(0, 0),
                     isPressed: false,
                     currentPress: createVector(0, 0),
                 };
             }
             const [x, y] = [mouseX, mouseY];
+            if (!options.isPressed)
+                options.origin = createVector(x - width / 2, y - height / 2);
             options.isPressed = false;
             if (mouseIsPressed) {
                 options.isPressed = true;
                 options.currentPress = createVector(x - width / 2, y - height / 2);
                 options.currentPress.sub(options.origin);
+                joystick.setPosition(options.origin);
             }
             manager.addEvent(Joystick.Events.ControlEvent.name, options, true);
-            if (!mouseIsPressed) {
-                options.currentPress.x = 0;
-                options.currentPress.y = 0;
-            }
-            fill(255, 90);
-            circle(0, 0, joystickSize);
-            stroke(255, 0, 0);
-            strokeWeight(3);
-            const norm = options.currentPress.copy();
-            if (norm.x ** 2 + norm.y ** 2 > (joystickSize * 0.4) ** 2)
-                norm.normalize().mult(joystickSize * 0.4);
-            fill(255, 150);
-            strokeWeight(1);
-            stroke(0);
-            circle(norm.x, norm.y, joystickSize * 0.7);
         }, true);
     }
 }
@@ -458,11 +463,11 @@ Marmitas.Events = {
 };
 class Player extends EntityFactory {
     static create(manager) {
-        const player = new Entity("player", 1, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: 0, y: 0 });
+        const player = new Entity("player", 1, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: manager.UnitSize, y: height * 0.4 });
         const { PlayerSprite } = AssetList;
         const playerSpritesheet = manager.getAsset(PlayerSprite.name);
         const playerTileset = new Tileset(playerSpritesheet, PlayerSprite.originalTileSize, PlayerSprite.columns);
-        const { newCycleFunction, setCurrentSpriteFunction, } = BaseBehaviors.addSpriteAnimation(player, playerTileset);
+        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(player, playerTileset);
         newCycleFunction(Player.AnimationCycles.static);
         setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
         newCycleFunction(Player.AnimationCycles.walking);
@@ -608,9 +613,8 @@ class ScoreTracker {
             Cops.currentSpeed = 0;
             manager.getEntity(`cop0`).position.y = height / 2 - manager.UnitSize;
             manager.getEntity(`cop0`).position.x = -width / 2 + manager.UnitSize / 2;
-            manager.getEntity("player").position.x = 0;
-            manager.getEntity("player").position.y = 0;
-            Brilho.create(manager);
+            manager.getEntity("player").position.x = manager.UnitSize;
+            manager.getEntity("player").position.y = height * 0.4;
         };
         const marmitaImage = manager.getAsset(AssetList.Marmita.name);
         const timerImage = manager.getAsset(AssetList.Timer.name);
@@ -994,7 +998,7 @@ function gamePlaying(manager) {
     let fadeIn = 255;
     let fundoSe = manager.getAsset(AssetList.PracaDaSe.name);
     manager.addState(GameStates.GAME_PLAYING, (m) => {
-        manager.playAudio("OST", 0, true, 0.36);
+        manager.playAudio("OST", 0, true, 0.4);
         image(fundoSe, 0, 0, width, height);
         manager.runEntities();
         if (fadeIn > 0) {
@@ -1047,7 +1051,7 @@ function addEntities(manager) {
     Joystick.create(manager);
     Marmitas.create(manager);
     Goal.create(manager, {
-        x: manager.UnitSize,
+        x: 0,
         y: height / 2 - manager.UnitSize * 1.02,
     }, { x: width * 0.8, y: height / 4 }, 1);
     MarmitaDrop.create(manager);
