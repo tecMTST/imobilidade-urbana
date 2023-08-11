@@ -19,12 +19,8 @@ class Player extends EntityFactory {
     },
   };
 
-  static MarmitaSettings = {
-    isHolding: false,
-    marmita: {},
-    timer: 30 * 60,
-    deliverCount: 0,
-    maxTime: 30 * 60,
+  static Settings = {
+    currentWagon: 3,
   };
 
   static create(manager: GameManager) {
@@ -58,79 +54,9 @@ class Player extends EntityFactory {
 
     Player.controlListener(manager, player, setCurrentSpriteFunction);
 
-    Player.collisionWithMarmitaListener(manager, player);
-
-    Player.goalListener(manager, player);
-
-    Player.dropMarmitaListener(manager, player);
-
-    Player.listenToCop(manager, player);
-
-    Player.showMarmita(manager, player);
-
     BaseBehaviors.constrainToScreen(manager, player, true);
 
     manager.addEntity(player, player.layer);
-  }
-
-  static showMarmita(manager: GameManager, player: Entity) {
-    const marmitaAsset = AssetList.Marmita;
-    const marmitaSprite = manager.getAsset(marmitaAsset.name) as p5.Image;
-
-    const floatingAnimation = Animate.getAnimation(
-      Animate.move,
-      {
-        func: Animate.sine,
-        funcArgs: {
-          a: 4,
-          b: -0.5,
-          c: 0,
-          d: 0,
-        },
-      },
-      ["y"]
-    );
-    const posModifier = { position: { y: 0 } };
-    player.addBehavior(
-      Player.Behaviors.ShowMarmita,
-      (e) => {
-        if (Player.MarmitaSettings.isHolding) {
-          floatingAnimation.apply(posModifier);
-          image(
-            marmitaSprite,
-            0,
-            -manager.UnitSize + posModifier.position.y,
-            manager.UnitSize * 0.5,
-            manager.UnitSize * 0.5
-          );
-        }
-      },
-      true
-    );
-  }
-
-  static listenToCop(manager: GameManager, player: Entity) {
-    player.addListener(Cops.Events.CollisionWithPlayer.name, (e) => {
-      if (Player.MarmitaSettings.isHolding) {
-        manager.playAudio(AssetList.MarmitaPerdida.name);
-        manager.playAudio(AssetList.RisadaSFX.name, 0.2);
-        const marmita = manager.getEntity("marmita") as Entity;
-        Player.dropMarmita(marmita);
-        BaseBehaviors.shake(manager, 15);
-      }
-    });
-  }
-
-  static dropMarmita(marmita: Entity) {
-    Player.MarmitaSettings.isHolding = false;
-    // marmita.activateBehavior(BaseBehaviors.Names.Spawn);
-  }
-
-  static dropMarmitaListener(manager: GameManager, player: Entity) {
-    player.addListener(MarmitaDrop.Events.DropMarmita, (e: any) => {
-      const marmita = manager.getEntity("marmita") as Entity;
-      Player.dropMarmita(marmita);
-    });
   }
 
   static controlListener(
@@ -168,37 +94,5 @@ class Player extends EntityFactory {
           player.scale.width *= -1;
       }
     );
-  }
-
-  static collisionWithMarmitaListener(manager: GameManager, player: Entity) {
-    player.addListener(Marmitas.Events.CollisionWithPlayer.name, (e: any) => {
-      if (!Player.MarmitaSettings.isHolding) {
-        manager.playAudio(AssetList.SireneCurta.name);
-        const marmita = e.marmita as Entity;
-        Player.MarmitaSettings.isHolding = true;
-        Player.MarmitaSettings.marmita = marmita;
-      }
-    });
-  }
-
-  static goalListener(manager: GameManager, player: Entity) {
-    player.addListener(Goal.Events.CollisionWithPlayer.name, (e: any) => {
-      if (Player.MarmitaSettings.isHolding) {
-        manager.playAudio(
-          Helpers.randElement([
-            AssetList.MarmitaEntregue.name,
-            AssetList.MarmitaEntregueAlt.name,
-          ])
-        );
-        e(Helpers.randElement(["a", "b", "c", "d", "e"]));
-        const marmita = Player.MarmitaSettings.marmita as Entity;
-        Player.dropMarmita(marmita);
-        Player.MarmitaSettings.deliverCount++;
-
-        const goal = manager.getEntity("goal-1");
-        goal.position.x = -goal.position.x;
-        goal.scale.width *= -1;
-      }
-    });
   }
 }

@@ -14,13 +14,16 @@ function loadingScreen(manager: GameManager) {
     background(0);
     image(logo, 0, 0, m.UnitSize * 3, m.UnitSize * 3);
     rectMode(CENTER);
+    fill(90);
     rect(
       0,
       m.UnitSize * 2,
       m.assetsLoadingProgression * width * 0.9,
-      m.UnitSize * 0.6
+      m.UnitSize * 0.6,
+      5
     );
     textAlign(CENTER, CENTER);
+    fill(220);
     textSize(m.UnitSize * 0.4);
     text(loadingText, 0, m.UnitSize * 2);
 
@@ -33,29 +36,4 @@ function loadingScreen(manager: GameManager) {
   addEntities(manager);
 }
 
-function addEntities(manager: GameManager) {
-  Brilho.create(manager);
-  Player.create(manager);
-  Joystick.create(manager);
-  Marmitas.create(manager);
-  // Goal.create(manager);
-  Goal.create(
-    manager,
-    {
-      x: manager.UnitSize,
-      y: height / 2 - manager.UnitSize * 1.02,
-    },
-    { x: width * 0.8, y: height / 4 },
-    1
-  );
-  MarmitaDrop.create(manager);
-  for (let i = 0; i < Cops.CopCount; i++)
-    Cops.create(
-      manager,
-      1,
-      { min: -manager.UnitSize, max: -manager.UnitSize },
-      { x: -width / 2 + manager.UnitSize / 2, y: height / 2 - manager.UnitSize }
-    );
-
-  ScoreTracker.create(manager);
-}
+function addEntities(manager: GameManager) {}

@@ -16,11 +16,7 @@ function setupFunction(manager: GameManager) {
 
   loadingScreen(manager);
   introSplashScreen(manager);
-  gamePlaying(manager);
   titleScreen(manager);
-  tutorialScreen1(manager);
-  tutorialScreen2(manager);
-  defeatScreen(manager);
 }
 
 function addAssetsToManager(manager: GameManager) {

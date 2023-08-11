@@ -11,35 +11,6 @@ function setup() {
 function draw() {
     gameManager.run();
 }
-class MarmitaDrop {
-    static create(manager) {
-        const dropper = new Entity("dropper", 0);
-        MarmitaDrop.checkTap(manager, dropper);
-        manager.addEntity(dropper, dropper.layer);
-    }
-    static checkTap(manager, dropper) {
-        let countDownTimer = 0;
-        dropper.addBehavior(MarmitaDrop.Behaviors.TapCheck, (e) => {
-            if (mouseIsPressed)
-                countDownTimer++;
-            else {
-                if (countDownTimer < 5 &&
-                    countDownTimer !== 0 &&
-                    Player.MarmitaSettings.isHolding) {
-                    manager.playAudio(AssetList.MarmitaPerdida.name, 0.2);
-                    manager.addEvent(MarmitaDrop.Events.DropMarmita, {});
-                }
-                countDownTimer = 0;
-            }
-        }, true);
-    }
-}
-MarmitaDrop.Behaviors = {
-    TapCheck: "tap-check",
-};
-MarmitaDrop.Events = {
-    DropMarmita: "drop-marmita",
-};
 class EntityFactory {
 }
 class Entity {
@@ -181,345 +152,20 @@ Joystick.Events = {
         options: {},
     },
 };
-class Brilho {
-    static create(manager) {
-        const brilho = new Entity(`brilho`, -1, { width: manager.UnitSize * 1.5, height: manager.UnitSize * 1.5 }, { x: -1000, y: height / 2 - manager.UnitSize * 1.02 });
-        const tilesImage = manager.getAsset(AssetList.Brilho.name);
-        const tileset = new Tileset(tilesImage, AssetList.Brilho.originalTileSize, 10);
-        const { newCycleFunction, setCurrentSpriteFunction, } = BaseBehaviors.addSpriteAnimation(brilho, tileset);
-        newCycleFunction(Brilho.AnimationCycles.a);
-        newCycleFunction(Brilho.AnimationCycles.static);
-        setCurrentSpriteFunction("static");
-        brilho.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
-        const timeProp = Brilho.AnimationCycles.a.timing / 30;
-        let count = timeProp * 15;
-        let deliverCount = 0;
-        brilho.addBehavior("listen-to-goal", (e) => {
-            const event = manager.getEvent(Goal.Events.CollisionWithPlayer.name);
-            count += timeProp;
-            if ((deliverCount < Player.MarmitaSettings.deliverCount ||
-                count < timeProp * 14) &&
-                (event !== undefined || count < timeProp * 14)) {
-                if (deliverCount < Player.MarmitaSettings.deliverCount)
-                    deliverCount++;
-                if (count >= timeProp * 15) {
-                    const goal = manager.getEntity("goal-1");
-                    count = 0;
-                    brilho.position.x = -goal.position.x;
-                }
-                setCurrentSpriteFunction("a");
-            }
-            else {
-                setCurrentSpriteFunction("static");
-                brilho.position.x = -1000;
-            }
-        }, true);
-        manager.addEntity(brilho, brilho.layer);
-    }
-}
-Brilho.AnimationCycles = {
-    a: {
-        cycleName: "a",
-        frames: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 9, 9, 9],
-        timing: 1,
-    },
-    static: {
-        cycleName: "static",
-        frames: [0],
-        timing: 5,
-    },
-};
-class Cops {
-    static create(manager, initialHei = -1, range = {
-        min: manager.UnitSize * 2,
-        max: manager.UnitSize * 5,
-    }, exact = undefined) {
-        const widLoc = Helpers.randSign();
-        const heiLoc = initialHei;
-        let initialPos = {
-            x: widLoc * width + widLoc * Helpers.random(range.min, range.max),
-            y: heiLoc * height + heiLoc * Helpers.random(range.min, range.max),
-        };
-        if (exact !== undefined) {
-            initialPos = exact;
-        }
-        const cop = new Entity(`cop${Cops.CurrentCopID++}`, 3, { width: manager.UnitSize, height: manager.UnitSize * 2 }, initialPos);
-        const { CopAsset } = AssetList;
-        const copSpritesheet = manager.getAsset(CopAsset.name);
-        const copTileset = new Tileset(copSpritesheet, CopAsset.originalTileSize, CopAsset.columns);
-        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(cop, copTileset);
-        newCycleFunction(Cops.AnimationCycles.static);
-        newCycleFunction(Cops.AnimationCycles.walking);
-        setCurrentSpriteFunction(Cops.AnimationCycles.static.cycleName);
-        cop.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
-        Cops.pursuePlayer(manager, cop, setCurrentSpriteFunction);
-        Cops.emitCollisionWithPlayer(manager, cop);
-        manager.addEntity(cop, cop.layer);
-        return cop;
-    }
-    static moveAwayListener(manager, cop) {
-        cop.addListener(Cops.eventNameFor(cop), (eventOptions) => {
-            const { loc } = eventOptions;
-            const delta = loc
-                .copy()
-                .normalize()
-                .mult(manager.UnitSize * 0.05);
-            if (delta.x < 0)
-                cop.scale.width = -1;
-            else
-                cop.scale.width = 1;
-            cop.position.add(delta);
-        });
-    }
-    static emitCollisionWithPlayer(manager, cop) {
-        const player = manager.getEntity("player");
-        BaseBehaviors.circleCollision(manager, cop, player, Cops.Events.CollisionWithPlayer, Cops.Behaviors.CollidesWithPlayer, 0.5, true);
-    }
-    static pursuePlayer(manager, cop, setCurrentAnimation) {
-        cop.addBehavior(Cops.Behaviors.Walk, (e) => {
-            if (Player.MarmitaSettings.isHolding ||
-                Player.MarmitaSettings.timer < 2) {
-                manager.removePermanentEvent(Cops.eventNameFor(cop));
-                setCurrentAnimation(Cops.AnimationCycles.walking.cycleName);
-                const player = manager.getEntity("player");
-                const normalPlayerVector = player.position.copy();
-                normalPlayerVector
-                    .sub(cop.position)
-                    .normalize()
-                    .mult(manager.UnitSize * 0.1 + Cops.currentSpeed);
-                Cops.currentSpeed += Cops.speedDelta;
-                if (Cops.currentSpeed > Cops.speedLimit)
-                    Cops.currentSpeed = Cops.speedLimit;
-                cop.position.add(normalPlayerVector);
-                if (normalPlayerVector.x < 0)
-                    cop.scale.width = -1;
-                else
-                    cop.scale.width = 1;
-            }
-            else {
-                setCurrentAnimation(Cops.AnimationCycles.static.cycleName);
-                if (!manager.hasEvent(Cops.eventNameFor(cop))) {
-                    manager.addEvent(Cops.eventNameFor(cop), { loc: Cops.randomLoc(manager.UnitSize) }, true);
-                }
-            }
-        }, true);
-    }
-    static randomLoc(unit) {
-        return Helpers.randVector().mult(unit * 5);
-    }
-    static eventNameFor(cop) {
-        return `${cop.id}-${Cops.Events.MoveOut}`;
-    }
-}
-Cops.Behaviors = {
-    Walk: "walk",
-    CollidesWithPlayer: "player-collision",
-};
-Cops.Events = {
-    MoveOut: "move-out",
-    CollisionWithPlayer: { name: "cop-collides-player", options: {} },
-};
-Cops.AnimationCycles = {
-    static: {
-        cycleName: "static",
-        frames: [0],
-        timing: 5,
-    },
-    walking: {
-        cycleName: "walking",
-        frames: [0, 1],
-        timing: 2,
-    },
-};
-Cops.CurrentCopID = 0;
-Cops.CopCount = 1;
-Cops.speedDelta = 0.01;
-Cops.speedLimit = 3.5;
-Cops.currentSpeed = 0;
-class Goal extends EntityFactory {
-    static create(manager, origin = { x: -width, y: -height / 4 }, destination = { x: width, y: -height / 4 }, id = 1) {
-        const goal = new Entity(`goal-${id}`, 4, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: origin.x, y: origin.y });
-        goal.scale.width = -1;
-        Goal.drawGoalBehavior(goal, manager);
-        Goal.emitPlayerReachedGoal(goal, manager);
-        manager.addEntity(goal, goal.layer);
-    }
-    static moveToDestination(goal, manager, origin, destination) {
-        let xDelta = Helpers.random(manager.UnitSize / 4, manager.UnitSize / 7);
-        let deltaSign = Math.sign(destination.x);
-        const setCurrentAnimation = goal.getFunction(BaseBehaviors.Names.SetCurrentSpriteCycle);
-        goal.addBehavior(Goal.Behaviors.MoveToDestination, (e) => {
-            goal.position.x += xDelta * deltaSign;
-            if (Math.abs(goal.position.x) >= Math.abs(destination.x)) {
-                xDelta = Helpers.random(manager.UnitSize / 4, manager.UnitSize / 7);
-                goal.position.x =
-                    origin.x - deltaSign * Helpers.random(0, manager.UnitSize * 2);
-                const cycle = Helpers.randElement(["a", "b", "c", "d", "e"]);
-                setCurrentAnimation(cycle);
-            }
-        }, true);
-    }
-    static drawGoalBehavior(goal, manager) {
-        const { GoalAsset } = AssetList;
-        const goalSpritesheet = manager.getAsset(GoalAsset.name);
-        const goalTileset = new Tileset(goalSpritesheet, GoalAsset.originalTileSize, GoalAsset.columns);
-        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(goal, goalTileset);
-        newCycleFunction(Goal.AnimationCycles.a);
-        newCycleFunction(Goal.AnimationCycles.b);
-        newCycleFunction(Goal.AnimationCycles.c);
-        newCycleFunction(Goal.AnimationCycles.d);
-        newCycleFunction(Goal.AnimationCycles.e);
-        setCurrentSpriteFunction(Helpers.randElement(["a", "b", "c", "d", "e"]));
-        goal.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
-    }
-    static emitPlayerReachedGoal(goal, manager) {
-        const setCurrentSpriteFunction = goal.getFunction(BaseBehaviors.Names.SetCurrentSpriteCycle);
-        const player = manager.getEntity("player");
-        BaseBehaviors.rectCollision(manager, goal, player, {
-            name: Goal.Events.CollisionWithPlayer.name,
-            options: setCurrentSpriteFunction,
-        }, Goal.Behaviors.EmitPlayerCollision, true);
-    }
-}
-Goal.Behaviors = {
-    EmitPlayerCollision: "emit-collision",
-    MoveToDestination: "move-destination",
-};
-Goal.Events = {
-    CollisionWithPlayer: { name: "goal-collides-with-player", options: {} },
-};
-Goal.AnimationCycles = {
-    a: {
-        cycleName: "a",
-        frames: [0],
-        timing: 5,
-    },
-    b: {
-        cycleName: "b",
-        frames: [1],
-        timing: 5,
-    },
-    c: {
-        cycleName: "c",
-        frames: [2],
-        timing: 5,
-    },
-    d: {
-        cycleName: "d",
-        frames: [3],
-        timing: 5,
-    },
-    e: {
-        cycleName: "e",
-        frames: [4],
-        timing: 5,
-    },
-};
-class Marmitas extends EntityFactory {
-    static create(manager) {
-        const marmita = new Entity("marmita", 4, { width: 2 * manager.UnitSize, height: 2 * manager.UnitSize }, { x: 0, y: -height * 0.2 });
-        Marmitas.drawMarmitaBehavior(marmita, manager);
-        Marmitas.emitPlayerCollision(marmita, manager);
-        manager.addEntity(marmita, marmita.layer);
-    }
-    static move(manager, marmita) {
-        marmita.addBehavior(Marmitas.Behaviors.Move, (e) => {
-            marmita.position.x -= manager.UnitSize / 5;
-            if (marmita.position.x < -marmita.size.width - width / 2)
-                marmita.position.x = Helpers.random(width, marmita.size.width + width / 2);
-        }, true);
-    }
-    static drawMarmitaBehavior(marmita, manager) {
-        const { Carrinho } = AssetList;
-        const marmitaSpritesheet = manager.getAsset(Carrinho.name);
-        const marmitaTileset = new Tileset(marmitaSpritesheet, Carrinho.originalTileSize, Carrinho.columns);
-        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(marmita, marmitaTileset);
-        newCycleFunction(Marmitas.AnimationCycles.static);
-        setCurrentSpriteFunction(Marmitas.AnimationCycles.static.cycleName);
-        marmita.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
-    }
-    static emitPlayerCollision(marmita, manager) {
-        const player = manager.getEntity("player");
-        BaseBehaviors.circleCollision(manager, marmita, player, { name: Marmitas.Events.CollisionWithPlayer.name, options: { marmita } }, Marmitas.Behaviors.Collision, 1, true);
-    }
-}
-Marmitas.Behaviors = {
-    Show: "show",
-    Collision: "collision",
-    Move: "move",
-};
-Marmitas.AnimationCycles = {
-    static: {
-        cycleName: "static",
-        frames: [0],
-        timing: 5,
-    },
-};
-Marmitas.Events = {
-    CollisionWithPlayer: {
-        name: "marmita-collides-with-player",
-        options: {},
-    },
-};
 class Player extends EntityFactory {
     static create(manager) {
-        const player = new Entity("player", 1, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: manager.UnitSize, y: height * 0.4 });
+        const player = new Entity("player", 1, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: 0, y: 0 });
         const { PlayerSprite } = AssetList;
         const playerSpritesheet = manager.getAsset(PlayerSprite.name);
         const playerTileset = new Tileset(playerSpritesheet, PlayerSprite.originalTileSize, PlayerSprite.columns);
-        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(player, playerTileset);
+        const { newCycleFunction, setCurrentSpriteFunction, } = BaseBehaviors.addSpriteAnimation(player, playerTileset);
         newCycleFunction(Player.AnimationCycles.static);
         setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
         newCycleFunction(Player.AnimationCycles.walking);
         player.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
         Player.controlListener(manager, player, setCurrentSpriteFunction);
-        Player.collisionWithMarmitaListener(manager, player);
-        Player.goalListener(manager, player);
-        Player.dropMarmitaListener(manager, player);
-        Player.listenToCop(manager, player);
-        Player.showMarmita(manager, player);
         BaseBehaviors.constrainToScreen(manager, player, true);
         manager.addEntity(player, player.layer);
-    }
-    static showMarmita(manager, player) {
-        const marmitaAsset = AssetList.Marmita;
-        const marmitaSprite = manager.getAsset(marmitaAsset.name);
-        const floatingAnimation = Animate.getAnimation(Animate.move, {
-            func: Animate.sine,
-            funcArgs: {
-                a: 4,
-                b: -0.5,
-                c: 0,
-                d: 0,
-            },
-        }, ["y"]);
-        const posModifier = { position: { y: 0 } };
-        player.addBehavior(Player.Behaviors.ShowMarmita, (e) => {
-            if (Player.MarmitaSettings.isHolding) {
-                floatingAnimation.apply(posModifier);
-                image(marmitaSprite, 0, -manager.UnitSize + posModifier.position.y, manager.UnitSize * 0.5, manager.UnitSize * 0.5);
-            }
-        }, true);
-    }
-    static listenToCop(manager, player) {
-        player.addListener(Cops.Events.CollisionWithPlayer.name, (e) => {
-            if (Player.MarmitaSettings.isHolding) {
-                manager.playAudio(AssetList.MarmitaPerdida.name);
-                manager.playAudio(AssetList.RisadaSFX.name, 0.2);
-                const marmita = manager.getEntity("marmita");
-                Player.dropMarmita(marmita);
-                BaseBehaviors.shake(manager, 15);
-            }
-        });
-    }
-    static dropMarmita(marmita) {
-        Player.MarmitaSettings.isHolding = false;
-    }
-    static dropMarmitaListener(manager, player) {
-        player.addListener(MarmitaDrop.Events.DropMarmita, (e) => {
-            const marmita = manager.getEntity("marmita");
-            Player.dropMarmita(marmita);
-        });
     }
     static controlListener(manager, player, setCurrentSpriteFunction) {
         player.addListener(Joystick.Events.ControlEvent.name, (event) => {
@@ -542,33 +188,6 @@ class Player extends EntityFactory {
                 player.scale.width *= -1;
         });
     }
-    static collisionWithMarmitaListener(manager, player) {
-        player.addListener(Marmitas.Events.CollisionWithPlayer.name, (e) => {
-            if (!Player.MarmitaSettings.isHolding) {
-                manager.playAudio(AssetList.SireneCurta.name);
-                const marmita = e.marmita;
-                Player.MarmitaSettings.isHolding = true;
-                Player.MarmitaSettings.marmita = marmita;
-            }
-        });
-    }
-    static goalListener(manager, player) {
-        player.addListener(Goal.Events.CollisionWithPlayer.name, (e) => {
-            if (Player.MarmitaSettings.isHolding) {
-                manager.playAudio(Helpers.randElement([
-                    AssetList.MarmitaEntregue.name,
-                    AssetList.MarmitaEntregueAlt.name,
-                ]));
-                e(Helpers.randElement(["a", "b", "c", "d", "e"]));
-                const marmita = Player.MarmitaSettings.marmita;
-                Player.dropMarmita(marmita);
-                Player.MarmitaSettings.deliverCount++;
-                const goal = manager.getEntity("goal-1");
-                goal.position.x = -goal.position.x;
-                goal.scale.width *= -1;
-            }
-        });
-    }
 }
 Player.Behaviors = {
     Walk: "walk",
@@ -586,164 +205,29 @@ Player.AnimationCycles = {
         timing: 2,
     },
 };
-Player.MarmitaSettings = {
-    isHolding: false,
-    marmita: {},
-    timer: 30 * 60,
-    deliverCount: 0,
-    maxTime: 30 * 60,
-};
-class ScoreTracker {
-    static create(manager) {
-        const score = new Entity("score-tracker", 0);
-        score.position.x = -width / 2;
-        score.position.y = -height / 2;
-        ScoreTracker.display(manager, score);
-        manager.addEntity(score, score.layer);
-    }
-    static display(manager, score) {
-        let copList = [];
-        const resetGame = () => {
-            Player.MarmitaSettings.timer = Player.MarmitaSettings.maxTime;
-            Player.MarmitaSettings.deliverCount = 0;
-            for (const cop of copList) {
-                manager.removeEntity(cop);
-            }
-            copList = [];
-            Cops.currentSpeed = 0;
-            manager.getEntity(`cop0`).position.y = height / 2 - manager.UnitSize;
-            manager.getEntity(`cop0`).position.x = -width / 2 + manager.UnitSize / 2;
-            manager.getEntity("player").position.x = manager.UnitSize;
-            manager.getEntity("player").position.y = height * 0.4;
-        };
-        const marmitaImage = manager.getAsset(AssetList.Marmita.name);
-        const timerImage = manager.getAsset(AssetList.Timer.name);
-        const volumeOnImage = manager.getAsset(AssetList.Volume.name);
-        const volumeOffImage = manager.getAsset(AssetList.VolumeOff.name);
-        const originalVolume = manager.volume;
-        const volumeButton = {
-            stateImage: volumeOnImage,
-            x: width - manager.UnitSize * 0.75,
-            y: manager.UnitSize * 0.85,
-            size: manager.UnitSize / 2,
-            countDown: 0,
-        };
-        score.addBehavior(ScoreTracker.Behaviors.Display, (e) => {
-            textAlign(LEFT, TOP);
-            fill(255);
-            textSize(manager.UnitSize / 2);
-            Player.MarmitaSettings.timer--;
-            rect(manager.UnitSize * 0.07, manager.UnitSize * 0.07, ((width - manager.UnitSize * 1.5) * Player.MarmitaSettings.timer) /
-                Player.MarmitaSettings.maxTime, manager.UnitSize / 2, 5);
-            imageMode(CORNER);
-            image(timerImage, manager.UnitSize * 0.13, manager.UnitSize * 0.13, manager.UnitSize * 0.4, manager.UnitSize * 0.4);
-            textAlign(RIGHT);
-            text(Player.MarmitaSettings.deliverCount, width - manager.UnitSize * 0.1, manager.UnitSize * 0.15);
-            image(marmitaImage, width - manager.UnitSize, manager.UnitSize * 0.1, manager.UnitSize / 2, manager.UnitSize / 2);
-            image(volumeButton.stateImage, volumeButton.x, volumeButton.y, volumeButton.size, volumeButton.size);
-            volumeButton.countDown++;
-            if (volumeButton.countDown > 15 &&
-                mouseIsPressed &&
-                mouseX > volumeButton.x &&
-                mouseX < volumeButton.x + volumeButton.size &&
-                mouseY > volumeButton.y &&
-                mouseY < volumeButton.y + volumeButton.size) {
-                volumeButton.countDown = 0;
-                if (manager.volume === 0) {
-                    manager.volume = originalVolume;
-                    volumeButton.stateImage = volumeOnImage;
-                }
-                else {
-                    manager.volume = 0;
-                    volumeButton.stateImage = volumeOffImage;
-                }
-            }
-            if (Player.MarmitaSettings.timer < 2) {
-                if (Player.MarmitaSettings.timer === 1) {
-                    manager.playAudio(AssetList.SireneDerrotaSFX.name);
-                    for (let i = 1; i < 10; i++) {
-                        copList.push(Cops.create(manager, Helpers.randSign()));
-                    }
-                }
-                const hasEvent = manager.getEvent(Cops.Events.CollisionWithPlayer.name);
-                Player.MarmitaSettings.timer = 0;
-                if (hasEvent !== undefined) {
-                    defeatScreen(manager);
-                    manager.state = GameStates.DEFEAT_SCREEN;
-                    resetGame();
-                }
-            }
-            if (Player.MarmitaSettings.deliverCount >= 10) {
-                victoryScreen(manager);
-                manager.state = GameStates.VICTORY_SCREEN;
-                resetGame();
-            }
-        }, true);
-    }
-}
-ScoreTracker.Behaviors = {
-    Display: "display",
+Player.Settings = {
+    currentWagon: 3,
 };
 const AssetList = {
-    VolumeOff: {
+    CarroMetro: {
         columns: 1,
         originalTileSize: {
-            width: 32,
-            height: 32,
+            width: 360,
+            height: 142,
         },
-        path: "./assets/img/mudo branco.png",
+        path: "./assets/img/metro_temp.png",
         type: "image",
-        name: "VolumeOff",
+        name: "CarroMetro",
     },
-    Volume: {
+    TitleScreen: {
         columns: 1,
         originalTileSize: {
-            width: 32,
-            height: 32,
+            width: 393,
+            height: 410,
         },
-        path: "./assets/img/volume branco.png",
+        path: "./assets/img/titulo_temp.png",
         type: "image",
-        name: "Volume",
-    },
-    Timer: {
-        columns: 1,
-        originalTileSize: {
-            width: 32,
-            height: 32,
-        },
-        path: "./assets/img/timer preto.png",
-        type: "image",
-        name: "Timer",
-    },
-    Tutorial2: {
-        columns: 10,
-        originalTileSize: {
-            width: 32,
-            height: 32,
-        },
-        path: "./assets/img/tela tutorial 2.png",
-        type: "image",
-        name: "Tutorial2",
-    },
-    Tutorial1: {
-        columns: 10,
-        originalTileSize: {
-            width: 32,
-            height: 32,
-        },
-        path: "./assets/img/tela tutorial 1.png",
-        type: "image",
-        name: "Tutorial1",
-    },
-    Brilho: {
-        columns: 10,
-        originalTileSize: {
-            width: 32,
-            height: 32,
-        },
-        path: "./assets/img/brilho.png",
-        type: "image",
-        name: "Brilho",
+        name: "TitleScreen",
     },
     RisadaSFX: {
         columns: 1,
@@ -751,173 +235,13 @@ const AssetList = {
             width: 288,
             height: 512,
         },
-        path: "./assets/sound/risada.mp3",
+        path: "./assets/sound/bgm_vinheta.wav",
         type: "audio",
         name: "RisadaSFX",
     },
-    OST: {
-        columns: 1,
-        originalTileSize: {
-            width: 288,
-            height: 512,
-        },
-        path: "./assets/sound/qtf.mp3",
-        type: "audio",
-        name: "OST",
-    },
-    PracaDaSe: {
-        columns: 1,
-        originalTileSize: {
-            width: 288,
-            height: 512,
-        },
-        path: "./assets/img/praca_da_se.png",
-        type: "image",
-        name: "PracaDaSe",
-    },
-    MarmitaEntregueAlt: {
-        columns: 2,
-        originalTileSize: {
-            width: 32,
-            height: 64,
-        },
-        path: "./assets/sound/marmita_entrega_2.wav",
-        type: "audio",
-        name: "MarmitaEntregueAlt",
-    },
-    MarmitaEntregue: {
-        columns: 2,
-        originalTileSize: {
-            width: 32,
-            height: 64,
-        },
-        path: "./assets/sound/marmita_entrega_1.wav",
-        type: "audio",
-        name: "MarmitaEntregue",
-    },
-    SireneCurta: {
-        columns: 2,
-        originalTileSize: {
-            width: 32,
-            height: 64,
-        },
-        path: "./assets/sound/sirene_curta_2.wav",
-        type: "audio",
-        name: "SireneCurta",
-    },
-    MarmitaPerdida: {
-        columns: 2,
-        originalTileSize: {
-            width: 32,
-            height: 64,
-        },
-        path: "./assets/sound/marmita_perdida.wav",
-        type: "audio",
-        name: "MarmitaPerdida",
-    },
-    RetiradaSFX: {
-        columns: 2,
-        originalTileSize: {
-            width: 32,
-            height: 64,
-        },
-        path: "./assets/sound/marmita_retirada.wav",
-        type: "audio",
-        name: "RetiradaSFX",
-    },
-    SireneDerrotaSFX: {
-        columns: 2,
-        originalTileSize: {
-            width: 32,
-            height: 64,
-        },
-        path: "./assets/sound/sirene_longa_1.wav",
-        type: "audio",
-        name: "SireneDerrotaSFX",
-    },
-    PlayerSprite: {
-        columns: 2,
-        originalTileSize: {
-            width: 32,
-            height: 64,
-        },
-        path: "./assets/img/tia cozinha-Sheet.png",
-        type: "image",
-        name: "PlayerSprite",
-    },
-    Marmita: {
-        columns: 1,
-        originalTileSize: {
-            width: 32,
-            height: 32,
-        },
-        path: "./assets/img/marmita.png",
-        type: "image",
-        name: "Marmita",
-    },
-    Carrinho: {
-        columns: 1,
-        originalTileSize: {
-            width: 64,
-            height: 64,
-        },
-        path: "./assets/img/carrinho da marmita.png",
-        type: "image",
-        name: "Carrinho",
-    },
-    GoalAsset: {
-        columns: 5,
-        originalTileSize: {
-            width: 32,
-            height: 64,
-        },
-        path: "./assets/img/morador de rua.png",
-        type: "image",
-        name: "GoalAsset",
-    },
-    CopAsset: {
-        columns: 8,
-        originalTileSize: {
-            width: 32,
-            height: 64,
-        },
-        path: "./assets/img/gcm-Sheet.png",
-        type: "image",
-        name: "CopAsset",
-    },
-    TitleScreen: {
-        columns: 1,
-        originalTileSize: {
-            width: 288,
-            height: 512,
-        },
-        path: "./assets/img/tela inicio.png",
-        type: "image",
-        name: "TitleScreen",
-    },
-    Vitoria: {
-        columns: 1,
-        originalTileSize: {
-            width: 288,
-            height: 512,
-        },
-        path: "./assets/img/tela vitoria.png",
-        type: "image",
-        name: "Vitoria",
-    },
-    Derrota: {
-        columns: 1,
-        originalTileSize: {
-            width: 288,
-            height: 512,
-        },
-        path: "./assets/img/tela derrota.png",
-        type: "image",
-        name: "Derrota",
-    },
 };
 const gameConfig = {
-    aspectRatio: 9 / 16,
+    aspectRatio: 16 / 9,
     UnitSizeProportion: 0.07,
     fadeInSpeed: 50,
 };
@@ -930,10 +254,6 @@ const GameStates = {
     INTRO_SCREEN: "intro-screen",
     GAME_PLAYING: "game-playing-state",
     TITLE_SCREEN: "title-screen",
-    DEFEAT_SCREEN: "defear-screen",
-    VICTORY_SCREEN: "victory-screen",
-    TUTORIAL_1: "tela-tutorial-1",
-    TUTORIAL_2: "tela-tutorial-2",
 };
 const GameTags = {
     GCM: "gcm-tag",
@@ -959,11 +279,7 @@ function setupFunction(manager) {
     manager.setUnitSize(HEIGHT * manager.configs.UnitSizeProportion);
     loadingScreen(manager);
     introSplashScreen(manager);
-    gamePlaying(manager);
     titleScreen(manager);
-    tutorialScreen1(manager);
-    tutorialScreen2(manager);
-    defeatScreen(manager);
 }
 function addAssetsToManager(manager) {
     for (const asset of Object.keys(AssetList)) {
@@ -971,42 +287,7 @@ function addAssetsToManager(manager) {
         manager.addAsset(asset, path);
     }
 }
-function defeatScreen(manager) {
-    let fadeIn = 255;
-    let fadeOut = 0;
-    const defeat = manager.getAsset(AssetList.Derrota.name);
-    let interactionCountdown = 30;
-    manager.addState(GameStates.DEFEAT_SCREEN, (m) => {
-        background(0);
-        image(defeat, 0, 0, width, height);
-        if (fadeIn > 0) {
-            fadeIn -= gameConfig.fadeInSpeed;
-            background(0, fadeIn);
-        }
-        if (fadeOut > 250) {
-            manager.state = GameStates.GAME_PLAYING;
-            titleScreen(manager);
-        }
-        if (interactionCountdown-- < 0 &&
-            (mouseIsPressed || fadeOut >= gameConfig.fadeInSpeed)) {
-            fadeOut += gameConfig.fadeInSpeed;
-            background(0, fadeOut);
-        }
-    });
-}
-function gamePlaying(manager) {
-    let fadeIn = 255;
-    let fundoSe = manager.getAsset(AssetList.PracaDaSe.name);
-    manager.addState(GameStates.GAME_PLAYING, (m) => {
-        manager.playAudio("OST", 0, true, 0.4);
-        image(fundoSe, 0, 0, width, height);
-        manager.runEntities();
-        if (fadeIn > 0) {
-            fadeIn -= gameConfig.fadeInSpeed;
-            background(0, fadeIn);
-        }
-    });
-}
+function gameScreen(manager) { }
 function introSplashScreen(manager) {
     const logoNucleo = manager.getAsset(GameAssets.LOGO_NUCLEO);
     let fadeAlpha = 0;
@@ -1035,8 +316,10 @@ function loadingScreen(manager) {
         background(0);
         image(logo, 0, 0, m.UnitSize * 3, m.UnitSize * 3);
         rectMode(CENTER);
-        rect(0, m.UnitSize * 2, m.assetsLoadingProgression * width * 0.9, m.UnitSize * 0.6);
+        fill(90);
+        rect(0, m.UnitSize * 2, m.assetsLoadingProgression * width * 0.9, m.UnitSize * 0.6, 5);
         textAlign(CENTER, CENTER);
+        fill(220);
         textSize(m.UnitSize * 0.4);
         text(loadingText, 0, m.UnitSize * 2);
         if (m.assetsLoadingProgression >= 0.99 && hasInteracted)
@@ -1045,20 +328,7 @@ function loadingScreen(manager) {
     manager.state = GameStates.LOADING_STATE;
     addEntities(manager);
 }
-function addEntities(manager) {
-    Brilho.create(manager);
-    Player.create(manager);
-    Joystick.create(manager);
-    Marmitas.create(manager);
-    Goal.create(manager, {
-        x: 0,
-        y: height / 2 - manager.UnitSize * 1.02,
-    }, { x: width * 0.8, y: height / 4 }, 1);
-    MarmitaDrop.create(manager);
-    for (let i = 0; i < Cops.CopCount; i++)
-        Cops.create(manager, 1, { min: -manager.UnitSize, max: -manager.UnitSize }, { x: -width / 2 + manager.UnitSize / 2, y: height / 2 - manager.UnitSize });
-    ScoreTracker.create(manager);
-}
+function addEntities(manager) { }
 function titleScreen(manager) {
     let fadeIn = 255;
     let fadeOut = 0;
@@ -1072,71 +342,8 @@ function titleScreen(manager) {
             background(0, fadeIn);
         }
         if (fadeOut > 250)
-            manager.state = GameStates.TUTORIAL_1;
+            0;
         if (mouseIsPressed || fadeOut >= gameConfig.fadeInSpeed) {
-            fadeOut += gameConfig.fadeInSpeed;
-            background(0, fadeOut);
-        }
-    });
-}
-function tutorialScreen1(manager) {
-    let fadeIn = 255;
-    let fadeOut = 0;
-    const tituloImage = manager.getAsset(AssetList.Tutorial1.name);
-    noSmooth();
-    manager.addState(GameStates.TUTORIAL_1, (m) => {
-        background(0);
-        image(tituloImage, 0, 0, width, height);
-        if (fadeIn > 0) {
-            fadeIn -= gameConfig.fadeInSpeed;
-            background(0, fadeIn);
-        }
-        if (fadeOut > 250)
-            manager.state = GameStates.TUTORIAL_2;
-        if (mouseIsPressed || fadeOut >= gameConfig.fadeInSpeed) {
-            fadeOut += gameConfig.fadeInSpeed;
-            background(0, fadeOut);
-        }
-    });
-}
-function tutorialScreen2(manager) {
-    let fadeIn = 255;
-    let fadeOut = 0;
-    const tituloImage = manager.getAsset(AssetList.Tutorial2.name);
-    noSmooth();
-    manager.addState(GameStates.TUTORIAL_2, (m) => {
-        background(0);
-        image(tituloImage, 0, 0, width, height);
-        if (fadeIn > 0) {
-            fadeIn -= gameConfig.fadeInSpeed;
-            background(0, fadeIn);
-        }
-        if (fadeOut > 250)
-            manager.state = GameStates.GAME_PLAYING;
-        if (mouseIsPressed || fadeOut >= gameConfig.fadeInSpeed) {
-            fadeOut += gameConfig.fadeInSpeed;
-            background(0, fadeOut);
-        }
-    });
-}
-function victoryScreen(manager) {
-    let fadeIn = 255;
-    let fadeOut = 0;
-    const victory = manager.getAsset(AssetList.Vitoria.name);
-    let interactionCountdown = 30;
-    manager.addState(GameStates.VICTORY_SCREEN, (m) => {
-        background(0);
-        image(victory, 0, 0, width, height);
-        if (fadeIn > 0) {
-            fadeIn -= gameConfig.fadeInSpeed;
-            background(0, fadeIn);
-        }
-        if (fadeOut > 250) {
-            manager.state = GameStates.GAME_PLAYING;
-            titleScreen(manager);
-        }
-        if (interactionCountdown-- < 0 &&
-            (mouseIsPressed || fadeOut >= gameConfig.fadeInSpeed)) {
             fadeOut += gameConfig.fadeInSpeed;
             background(0, fadeOut);
         }
