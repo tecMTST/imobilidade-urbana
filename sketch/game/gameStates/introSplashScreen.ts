@@ -10,7 +10,7 @@ function introSplashScreen(manager: GameManager) {
     // manager.playAudio(GameAssets.VINHETA_NUCLEO);
 
     if (fadeAlpha > 250) manager.state = GameStates.TITLE_SCREEN;
-    fadeAlpha += 5;
+    fadeAlpha += 10;
     background(0, fadeAlpha);
   });
 }

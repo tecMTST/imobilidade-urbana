@@ -12,8 +12,30 @@ function draw() {
     gameManager.run();
 }
 class EntityFactory {
+    static Events;
+    static Behaviors;
+    static AnimationCycles;
+    static create;
 }
 class Entity {
+    id;
+    layer;
+    tags;
+    activeBehaviors;
+    behaviors;
+    internalFunctions;
+    eventListeners;
+    scale;
+    positionVector;
+    size;
+    rotation;
+    static Assets = {
+        sample: "sample",
+    };
+    static ERROR = {
+        NoBehavior: new Error("Behavior not in entity."),
+        NoState: new Error("State not in entity."),
+    };
     constructor(id, layer, size = { width: 0, height: 0 }, position = { x: 0, y: 0 }, tags = [], rotation = 0) {
         this.id = id;
         this.positionVector = createVector(position.x, position.y);
@@ -83,14 +105,17 @@ class Entity {
         pop();
     }
 }
-Entity.Assets = {
-    sample: "sample",
-};
-Entity.ERROR = {
-    NoBehavior: new Error("Behavior not in entity."),
-    NoState: new Error("State not in entity."),
-};
 class Joystick extends EntityFactory {
+    static Behaviors = {
+        EmitControlEvent: "control-event",
+        Draw: "draw",
+    };
+    static Events = {
+        ControlEvent: {
+            name: "touch-controls",
+            options: {},
+        },
+    };
     static create(manager) {
         const joystick = new Entity("joystick", 0, { width: manager.UnitSize * 2, height: manager.UnitSize * 3 }, { x: 0, y: 0 });
         Joystick.controlEvent(manager, joystick);
@@ -142,17 +167,26 @@ class Joystick extends EntityFactory {
         }, true);
     }
 }
-Joystick.Behaviors = {
-    EmitControlEvent: "control-event",
-    Draw: "draw",
-};
-Joystick.Events = {
-    ControlEvent: {
-        name: "touch-controls",
-        options: {},
-    },
-};
 class Player extends EntityFactory {
+    static Behaviors = {
+        Walk: "walk",
+        ShowMarmita: "show-marmita",
+    };
+    static AnimationCycles = {
+        static: {
+            cycleName: "static",
+            frames: [0],
+            timing: 5,
+        },
+        walking: {
+            cycleName: "walking",
+            frames: [0, 1],
+            timing: 2,
+        },
+    };
+    static Settings = {
+        currentWagon: 3,
+    };
     static create(manager) {
         const player = new Entity("player", 1, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: 0, y: 0 });
         const { PlayerSprite } = AssetList;
@@ -189,25 +223,6 @@ class Player extends EntityFactory {
         });
     }
 }
-Player.Behaviors = {
-    Walk: "walk",
-    ShowMarmita: "show-marmita",
-};
-Player.AnimationCycles = {
-    static: {
-        cycleName: "static",
-        frames: [0],
-        timing: 5,
-    },
-    walking: {
-        cycleName: "walking",
-        frames: [0, 1],
-        timing: 2,
-    },
-};
-Player.Settings = {
-    currentWagon: 3,
-};
 const AssetList = {
     CarroMetro: {
         columns: 1,
@@ -280,6 +295,7 @@ function setupFunction(manager) {
     loadingScreen(manager);
     introSplashScreen(manager);
     titleScreen(manager);
+    gameScreen(manager);
 }
 function addAssetsToManager(manager) {
     for (const asset of Object.keys(AssetList)) {
@@ -287,7 +303,26 @@ function addAssetsToManager(manager) {
         manager.addAsset(asset, path);
     }
 }
-function gameScreen(manager) { }
+function gameScreen(manager) {
+    let fadeIn = 255;
+    let fadeOut = 0;
+    const tituloImage = manager.getAsset(AssetList.TitleScreen.name);
+    noSmooth();
+    manager.addState(GameStates.GAME_PLAYING, (m) => {
+        background(0);
+        image(tituloImage, 0, 0, width, height);
+        if (fadeIn > 0) {
+            fadeIn -= gameConfig.fadeInSpeed;
+            background(0, fadeIn);
+        }
+        if (fadeOut > 250)
+            0;
+        if (mouseIsPressed || fadeOut >= gameConfig.fadeInSpeed) {
+            fadeOut += gameConfig.fadeInSpeed;
+            background(0, fadeOut);
+        }
+    });
+}
 function introSplashScreen(manager) {
     const logoNucleo = manager.getAsset(GameAssets.LOGO_NUCLEO);
     let fadeAlpha = 0;
@@ -297,7 +332,7 @@ function introSplashScreen(manager) {
         image(logoNucleo, 0, 0, manager.UnitSize * 3, manager.UnitSize * 3);
         if (fadeAlpha > 250)
             manager.state = GameStates.TITLE_SCREEN;
-        fadeAlpha += 5;
+        fadeAlpha += 10;
         background(0, fadeAlpha);
     });
 }
@@ -312,7 +347,7 @@ function loadingScreen(manager) {
         if (mouseIsPressed)
             hasInteracted = true;
         if (m.assetsLoadingProgression >= 0.99)
-            loadingText = "Toque para iniciar.";
+            loadingText = "Toque para iniciar";
         background(0);
         image(logo, 0, 0, m.UnitSize * 3, m.UnitSize * 3);
         rectMode(CENTER);
@@ -342,7 +377,7 @@ function titleScreen(manager) {
             background(0, fadeIn);
         }
         if (fadeOut > 250)
-            0;
+            manager.state = GameStates.GAME_PLAYING;
         if (mouseIsPressed || fadeOut >= gameConfig.fadeInSpeed) {
             fadeOut += gameConfig.fadeInSpeed;
             background(0, fadeOut);
@@ -400,6 +435,15 @@ class Animate {
     }
 }
 class BaseBehaviors {
+    static Names = {
+        SpriteAnimation: "sprite-animation",
+        AddSpriteCycle: "add-sprite-cycle",
+        SetCurrentSpriteCycle: "set-sprite-cycle",
+        ConstrainToScreen: "constrain-entity-to-screen",
+        Shake: "shake-base-behavior",
+        TrasitionState: "transition-between-states",
+        Spawn: "spawn-base-behavior",
+    };
     static addSpriteAnimation(entity, tileset) {
         const spriteAnimation = new SpriteAnimation(tileset);
         const behavior = (e) => {
@@ -501,19 +545,27 @@ class BaseBehaviors {
         }, true);
     }
 }
-BaseBehaviors.Names = {
-    SpriteAnimation: "sprite-animation",
-    AddSpriteCycle: "add-sprite-cycle",
-    SetCurrentSpriteCycle: "set-sprite-cycle",
-    ConstrainToScreen: "constrain-entity-to-screen",
-    Shake: "shake-base-behavior",
-    TrasitionState: "transition-between-states",
-    Spawn: "spawn-base-behavior",
-};
 class GameManager {
+    loadedAssetsCount;
+    currentState;
+    events;
+    assets;
+    configs = gameConfig;
+    layers;
+    existingLayers;
+    entities;
+    entityGroups;
+    behaviors;
+    states;
+    _UnitSize;
+    globalVolume = 0.3;
+    _UnitRoot;
+    position;
+    rotation;
+    static ERROR = {
+        NoState: new Error("State not in manager."),
+    };
     constructor() {
-        this.configs = gameConfig;
-        this.globalVolume = 0.3;
         this.behaviors = new Map();
         this.states = new Map();
         this.assets = new Map();
@@ -666,9 +718,6 @@ class GameManager {
         return this.assets.get(assetName);
     }
 }
-GameManager.ERROR = {
-    NoState: new Error("State not in manager."),
-};
 function throwCustomError(error, message) {
     error.message = message;
     throw error;
@@ -691,11 +740,17 @@ class Helpers {
     }
 }
 class ERRORS {
+    static Entity = {
+        NO_BEHAVIOR: new Error("Entity has no behavior of given name."),
+    };
 }
-ERRORS.Entity = {
-    NO_BEHAVIOR: new Error("Entity has no behavior of given name."),
-};
 class SpriteAnimation {
+    current;
+    animationCycles;
+    tileset;
+    static ERROR = {
+        NoCycle: new Error("Animation Cycle doesn't exist."),
+    };
     constructor(tileset) {
         this.tileset = tileset;
         this.animationCycles = new Map();
@@ -740,10 +795,15 @@ class SpriteAnimation {
         this.tileset.drawTile(currentSprite, { x: 0, y: 0 }, size);
     }
 }
-SpriteAnimation.ERROR = {
-    NoCycle: new Error("Animation Cycle doesn't exist."),
-};
 class Tileset {
+    sourcePath;
+    sourceSize;
+    sourceColumns;
+    image;
+    tilesheetWidth;
+    static ERROR = {
+        NoImage: new Error("No image file in tileset"),
+    };
     constructor(assetSourcePath, originalTileSize, tilesetColumns) {
         if (typeof assetSourcePath === "string")
             this.sourcePath = assetSourcePath;
@@ -772,7 +832,4 @@ class Tileset {
         };
     }
 }
-Tileset.ERROR = {
-    NoImage: new Error("No image file in tileset"),
-};
 //# sourceMappingURL=build.js.map

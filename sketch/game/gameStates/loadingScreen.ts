@@ -9,7 +9,7 @@ function loadingScreen(manager: GameManager) {
     let loadingText = (m.assetsLoadingProgression * 100).toFixed(1) + "%";
     if (mouseIsPressed) hasInteracted = true;
 
-    if (m.assetsLoadingProgression >= 0.99) loadingText = "Toque para iniciar.";
+    if (m.assetsLoadingProgression >= 0.99) loadingText = "Toque para iniciar";
 
     background(0);
     image(logo, 0, 0, m.UnitSize * 3, m.UnitSize * 3);

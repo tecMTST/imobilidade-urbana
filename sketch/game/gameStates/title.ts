@@ -15,7 +15,7 @@ function titleScreen(manager: GameManager) {
       background(0, fadeIn);
     }
 
-    if (fadeOut > 250) 0; //TODO: NEXT
+    if (fadeOut > 250) manager.state = GameStates.GAME_PLAYING; //TODO: NEXT
 
     if (mouseIsPressed || fadeOut >= gameConfig.fadeInSpeed) {
       fadeOut += gameConfig.fadeInSpeed;
