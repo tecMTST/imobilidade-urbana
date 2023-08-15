@@ -36,4 +36,7 @@ function loadingScreen(manager: GameManager) {
   addEntities(manager);
 }
 
-function addEntities(manager: GameManager) {}
+function addEntities(manager: GameManager) {
+  Vagao.create(manager);
+  CharacterControl.create(manager);
+}

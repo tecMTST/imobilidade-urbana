@@ -9,6 +9,13 @@ function setup() {
     setupFunction(gameManager);
 }
 function draw() {
+    if (document.documentElement.clientWidth < document.documentElement.clientHeight) {
+        image(gameManager.assets.get(AssetList.RotateDevice.name), 0, 0, gameManager.size.width, gameManager.size.height);
+        fill(255);
+        textSize(gameManager.UnitSize);
+        text("rotacione o dispositivo e recarregue a tela", 0, gameManager.UnitSize);
+        return;
+    }
     gameManager.run();
 }
 class EntityFactory {
@@ -105,52 +112,43 @@ class Entity {
         pop();
     }
 }
-class Joystick extends EntityFactory {
+class CharacterControl extends EntityFactory {
     static Behaviors = {
-        EmitControlEvent: "control-event",
-        Draw: "draw",
+        EmitControlEvent: "emit-control-event",
     };
     static Events = {
-        ControlEvent: {
-            name: "touch-controls",
-            options: {},
-        },
+        ControlEvent: { name: "control-event", options: {} },
     };
     static create(manager) {
-        const joystick = new Entity("joystick", 0, { width: manager.UnitSize * 2, height: manager.UnitSize * 3 }, { x: 0, y: 0 });
-        Joystick.controlEvent(manager, joystick);
-        Joystick.draw(manager, joystick);
-        manager.addEntity(joystick, joystick.layer);
+        const controller = new Entity("controller", 0);
+        CharacterControl.emitControlEvent(manager, controller);
+        CharacterControl.listenToEvent(manager, controller);
+        manager.addEntity(controller, controller.layer);
     }
-    static draw(manager, joystick) {
-        const joystickSize = manager.UnitSize * 1.5;
-        joystick.addListener(Joystick.Events.ControlEvent.name, (options) => {
-            let { currentPress, isPressed } = options;
-            if (isPressed) {
-                fill(255, 90);
-                circle(0, 0, joystickSize);
-                stroke(255, 0, 0);
-                strokeWeight(3);
-                const norm = currentPress.copy();
-                if (norm.x ** 2 + norm.y ** 2 > (joystickSize * 0.4) ** 2)
-                    norm.normalize().mult(joystickSize * 0.4);
-                line(0, 0, norm.x, norm.y);
-                fill(255);
-                strokeWeight(1);
-                stroke(0);
-                circle(norm.x, norm.y, joystickSize * 0.7);
-            }
+    static listenToEvent(manager, controller) {
+        const widLimit = (manager.size.width / 2) * 0.9;
+        controller.addListener(CharacterControl.Events.ControlEvent.name, (e) => {
+            const { origin, isPressed, isLeft, isRight } = e;
+            fill(200, 0, 0, 90);
+            noStroke();
+            if (isPressed)
+                if (isLeft)
+                    rect(-manager.size.width / 2, -manager.size.height / 2, manager.size.width / 2 - widLimit, manager.size.height);
+            if (isRight)
+                rect(widLimit, -manager.size.height / 2, manager.UnitSize * 2, manager.size.height);
         });
     }
-    static controlEvent(manager, joystick) {
-        joystick.addBehavior(Joystick.Behaviors.EmitControlEvent, (e) => {
-            let options = manager.getEvent(Joystick.Events.ControlEvent.name)
-                ?.options;
+    static emitControlEvent(manager, controller) {
+        const widLimit = (manager.size.width / 2) * 0.9;
+        controller.addBehavior(CharacterControl.Behaviors.EmitControlEvent, (e) => {
+            let options = manager.getEvent(CharacterControl.Events.ControlEvent.name)?.options;
             if (options === undefined) {
                 options = {
                     origin: createVector(0, 0),
                     isPressed: false,
                     currentPress: createVector(0, 0),
+                    isLeft: false,
+                    isRight: false,
                 };
             }
             const [x, y] = [mouseX, mouseY];
@@ -161,9 +159,16 @@ class Joystick extends EntityFactory {
                 options.isPressed = true;
                 options.currentPress = createVector(x - width / 2, y - height / 2);
                 options.currentPress.sub(options.origin);
-                joystick.setPosition(options.origin);
             }
-            manager.addEvent(Joystick.Events.ControlEvent.name, options, true);
+            if (options.origin.x < -widLimit && mouseIsPressed)
+                options.isLeft = true;
+            else
+                options.isLeft = false;
+            if (options.origin.x > widLimit && mouseIsPressed)
+                options.isRight = true;
+            else
+                options.isRight = false;
+            manager.addEvent(CharacterControl.Events.ControlEvent.name, options, true);
         }, true);
     }
 }
@@ -223,6 +228,27 @@ class Player extends EntityFactory {
         });
     }
 }
+class Vagao extends EntityFactory {
+    static AnimationCycles = {
+        static: {
+            cycleName: "static",
+            frames: [0],
+            timing: 5,
+        },
+    };
+    static create(manager) {
+        const vagao = new Entity("vagao", 1, { width: manager.size.width, height: manager.size.height }, { x: 0, y: 0 });
+        const { CarroMetro } = AssetList;
+        const vagaoSpritesheet = manager.getAsset(CarroMetro.name);
+        const vagaoTileset = new Tileset(vagaoSpritesheet, CarroMetro.originalTileSize, CarroMetro.columns);
+        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(vagao, vagaoTileset);
+        newCycleFunction(Player.AnimationCycles.static);
+        setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
+        newCycleFunction(Player.AnimationCycles.walking);
+        vagao.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
+        manager.addEntity(vagao, vagao.layer);
+    }
+}
 const AssetList = {
     CarroMetro: {
         columns: 1,
@@ -237,12 +263,32 @@ const AssetList = {
     TitleScreen: {
         columns: 1,
         originalTileSize: {
-            width: 393,
-            height: 410,
+            width: 108,
+            height: 190,
         },
-        path: "./assets/img/titulo_temp.png",
+        path: "./assets/img/tela_inicial.png",
         type: "image",
         name: "TitleScreen",
+    },
+    PlayerSprite: {
+        columns: 1,
+        originalTileSize: {
+            width: 30,
+            height: 60,
+        },
+        path: "./assets/img/personagem_temp.png",
+        type: "image",
+        name: "PlayerSprite",
+    },
+    RotateDevice: {
+        columns: 1,
+        originalTileSize: {
+            width: 190,
+            height: 108,
+        },
+        path: "./assets/img/rotate.png",
+        type: "image",
+        name: "RotateDevice",
     },
     RisadaSFX: {
         columns: 1,
@@ -292,6 +338,10 @@ function setupFunction(manager) {
     }
     createCanvas(WIDTH, HEIGHT);
     manager.setUnitSize(HEIGHT * manager.configs.UnitSizeProportion);
+    manager.size = {
+        width: WIDTH,
+        height: HEIGHT,
+    };
     loadingScreen(manager);
     introSplashScreen(manager);
     titleScreen(manager);
@@ -306,21 +356,11 @@ function addAssetsToManager(manager) {
 function gameScreen(manager) {
     let fadeIn = 255;
     let fadeOut = 0;
-    const tituloImage = manager.getAsset(AssetList.TitleScreen.name);
+    const vagao = manager.getEntity("vagao");
     noSmooth();
     manager.addState(GameStates.GAME_PLAYING, (m) => {
         background(0);
-        image(tituloImage, 0, 0, width, height);
-        if (fadeIn > 0) {
-            fadeIn -= gameConfig.fadeInSpeed;
-            background(0, fadeIn);
-        }
-        if (fadeOut > 250)
-            0;
-        if (mouseIsPressed || fadeOut >= gameConfig.fadeInSpeed) {
-            fadeOut += gameConfig.fadeInSpeed;
-            background(0, fadeOut);
-        }
+        manager.runEntities();
     });
 }
 function introSplashScreen(manager) {
@@ -363,7 +403,10 @@ function loadingScreen(manager) {
     manager.state = GameStates.LOADING_STATE;
     addEntities(manager);
 }
-function addEntities(manager) { }
+function addEntities(manager) {
+    Vagao.create(manager);
+    CharacterControl.create(manager);
+}
 function titleScreen(manager) {
     let fadeIn = 255;
     let fadeOut = 0;
@@ -562,6 +605,7 @@ class GameManager {
     _UnitRoot;
     position;
     rotation;
+    size;
     static ERROR = {
         NoState: new Error("State not in manager."),
     };

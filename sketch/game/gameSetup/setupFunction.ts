@@ -14,6 +14,11 @@ function setupFunction(manager: GameManager) {
 
   manager.setUnitSize(HEIGHT * manager.configs.UnitSizeProportion);
 
+  manager.size = {
+    width: WIDTH,
+    height: HEIGHT,
+  };
+
   loadingScreen(manager);
   introSplashScreen(manager);
   titleScreen(manager);

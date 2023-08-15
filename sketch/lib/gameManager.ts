@@ -30,6 +30,7 @@ class GameManager {
 
   position: p5.Vector;
   rotation: number;
+  size: Size;
 
   static ERROR = {
     NoState: new Error("State not in manager."),

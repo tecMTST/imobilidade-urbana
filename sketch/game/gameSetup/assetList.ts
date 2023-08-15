@@ -20,12 +20,32 @@ const AssetList: { [key: string]: AssetSettings } = {
   TitleScreen: {
     columns: 1,
     originalTileSize: {
-      width: 393,
-      height: 410,
+      width: 108,
+      height: 190,
     },
-    path: "./assets/img/titulo_temp.png",
+    path: "./assets/img/tela_inicial.png",
     type: "image",
     name: "TitleScreen",
+  },
+  PlayerSprite: {
+    columns: 1,
+    originalTileSize: {
+      width: 30,
+      height: 60,
+    },
+    path: "./assets/img/personagem_temp.png",
+    type: "image",
+    name: "PlayerSprite",
+  },
+  RotateDevice: {
+    columns: 1,
+    originalTileSize: {
+      width: 190,
+      height: 108,
+    },
+    path: "./assets/img/rotate.png",
+    type: "image",
+    name: "RotateDevice",
   },
   RisadaSFX: {
     columns: 1,
