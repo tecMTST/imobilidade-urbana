@@ -2,7 +2,7 @@
   "theme_color": "#D95763",
   "background_color": "#000000",
   "display": "fullscreen",
-  "scope": "/",
+  "scope": "/imobilidade-urbana/",
   "start_url": "/index.html",
   "name": "Imobilidade Urbana",
   "description": "Jogo de terror no metr\u00f4 de SP, desenvolvido pelo N\u00facleo de Tecnologia do MTST",
