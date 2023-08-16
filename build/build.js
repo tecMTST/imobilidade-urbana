@@ -1,6 +1,8 @@
 let gameManager;
 let startedWithCorrectRotation = false;
-let hasRequestedFullScreen = false;
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js");
+}
 function preload() {
     gameManager = new GameManager();
     preloadFunction(gameManager);
@@ -15,11 +17,6 @@ function draw() {
         if (!handleLandscapeOrientation())
             return;
     startedWithCorrectRotation = true;
-    const c = document.getElementById("game-canvas");
-    if (!hasRequestedFullScreen) {
-        c.requestFullscreen();
-        hasRequestedFullScreen = true;
-    }
     gameManager.run();
 }
 function handleLandscapeOrientation() {
@@ -431,9 +428,13 @@ function addEntities(manager) {
 function titleScreen(manager) {
     let fadeIn = 255;
     let fadeOut = 0;
+    let hasRequestedFullScreen = false;
     const tituloImage = manager.getAsset(AssetList.TitleScreen.name);
     noSmooth();
     manager.addState(GameStates.TITLE_SCREEN, (m) => {
+        if (!hasRequestedFullScreen && !document.fullscreenElement)
+            makeFullScreen();
+        hasRequestedFullScreen = true;
         background(0);
         image(tituloImage, 0, 0, width, height);
         if (fadeIn > 0) {
@@ -447,6 +448,10 @@ function titleScreen(manager) {
             background(0, fadeOut);
         }
     });
+}
+function makeFullScreen() {
+    const c = document.getElementById("game-canvas");
+    c.requestFullscreen();
 }
 class Animate {
     static getAnimation(animation, animationConfig, options = []) {

@@ -1,0 +1,15 @@
+{
+  "name": "Imobilidade Urbana",
+  "start-url": "./index.html",
+  "display": "fullscreen",
+  "description": "Jogo de terror no metrô de SP, desenvolvido pelo núcleo de tecnologia do MTST.",
+  "theme-color": "#d95763",
+  "background_color": "#000000",
+  "icons": [
+    {
+      "src": "icons/640.png",
+      "type": "image/png",
+      "sizes": "640x640"
+    }
+  ]
+}

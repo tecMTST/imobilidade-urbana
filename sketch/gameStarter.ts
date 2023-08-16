@@ -1,6 +1,10 @@
 let gameManager: GameManager;
 let startedWithCorrectRotation = false;
-let hasRequestedFullScreen = false;
+
+// Registering Service Worker
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js");
+}
 
 function preload() {
   gameManager = new GameManager();
@@ -17,12 +21,6 @@ function draw() {
   if (!startedWithCorrectRotation) if (!handleLandscapeOrientation()) return;
   startedWithCorrectRotation = true;
 
-  const c = document.getElementById("game-canvas");
-  if (!hasRequestedFullScreen) {
-    //document.fullscreenElement
-    c.requestFullscreen();
-    hasRequestedFullScreen = true;
-  }
   gameManager.run();
 }
 
