@@ -150,7 +150,8 @@ class CharacterControl extends EntityFactory {
             strokeWeight(3);
             stroke(250);
             fill(200, 0, 0);
-            text(manager.size.width, -20, -20);
+            text(manager.size.width / 2, -20, -20);
+            text(e.origin.x, 20, 20);
             strokeWeight(5);
             stroke(0, 0, 250);
             line(manager.size.width / 2 - manager.UnitSize, 0, manager.size.width / 2 - manager.UnitSize, manager.size.height / 2 - manager.UnitSize);
