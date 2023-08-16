@@ -1,4 +1,6 @@
 let gameManager: GameManager;
+let isCorrectRotation = true;
+
 function preload() {
   gameManager = new GameManager();
   preloadFunction(gameManager);
@@ -12,8 +14,11 @@ function setup() {
 
 function draw() {
   if (
-    document.documentElement.clientWidth < document.documentElement.clientHeight
+    document.documentElement.clientWidth <
+      document.documentElement.clientHeight ||
+    !isCorrectRotation
   ) {
+    isCorrectRotation = false;
     image(
       gameManager.assets.get(AssetList.RotateDevice.name) as p5.Image,
       0,
