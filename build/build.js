@@ -145,18 +145,26 @@ class CharacterControl extends EntityFactory {
     static listenToEvent(manager, controller) {
         const widLimit = (manager.size.width / 2) * 0.9;
         controller.addListener(CharacterControl.Events.ControlEvent.name, (e) => {
-            const { origin, isPressed, isLeft, isRight } = e;
+            const { isPressed, isLeft, isRight } = e;
+            textSize(gameManager.UnitSize);
+            strokeWeight(3);
+            stroke(250);
+            fill(200, 0, 0);
+            text(manager.size.width, -20, -20);
+            strokeWeight(5);
+            stroke(0, 0, 250);
+            line(manager.size.width / 2 - manager.UnitSize, 0, manager.size.width / 2 - manager.UnitSize, manager.size.height / 2 - manager.UnitSize);
             fill(200, 0, 0, 90);
             noStroke();
             if (isPressed)
                 if (isLeft)
                     rect(-manager.size.width / 2, -manager.size.height / 2, manager.size.width / 2 - widLimit, manager.size.height);
             if (isRight)
-                rect(widLimit, -manager.size.height / 2, manager.UnitSize * 2, manager.size.height);
+                rect(widLimit, -manager.size.height / 2, manager.size.width / 2 - widLimit, manager.size.height);
         });
     }
     static emitControlEvent(manager, controller) {
-        const widLimit = (manager.size.width / 2) * 0.9;
+        const widLimit = (manager.size.width / 2) * 0.7;
         controller.addBehavior(CharacterControl.Behaviors.EmitControlEvent, (e) => {
             let options = manager.getEvent(CharacterControl.Events.ControlEvent.name)?.options;
             if (options === undefined) {
@@ -202,12 +210,13 @@ class Player extends EntityFactory {
         },
         walking: {
             cycleName: "walking",
-            frames: [0, 1],
+            frames: [0],
             timing: 2,
         },
     };
     static Settings = {
         currentWagon: 3,
+        speed: 4,
     };
     static create(manager) {
         const player = new Entity("player", 1, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: 0, y: 0 });
@@ -225,23 +234,11 @@ class Player extends EntityFactory {
     }
     static controlListener(manager, player, setCurrentSpriteFunction) {
         player.addListener(CharacterControl.Events.ControlEvent.name, (event) => {
-            const { currentPress, isPressed } = event;
-            const norm = currentPress.copy();
-            if (isPressed) {
-                norm.div(manager.UnitSize / 8);
-                const normalized = norm
-                    .copy()
-                    .normalize()
-                    .mult(manager.UnitSize * 0.05);
-                player.position.add(norm.normalize().mult(manager.UnitRoot * 1.4));
-                setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
-            }
-            else {
-                setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
-            }
-            if ((norm.x < 0 && player.scale.width > 0) ||
-                (norm.x > 0 && player.scale.width < 0))
-                player.scale.width *= -1;
+            const { isRight, isLeft } = event;
+            if (isRight)
+                player.position.x += Player.Settings.speed;
+            if (isLeft)
+                player.position.x += Player.Settings.speed;
         });
     }
 }

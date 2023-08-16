@@ -30,7 +30,22 @@ class CharacterControl extends EntityFactory {
     controller.addListener(
       CharacterControl.Events.ControlEvent.name,
       (e: ControllerOptions) => {
-        const { origin, isPressed, isLeft, isRight } = e;
+        const { isPressed, isLeft, isRight } = e;
+        textSize(gameManager.UnitSize);
+        strokeWeight(3);
+        stroke(250);
+        fill(200, 0, 0);
+        text(manager.size.width, -20, -20);
+
+        strokeWeight(5);
+        stroke(0, 0, 250);
+        line(
+          manager.size.width / 2 - manager.UnitSize,
+          0,
+          manager.size.width / 2 - manager.UnitSize,
+          manager.size.height / 2 - manager.UnitSize
+        );
+
         fill(200, 0, 0, 90);
         noStroke();
         if (isPressed)
@@ -45,7 +60,7 @@ class CharacterControl extends EntityFactory {
           rect(
             widLimit,
             -manager.size.height / 2,
-            manager.UnitSize * 2,
+            manager.size.width / 2 - widLimit,
             manager.size.height
           );
       }
@@ -53,7 +68,7 @@ class CharacterControl extends EntityFactory {
   }
 
   static emitControlEvent(manager: GameManager, controller: Entity) {
-    const widLimit = (manager.size.width / 2) * 0.9;
+    const widLimit = (manager.size.width / 2) * 0.7;
     controller.addBehavior(
       CharacterControl.Behaviors.EmitControlEvent,
       (e) => {

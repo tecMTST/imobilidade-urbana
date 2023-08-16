@@ -14,13 +14,14 @@ class Player extends EntityFactory {
     },
     walking: {
       cycleName: "walking",
-      frames: [0, 1],
+      frames: [0],
       timing: 2,
     },
   };
 
   static Settings = {
     currentWagon: 3,
+    speed: 4,
   };
 
   static create(manager: GameManager) {
@@ -65,31 +66,10 @@ class Player extends EntityFactory {
     player.addListener(
       CharacterControl.Events.ControlEvent.name,
       (event: ControllerOptions) => {
-        const { currentPress, isPressed } = event;
-        const norm = currentPress.copy();
+        const { isRight, isLeft } = event;
 
-        if (isPressed) {
-          norm.div(manager.UnitSize / 8);
-          const normalized = norm
-            .copy()
-            .normalize()
-            .mult(manager.UnitSize * 0.05);
-
-          // if (norm.magSq() < manager.UnitSize * 2)
-          //   player.position.add(norm.add(normalized));
-          // else
-          player.position.add(norm.normalize().mult(manager.UnitRoot * 1.4));
-
-          setCurrentSpriteFunction(Player.AnimationCycles.walking.cycleName);
-        } else {
-          setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
-        }
-
-        if (
-          (norm.x < 0 && player.scale.width > 0) ||
-          (norm.x > 0 && player.scale.width < 0)
-        )
-          player.scale.width *= -1;
+        if (isRight) player.position.x += Player.Settings.speed;
+        if (isLeft) player.position.x += Player.Settings.speed;
       }
     );
   }
