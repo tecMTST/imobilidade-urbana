@@ -86,7 +86,7 @@ class CharacterControl extends EntityFactory {
             isRight: false,
           };
         }
-        const [x, y] = [mouseX, mouseY];
+        const [x, y] = [winMouseX, winMouseY];
         if (!options.isPressed)
           options.origin = createVector(x - width / 2, y - height / 2);
         options.isPressed = false;
