@@ -41,10 +41,8 @@ class Player extends EntityFactory {
       PlayerSprite.columns
     );
 
-    const {
-      newCycleFunction,
-      setCurrentSpriteFunction,
-    } = BaseBehaviors.addSpriteAnimation(player, playerTileset);
+    const { newCycleFunction, setCurrentSpriteFunction } =
+      BaseBehaviors.addSpriteAnimation(player, playerTileset);
 
     newCycleFunction(Player.AnimationCycles.static);
     setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
@@ -65,7 +63,7 @@ class Player extends EntityFactory {
     setCurrentSpriteFunction: (name: string) => void
   ) {
     player.addListener(
-      Joystick.Events.ControlEvent.name,
+      CharacterControl.Events.ControlEvent.name,
       (event: ControllerOptions) => {
         const { currentPress, isPressed } = event;
         const norm = currentPress.copy();

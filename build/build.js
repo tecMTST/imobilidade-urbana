@@ -1,5 +1,6 @@
 let gameManager;
-let isCorrectRotation = true;
+let startedWithCorrectRotation = false;
+let hasRequestedFullScreen = false;
 function preload() {
     gameManager = new GameManager();
     preloadFunction(gameManager);
@@ -10,21 +11,32 @@ function setup() {
     setupFunction(gameManager);
 }
 function draw() {
-    if (document.documentElement.clientWidth <
-        document.documentElement.clientHeight ||
-        !isCorrectRotation) {
-        isCorrectRotation = false;
+    if (!startedWithCorrectRotation)
+        if (!handleLandscapeOrientation())
+            return;
+    startedWithCorrectRotation = true;
+    const c = document.getElementById("game-canvas");
+    if (!hasRequestedFullScreen) {
+        c.requestFullscreen();
+        hasRequestedFullScreen = true;
+    }
+    gameManager.run();
+}
+function handleLandscapeOrientation() {
+    if (document.documentElement.clientWidth < document.documentElement.clientHeight) {
         image(gameManager.assets.get(AssetList.RotateDevice.name), 0, 0, gameManager.size.width, gameManager.size.height);
         fill(255);
         textSize(gameManager.UnitSize);
-        text("rotacione o dispositivo e recarregue a tela", 0, gameManager.UnitSize);
-        return;
+        text("rotacione o dispositivo", 0, gameManager.UnitSize);
+        return false;
     }
-    const c = document.getElementById("game-canvas");
-    if (!document.fullscreenElement) {
-        c.requestFullscreen();
+    else if (!startedWithCorrectRotation &&
+        !(document.documentElement.clientWidth === gameManager.size.width ||
+            document.documentElement.clientHeight === gameManager.size.height)) {
+        location.reload();
+        console.log("refreshing");
     }
-    gameManager.run();
+    return true;
 }
 class EntityFactory {
     static Events;
@@ -205,7 +217,7 @@ class Player extends EntityFactory {
         const { PlayerSprite } = AssetList;
         const playerSpritesheet = manager.getAsset(PlayerSprite.name);
         const playerTileset = new Tileset(playerSpritesheet, PlayerSprite.originalTileSize, PlayerSprite.columns);
-        const { newCycleFunction, setCurrentSpriteFunction, } = BaseBehaviors.addSpriteAnimation(player, playerTileset);
+        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(player, playerTileset);
         newCycleFunction(Player.AnimationCycles.static);
         setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
         newCycleFunction(Player.AnimationCycles.walking);
@@ -215,7 +227,7 @@ class Player extends EntityFactory {
         manager.addEntity(player, player.layer);
     }
     static controlListener(manager, player, setCurrentSpriteFunction) {
-        player.addListener(Joystick.Events.ControlEvent.name, (event) => {
+        player.addListener(CharacterControl.Events.ControlEvent.name, (event) => {
             const { currentPress, isPressed } = event;
             const norm = currentPress.copy();
             if (isPressed) {

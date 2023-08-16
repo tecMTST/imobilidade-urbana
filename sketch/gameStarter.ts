@@ -1,5 +1,6 @@
 let gameManager: GameManager;
-let isCorrectRotation = true;
+let startedWithCorrectRotation = false;
+let hasRequestedFullScreen = false;
 
 function preload() {
   gameManager = new GameManager();
@@ -13,12 +14,22 @@ function setup() {
 }
 
 function draw() {
+  if (!startedWithCorrectRotation) if (!handleLandscapeOrientation()) return;
+  startedWithCorrectRotation = true;
+
+  const c = document.getElementById("game-canvas");
+  if (!hasRequestedFullScreen) {
+    //document.fullscreenElement
+    c.requestFullscreen();
+    hasRequestedFullScreen = true;
+  }
+  gameManager.run();
+}
+
+function handleLandscapeOrientation(): boolean {
   if (
-    document.documentElement.clientWidth <
-      document.documentElement.clientHeight ||
-    !isCorrectRotation
+    document.documentElement.clientWidth < document.documentElement.clientHeight
   ) {
-    isCorrectRotation = false;
     image(
       gameManager.assets.get(AssetList.RotateDevice.name) as p5.Image,
       0,
@@ -28,16 +39,18 @@ function draw() {
     );
     fill(255);
     textSize(gameManager.UnitSize);
-    text(
-      "rotacione o dispositivo e recarregue a tela",
-      0,
-      gameManager.UnitSize
-    );
-    return;
+    text("rotacione o dispositivo", 0, gameManager.UnitSize);
+    return false;
+  } else if (
+    // if the device did not start with the correct rotation
+    !startedWithCorrectRotation &&
+    !(
+      document.documentElement.clientWidth === gameManager.size.width ||
+      document.documentElement.clientHeight === gameManager.size.height
+    )
+  ) {
+    location.reload();
+    console.log("refreshing");
   }
-  const c = document.getElementById("game-canvas");
-  if (!document.fullscreenElement) {
-    c.requestFullscreen();
-  }
-  gameManager.run();
+  return true;
 }
