@@ -1,4 +1,5 @@
 let gameManager;
+let isCorrectRotation = true;
 function preload() {
     gameManager = new GameManager();
     preloadFunction(gameManager);
@@ -9,12 +10,19 @@ function setup() {
     setupFunction(gameManager);
 }
 function draw() {
-    if (document.documentElement.clientWidth < document.documentElement.clientHeight) {
+    if (document.documentElement.clientWidth <
+        document.documentElement.clientHeight ||
+        !isCorrectRotation) {
+        isCorrectRotation = false;
         image(gameManager.assets.get(AssetList.RotateDevice.name), 0, 0, gameManager.size.width, gameManager.size.height);
         fill(255);
         textSize(gameManager.UnitSize);
         text("rotacione o dispositivo e recarregue a tela", 0, gameManager.UnitSize);
         return;
+    }
+    const c = document.getElementById("game-canvas");
+    if (!document.fullscreenElement) {
+        c.requestFullscreen();
     }
     gameManager.run();
 }
@@ -336,7 +344,8 @@ function setupFunction(manager) {
         WIDTH = clientWidth;
         HEIGHT = clientWidth / configs.aspectRatio;
     }
-    createCanvas(WIDTH, HEIGHT);
+    manager.CANVAS_REF = createCanvas(WIDTH, HEIGHT);
+    manager.CANVAS_REF.id("game-canvas");
     manager.setUnitSize(HEIGHT * manager.configs.UnitSizeProportion);
     manager.size = {
         width: WIDTH,
@@ -606,6 +615,7 @@ class GameManager {
     position;
     rotation;
     size;
+    CANVAS_REF;
     static ERROR = {
         NoState: new Error("State not in manager."),
     };
