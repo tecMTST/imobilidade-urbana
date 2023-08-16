@@ -35,5 +35,9 @@ function draw() {
     );
     return;
   }
+  const c = document.getElementById("game-canvas");
+  if (!document.fullscreenElement) {
+    c.requestFullscreen();
+  }
   gameManager.run();
 }

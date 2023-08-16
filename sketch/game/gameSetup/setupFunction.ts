@@ -10,7 +10,8 @@ function setupFunction(manager: GameManager) {
     HEIGHT = clientWidth / configs.aspectRatio;
   }
 
-  createCanvas(WIDTH, HEIGHT);
+  manager.CANVAS_REF = createCanvas(WIDTH, HEIGHT);
+  manager.CANVAS_REF.id("game-canvas");
 
   manager.setUnitSize(HEIGHT * manager.configs.UnitSizeProportion);
 

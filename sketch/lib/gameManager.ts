@@ -31,6 +31,7 @@ class GameManager {
   position: p5.Vector;
   rotation: number;
   size: Size;
+  CANVAS_REF: p5.Renderer;
 
   static ERROR = {
     NoState: new Error("State not in manager."),
