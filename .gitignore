@@ -3,3 +3,6 @@ node_modules/
 **/*.js
 **/*.js.map
 !build/build.js
+!p5.min.js
+!p5.sound.min.js
+!sw.js
