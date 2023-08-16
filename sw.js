@@ -2,7 +2,7 @@ self.addEventListener("install", function (event) {
   caches.open("sw-cashe").then(function (cache) {
     return cache.add(
       "index.html",
-      "./build/build.js",
+      "build/build.js",
       // Assets
       "assets/img/interacao_0.png",
       "assets/img/interacao_1.png",
@@ -15,8 +15,8 @@ self.addEventListener("install", function (event) {
       "assets/img/tela_inicial.png",
       "assets/img/titulo_temp.png",
       // Libraries
-      "./p5.min.js",
-      "./p5.sound.min.js"
+      "p5.min.js",
+      "p5.sound.min.js"
     );
   });
 });

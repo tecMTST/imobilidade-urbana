@@ -3,7 +3,7 @@
   "start-url": "index.html",
   "display": "fullscreen",
   "description": "Jogo de terror no metrô de SP, desenvolvido pelo núcleo de tecnologia do MTST.",
-  "theme-color": "#d95763",
+  "theme-color": "#D95763",
   "background_color": "#000000",
   "icons": [
     {
