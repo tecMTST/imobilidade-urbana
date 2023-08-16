@@ -143,7 +143,7 @@ class CharacterControl extends EntityFactory {
         manager.addEntity(controller, controller.layer);
     }
     static listenToEvent(manager, controller) {
-        const widLimit = (manager.size.width / 2) * 0.9;
+        const widLimit = (manager.size.width / 2) * 0.7;
         controller.addListener(CharacterControl.Events.ControlEvent.name, (e) => {
             const { isPressed, isLeft, isRight } = e;
             textSize(gameManager.UnitSize);

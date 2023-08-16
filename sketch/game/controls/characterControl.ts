@@ -26,7 +26,7 @@ class CharacterControl extends EntityFactory {
   }
 
   static listenToEvent(manager: GameManager, controller: Entity) {
-    const widLimit = (manager.size.width / 2) * 0.9;
+    const widLimit = (manager.size.width / 2) * 0.7;
     controller.addListener(
       CharacterControl.Events.ControlEvent.name,
       (e: ControllerOptions) => {
