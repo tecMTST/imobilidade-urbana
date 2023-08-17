@@ -20,16 +20,16 @@ class Player extends EntityFactory {
   };
 
   static Settings = {
-    currentWagon: 3,
-    speed: 4,
+    currentWagon: 1,
+    speed: 10,
   };
 
   static create(manager: GameManager) {
     const player = new Entity(
       "player",
       1,
-      { width: manager.UnitSize, height: manager.UnitSize * 2 },
-      { x: 0, y: 0 }
+      { width: 5 * manager.UnitSize, height: 5 * manager.UnitSize * 2 },
+      { x: 0, y: (5 * manager.UnitSize) / 2 }
     );
 
     const { PlayerSprite } = AssetList;
@@ -69,7 +69,7 @@ class Player extends EntityFactory {
         const { isRight, isLeft } = event;
 
         if (isRight) player.position.x += Player.Settings.speed;
-        if (isLeft) player.position.x += Player.Settings.speed;
+        if (isLeft) player.position.x -= Player.Settings.speed;
       }
     );
   }

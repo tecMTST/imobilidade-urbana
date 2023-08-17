@@ -37,6 +37,16 @@ const AssetList: { [key: string]: AssetSettings } = {
     type: "image",
     name: "PlayerSprite",
   },
+  PedroSprite: {
+    columns: 1,
+    originalTileSize: {
+      width: 30,
+      height: 60,
+    },
+    path: "./assets/img/interacao_0.png",
+    type: "image",
+    name: "PedroSprite",
+  },
   RotateDevice: {
     columns: 1,
     originalTileSize: {

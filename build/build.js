@@ -146,15 +146,6 @@ class CharacterControl extends EntityFactory {
         const widLimit = (manager.size.width / 2) * 0.7;
         controller.addListener(CharacterControl.Events.ControlEvent.name, (e) => {
             const { isPressed, isLeft, isRight } = e;
-            textSize(gameManager.UnitSize);
-            strokeWeight(3);
-            stroke(250);
-            fill(200, 0, 0);
-            text(manager.size.width / 2, -20, -20);
-            text(e.origin.x, 20, 20);
-            strokeWeight(5);
-            stroke(0, 0, 250);
-            line(manager.size.width / 2 - manager.UnitSize, 0, manager.size.width / 2 - manager.UnitSize, manager.size.height / 2 - manager.UnitSize);
             fill(200, 0, 0, 90);
             noStroke();
             if (isPressed)
@@ -165,7 +156,7 @@ class CharacterControl extends EntityFactory {
         });
     }
     static emitControlEvent(manager, controller) {
-        const widLimit = (manager.size.width / 2) * 0.7;
+        const widLimit = (manager.size.width / 2) * 0.6;
         controller.addBehavior(CharacterControl.Behaviors.EmitControlEvent, (e) => {
             let options = manager.getEvent(CharacterControl.Events.ControlEvent.name)?.options;
             if (options === undefined) {
@@ -177,7 +168,7 @@ class CharacterControl extends EntityFactory {
                     isRight: false,
                 };
             }
-            const [x, y] = [winMouseX, winMouseY];
+            const [x, y] = [mouseX, mouseY];
             if (!options.isPressed)
                 options.origin = createVector(x - width / 2, y - height / 2);
             options.isPressed = false;
@@ -198,6 +189,84 @@ class CharacterControl extends EntityFactory {
         }, true);
     }
 }
+class Metro extends EntityFactory {
+    static Behaviors = {
+        TransitionWagon: "transition-wagon",
+    };
+    static AnimationCycles = {
+        static: {
+            cycleName: "static",
+            frames: [0],
+            timing: 5,
+        },
+    };
+    static Settings = {
+        vagoes: [],
+        transitionTo: -1,
+    };
+    static create(manager) {
+        const metro = new Entity("metro", 2, { width: manager.size.width, height: manager.size.height }, { x: 0, y: 0 });
+        const { CarroMetro } = AssetList;
+        const metroSpritesheet = manager.getAsset(CarroMetro.name);
+        const metroTileset = new Tileset(metroSpritesheet, CarroMetro.originalTileSize, CarroMetro.columns);
+        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(metro, metroTileset);
+        newCycleFunction(Player.AnimationCycles.static);
+        setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
+        newCycleFunction(Player.AnimationCycles.walking);
+        metro.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
+        Metro.addVagoes(manager, metro);
+        manager.addEntity(metro, metro.layer);
+    }
+    static metroTransitionBehavior(manager, metro) {
+        const player = manager.entities.get("player");
+        metro.addBehavior(Metro.Behaviors.TransitionWagon, () => {
+            if (player.position.x > manager.size.width / 2 - manager.UnitSize &&
+                Player.Settings.currentWagon < Metro.Settings.vagoes.length - 1)
+                Metro.Settings.transitionTo = Player.Settings.currentWagon + 1;
+        }, true);
+    }
+    static addVagoes(manager, metro) {
+        const { vagoes } = Metro.Settings;
+        vagoes.push({
+            id: 0,
+            characters: [Pedro.create(manager)],
+        });
+        vagoes.push({
+            id: 1,
+            characters: [],
+        });
+        vagoes.push({
+            id: 2,
+            characters: [Pedro.create(manager)],
+        });
+    }
+}
+class Pedro extends EntityFactory {
+    static Behaviors = {
+        Walk: "walk",
+        ShowMarmita: "show-marmita",
+    };
+    static AnimationCycles = {
+        static: {
+            cycleName: "static",
+            frames: [0],
+            timing: 5,
+        },
+    };
+    static Settings = {};
+    static create(manager) {
+        const pedro = new Entity("pedro", 1, { width: 5 * manager.UnitSize, height: 5 * manager.UnitSize * 2 }, { x: 0, y: (5 * manager.UnitSize) / 2 });
+        const { PedroSprite } = AssetList;
+        const pedroSpritesheet = manager.getAsset(PedroSprite.name);
+        const pedroTileset = new Tileset(pedroSpritesheet, PedroSprite.originalTileSize, PedroSprite.columns);
+        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(pedro, pedroTileset);
+        newCycleFunction(Pedro.AnimationCycles.static);
+        setCurrentSpriteFunction(Pedro.AnimationCycles.static.cycleName);
+        pedro.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
+        BaseBehaviors.constrainToScreen(manager, pedro, true);
+        return pedro;
+    }
+}
 class Player extends EntityFactory {
     static Behaviors = {
         Walk: "walk",
@@ -216,11 +285,11 @@ class Player extends EntityFactory {
         },
     };
     static Settings = {
-        currentWagon: 3,
-        speed: 4,
+        currentWagon: 1,
+        speed: 10,
     };
     static create(manager) {
-        const player = new Entity("player", 1, { width: manager.UnitSize, height: manager.UnitSize * 2 }, { x: 0, y: 0 });
+        const player = new Entity("player", 1, { width: 5 * manager.UnitSize, height: 5 * manager.UnitSize * 2 }, { x: 0, y: (5 * manager.UnitSize) / 2 });
         const { PlayerSprite } = AssetList;
         const playerSpritesheet = manager.getAsset(PlayerSprite.name);
         const playerTileset = new Tileset(playerSpritesheet, PlayerSprite.originalTileSize, PlayerSprite.columns);
@@ -239,29 +308,8 @@ class Player extends EntityFactory {
             if (isRight)
                 player.position.x += Player.Settings.speed;
             if (isLeft)
-                player.position.x += Player.Settings.speed;
+                player.position.x -= Player.Settings.speed;
         });
-    }
-}
-class Vagao extends EntityFactory {
-    static AnimationCycles = {
-        static: {
-            cycleName: "static",
-            frames: [0],
-            timing: 5,
-        },
-    };
-    static create(manager) {
-        const vagao = new Entity("vagao", 1, { width: manager.size.width, height: manager.size.height }, { x: 0, y: 0 });
-        const { CarroMetro } = AssetList;
-        const vagaoSpritesheet = manager.getAsset(CarroMetro.name);
-        const vagaoTileset = new Tileset(vagaoSpritesheet, CarroMetro.originalTileSize, CarroMetro.columns);
-        const { newCycleFunction, setCurrentSpriteFunction } = BaseBehaviors.addSpriteAnimation(vagao, vagaoTileset);
-        newCycleFunction(Player.AnimationCycles.static);
-        setCurrentSpriteFunction(Player.AnimationCycles.static.cycleName);
-        newCycleFunction(Player.AnimationCycles.walking);
-        vagao.activateBehavior(BaseBehaviors.Names.SpriteAnimation);
-        manager.addEntity(vagao, vagao.layer);
     }
 }
 const AssetList = {
@@ -294,6 +342,16 @@ const AssetList = {
         path: "./assets/img/personagem_temp.png",
         type: "image",
         name: "PlayerSprite",
+    },
+    PedroSprite: {
+        columns: 1,
+        originalTileSize: {
+            width: 30,
+            height: 60,
+        },
+        path: "./assets/img/interacao_0.png",
+        type: "image",
+        name: "PedroSprite",
     },
     RotateDevice: {
         columns: 1,
@@ -420,8 +478,9 @@ function loadingScreen(manager) {
     addEntities(manager);
 }
 function addEntities(manager) {
-    Vagao.create(manager);
+    Metro.create(manager);
     CharacterControl.create(manager);
+    Player.create(manager);
 }
 function titleScreen(manager) {
     let fadeIn = 255;
