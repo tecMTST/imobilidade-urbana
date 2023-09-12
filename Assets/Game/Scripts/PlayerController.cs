@@ -3,9 +3,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    
+
     private bool isMovingRight = false;
     private bool isMovingLeft = false;
+    private bool[] onTheWagon = { false, false, true, false, false }; //Informes the train wagon where the player is
+
+
+    [Header("Vagões"), Tooltip("Aqui vão os coliders dos respectivos vagões")]
+    public Collider2D[] vagoes = new Collider2D[5];
+    
 
     private void Update()
     {
