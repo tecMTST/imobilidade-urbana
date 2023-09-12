@@ -3,13 +3,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
-
     private bool isMovingRight = false;
     private bool isMovingLeft = false;
     private bool[] onTheWagon = { false, false, true, false, false }; //Informes the train wagon where the player is
 
 
-    [Header("Vagões"), Tooltip("Aqui vão os coliders dos respectivos vagões")]
+    [Header("Vagï¿½es"), Tooltip("Aqui vï¿½o os coliders dos respectivos vagï¿½es")]
     public Collider2D[] vagoes = new Collider2D[5];
     
 
@@ -26,6 +25,15 @@ public class PlayerController : MonoBehaviour
             Vector3 newPosition = transform.position + Vector3.left * moveSpeed * Time.deltaTime;
             transform.position = newPosition;
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.name == "metro")
+        {
+            int roomIndex = other.GetComponent<RoomTrigger>().roomIndex;
+            cameraController.SwitchRoom(roomIndex);
         }
     }
 
