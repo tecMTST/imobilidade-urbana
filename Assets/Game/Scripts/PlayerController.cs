@@ -8,8 +8,10 @@ public class PlayerController : MonoBehaviour
     private bool[] onTheWagon = { false, false, true, false, false }; //Informes the train wagon where the player is
 
 
-    [Header("Vag�es"), Tooltip("Aqui v�o os coliders dos respectivos vag�es")]
+    [Header("Vagoes"), Tooltip("Aqui v�o os coliders dos respectivos vag�es")]
     public Collider2D[] vagoes = new Collider2D[5];
+
+    public CameraController cameraController;
     
 
     private void Update()
