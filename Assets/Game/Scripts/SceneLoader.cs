@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public string sceneToLoad = "SampleScene";
+    public string sceneToLoad = "TrainScene";
 
     public void LoadScene()
     {

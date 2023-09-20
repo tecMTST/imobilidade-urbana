@@ -5,13 +5,14 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     private bool isMovingRight = false;
     private bool isMovingLeft = false;
-    private bool[] onTheWagon = { false, false, true, false, false }; //Informes the train wagon where the player is
 
+      
 
-    [Header("Vagoes"), Tooltip("Aqui v�o os coliders dos respectivos vag�es")]
-    public Collider2D[] vagoes = new Collider2D[5];
+    [Header("Vagoes"), Tooltip("Aqui vao os coliders dos respectivos vagoes")]
+    public Collider2D[] vagoes = new Collider2D[15];
 
     public CameraController cameraController;
+    public MapController mapController;
     
 
     private void Update()
@@ -36,6 +37,8 @@ public class PlayerController : MonoBehaviour
         {
             int roomIndex = other.GetComponent<RoomTrigger>().roomIndex;
             cameraController.SwitchRoom(roomIndex);
+            mapController.SetPlayerMapPosition(roomIndex);
+            Debug.Log(roomIndex);
         }
     }
 
