@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour{
 
-    public static List<InventoryItem> inventory;
+    public static List<InventoryItem> inventory = new();
     public List<GameObject> ui_Items;
 
     public Transform inventoryParent;
@@ -14,7 +14,8 @@ public class InventoryController : MonoBehaviour{
     // Start is called before the first frame update
     void Start(){
 
-       
+        SetNewItem();
+        SetNewItem();
         RefreshInventoryUI();
     }
 
