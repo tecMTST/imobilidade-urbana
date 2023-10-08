@@ -9,6 +9,7 @@ public class Dialogue : MonoBehaviour
     public string[] actorName;
 
     public LayerMask playerLayer;
+    public LayerMask npcLayer;
     public float radius;
 
     private DialogueControl dc;
@@ -41,9 +42,11 @@ public class Dialogue : MonoBehaviour
 
                 clickPosition.z = 0; 
 
-                float distance = Vector2.Distance(transform.position, clickPosition);
+                Vector2 clickPosition2D = new Vector2(clickPosition.x, clickPosition.y);
 
-                if (distance < 3.5f) 
+                Collider2D hitCollider = Physics2D.OverlapPoint(clickPosition2D, npcLayer);
+
+                if (hitCollider != null && hitCollider.gameObject == gameObject)
                 {
                     onDialogue = true;
                     dc.Speech(profile, speechTxt, actorName);
