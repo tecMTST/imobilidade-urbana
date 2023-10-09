@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -43,6 +44,9 @@ TagManager:
     locked: 0
   - name: City
     uniqueID: 2312401391
+    locked: 0
+  - name: Enemy
+    uniqueID: 2415258507
     locked: 0
   - name: Background
     uniqueID: 3079148925
