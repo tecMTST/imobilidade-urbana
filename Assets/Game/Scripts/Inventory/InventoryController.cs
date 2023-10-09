@@ -7,8 +7,8 @@ public class InventoryController : MonoBehaviour{
 
     public int items;
 
-    public List<InventoryItem> inventory = new();
-    public List<GameObject> ui_Items;
+    private List<InventoryItem> inventory = new();
+    private List<GameObject> ui_Items;
 
     public Transform inventoryParent;
     public GameObject itemPrefab;
