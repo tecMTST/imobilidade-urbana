@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Confiner2D
+  - Water
+  - UI
+  - Background
+  - Ground
+  - Player
+  - Light
+  - City
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - Camera
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: City
+    uniqueID: 2312401391
+    locked: 0
+  - name: Enemy
+    uniqueID: 2415258507
+    locked: 0
+  - name: Background
+    uniqueID: 3079148925
+    locked: 0
+  - name: Ground
+    uniqueID: 1104302791
+    locked: 0
+  - name: Player
+    uniqueID: 2631783531
+    locked: 0
+  - name: Foreground
+    uniqueID: 189734199
+    locked: 0
