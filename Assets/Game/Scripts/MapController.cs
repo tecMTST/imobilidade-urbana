@@ -26,8 +26,6 @@ public class MapController : MonoBehaviour
     {
         playerMapIcon.SetParent(mapWagons[index], false);
 
-        Debug.Log(index);
-        Debug.Log(mapWagons[index].gameObject.name);
 
     }
 }

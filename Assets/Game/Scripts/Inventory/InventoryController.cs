@@ -5,18 +5,28 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour{
 
-    public static List<InventoryItem> inventory = new();
-    public List<GameObject> ui_Items;
+    public int items;
+
+    private List<InventoryItem> inventory = new();
+    private List<GameObject> ui_Items = new();
 
     public Transform inventoryParent;
     public GameObject itemPrefab;
 
+    public static InventoryController Instance;
+
     // Start is called before the first frame update
     void Start(){
 
-        SetNewItem();
-        SetNewItem();
+        Instance = this;
+
+        for (int i = 0; i < items; i++) {
+            SetNewItem();
+        }
+
         RefreshInventoryUI();
+
+
     }
 
     // Update is called once per frame
@@ -24,26 +34,47 @@ public class InventoryController : MonoBehaviour{
         
     }
 
-    public static void SetNewItem(){
+  
+
+    public void SetNewItem(){
         InventoryItem inventoryItem = new();
         inventory.Add(inventoryItem);
+        RefreshInventoryUI();
     }
 
-    public static void RemoveItem(string itemName) {
+    public void RemoveItem(string itemName) {
         inventory.RemoveAll(item => item.itemName == itemName);
+        RefreshInventoryUI();
+
     }
 
-    public static bool VerifyItemByName(string itemName) {
+    public void RemoveLastItem() {
+        inventory.RemoveAt(inventory.Count - 1);
+        RefreshInventoryUI();
+
+    }
+
+    public bool VerifyItemByName(string itemName) {
         return inventory.Exists(item => item.itemName == itemName);
     }
 
     public void RefreshInventoryUI() {
 
         foreach(GameObject uiItem in ui_Items) {
-            DestroyImmediate(uiItem);
+            
+            Destroy(uiItem);
+            
         }
 
-        foreach(InventoryItem item in inventory) {
+        ui_Items.Clear();
+
+        print(inventory.Count);
+        print(ui_Items.Count);
+
+
+
+
+        foreach (InventoryItem item in inventory) {
             GameObject gO = Instantiate(itemPrefab, inventoryParent);
             InventoryItem inventItem = gO.GetComponent<InventoryItem>();
 
