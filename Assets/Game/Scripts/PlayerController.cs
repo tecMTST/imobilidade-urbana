@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     private bool isMovingRight = false;
     private bool isMovingLeft = false;
+    private int roomIndex = 7;
 
       
 
@@ -35,10 +36,15 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.name == "metro")
         {
-            int roomIndex = other.GetComponent<RoomTrigger>().roomIndex;
+            roomIndex = other.GetComponent<RoomTrigger>().roomIndex;
             cameraController.SwitchRoom(roomIndex);
             mapController.SetPlayerMapPosition(roomIndex);
         }
+    }
+
+    public int GetRoomIndex()
+    {
+        return roomIndex;
     }
 
     public void StartMovingRight()
