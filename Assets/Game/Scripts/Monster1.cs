@@ -11,6 +11,8 @@ public class Monster1 : MonoBehaviour
     public Transform[] targetObject;
     public float moveSpeedNormal = 2f;
     public float moveSpeedLight = 5f;
+    public GameObject player;
+    public int monsterRoomIndex;
     private float stoppingDistance = 1f;
 
     private bool shouldMove = false;
@@ -32,6 +34,8 @@ public class Monster1 : MonoBehaviour
         
         thisCollider.OverlapCollider(contactFilter, colliders);
 
+        bool sameRoom = (monsterRoomIndex == player.GetComponent<PlayerController>().GetRoomIndex());;
+
         if (colliders.Exists(item => item.CompareTag("NearPlayer"))) 
         {
             isNearPlayer = true;
@@ -41,7 +45,7 @@ public class Monster1 : MonoBehaviour
             isNearPlayer = false;
         }
 
-        if (light2D.enabled && isNearPlayer)
+        if (light2D.enabled && isNearPlayer && sameRoom)
         {
             Vector3 direction = playerObject.position - transform.position;
             direction.Normalize();
