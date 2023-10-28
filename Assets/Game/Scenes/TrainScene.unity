@@ -1067,7 +1067,7 @@ Transform:
   m_GameObject: {fileID: 76270533}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -292, y: -0.040017486, z: -8.991622}
+  m_LocalPosition: {x: -441.78857, y: 0.05247, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3394,7 +3394,7 @@ Transform:
   m_GameObject: {fileID: 239319778}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -292, y: -0.040017724, z: -8.991622}
+  m_LocalPosition: {x: -441.78857, y: 0.05247, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5895,7 +5895,7 @@ Transform:
   m_GameObject: {fileID: 440715862}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -292, y: -0.040017724, z: -8.991622}
+  m_LocalPosition: {x: -441.78857, y: 0.05247, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7053,7 +7053,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -292, y: -0.040017724, z: -8.991622}
+  m_LocalPosition: {x: -441.78857, y: 0.05247, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8965,7 +8965,7 @@ Transform:
   m_GameObject: {fileID: 600462295}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -317.34476, y: -0.02436, z: -8.991622}
+  m_LocalPosition: {x: -441.78857, y: 0.05247, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11918,6 +11918,8 @@ MonoBehaviour:
   - {fileID: 1862661445}
   moveSpeedNormal: 2
   moveSpeedLight: 5
+  player: {fileID: 15615783}
+  monsterRoomIndex: 4
 --- !u!212 &838039335
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13300,7 +13302,7 @@ Transform:
   m_GameObject: {fileID: 938808967}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -317.34476, y: -0.02436, z: -8.991622}
+  m_LocalPosition: {x: -292, y: -0.040017724, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13567,7 +13569,7 @@ Transform:
   m_GameObject: {fileID: 944521651}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -317.34476, y: -0.02436, z: -8.991622}
+  m_LocalPosition: {x: -292, y: -0.040017724, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15208,6 +15210,8 @@ MonoBehaviour:
   - {fileID: 1695084273}
   moveSpeedNormal: 2
   moveSpeedLight: 5
+  player: {fileID: 15615783}
+  monsterRoomIndex: 9
 --- !u!212 &998742403
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16913,7 +16917,7 @@ Transform:
   m_GameObject: {fileID: 1087104105}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -317.34476, y: -0.02436, z: -8.991622}
+  m_LocalPosition: {x: -441.78857, y: 0.05247, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19983,6 +19987,8 @@ MonoBehaviour:
   - {fileID: 185979534}
   moveSpeedNormal: 2
   moveSpeedLight: 5
+  player: {fileID: 15615783}
+  monsterRoomIndex: 8
 --- !u!212 &1286605416
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20482,6 +20488,8 @@ MonoBehaviour:
   - {fileID: 1298790762}
   moveSpeedNormal: 2
   moveSpeedLight: 5
+  player: {fileID: 15615783}
+  monsterRoomIndex: 11
 --- !u!212 &1304711224
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22079,7 +22087,7 @@ Transform:
   m_GameObject: {fileID: 1454653706}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -317.34476, y: -0.02436, z: -8.991622}
+  m_LocalPosition: {x: -441.78857, y: 0.05247, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -22490,7 +22498,7 @@ Transform:
   m_GameObject: {fileID: 1459808949}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -317.34476, y: -0.02436, z: -8.991622}
+  m_LocalPosition: {x: -441.78857, y: 0.05247, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27844,6 +27852,8 @@ MonoBehaviour:
   - {fileID: 429269327}
   moveSpeedNormal: 2
   moveSpeedLight: 5
+  player: {fileID: 15615783}
+  monsterRoomIndex: 6
 --- !u!61 &1723965215
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28869,7 +28879,7 @@ Transform:
   m_GameObject: {fileID: 1780359269}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -317.34476, y: -0.02436, z: -8.991622}
+  m_LocalPosition: {x: -292, y: -0.040017724, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -31167,7 +31177,7 @@ Transform:
   m_GameObject: {fileID: 1969846797}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -317.34476, y: -0.02436, z: -8.991622}
+  m_LocalPosition: {x: -441.78857, y: 0.05247, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
