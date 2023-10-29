@@ -560,11 +560,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3922e6ed22ee26c469f26b1e171c340d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ambienteTrem1: {fileID: 8300000, guid: a7f663b493af31945aeb8e93043f6ddc, type: 3}
+  ambienteTrem1: {fileID: 8300000, guid: 461d1a8f307425148800a764b91e020d, type: 3}
+  sonoroLightTrem1: {fileID: 0}
+  sonoroDarkTrem2: {fileID: 0}
   aununcioTrem1: {fileID: 0}
   aununcioTrem2: {fileID: 0}
   aununcioTrem3: {fileID: 0}
   aununcioTrem4: {fileID: 0}
+  menuLuz: {fileID: 8300000, guid: a038f8efb230cfc45b6ac8bad9190d4f, type: 3}
   bgmGame1: {fileID: 8007368771704581211}
   bgmGame2: {fileID: 1153538312579061446}
   sfxMenu: {fileID: 6665362728527035625}

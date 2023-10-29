@@ -6,6 +6,12 @@ public class SoundManager : MonoBehaviour
 {
     //Lista de Músicas:
     [SerializeField] private AudioClip ambienteTrem1;
+    [SerializeField] private AudioClip sonoroLightTrem1;
+    [SerializeField] private AudioClip sonoroDarkTrem2;
+    [SerializeField] private AudioClip aununcioTrem1;
+    [SerializeField] private AudioClip aununcioTrem2;
+    [SerializeField] private AudioClip aununcioTrem3;
+    [SerializeField] private AudioClip aununcioTrem4;
 
     //Vetor Lista de Músicas:
     private AudioClip[] selectBGM;
@@ -13,14 +19,17 @@ public class SoundManager : MonoBehaviour
     //Vetor Auxiliar Lista de Músicas:
     public enum ListaBGM
     {
-        ambienteTrem1
+        ambienteTrem1,
+        sonoroLightTrem1,
+        sonoroDarkTrem2,
+        aununcioTrem1,
+        aununcioTrem2,
+        aununcioTrem3,
+        aununcioTrem4
     };
 
     //Lista de Efeitos:
-    [SerializeField] private AudioClip aununcioTrem1;
-    [SerializeField] private AudioClip aununcioTrem2;
-    [SerializeField] private AudioClip aununcioTrem3;
-    [SerializeField] private AudioClip aununcioTrem4;
+    [SerializeField] private AudioClip menuLuz;
 
     //Vetor Lista de Efeitos:
     private AudioClip[] selectSFX;
@@ -28,10 +37,7 @@ public class SoundManager : MonoBehaviour
     //Vetor Auxiliar Lista de Efeitos:
     public enum ListaSFX
     {
-        aununcioTrem1,
-        aununcioTrem2,
-        aununcioTrem3,
-        aununcioTrem4
+        menuLuz
     };
 
     //Lista de AudioSources Simultâneos:
@@ -59,16 +65,19 @@ public class SoundManager : MonoBehaviour
         //Setar Vetor de BGM:
         selectBGM = new AudioClip[]
         {
-            ambienteTrem1
+            ambienteTrem1,
+            sonoroLightTrem1,
+            sonoroDarkTrem2,
+            aununcioTrem1,
+            aununcioTrem2,
+            aununcioTrem3,
+            aununcioTrem4
         };
 
         //Setar Vetor de SFX:
         selectSFX = new AudioClip[]
         {
-            aununcioTrem1,
-            aununcioTrem2,
-            aununcioTrem3,
-            aununcioTrem4
+            menuLuz
         };
 
         //Carregar BGM:

@@ -20,17 +20,17 @@ public class Monster1 : MonoBehaviour
     private bool isNearPlayer = false;
     private int index = 0;
 
-    //Variáveis Áudio:
-    [SerializeField] private float limitVoice = 8f;
-    private float timerVoice = 0f;
-    private int typeVoice = 1;
-
-    //Compopnentes:
+    //Áudio:
     private AudioSource audioSource;
 
     //Lista de SFX:
     [SerializeField] private AudioClip sfxVoice1;
     [SerializeField] private AudioClip sfxVoice2;
+
+    //Variáveis Áudio:
+    [SerializeField] private float limitVoice = 8f;
+    private float timerVoice = 0f;
+    private int typeVoice = 1;
 
     void Start()
     {
