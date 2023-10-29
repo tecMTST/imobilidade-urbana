@@ -34,7 +34,7 @@ public class Monster1 : MonoBehaviour
         
         thisCollider.OverlapCollider(contactFilter, colliders);
 
-        bool sameRoom = (monsterRoomIndex == player.GetComponent<PlayerController>().GetRoomIndex());;
+        bool sameRoom = (monsterRoomIndex == player.GetComponent<PlayerController>().GetRoomIndex());
 
         if (colliders.Exists(item => item.CompareTag("NearPlayer"))) 
         {
