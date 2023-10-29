@@ -174,7 +174,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -561,12 +561,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ambienteTrem1: {fileID: 8300000, guid: 461d1a8f307425148800a764b91e020d, type: 3}
-  sonoroLightTrem1: {fileID: 0}
-  sonoroDarkTrem2: {fileID: 0}
-  aununcioTrem1: {fileID: 0}
-  aununcioTrem2: {fileID: 0}
-  aununcioTrem3: {fileID: 0}
-  aununcioTrem4: {fileID: 0}
+  sonoroLightTrem1: {fileID: 8300000, guid: 88de539c0696c8745ad1a854dcf6867f, type: 3}
+  sonoroDarkTrem2: {fileID: 8300000, guid: cc7bb6ad1e67ef04aa63f57b15710809, type: 3}
+  aununcioTrem1: {fileID: 8300000, guid: 956c1e5142b120d4c9ad697fd50b44a4, type: 3}
+  aununcioTrem2: {fileID: 8300000, guid: 85c9a01b80e5f4a499dbe4bfa7de34c7, type: 3}
+  aununcioTrem3: {fileID: 8300000, guid: 791bdcc9067c36246a80a2b474f94b19, type: 3}
+  aununcioTrem4: {fileID: 8300000, guid: d77984ca362d8a140a796913716eb6a3, type: 3}
+  aununcioTrem5: {fileID: 8300000, guid: 5042da4fa677cf9469f42e615c07d9ac, type: 3}
+  aununcioTrem6: {fileID: 8300000, guid: c009287f0906a1e4ebd8669b76695b14, type: 3}
+  aununcioTrem7: {fileID: 8300000, guid: 41f2126c565f4b6459a29acebfc49a9d, type: 3}
+  aununcioTrem8: {fileID: 8300000, guid: f91dc8056e56b694d8299c4655d7ddc5, type: 3}
   menuLuz: {fileID: 8300000, guid: a038f8efb230cfc45b6ac8bad9190d4f, type: 3}
   bgmGame1: {fileID: 8007368771704581211}
   bgmGame2: {fileID: 1153538312579061446}

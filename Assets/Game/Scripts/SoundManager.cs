@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
+    //Scene Manager:
+    private Scene currentScene;
+
     //Lista de Músicas:
     [SerializeField] private AudioClip ambienteTrem1;
     [SerializeField] private AudioClip sonoroLightTrem1;
@@ -12,6 +16,10 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip aununcioTrem2;
     [SerializeField] private AudioClip aununcioTrem3;
     [SerializeField] private AudioClip aununcioTrem4;
+    [SerializeField] private AudioClip aununcioTrem5;
+    [SerializeField] private AudioClip aununcioTrem6;
+    [SerializeField] private AudioClip aununcioTrem7;
+    [SerializeField] private AudioClip aununcioTrem8;
 
     //Vetor Lista de Músicas:
     private AudioClip[] selectBGM;
@@ -25,7 +33,11 @@ public class SoundManager : MonoBehaviour
         aununcioTrem1,
         aununcioTrem2,
         aununcioTrem3,
-        aununcioTrem4
+        aununcioTrem4,
+        aununcioTrem5,
+        aununcioTrem6,
+        aununcioTrem7,
+        aununcioTrem8,
     };
 
     //Lista de Efeitos:
@@ -48,10 +60,16 @@ public class SoundManager : MonoBehaviour
 
     //Outras Variáveis:
     public static SoundManager instance;
+    private float anuncioSFX = 100.0f;
+    private float timerAnuncio = 95.0f;
+    private bool segurarAnuncio = false;
 
     //Iniciação do SoundManager:
     void Awake()
     {
+        //Scene Manager:
+        currentScene = SceneManager.GetActiveScene();
+
         //Setar Instância:
         if (instance == null)
         {
@@ -71,7 +89,11 @@ public class SoundManager : MonoBehaviour
             aununcioTrem1,
             aununcioTrem2,
             aununcioTrem3,
-            aununcioTrem4
+            aununcioTrem4,
+            aununcioTrem5,
+            aununcioTrem6,
+            aununcioTrem7,
+            aununcioTrem8,
         };
 
         //Setar Vetor de SFX:
@@ -80,8 +102,33 @@ public class SoundManager : MonoBehaviour
             menuLuz
         };
 
-        //Carregar BGM:
-        playBGM(0, 1);
+        //Carregar BGM - Cena do Trem:
+        if (currentScene.name == "TrainScene")
+        {
+            playBGM(0, 1);
+        }
+    }
+
+    void Update()
+    {
+        //Tema do Trem e Anúncios:
+        if (currentScene.name == "TrainScene")
+        {
+            timerAnuncio = timerAnuncio + Time.deltaTime;
+            if (!segurarAnuncio && timerAnuncio >= anuncioSFX)
+            {
+                playBGM(1, 2);
+                segurarAnuncio = true;
+                Debug.Log("Tey 1");
+            }
+            else if (segurarAnuncio && !bgmGame2.isPlaying)
+            {
+                playBGM(UnityEngine.Random.Range(3, 10), 2);
+                segurarAnuncio = false;
+                Debug.Log("Tey 2");
+                timerAnuncio = 0f;
+            }
+        }
     }
 
     //Tocar BGM:
@@ -131,8 +178,11 @@ public class SoundManager : MonoBehaviour
     //Tocar SFX Game:
     public void playSFX(int lista)
     {
-        sfxGame.clip = selectBGM[lista];
-        sfxGame.Play();
+        if (!sfxGame.isPlaying)
+        {
+            sfxGame.clip = selectBGM[lista];
+            sfxGame.Play();
+        }
     }
 
     //Parar SFX Game:
