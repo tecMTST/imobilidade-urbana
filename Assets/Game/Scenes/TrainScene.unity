@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1493070
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &2347770
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -946,7 +946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &44388558
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1770,7 +1770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &85927652
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1914,7 +1914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &96224649
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2370,7 +2370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &114840045
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2756,7 +2756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &154701530
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2843,7 +2843,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5718781}
   m_AnchorMax: {x: 1, y: 0.5718781}
-  m_AnchoredPosition: {x: -0.0000019073486, y: -4.1}
+  m_AnchoredPosition: {x: 0.00009526666, y: -4.1}
   m_SizeDelta: {x: 0, y: 58.404}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &163829909
@@ -3488,7 +3488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &228992578
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3632,7 +3632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &232138891
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4026,6 +4026,52 @@ MonoBehaviour:
   - {x: -0.36844036, y: -0.5664315, z: 0}
   - {x: 0.30365717, y: -0.5555905, z: 0}
   - {x: -0.043596633, y: 0.21986395, z: 0}
+--- !u!1 &257905307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 257905309}
+  - component: {fileID: 257905308}
+  m_Layer: 0
+  m_Name: TimerController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &257905308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257905307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8b92bd6e47327e44bfd61803936aca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialTime: 1200
+  penalty: 60
+--- !u!4 &257905309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257905307}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &258194584
 GameObject:
   m_ObjectHideFlags: 0
@@ -4247,7 +4293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &259706888
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4607,7 +4653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &294916142
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4751,7 +4797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &311971578
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4895,7 +4941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &312415378
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5039,7 +5085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &315656991
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5441,7 +5487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &351679079
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6372,7 +6418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &419814233
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6814,7 +6860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &451599307
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6958,7 +7004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &464832840
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7102,7 +7148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &479259751
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7396,7 +7442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &503854796
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7540,7 +7586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &505736060
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7913,7 +7959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &521203336
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8286,7 +8332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &528552499
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8874,7 +8920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &549832078
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9018,7 +9064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &552057822
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9243,7 +9289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &571241786
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9387,7 +9433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &580690216
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9531,7 +9577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &581901950
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9675,7 +9721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &596118303
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9759,7 +9805,7 @@ Transform:
   m_GameObject: {fileID: 600462295}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -317.69275, y: -0.02515, z: -8.991622}
+  m_LocalPosition: {x: -317.34476, y: -0.02436, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10779,7 +10825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &678219177
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11017,7 +11063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &691412515
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11161,7 +11207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &707488947
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11305,7 +11351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &712123907
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12000,7 +12046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &756993694
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12389,7 +12435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &772113390
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12642,7 +12688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &813405979
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13101,7 +13147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &831105159
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13752,7 +13798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &857618061
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14923,7 +14969,7 @@ Transform:
   m_GameObject: {fileID: 938808967}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -317.69275, y: -0.02515, z: -8.991622}
+  m_LocalPosition: {x: -317.34476, y: -0.02436, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15190,7 +15236,7 @@ Transform:
   m_GameObject: {fileID: 944521651}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -317.69275, y: -0.02515, z: -8.991622}
+  m_LocalPosition: {x: -317.34476, y: -0.02436, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15717,7 +15763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &974350978
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15944,7 +15990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &986214158
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16088,7 +16134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &988345923
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16232,7 +16278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &988905786
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16376,7 +16422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &990663635
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16595,7 +16641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &994470986
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16739,7 +16785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &996750265
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17165,7 +17211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1010286158
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17465,7 +17511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1025690114
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18010,7 +18056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1046501634
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18498,7 +18544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1067635174
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18764,7 +18810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1070822626
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18923,7 +18969,7 @@ Transform:
   m_GameObject: {fileID: 1087104105}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -317.69275, y: -0.02515, z: -8.991622}
+  m_LocalPosition: {x: -317.34476, y: -0.02436, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19510,7 +19556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1115104281
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19665,6 +19711,7 @@ RectTransform:
   - {fileID: 1259128017}
   - {fileID: 1565476447}
   - {fileID: 395955147}
+  - {fileID: 2125717915}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -19763,7 +19810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1133933060
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19907,7 +19954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1145650150
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20051,7 +20098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1155945688
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20505,7 +20552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1183090763
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20870,7 +20917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1205741420
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21160,7 +21207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1237673937
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21475,7 +21522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1254462461
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21974,7 +22021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1264272946
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22199,7 +22246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1277719906
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22626,7 +22673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1292218234
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22770,7 +22817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1296299279
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23577,7 +23624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1350216699
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24061,7 +24108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1396706392
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24205,7 +24252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1410291288
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24919,7 +24966,7 @@ Transform:
   m_GameObject: {fileID: 1454653706}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -317.69275, y: -0.02515, z: -8.991622}
+  m_LocalPosition: {x: -317.34476, y: -0.02436, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25208,7 +25255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1457080147
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -25330,7 +25377,7 @@ Transform:
   m_GameObject: {fileID: 1459808949}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -317.69275, y: -0.02515, z: -8.991622}
+  m_LocalPosition: {x: -317.34476, y: -0.02436, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25619,7 +25666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1469842104
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -25763,7 +25810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1482793134
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26292,7 +26339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1498377988
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26436,7 +26483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1502055957
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26706,7 +26753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1512062486
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26925,7 +26972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1515382595
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27069,7 +27116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1516943242
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28100,7 +28147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1551825125
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28469,7 +28516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1570701416
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28694,7 +28741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1579011119
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28838,7 +28885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1580675331
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28982,7 +29029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1594617718
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -29481,7 +29528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1631644062
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -29663,7 +29710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1642302986
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -29807,7 +29854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1654550750
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -29987,7 +30034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1664122096
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30359,7 +30406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1671649418
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30670,7 +30717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1682154606
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30845,7 +30892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1705569719
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -31466,7 +31513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1737616348
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -31610,7 +31657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1747070527
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -31754,7 +31801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1753495045
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -32132,7 +32179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1778333667
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -32217,7 +32264,7 @@ Transform:
   m_GameObject: {fileID: 1780359269}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -317.69275, y: -0.02515, z: -8.991622}
+  m_LocalPosition: {x: -317.34476, y: -0.02436, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -32894,7 +32941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1826729650
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -33216,7 +33263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1848621025
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -33360,7 +33407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1862302088
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -33619,7 +33666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1865641049
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -33953,7 +34000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1879506512
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -34097,7 +34144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1887648426
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -34241,7 +34288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1902984083
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -34385,7 +34432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1923650899
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -34772,7 +34819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &1949123298
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -35018,7 +35065,7 @@ Transform:
   m_GameObject: {fileID: 1969846797}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -317.69275, y: -0.02515, z: -8.991622}
+  m_LocalPosition: {x: -317.34476, y: -0.02436, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -35750,7 +35797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &2005479657
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -35894,7 +35941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &2006053888
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36038,7 +36085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &2007602625
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36772,7 +36819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &2074106485
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36916,7 +36963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &2080934857
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -37165,7 +37212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &2106121108
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -37309,7 +37356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverSceneName: GameOverScene
+  trainScene: TrainScene
 --- !u!212 &2108987337
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -37362,6 +37409,99 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2125717914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2125717915}
+  - component: {fileID: 2125717917}
+  - component: {fileID: 2125717916}
+  - component: {fileID: 2125717918}
+  m_Layer: 5
+  m_Name: Timer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2125717915
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125717914}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1125761792}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 529.88, y: 334.12}
+  m_SizeDelta: {x: 160, y: 44.4964}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2125717916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125717914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 34
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 71
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 20:00
+--- !u!222 &2125717917
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125717914}
+  m_CullTransparentMesh: 1
+--- !u!114 &2125717918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125717914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92d9ce09cc27027488c7aa628a84ead4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerObj: {fileID: 2125717916}
 --- !u!1 &2125879974
 GameObject:
   m_ObjectHideFlags: 0
@@ -37416,3 +37556,4 @@ SceneRoots:
   - {fileID: 666299973}
   - {fileID: 2125879975}
   - {fileID: 1978016061}
+  - {fileID: 257905309}

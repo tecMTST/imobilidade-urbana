@@ -5,12 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class FOverBothObjectsCheck : MonoBehaviour
 {
-    public string gameOverSceneName = "GameOverScene"; 
+    public string trainScene = "TrainScene"; 
+    private GameObject timerController; 
  
     private Collider2D thisCollider;
 
 
     private void Start() {
+        timerController = GameObject.Find("TimerController");
         thisCollider = this.GetComponent<Collider2D>();
     }
 
@@ -24,16 +26,9 @@ public class FOverBothObjectsCheck : MonoBehaviour
         thisCollider.OverlapCollider(contactFilter, colliders);
 
         if (colliders.Exists(item => item.CompareTag("Player"))    &&    colliders.Exists(item => item.CompareTag("Enemy")))
-        SceneManager.LoadScene(gameOverSceneName);
-            
-        
-
+        {
+            timerController.GetComponent<TimerController>().Captured();
+            SceneManager.LoadScene(trainScene);
+        }
     }
-
 }
-
-
-
-
-
-
