@@ -5,9 +5,12 @@ using UnityEngine.UI;
 
 public class LightToggle : MonoBehaviour
 {
-    public UnityEngine.Rendering.Universal.Light2D light2D; 
+    public UnityEngine.Rendering.Universal.Light2D light2D;
     public UnityEngine.Rendering.Universal.Light2D light2D2; 
     private Button button;
+
+    //Lista de SFX:
+    [SerializeField] private AudioClip sfxLight;
 
     private void Start()
     {
@@ -19,5 +22,6 @@ public class LightToggle : MonoBehaviour
     {
         light2D.enabled = !light2D.enabled;
         light2D2.enabled = !light2D2.enabled;
+        SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.menuLuz);
     }
 }
