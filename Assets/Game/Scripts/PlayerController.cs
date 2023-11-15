@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
             roomIndex = other.GetComponent<RoomTrigger>().roomIndex;
             cameraController.SwitchRoom(roomIndex);
             mapController.SetPlayerMapPosition(roomIndex);
-            mapController.RevealMap(roomIndex);
+            mapController.RevealMap();
         }
     }
 
