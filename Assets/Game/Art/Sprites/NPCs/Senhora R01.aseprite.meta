@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a102905c9a3937742abaa6d5f9fdac1a
+guid: f003426572a6be740b112f86be9ff186
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Marreta R01
+  - name: Senhora R01
     originalName: 
-    pivot: {x: 0.50980395, y: 0}
+    pivot: {x: 0.36363634, y: -0.058823533}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 51
-      height: 60
-    spriteID: cfeb43e88b42f8b4f997838818e3ca0b
+      width: 22
+      height: 51
+    spriteID: f7a7759c1ea106e4e8e25c66913fd249
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,20 +142,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1077812853
-    name: Marreta R01
+    guid: -1692352677
+    name: Senhora R01
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Marreta R01
+    - name: Senhora R01
       frameIndex: 0
       cellRect:
-        x: 4
-        y: 0
-        width: 51
-        height: 60
-      spriteId: cfeb43e88b42f8b4f997838818e3ca0b
+        x: 22
+        y: 3
+        width: 22
+        height: 51
+      spriteId: f7a7759c1ea106e4e8e25c66913fd249
     linkedCells: []
     parentIndex: -1
   platformSettings: []

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a102905c9a3937742abaa6d5f9fdac1a
+guid: 3447c632cb920d149bb5d30c6d682bf8
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Marreta R01
+  - name: Segundo NPC - Marreta
     originalName: 
-    pivot: {x: 0.50980395, y: 0}
+    pivot: {x: 0.46296299, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 51
-      height: 60
-    spriteID: cfeb43e88b42f8b4f997838818e3ca0b
+      width: 54
+      height: 59
+    spriteID: 6ec5d1275043d3742a7be50c2f106a0e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,20 +142,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1077812853
-    name: Marreta R01
+    guid: -988318347
+    name: Segundo NPC - Marreta
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Marreta R01
+    - name: Segundo NPC - Marreta
       frameIndex: 0
       cellRect:
-        x: 4
+        x: 5
         y: 0
-        width: 51
-        height: 60
-      spriteId: cfeb43e88b42f8b4f997838818e3ca0b
+        width: 54
+        height: 59
+      spriteId: 6ec5d1275043d3742a7be50c2f106a0e
     linkedCells: []
     parentIndex: -1
   platformSettings: []

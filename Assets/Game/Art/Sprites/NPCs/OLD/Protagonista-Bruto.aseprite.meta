@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a102905c9a3937742abaa6d5f9fdac1a
+guid: 114d73b556d401c49a34ab009a59620f
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Marreta R01
+  - name: Protagonista-Bruto_Frame_0
     originalName: 
-    pivot: {x: 0.50980395, y: 0}
+    pivot: {x: 0.52380955, y: -0.0925926}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 51
-      height: 60
-    spriteID: cfeb43e88b42f8b4f997838818e3ca0b
+      width: 21
+      height: 54
+    spriteID: 88fb61ee1a99b564eb8b27cd0171cbf5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -139,26 +139,110 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: Protagonista-Bruto_Frame_1
+    originalName: 
+    pivot: {x: 0.6111111, y: -0.090909086}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 33
+      y: 4
+      width: 18
+      height: 55
+    spriteID: 66dcf4acd7a2d994f830f542993a70c8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 33, y: 4}
+  - name: Protagonista-Bruto_Frame_2
+    originalName: 
+    pivot: {x: 0.52380955, y: -0.0925926}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 66
+      width: 21
+      height: 54
+    spriteID: 3df424fe6839da14e84c1a862155e0d9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 66}
+  - name: Protagonista-Bruto_Frame_3
+    originalName: 
+    pivot: {x: 0.6111111, y: -0.090909086}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 33
+      y: 67
+      width: 18
+      height: 55
+    spriteID: a97b111c2a197014e84774fb65a81fc5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 33, y: 67}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1077812853
-    name: Marreta R01
+    guid: 1085117978
+    name: Protagonista-Bruto
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Marreta R01
+    - name: Protagonista-Bruto_Frame_0
       frameIndex: 0
       cellRect:
-        x: 4
-        y: 0
-        width: 51
-        height: 60
-      spriteId: cfeb43e88b42f8b4f997838818e3ca0b
+        x: 21
+        y: 5
+        width: 21
+        height: 54
+      spriteId: 88fb61ee1a99b564eb8b27cd0171cbf5
+    - name: Protagonista-Bruto_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 21
+        y: 5
+        width: 18
+        height: 55
+      spriteId: 66dcf4acd7a2d994f830f542993a70c8
+    - name: Protagonista-Bruto_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 21
+        y: 5
+        width: 21
+        height: 54
+      spriteId: 3df424fe6839da14e84c1a862155e0d9
+    - name: Protagonista-Bruto_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 21
+        y: 5
+        width: 18
+        height: 55
+      spriteId: a97b111c2a197014e84774fb65a81fc5
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 60, y: 60}
+  canvasSize: {x: 64, y: 64}

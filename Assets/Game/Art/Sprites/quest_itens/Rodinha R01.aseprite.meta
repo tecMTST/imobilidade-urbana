@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a102905c9a3937742abaa6d5f9fdac1a
+guid: bd213252a480a0747ba0801571f7f7f5
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Marreta R01
+  - name: Rodinha R01
     originalName: 
-    pivot: {x: 0.50980395, y: 0}
+    pivot: {x: 0.5, y: -0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 51
-      height: 60
-    spriteID: cfeb43e88b42f8b4f997838818e3ca0b
+      width: 14
+      height: 16
+    spriteID: a4a078710955a8c4ea36d7225d5da3ca
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,23 +142,23 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1077812853
-    name: Marreta R01
+    guid: 1225418734
+    name: Rodinha R01
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Marreta R01
+    - name: Rodinha R01
       frameIndex: 0
       cellRect:
-        x: 4
-        y: 0
-        width: 51
-        height: 60
-      spriteId: cfeb43e88b42f8b4f997838818e3ca0b
+        x: 9
+        y: 8
+        width: 14
+        height: 16
+      spriteId: a4a078710955a8c4ea36d7225d5da3ca
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 60, y: 60}
+  canvasSize: {x: 32, y: 32}
