@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     public CameraController cameraController;
     public MapController mapController;
 
+    //Animação:
+    private Animator animator;
+
     //Áudio:
     private AudioSource audioSource;
 
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -36,6 +40,9 @@ public class PlayerController : MonoBehaviour
             Vector3 newPosition = transform.position + Vector3.right * moveSpeed * Time.deltaTime;
             transform.position = newPosition;
             transform.rotation = Quaternion.identity;
+
+            //Animação:
+            animator.SetBool("Walking", true);
 
             //SFX Passos:
             if (timerPassos <= 0f)
@@ -51,6 +58,9 @@ public class PlayerController : MonoBehaviour
             transform.position = newPosition;
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
 
+            //Animação:
+            animator.SetBool("Walking", true);
+
             //SFX Passos:
             if (timerPassos <= 0f)
             {
@@ -61,6 +71,10 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            //Animação:
+            animator.SetBool("Walking", false);
+
+
             //SFX Passos:
             timerPassos = 0f;
         }
