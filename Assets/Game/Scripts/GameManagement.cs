@@ -20,6 +20,7 @@ public class GameManagement : MonoBehaviour{
     void Start(){
         playerController = PlayerController.Instance;
         playerInitialPosition = playerController.transform.position;
+        
     }
 
     // Update is called once per frame
@@ -31,15 +32,18 @@ public class GameManagement : MonoBehaviour{
     /// <summary>
     /// Sets the player position in the wolrd scene
     /// </summary>
-    /// <param name="position">The desired position. Initial position by default</param>
+    /// <param name="position" >
+    ///     <para>
+    ///         The desired position. Initial position by default
+    ///     </para>
+    ///     <para>
+    ///         The Y axis is always the same of initial position
+    ///     </para>
+    ///</param>
     public void SetPlayerPosition(Vector3 position = new Vector3()) {
 
-        if (position == new Vector3(0, 0, 0)) {
-            playerController.transform.position = playerInitialPosition;
-            return;
-        }
-
-        playerController.transform.position = position;
+        playerController.transform.position = position == new Vector3(0, 0, 0) ? 
+                                              playerInitialPosition : new Vector3(position.x, playerInitialPosition.y, position.z);
 
     }
 }
