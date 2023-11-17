@@ -20,7 +20,7 @@ public class MapController : MonoBehaviour
     // Start is called before the first frame update
     void Awake(){
 
-        DontDestroyOnLoad(this.gameObject);
+        
 
         GetDependencies();
         reveledWagons = new bool[15];
@@ -30,21 +30,13 @@ public class MapController : MonoBehaviour
         }
 
 
-
-
         HideMap();
         SetPlayerMapPosition(7);
-        
 
-        //SetPlayerMapPosition(7);
         RevealMap();
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.sceneUnloaded += OnSceneUnload;
 
-       
-       
-
-       
 
     }
 
@@ -84,13 +76,11 @@ public class MapController : MonoBehaviour
 
     void OnSceneUnload(Scene scene) {
 
-        //print("------Unloaded---------");
 
         for (int i = 0; i < reveledWagons.Length; i++) {
             if (reveledWagons[i]) {
 
             }
-                //print(reveledWagons[i] + " in " + i);
 
 
         }
@@ -104,7 +94,6 @@ public class MapController : MonoBehaviour
 
     public void RevealMap(){
 
-        print("RevealMap");
 
         for (int i = 0; i < reveledWagons.Length; i++) {
             if (!reveledWagons[i]) {
@@ -112,10 +101,6 @@ public class MapController : MonoBehaviour
             }
 
             mapWagons[i].GetComponent<Image>().color = Color.white;
-            print(mapWagons[i]);
-            print("RevealMapIf");
-
-
 
         }
     }
@@ -130,11 +115,8 @@ public class MapController : MonoBehaviour
             if (reveledWagons[i])
                 continue;
 
-           
-
             mapWagons[i].GetComponent<Image>().color = Color.clear;
 
-            print("continuou " + i);
         }
     }
 

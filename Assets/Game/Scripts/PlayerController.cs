@@ -1,7 +1,11 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public static PlayerController Instance;
+
     public float moveSpeed = 5f;
     private bool isMovingRight = false;
     private bool isMovingLeft = false;
@@ -26,6 +30,10 @@ public class PlayerController : MonoBehaviour
     //Variáveis Áudio:
     [SerializeField] private float moveSFX = 0.1f;
     private float timerPassos = 0f;
+
+    void Awake() {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -78,6 +86,10 @@ public class PlayerController : MonoBehaviour
             //SFX Passos:
             timerPassos = 0f;
         }
+    }
+
+    public void Die() {
+        SceneManager.LoadScene("GameOverScene");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
