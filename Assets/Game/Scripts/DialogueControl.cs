@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,20 +13,38 @@ public class DialogueControl : MonoBehaviour
     public Text speechText;
     public Text actorNameText;
 
+    [Header("dialogue Buttons")]
+    public GameObject nextButton;
+    public GameObject continueGroup;
+
     [Header("Settings")]
-    public float typingSpeed;
+    [Range(0, 0.5f)] public float typingSpeed;
+
     private string[] sentences;
     private Sprite[] sprites;
     private string[] names;
-    private int index;
+    public int index;
 
-    public void Speech(Sprite[] p, string[] txt, string[] actorName) 
-    {
+    public void Speech(Sprite[] p, string[] txt, string[] actorName) {
         speechText.text = "";
         dialogueObj.SetActive(true);
-        sprites  = p;
+        sprites = p;
         sentences = txt;
         names = actorName;
+
+        
+
+        if (names[0] == "Irmãos") {
+
+            ResetDialogue();
+            nextButton.SetActive(false);
+            continueGroup.SetActive(true);
+
+        } else {
+            continueGroup.SetActive(false);
+            nextButton.SetActive(true);
+        }
+
         StartCoroutine(TypeSentence());
     }
 
@@ -52,7 +72,7 @@ public class DialogueControl : MonoBehaviour
             else
             {
                 speechText.text = "";
-                index = 0;
+               
                 dialogueObj.SetActive(false);
             }
         }
@@ -61,6 +81,11 @@ public class DialogueControl : MonoBehaviour
     public void Close()
     {
         dialogueObj.SetActive(false);
+        
+    }
+
+    public void ResetDialogue() {
+        index = 0;
     }
 
 }

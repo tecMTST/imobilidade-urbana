@@ -28,7 +28,8 @@ public class FOverBothObjectsCheck : MonoBehaviour
         if (colliders.Exists(item => item.CompareTag("Player"))    &&    colliders.Exists(item => item.CompareTag("Enemy")))
         {
             timerController.GetComponent<TimerController>().Captured();
-            SceneManager.LoadScene(trainScene);
+
+            GameManagement.Instance.SetPlayerPosition();
         }
     }
 }

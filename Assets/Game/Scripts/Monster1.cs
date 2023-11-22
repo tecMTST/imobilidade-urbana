@@ -13,8 +13,12 @@ public class Monster1 : MonoBehaviour
     public float moveSpeedLight = 5f;
     public GameObject player;
     public int monsterRoomIndex;
-    private float stoppingDistance = 1f;
+    
+    [Tooltip("The limit the player can be hidden with the torchlight on")]
+    public float expositionTimeLimit;
 
+    private float lightExpositionTime;
+    private float stoppingDistance = 1f;
     private bool shouldMove = false;
     private Collider2D thisCollider;
     private bool isNearPlayer = false;
@@ -37,10 +41,16 @@ public class Monster1 : MonoBehaviour
         Invoke("StartMoving", delay);
         thisCollider = this.GetComponent<Collider2D>();
         audioSource = GetComponent<AudioSource>();
+
+        
     }
+
 
     void Update()
     {
+
+
+
         List<Collider2D> colliders = new ();
         ContactFilter2D contactFilter = new ContactFilter2D();
         contactFilter.NoFilter();
@@ -49,7 +59,7 @@ public class Monster1 : MonoBehaviour
 
         bool sameRoom = (monsterRoomIndex == player.GetComponent<PlayerController>().GetRoomIndex());
 
-        if (colliders.Exists(item => item.CompareTag("NearPlayer"))) 
+        if (Vector3.Distance(this.transform.position, player.transform.position) < 8) 
         {
             isNearPlayer = true;
         }
@@ -63,32 +73,55 @@ public class Monster1 : MonoBehaviour
             Vector3 direction = playerObject.position - transform.position;
             direction.Normalize();
             transform.Translate(direction * moveSpeedLight * Time.deltaTime, Space.World);
-        }
-        else if (shouldMove)
-        {
-            Vector3 direction = targetObject[index].position - transform.position;
+
+            if (direction.magnitude > stoppingDistance) {
+               
+                if (!light2D.enabled)
+                    lightExpositionTime = 0;
+
+            } else {
+                
+                if (light2D.enabled)
+                    lightExpositionTime += Time.deltaTime;
+
+                if (lightExpositionTime > 5) {
+                    GameManagement.Instance.SetPlayerPosition();
+                    lightExpositionTime = 0;
+
+                }
+
+            }
+
+
+            }else if (shouldMove) {
+
+                Vector3 direction = targetObject[index].position - transform.position;
             
 
-            if (direction.magnitude > stoppingDistance)
-            {
-                direction.Normalize();
-                transform.Translate(direction * moveSpeedNormal * Time.deltaTime, Space.World);
-            }
-            else
-            {
-                shouldMove = false;
-                Invoke("StartMoving", delay);
-
-                if (index == targetObject.Length - 1)
+                if (direction.magnitude > stoppingDistance)
                 {
-                    index = 0;
+                    direction.Normalize();
+                    transform.Translate(direction * moveSpeedNormal * Time.deltaTime, Space.World);
+
                 }
                 else
                 {
-                    index++;
+                    shouldMove = false;
+
+                    lightExpositionTime = 0;
+
+                    Invoke("StartMoving", delay);
+
+                    if (index == targetObject.Length - 1)
+                    {
+                        index = 0;
+                    }
+                    else
+                    {
+                        index++;
+                    }
                 }
-            }
-        }
+            } 
 
         //SFX Grunindos:
         timerVoice = timerVoice + Time.deltaTime;
@@ -113,7 +146,7 @@ public class Monster1 : MonoBehaviour
     }
 
     void StartMoving()
-    {
+    {        
         shouldMove = true;
     }
 }

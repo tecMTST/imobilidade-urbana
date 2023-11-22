@@ -68,11 +68,7 @@ public class InventoryController : MonoBehaviour{
 
         ui_Items.Clear();
 
-        print(inventory.Count);
-        print(ui_Items.Count);
-
-
-
+   
 
         foreach (InventoryItem item in inventory) {
             GameObject gO = Instantiate(itemPrefab, inventoryParent);

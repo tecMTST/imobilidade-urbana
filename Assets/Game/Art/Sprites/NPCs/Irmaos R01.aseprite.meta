@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5fcf1b4f1b74cf749a3471873a1fb990
+guid: e098f2fefabb6d343a5816b1932f0524
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -71,7 +71,7 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
-    fileImportMode: 0
+    fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -83,7 +83,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
-    fileImportMode: 0
+    fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638322396537966579
+  platformSettingsDirtyTick: 0
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: viamob.aseprite R06
+  - name: Irmaos R01_Frame_0
     originalName: 
-    pivot: {x: 0.5243665, y: -0.051833123}
+    pivot: {x: 0.49999997, y: -0.03636364}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 2052
-      height: 791
-    spriteID: cc6f94ec59a28b84ea74c823e334c97f
+      width: 40
+      height: 55
+    spriteID: 8216e29e1f49b534f9686040bea3cfd0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -139,19 +139,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  spriteSheetImportData:
-  - name: vagaoInternoViamob
+  - name: Irmaos R01_Frame_1
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.49999997, y: -0.03703704}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 93
-      y: 470
-      width: 656
-      height: 132
-    spriteID: a27e84b71f929ea408831c95f47f8e8f
+      x: 4
+      y: 67
+      width: 40
+      height: 54
+    spriteID: 23404e2fd6b257d4ea4d9aabdb351d2d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -159,86 +158,91 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+    uvTransform: {x: 4, y: 67}
+  - name: Irmaos R01_Frame_2
+    originalName: 
+    pivot: {x: 0.49999997, y: -0.03773585}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 52
+      y: 67
+      width: 40
+      height: 53
+    spriteID: 4d75e3963fc7d9945921bcd8f9e2d012
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 52, y: 67}
+  - name: Irmaos R01_Frame_3
+    originalName: 
+    pivot: {x: 0.49999997, y: -0.03636364}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 52
+      y: 4
+      width: 40
+      height: 55
+    spriteID: 2afda4f0fd193fb4aace20fbd71a8593
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 52, y: 4}
+  spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -325770455
-    name: viamob.aseprite R06
+    guid: -1428378740
+    name: Irmaos R01
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: viamob.aseprite R06
+    - name: Irmaos R01_Frame_0
       frameIndex: 0
       cellRect:
-        x: 6
-        y: 46
-        width: 2052
-        height: 786
-      spriteId: cc6f94ec59a28b84ea74c823e334c97f
+        x: 10
+        y: 2
+        width: 40
+        height: 55
+      spriteId: 8216e29e1f49b534f9686040bea3cfd0
+    - name: Irmaos R01_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 10
+        y: 2
+        width: 40
+        height: 54
+      spriteId: 23404e2fd6b257d4ea4d9aabdb351d2d
+    - name: Irmaos R01_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 10
+        y: 2
+        width: 40
+        height: 53
+      spriteId: 4d75e3963fc7d9945921bcd8f9e2d012
+    - name: Irmaos R01_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 10
+        y: 2
+        width: 40
+        height: 55
+      spriteId: 2afda4f0fd193fb4aace20fbd71a8593
     linkedCells: []
     parentIndex: -1
-  platformSettings:
-  - name: DefaultTexturePlatform
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Standalone
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Server
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Android
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: WebGL
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
+  platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 2164, y: 860}
+  canvasSize: {x: 60, y: 60}

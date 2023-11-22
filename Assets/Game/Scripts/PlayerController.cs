@@ -1,7 +1,11 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public static PlayerController Instance;
+
     public float moveSpeed = 5f;
     private bool isMovingRight = false;
     private bool isMovingLeft = false;
@@ -14,6 +18,9 @@ public class PlayerController : MonoBehaviour
     public CameraController cameraController;
     public MapController mapController;
 
+    //Animação:
+    private Animator animator;
+
     //Áudio:
     private AudioSource audioSource;
 
@@ -24,9 +31,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSFX = 0.1f;
     private float timerPassos = 0f;
 
+    void Awake() {
+        Instance = this;
+    }
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -36,6 +48,9 @@ public class PlayerController : MonoBehaviour
             Vector3 newPosition = transform.position + Vector3.right * moveSpeed * Time.deltaTime;
             transform.position = newPosition;
             transform.rotation = Quaternion.identity;
+
+            //Animação:
+            animator.SetBool("Walking", true);
 
             //SFX Passos:
             if (timerPassos <= 0f)
@@ -51,6 +66,9 @@ public class PlayerController : MonoBehaviour
             transform.position = newPosition;
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
 
+            //Animação:
+            animator.SetBool("Walking", true);
+
             //SFX Passos:
             if (timerPassos <= 0f)
             {
@@ -61,9 +79,17 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            //Animação:
+            animator.SetBool("Walking", false);
+
+
             //SFX Passos:
             timerPassos = 0f;
         }
+    }
+
+    public void Die() {
+        SceneManager.LoadScene("GameOverScene");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -73,7 +99,7 @@ public class PlayerController : MonoBehaviour
             roomIndex = other.GetComponent<RoomTrigger>().roomIndex;
             cameraController.SwitchRoom(roomIndex);
             mapController.SetPlayerMapPosition(roomIndex);
-            mapController.RevealMap(roomIndex);
+            mapController.RevealMap();
         }
     }
 
