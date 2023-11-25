@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManagement : MonoBehaviour{
 
     public static GameManagement Instance;
+
+    public Image panelFadeImage;
 
     private PlayerController playerController;
     private Vector3 playerInitialPosition;

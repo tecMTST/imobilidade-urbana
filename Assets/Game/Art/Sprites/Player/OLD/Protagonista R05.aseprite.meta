@@ -1,0 +1,416 @@
+fileFormatVersion: 2
+guid: f03c60f5dcfaf7c4c8d2b294120adbca
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: Protagonista R05_Frame_0
+    originalName: 
+    pivot: {x: 0.4137931, y: -0.071428575}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 87
+      y: 134
+      width: 29
+      height: 56
+    spriteID: 4d58e51bd07546c40aa83228f47cc87a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 87, y: 134}
+  - name: Protagonista R05_Frame_1
+    originalName: 
+    pivot: {x: 0.43333337, y: -0.07017544}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 47
+      y: 132
+      width: 30
+      height: 57
+    spriteID: 9d719cf6b2b55ed4abeb5d59ddd501ec
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 47, y: 132}
+  - name: Protagonista R05_Frame_2
+    originalName: 
+    pivot: {x: 0.4516129, y: -0.071428575}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 47
+      y: 68
+      width: 31
+      height: 56
+    spriteID: 64d62842e429b0444b3e93db0b9489e8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 47, y: 68}
+  - name: Protagonista R05_Frame_3
+    originalName: 
+    pivot: {x: 0.4848485, y: -0.07272727}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 67
+      width: 33
+      height: 55
+    spriteID: 07841c1b75de52b4faf48088aa40f61a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 67}
+  - name: Protagonista R05_Frame_4
+    originalName: 
+    pivot: {x: 0.46875, y: -0.071428575}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 130
+      width: 32
+      height: 56
+    spriteID: 54d28c443dd39604795363ce496aa12c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 130}
+  - name: Protagonista R05_Frame_5
+    originalName: 
+    pivot: {x: 0.4137931, y: -0.07017544}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 87
+      y: 4
+      width: 29
+      height: 57
+    spriteID: 73379f06a7d900c499ff85fa637a92ef
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 87, y: 4}
+  - name: Protagonista R05_Frame_6
+    originalName: 
+    pivot: {x: 0.46875, y: -0.071428575}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 194
+      width: 32
+      height: 56
+    spriteID: 736a42355868acd45a8bc3618a2f49ef
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 194}
+  - name: Protagonista R05_Frame_7
+    originalName: 
+    pivot: {x: 0.51428574, y: -0.07272727}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 35
+      height: 55
+    spriteID: 5668c60f2f93e8141b3e972a3d20647e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: Protagonista R05_Frame_8
+    originalName: 
+    pivot: {x: 0.46875, y: -0.071428575}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 47
+      y: 4
+      width: 32
+      height: 56
+    spriteID: abcc0ed7f3e1803489bf74c4e3d821fa
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 47, y: 4}
+  - name: Protagonista R05_Frame_9
+    originalName: 
+    pivot: {x: 0.4137931, y: -0.07017544}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 87
+      y: 69
+      width: 29
+      height: 57
+    spriteID: f90308e406e6ef34f97cfc492b5d9054
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 87, y: 69}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: -1697524028
+    name: Protagonista R05
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Protagonista R05_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 20
+        y: 4
+        width: 29
+        height: 56
+      spriteId: 4d58e51bd07546c40aa83228f47cc87a
+    - name: Protagonista R05_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 19
+        y: 4
+        width: 30
+        height: 57
+      spriteId: 9d719cf6b2b55ed4abeb5d59ddd501ec
+    - name: Protagonista R05_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 18
+        y: 4
+        width: 31
+        height: 56
+      spriteId: 64d62842e429b0444b3e93db0b9489e8
+    - name: Protagonista R05_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 16
+        y: 4
+        width: 33
+        height: 55
+      spriteId: 07841c1b75de52b4faf48088aa40f61a
+    - name: Protagonista R05_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 17
+        y: 4
+        width: 32
+        height: 56
+      spriteId: 54d28c443dd39604795363ce496aa12c
+    - name: Protagonista R05_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 20
+        y: 4
+        width: 29
+        height: 57
+      spriteId: 73379f06a7d900c499ff85fa637a92ef
+    - name: Protagonista R05_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 17
+        y: 4
+        width: 32
+        height: 56
+      spriteId: 736a42355868acd45a8bc3618a2f49ef
+    - name: Protagonista R05_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 14
+        y: 4
+        width: 35
+        height: 55
+      spriteId: 5668c60f2f93e8141b3e972a3d20647e
+    - name: Protagonista R05_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 17
+        y: 4
+        width: 32
+        height: 56
+      spriteId: abcc0ed7f3e1803489bf74c4e3d821fa
+    - name: Protagonista R05_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 20
+        y: 4
+        width: 29
+        height: 57
+      spriteId: f90308e406e6ef34f97cfc492b5d9054
+    linkedCells: []
+    parentIndex: -1
+  platformSettings: []
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 64, y: 64}

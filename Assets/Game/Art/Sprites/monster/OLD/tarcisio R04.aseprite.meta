@@ -1,0 +1,696 @@
+fileFormatVersion: 2
+guid: a3236c25174661041964f7809412b2b6
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: tarcisio R04_Frame_0
+    originalName: 
+    pivot: {x: 0.42708334, y: -0.9310345}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 69
+      width: 96
+      height: 58
+    spriteID: 811979a0c5f241f40b75af74da984f32
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 69}
+  - name: tarcisio R04_Frame_1
+    originalName: 
+    pivot: {x: 0.41052634, y: -0.9310345}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 135
+      width: 95
+      height: 58
+    spriteID: 2379fe90187567243827c28a3a426fe4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 135}
+  - name: tarcisio R04_Frame_2
+    originalName: 
+    pivot: {x: 0.41052634, y: -0.9310345}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 201
+      width: 95
+      height: 58
+    spriteID: 9fe30f2d626e7fc4e9167c079a2301d8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 201}
+  - name: tarcisio R04_Frame_3
+    originalName: 
+    pivot: {x: 0.39795917, y: -0.9649123}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 98
+      height: 57
+    spriteID: 36169cb997f2021469721d0a7522ea58
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: tarcisio R04_Frame_4
+    originalName: 
+    pivot: {x: 0.4, y: -0.9649123}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 267
+      width: 95
+      height: 57
+    spriteID: 2deb2eb182cbb824ca567fa2936cca05
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 267}
+  - name: tarcisio R04_Frame_5
+    originalName: 
+    pivot: {x: 0.3829787, y: -0.9649123}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 332
+      width: 94
+      height: 57
+    spriteID: 9a287205bd7ab134fa0c5b9a15d00bf9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 332}
+  - name: tarcisio R04_Frame_6
+    originalName: 
+    pivot: {x: 0.38636366, y: -0.9649123}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 397
+      width: 88
+      height: 57
+    spriteID: 970450d1a5244264da638910c59bb090
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 397}
+  - name: tarcisio R04_Frame_7
+    originalName: 
+    pivot: {x: 0.34939757, y: -0.94827586}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 110
+      y: 4
+      width: 83
+      height: 58
+    spriteID: 68e0d4fc6f7c79341839a7eb90551649
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 110, y: 4}
+  - name: tarcisio R04_Frame_8
+    originalName: 
+    pivot: {x: 0.34567901, y: -0.94827586}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 110
+      y: 136
+      width: 81
+      height: 58
+    spriteID: c00ab451452a6a84aa2d73ebc170e44e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 110, y: 136}
+  - name: tarcisio R04_Frame_9
+    originalName: 
+    pivot: {x: 0.34939757, y: -0.94827586}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 110
+      y: 70
+      width: 83
+      height: 58
+    spriteID: 3cd26b0582a35044dbdf3768c0243575
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 110, y: 70}
+  - name: tarcisio R04_Frame_10
+    originalName: 
+    pivot: {x: 0, y: -3.52}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 201
+      y: 4
+      width: 16
+      height: 25
+    spriteID: 472e170e3f38bf64a8d21059b8e019e8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 201, y: 4}
+  - name: tarcisio R04_Frame_11
+    originalName: 
+    pivot: {x: 0, y: -4.136364}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 225
+      y: 35
+      width: 16
+      height: 22
+    spriteID: fbd02edca00b48749906ec2dd9844a02
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 225, y: 35}
+  - name: tarcisio R04_Frame_12
+    originalName: 
+    pivot: {x: 0, y: -4.136364}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 201
+      y: 70
+      width: 16
+      height: 22
+    spriteID: b553efe102147c140b9c7af4700683e2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 201, y: 70}
+  - name: tarcisio R04_Frame_13
+    originalName: 
+    pivot: {x: 0, y: -4.3333335}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 225
+      y: 100
+      width: 16
+      height: 21
+    spriteID: 3d51dbde967bb6948b6256f649b41f23
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 225, y: 100}
+  - name: tarcisio R04_Frame_14
+    originalName: 
+    pivot: {x: 0, y: -4.090909}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 201
+      y: 100
+      width: 16
+      height: 22
+    spriteID: 3b3d4011c6b3ad2489227542e9bfb52b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 201, y: 100}
+  - name: tarcisio R04_Frame_15
+    originalName: 
+    pivot: {x: 0, y: -4.6}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 462
+      width: 16
+      height: 20
+    spriteID: 8191c9b56e49b17468b5d3e96496b15a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 462}
+  - name: tarcisio R04_Frame_16
+    originalName: 
+    pivot: {x: 0, y: -4.6}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 28
+      y: 462
+      width: 16
+      height: 20
+    spriteID: 9f6d1c0385aaef6488bb62be6cc54fab
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 28, y: 462}
+  - name: tarcisio R04_Frame_17
+    originalName: 
+    pivot: {x: 0, y: -4.090909}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 225
+      y: 70
+      width: 16
+      height: 22
+    spriteID: f9da8122e0e798649b3d839bff4d678c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 225, y: 70}
+  - name: tarcisio R04_Frame_18
+    originalName: 
+    pivot: {x: 0, y: -3.8695652}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 225
+      y: 4
+      width: 16
+      height: 23
+    spriteID: 104c5f47816ce0f4da9c5861921b148d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 225, y: 4}
+  - name: tarcisio R04_Frame_19
+    originalName: 
+    pivot: {x: 0, y: -3.6666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 201
+      y: 37
+      width: 16
+      height: 24
+    spriteID: f9d61ecc756915d459b8698950e976e5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 201, y: 37}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: -1425198668
+    name: tarcisio R04
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: tarcisio R04_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 23
+        y: 54
+        width: 96
+        height: 58
+      spriteId: 811979a0c5f241f40b75af74da984f32
+    - name: tarcisio R04_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 25
+        y: 54
+        width: 95
+        height: 58
+      spriteId: 2379fe90187567243827c28a3a426fe4
+    - name: tarcisio R04_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 25
+        y: 54
+        width: 95
+        height: 58
+      spriteId: 9fe30f2d626e7fc4e9167c079a2301d8
+    - name: tarcisio R04_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 25
+        y: 55
+        width: 98
+        height: 57
+      spriteId: 36169cb997f2021469721d0a7522ea58
+    - name: tarcisio R04_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 26
+        y: 55
+        width: 95
+        height: 57
+      spriteId: 2deb2eb182cbb824ca567fa2936cca05
+    - name: tarcisio R04_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 28
+        y: 55
+        width: 94
+        height: 57
+      spriteId: 9a287205bd7ab134fa0c5b9a15d00bf9
+    - name: tarcisio R04_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 30
+        y: 55
+        width: 88
+        height: 57
+      spriteId: 970450d1a5244264da638910c59bb090
+    - name: tarcisio R04_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 35
+        y: 55
+        width: 83
+        height: 58
+      spriteId: 68e0d4fc6f7c79341839a7eb90551649
+    - name: tarcisio R04_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 36
+        y: 55
+        width: 81
+        height: 58
+      spriteId: c00ab451452a6a84aa2d73ebc170e44e
+    - name: tarcisio R04_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 35
+        y: 55
+        width: 83
+        height: 58
+      spriteId: 3cd26b0582a35044dbdf3768c0243575
+    - name: tarcisio R04_Frame_10
+      frameIndex: 10
+      cellRect:
+        x: 64
+        y: 88
+        width: 16
+        height: 25
+      spriteId: 472e170e3f38bf64a8d21059b8e019e8
+    - name: tarcisio R04_Frame_11
+      frameIndex: 11
+      cellRect:
+        x: 64
+        y: 91
+        width: 16
+        height: 22
+      spriteId: fbd02edca00b48749906ec2dd9844a02
+    - name: tarcisio R04_Frame_12
+      frameIndex: 12
+      cellRect:
+        x: 64
+        y: 91
+        width: 16
+        height: 22
+      spriteId: b553efe102147c140b9c7af4700683e2
+    - name: tarcisio R04_Frame_13
+      frameIndex: 13
+      cellRect:
+        x: 64
+        y: 91
+        width: 16
+        height: 21
+      spriteId: 3d51dbde967bb6948b6256f649b41f23
+    - name: tarcisio R04_Frame_14
+      frameIndex: 14
+      cellRect:
+        x: 64
+        y: 90
+        width: 16
+        height: 22
+      spriteId: 3b3d4011c6b3ad2489227542e9bfb52b
+    - name: tarcisio R04_Frame_15
+      frameIndex: 15
+      cellRect:
+        x: 64
+        y: 92
+        width: 16
+        height: 20
+      spriteId: 8191c9b56e49b17468b5d3e96496b15a
+    - name: tarcisio R04_Frame_16
+      frameIndex: 16
+      cellRect:
+        x: 64
+        y: 92
+        width: 16
+        height: 20
+      spriteId: 9f6d1c0385aaef6488bb62be6cc54fab
+    - name: tarcisio R04_Frame_17
+      frameIndex: 17
+      cellRect:
+        x: 64
+        y: 90
+        width: 16
+        height: 22
+      spriteId: f9da8122e0e798649b3d839bff4d678c
+    - name: tarcisio R04_Frame_18
+      frameIndex: 18
+      cellRect:
+        x: 64
+        y: 89
+        width: 16
+        height: 23
+      spriteId: 104c5f47816ce0f4da9c5861921b148d
+    - name: tarcisio R04_Frame_19
+      frameIndex: 19
+      cellRect:
+        x: 64
+        y: 88
+        width: 16
+        height: 24
+      spriteId: f9d61ecc756915d459b8698950e976e5
+    linkedCells: []
+    parentIndex: -1
+  platformSettings: []
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 128, y: 128}
