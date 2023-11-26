@@ -13376,7 +13376,7 @@ MonoBehaviour:
   expositionTimeLimit: 0
   sfxVoice1: {fileID: 8300000, guid: caecfaa49e0f9bc4c9479c62451fecb7, type: 3}
   sfxVoice2: {fileID: 8300000, guid: e6343d0a961fcba43b4d31bda1002a18, type: 3}
-  sfxVoice3: {fileID: 8300000, guid: 00e54f651a5ab084b9507c3d55a5d10b, type: 3}
+  sfxVoice3: {fileID: 8300000, guid: 1f5000c6f346f7a4698ef335bbb7dce7, type: 3}
   limitVoice: 8
 --- !u!212 &838039335
 SpriteRenderer:
@@ -17346,7 +17346,7 @@ MonoBehaviour:
   expositionTimeLimit: 0
   sfxVoice1: {fileID: 8300000, guid: caecfaa49e0f9bc4c9479c62451fecb7, type: 3}
   sfxVoice2: {fileID: 8300000, guid: e6343d0a961fcba43b4d31bda1002a18, type: 3}
-  sfxVoice3: {fileID: 8300000, guid: 00e54f651a5ab084b9507c3d55a5d10b, type: 3}
+  sfxVoice3: {fileID: 8300000, guid: 1f5000c6f346f7a4698ef335bbb7dce7, type: 3}
   limitVoice: 8
 --- !u!212 &998742403
 SpriteRenderer:
@@ -22673,7 +22673,7 @@ MonoBehaviour:
   expositionTimeLimit: 0
   sfxVoice1: {fileID: 8300000, guid: caecfaa49e0f9bc4c9479c62451fecb7, type: 3}
   sfxVoice2: {fileID: 8300000, guid: e6343d0a961fcba43b4d31bda1002a18, type: 3}
-  sfxVoice3: {fileID: 8300000, guid: 00e54f651a5ab084b9507c3d55a5d10b, type: 3}
+  sfxVoice3: {fileID: 8300000, guid: 1f5000c6f346f7a4698ef335bbb7dce7, type: 3}
   limitVoice: 8
 --- !u!212 &1286605416
 SpriteRenderer:
@@ -23298,7 +23298,7 @@ MonoBehaviour:
   expositionTimeLimit: 0
   sfxVoice1: {fileID: 8300000, guid: caecfaa49e0f9bc4c9479c62451fecb7, type: 3}
   sfxVoice2: {fileID: 8300000, guid: e6343d0a961fcba43b4d31bda1002a18, type: 3}
-  sfxVoice3: {fileID: 8300000, guid: 00e54f651a5ab084b9507c3d55a5d10b, type: 3}
+  sfxVoice3: {fileID: 8300000, guid: 1f5000c6f346f7a4698ef335bbb7dce7, type: 3}
   limitVoice: 8
 --- !u!212 &1304711224
 SpriteRenderer:
@@ -31782,7 +31782,7 @@ MonoBehaviour:
   expositionTimeLimit: 0
   sfxVoice1: {fileID: 8300000, guid: caecfaa49e0f9bc4c9479c62451fecb7, type: 3}
   sfxVoice2: {fileID: 8300000, guid: e6343d0a961fcba43b4d31bda1002a18, type: 3}
-  sfxVoice3: {fileID: 8300000, guid: 00e54f651a5ab084b9507c3d55a5d10b, type: 3}
+  sfxVoice3: {fileID: 8300000, guid: 1f5000c6f346f7a4698ef335bbb7dce7, type: 3}
   limitVoice: 8
 --- !u!61 &1723965215
 BoxCollider2D:

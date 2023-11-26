@@ -96,12 +96,6 @@ public class Monster1 : MonoBehaviour
                     lightExpositionTime += Time.deltaTime;
                 }
 
-                //Audio Perseguição Crítico:
-                if (lightExpositionTime > 0 && Vector3.Distance(this.transform.position, player.transform.position) < 0.55f)
-                {
-                    SoundManager.instance.playDinamicBGM(2, 3, 2);
-                }
-
                 if (lightExpositionTime > 5) {
 
                     SoundManager.instance.stopDinamicBGM();
