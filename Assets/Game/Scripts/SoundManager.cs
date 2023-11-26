@@ -9,9 +9,11 @@ public class SoundManager : MonoBehaviour
     private Scene currentScene;
 
     //Lista de Músicas:
-    [SerializeField] private AudioClip ambienteTrem1;
-    [SerializeField] private AudioClip sonoroLightTrem1;
-    [SerializeField] private AudioClip sonoroDarkTrem2;
+    [SerializeField] private AudioClip ambienteTrem;
+    [SerializeField] private AudioClip sonoroTrem;
+    [SerializeField] private AudioClip sonoroMonstroN;
+    [SerializeField] private AudioClip sonoroMonstroC;
+    [SerializeField] private AudioClip aununcioTremInicio;
     [SerializeField] private AudioClip aununcioTrem1;
     [SerializeField] private AudioClip aununcioTrem2;
     [SerializeField] private AudioClip aununcioTrem3;
@@ -19,7 +21,6 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip aununcioTrem5;
     [SerializeField] private AudioClip aununcioTrem6;
     [SerializeField] private AudioClip aununcioTrem7;
-    [SerializeField] private AudioClip aununcioTrem8;
 
     //Vetor Lista de Músicas:
     private AudioClip[] selectBGM;
@@ -27,9 +28,11 @@ public class SoundManager : MonoBehaviour
     //Vetor Auxiliar Lista de Músicas:
     public enum ListaBGM
     {
-        ambienteTrem1,
-        sonoroLightTrem1,
-        sonoroDarkTrem2,
+        ambienteTrem,
+        sonoroTrem,
+        sonoroMonstroN,
+        sonoroMonstroC,
+        aununcioTremInicio,
         aununcioTrem1,
         aununcioTrem2,
         aununcioTrem3,
@@ -37,7 +40,6 @@ public class SoundManager : MonoBehaviour
         aununcioTrem5,
         aununcioTrem6,
         aununcioTrem7,
-        aununcioTrem8,
     };
 
     //Lista de Efeitos:
@@ -55,6 +57,8 @@ public class SoundManager : MonoBehaviour
     //Lista de AudioSources Simultâneos:
     public AudioSource bgmGame1;
     public AudioSource bgmGame2;
+    public AudioSource bgmGame3;
+    public AudioSource bgmGame4;
     public AudioSource sfxMenu;
     public AudioSource sfxGame;
 
@@ -63,6 +67,8 @@ public class SoundManager : MonoBehaviour
     private float anuncioSFX = 100.0f;
     private float timerAnuncio = 95.0f;
     private bool segurarAnuncio = false;
+    private bool setFade = false;
+    private float timerFade = 0.95f;
 
     //Iniciação do SoundManager:
     void Awake()
@@ -83,9 +89,11 @@ public class SoundManager : MonoBehaviour
         //Setar Vetor de BGM:
         selectBGM = new AudioClip[]
         {
-            ambienteTrem1,
-            sonoroLightTrem1,
-            sonoroDarkTrem2,
+            ambienteTrem,
+            sonoroTrem,
+            sonoroMonstroN,
+            sonoroMonstroC,
+            aununcioTremInicio,
             aununcioTrem1,
             aununcioTrem2,
             aununcioTrem3,
@@ -93,7 +101,6 @@ public class SoundManager : MonoBehaviour
             aununcioTrem5,
             aununcioTrem6,
             aununcioTrem7,
-            aununcioTrem8,
         };
 
         //Setar Vetor de SFX:
@@ -119,14 +126,30 @@ public class SoundManager : MonoBehaviour
             {
                 playBGM(1, 2);
                 segurarAnuncio = true;
-                Debug.Log("Tey 1");
             }
             else if (segurarAnuncio && !bgmGame2.isPlaying)
             {
                 playBGM(UnityEngine.Random.Range(3, 10), 2);
                 segurarAnuncio = false;
-                Debug.Log("Tey 2");
                 timerAnuncio = 0f;
+            }
+        }
+
+        //Fade BGM Dinâmica:
+        if (setFade)
+        {
+            //Decrescer:
+            bgmGame3.volume = (float)bgmGame3.volume * timerFade;
+            bgmGame4.volume = (float)bgmGame4.volume * timerFade;
+
+            //Desligar:
+            if (bgmGame3.volume < 0.01f && bgmGame4.volume < 0.01f)
+            {
+                setFade = false;
+                bgmGame3.Stop();
+                bgmGame4.Stop();
+                bgmGame3.clip = null;
+                bgmGame4.clip = null;
             }
         }
     }
@@ -167,6 +190,46 @@ public class SoundManager : MonoBehaviour
             bgmGame2.Stop();
             bgmGame2.clip = null;
         }
+    }
+
+    //Tocar BGM Dinâmica:
+    public void playDinamicBGM(int lista1, int lista2, int track)
+    {
+        //Set Fade:
+        setFade = false;
+
+        //Track Normal:
+        if (track == 1)
+        {
+            bgmGame3.volume = 1.0f;
+            bgmGame4.volume = 0.0f;
+            Debug.Log("Trilha 1");
+        }
+
+        //Track Crítica:
+        if (track == 2)
+        {
+            bgmGame3.volume = 0.0f;
+            bgmGame4.volume = 1.0f;
+            Debug.Log("Trilha 2");
+        }
+
+        //AudioSource Zerado:
+        if (bgmGame3.clip != selectBGM[lista1] && bgmGame4.clip != selectBGM[lista2])
+        {
+            //Ligar BGM:
+            bgmGame3.clip = selectBGM[lista1];
+            bgmGame4.clip = selectBGM[lista2];
+
+            bgmGame3.Play();
+            bgmGame4.Play();
+        }
+    }
+
+    //Parar BGM Dinâmica com Fade:
+    public void stopDinamicBGM()
+    {
+        setFade = true;
     }
 
     //Tocar SFX Menu:

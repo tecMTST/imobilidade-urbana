@@ -30,27 +30,24 @@ public class Monster1 : MonoBehaviour
     //Lista de SFX:
     [SerializeField] private AudioClip sfxVoice1;
     [SerializeField] private AudioClip sfxVoice2;
+    [SerializeField] private AudioClip sfxVoice3;
 
     //Variáveis Áudio:
     [SerializeField] private float limitVoice = 8f;
     private float timerVoice = 0f;
     private int typeVoice = 1;
+    private bool huntVoice = false;
 
     void Start()
     {
         Invoke("StartMoving", delay);
         thisCollider = this.GetComponent<Collider2D>();
         audioSource = GetComponent<AudioSource>();
-
-        
     }
 
 
     void Update()
     {
-
-
-
         List<Collider2D> colliders = new ();
         ContactFilter2D contactFilter = new ContactFilter2D();
         contactFilter.NoFilter();
@@ -74,17 +71,40 @@ public class Monster1 : MonoBehaviour
             direction.Normalize();
             transform.Translate(direction * moveSpeedLight * Time.deltaTime, Space.World);
 
-            if (direction.magnitude > stoppingDistance) {
-               
-                if (!light2D.enabled)
-                    lightExpositionTime = 0;
+            //Audio Perseguição Normal:
+            if (!huntVoice)
+            {
+                SoundManager.instance.playDinamicBGM(2, 3, 1);
+                SoundManager.instance.stopBGM(2);
+                audioSource.PlayOneShot(sfxVoice3);
+                huntVoice = true;
+            }
 
-            } else {
-                
+            if (direction.magnitude > stoppingDistance) {
+
+                if (!light2D.enabled)
+                {
+                    SoundManager.instance.stopDinamicBGM();
+                    lightExpositionTime = 0;
+                }
+
+            }
+            else
+            {
                 if (light2D.enabled)
+                {
                     lightExpositionTime += Time.deltaTime;
+                }
+
+                //Audio Perseguição Crítico:
+                if (lightExpositionTime > 0 && Vector3.Distance(this.transform.position, player.transform.position) < 0.55f)
+                {
+                    SoundManager.instance.playDinamicBGM(2, 3, 2);
+                }
 
                 if (lightExpositionTime > 5) {
+
+                    SoundManager.instance.stopDinamicBGM();
                     GameManagement.Instance.SetPlayerPosition();
                     lightExpositionTime = 0;
 
@@ -92,40 +112,47 @@ public class Monster1 : MonoBehaviour
 
             }
 
+        }
+        else if (shouldMove)
+        {
 
-            }else if (shouldMove) {
+            Vector3 direction = targetObject[index].position - transform.position;
 
-                Vector3 direction = targetObject[index].position - transform.position;
-            
+            //SFX Perseguição:
+            if (huntVoice)
+            {
+                huntVoice = false;
+                SoundManager.instance.stopDinamicBGM();
+            }
 
-                if (direction.magnitude > stoppingDistance)
+            if (direction.magnitude > stoppingDistance)
+            {
+                direction.Normalize();
+                transform.Translate(direction * moveSpeedNormal * Time.deltaTime, Space.World);
+
+            }
+            else
+            {
+                shouldMove = false;
+
+                lightExpositionTime = 0;
+
+                Invoke("StartMoving", delay);
+
+                if (index == targetObject.Length - 1)
                 {
-                    direction.Normalize();
-                    transform.Translate(direction * moveSpeedNormal * Time.deltaTime, Space.World);
-
+                    index = 0;
                 }
                 else
                 {
-                    shouldMove = false;
-
-                    lightExpositionTime = 0;
-
-                    Invoke("StartMoving", delay);
-
-                    if (index == targetObject.Length - 1)
-                    {
-                        index = 0;
-                    }
-                    else
-                    {
-                        index++;
-                    }
+                    index++;
                 }
-            } 
+            }
+        }
 
         //SFX Grunindos:
         timerVoice = timerVoice + Time.deltaTime;
-        if (timerVoice > limitVoice)
+        if (timerVoice > limitVoice && !light2D.enabled && shouldMove)
         {
             switch (typeVoice)
             {
@@ -133,6 +160,7 @@ public class Monster1 : MonoBehaviour
                     audioSource.PlayOneShot(sfxVoice1);
                     typeVoice = 2;
                     timerVoice = 0f;
+
                     break;
 
                 case 2:
