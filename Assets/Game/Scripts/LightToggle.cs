@@ -23,5 +23,10 @@ public class LightToggle : MonoBehaviour
         light2D.enabled = !light2D.enabled;
         light2D2.enabled = !light2D2.enabled;
         SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.menuLuz);
+
+        if (!light2D.enabled) {
+            SoundManager.instance.stopDinamicBGM();
+        }
+
     }
 }
