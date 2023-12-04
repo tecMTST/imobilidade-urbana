@@ -29,6 +29,7 @@ public class FOverBothObjectsCheck : MonoBehaviour
         {
             timerController.GetComponent<TimerController>().Captured();
             
+
             GameManagement.Instance.SetPlayerPosition();
         }
     }

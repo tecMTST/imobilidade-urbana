@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class Monster1 : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class Monster1 : MonoBehaviour
     public GameObject player;
     public int monsterRoomIndex;
     
-    [Tooltip("The limit the player can be hidden with the torchlight on")]
+    [Tooltip("The time limit the player can be hidden with the torchlight on")]
     public float expositionTimeLimit;
 
     private float lightExpositionTime;
@@ -38,16 +39,29 @@ public class Monster1 : MonoBehaviour
     private int typeVoice = 1;
     private bool huntVoice = false;
 
+    Animation fadeImage = null;
+
     void Start()
     {
         Invoke("StartMoving", delay);
         thisCollider = this.GetComponent<Collider2D>();
         audioSource = GetComponent<AudioSource>();
+
+        fadeImage = FindFadeImageByTag("fadePanel", true);
+        fadeImage.gameObject.SetActive(true);
     }
 
 
     void Update()
     {
+
+       if (!light2D.enabled) {
+            if (fadeImage.IsPlaying("fadePanelIn")) {
+                fadeImage.CrossFade("fadePanelOut", 0.1f);
+
+            }
+        }
+
         List<Collider2D> colliders = new ();
         ContactFilter2D contactFilter = new ContactFilter2D();
         contactFilter.NoFilter();
@@ -80,20 +94,29 @@ public class Monster1 : MonoBehaviour
                 huntVoice = true;
             }
 
-            if (direction.magnitude > stoppingDistance) {
+            if (Mathf.Abs(playerObject.position.x - transform.position.x) > stoppingDistance) {
 
                 if (!light2D.enabled)
                 {
-                    SoundManager.instance.stopDinamicBGM();
-                    lightExpositionTime = 0;
+                   SoundManager.instance.stopDinamicBGM();
+                  
                 }
+
+                lightExpositionTime = 0;
 
             }
             else
             {
+                print($"PlayerObject position: {playerObject.position}\nMonster Position: {transform.position}\n" +
+                    $"Distance: {Mathf.Abs(playerObject.position.x - transform.position.x)} mg ={direction.magnitude} & sqrMg {direction.sqrMagnitude}\nExposition Time: {lightExpositionTime}");
+
                 if (light2D.enabled)
                 {
                     lightExpositionTime += Time.deltaTime;
+
+                    if(!fadeImage.IsPlaying("fadePanelIn"))
+                        fadeImage.Play("fadePanelIn");
+
                 }
 
                 if (lightExpositionTime > 5) {
@@ -101,6 +124,9 @@ public class Monster1 : MonoBehaviour
                     SoundManager.instance.stopDinamicBGM();
                     GameManagement.Instance.SetPlayerPosition();
                     lightExpositionTime = 0;
+                    if (fadeImage.IsPlaying("fadePanelIn")) 
+                        fadeImage.CrossFade("fadePanelOut", 0.01f);
+
 
                 }
 
@@ -170,5 +196,36 @@ public class Monster1 : MonoBehaviour
     void StartMoving()
     {        
         shouldMove = true;
+    }
+
+    void CallFade(Image img, float alphaInitial, float alphaFinal, float time, bool keepActive = false) {
+
+        FadeImage.Instance.StopCoroutine(nameof(FadeImage.Instance.Fade));
+
+        FadeImage.Instance.StartCoroutine(FadeImage.Instance.Fade(img, alphaInitial, alphaFinal, time, keepActive));
+
+    }
+
+    Animation FindFadeImageByTag(string tag, bool includeInactive) {
+
+        Animation img = null;
+        Animation[] fadeImg = null;
+
+        if (includeInactive) {
+            fadeImg = Resources.FindObjectsOfTypeAll<Animation>();
+            foreach (Animation i in fadeImg) {
+                if (i.CompareTag(tag)) {
+                    img = i;
+                    break;
+                }
+            }
+        } else {
+
+            GameObject.FindGameObjectWithTag(tag).TryGetComponent<Animation>(out img);    
+        }
+
+        
+        return img;
+
     }
 }

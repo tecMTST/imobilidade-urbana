@@ -49,4 +49,13 @@ public class GameManagement : MonoBehaviour{
                                               playerInitialPosition : new Vector3(position.x, playerInitialPosition.y, position.z);
 
     }
+
+    //public void StopCoroutines(string name = null) {
+
+    //    if (name != null)
+    //        StopAllCoroutines();
+    //    else
+    //        StopCoroutine(name);
+
+    //}
 }
