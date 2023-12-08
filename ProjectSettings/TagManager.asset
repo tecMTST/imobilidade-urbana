@@ -55,11 +55,14 @@ TagManager:
   - name: Background
     uniqueID: 3079148925
     locked: 0
-  - name: Ground
-    uniqueID: 1104302791
-    locked: 0
   - name: Player
     uniqueID: 2631783531
+    locked: 0
+  - name: QuestAlert
+    uniqueID: 2870207237
+    locked: 0
+  - name: Ground
+    uniqueID: 1104302791
     locked: 0
   - name: Foreground
     uniqueID: 189734199

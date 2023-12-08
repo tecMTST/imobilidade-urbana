@@ -42,6 +42,11 @@ public class InventoryController : MonoBehaviour{
         RefreshInventoryUI();
     }
 
+    public void SetNewItem(InventoryItem inventoryItem) {
+        inventory.Add(inventoryItem);
+        RefreshInventoryUI();
+    }
+
     public void RemoveItem(string itemName) {
         inventory.RemoveAll(item => item.itemName == itemName);
         RefreshInventoryUI();

@@ -25,12 +25,22 @@ public class DialogueControl : MonoBehaviour
     private string[] names;
     public int index;
 
+    public static DialogueControl Instance;
+
+    private void Start() {
+        Instance = this;
+    }
+
     public void Speech(Sprite[] p, string[] txt, string[] actorName) {
         speechText.text = "";
         dialogueObj.SetActive(true);
         sprites = p;
         sentences = txt;
         names = actorName;
+
+        foreach (object obj in sprites) {
+            print(sprites.Length);
+        }
 
         
 

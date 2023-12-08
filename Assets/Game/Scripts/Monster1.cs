@@ -55,7 +55,7 @@ public class Monster1 : MonoBehaviour
     void Update()
     {
 
-       if (!light2D.enabled) {
+       if (!light2D.gameObject.activeSelf) {
             if (fadeImage.IsPlaying("fadePanelIn")) {
                 fadeImage.CrossFade("fadePanelOut", 0.1f);
 
@@ -79,7 +79,7 @@ public class Monster1 : MonoBehaviour
             isNearPlayer = false;
         }
 
-        if (light2D.enabled && isNearPlayer && sameRoom)
+        if (light2D.gameObject.activeSelf && isNearPlayer && sameRoom)
         {
             Vector3 direction = playerObject.position - transform.position;
             direction.Normalize();
@@ -96,7 +96,7 @@ public class Monster1 : MonoBehaviour
 
             if (Mathf.Abs(playerObject.position.x - transform.position.x) > stoppingDistance) {
 
-                if (!light2D.enabled)
+                if (!light2D.gameObject.activeSelf)
                 {
                    SoundManager.instance.stopDinamicBGM();
                   
@@ -107,10 +107,10 @@ public class Monster1 : MonoBehaviour
             }
             else
             {
-                print($"PlayerObject position: {playerObject.position}\nMonster Position: {transform.position}\n" +
-                    $"Distance: {Mathf.Abs(playerObject.position.x - transform.position.x)} mg ={direction.magnitude} & sqrMg {direction.sqrMagnitude}\nExposition Time: {lightExpositionTime}");
+                //print($"PlayerObject position: {playerObject.position}\nMonster Position: {transform.position}\n" +
+                //    $"Distance: {Mathf.Abs(playerObject.position.x - transform.position.x)} mg ={direction.magnitude} & sqrMg {direction.sqrMagnitude}\nExposition Time: {lightExpositionTime}");
 
-                if (light2D.enabled)
+                if (light2D.gameObject.activeSelf)
                 {
                     lightExpositionTime += Time.deltaTime;
 
@@ -172,7 +172,7 @@ public class Monster1 : MonoBehaviour
 
         //SFX Grunindos:
         timerVoice = timerVoice + Time.deltaTime;
-        if (timerVoice > limitVoice && !light2D.enabled && shouldMove)
+        if (timerVoice > limitVoice && !light2D.gameObject.activeSelf && shouldMove)
         {
             switch (typeVoice)
             {
@@ -198,13 +198,6 @@ public class Monster1 : MonoBehaviour
         shouldMove = true;
     }
 
-    void CallFade(Image img, float alphaInitial, float alphaFinal, float time, bool keepActive = false) {
-
-        FadeImage.Instance.StopCoroutine(nameof(FadeImage.Instance.Fade));
-
-        FadeImage.Instance.StartCoroutine(FadeImage.Instance.Fade(img, alphaInitial, alphaFinal, time, keepActive));
-
-    }
 
     Animation FindFadeImageByTag(string tag, bool includeInactive) {
 
