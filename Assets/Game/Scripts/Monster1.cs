@@ -84,7 +84,7 @@ public class Monster1 : MonoBehaviour
         else if (shouldMove)
         {
 
-            Vector3 direction = targetObject[index].position - transform.position;
+           // Vector3 direction = targetObject[index].position - transform.position;
 
             //SFX Persegui��o:
             if (huntVoice)
@@ -159,7 +159,7 @@ public class Monster1 : MonoBehaviour
                     SoundManager.instance.stopDinamicBGM();
                 }
 
-                if (direction.magnitude > stoppingDistance)
+                if (Mathf.Abs(playerObject.position.x - transform.position.x) > stoppingDistance)
                 {
                     direction.Normalize();
                     transform.Translate(direction * moveSpeedNormal * Time.deltaTime, Space.World);
