@@ -18,16 +18,16 @@ public class PlayerController : MonoBehaviour
     public CameraController cameraController;
     public MapController mapController;
 
-    //Animação:
+    //Animaï¿½ï¿½o:
     private Animator animator;
 
-    //Áudio:
+    //ï¿½udio:
     private AudioSource audioSource;
 
     //Lista de SFX:
     [SerializeField] private AudioClip[] sfxPassos;
 
-    //Variáveis Áudio:
+    //Variï¿½veis ï¿½udio:
     [SerializeField] private float moveSFX = 0.1f;
     private float timerPassos = 0f;
 
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
             transform.position = newPosition;
             transform.rotation = Quaternion.identity;
 
-            //Animação:
+            //Animaï¿½ï¿½o:
             animator.SetBool("Walking", true);
 
             //SFX Passos:
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
             transform.position = newPosition;
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
 
-            //Animação:
+            //Animaï¿½ï¿½o:
             animator.SetBool("Walking", true);
 
             //SFX Passos:
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            //Animação:
+            //Animaï¿½ï¿½o:
             animator.SetBool("Walking", false);
 
 
@@ -127,6 +127,12 @@ public class PlayerController : MonoBehaviour
 
     public void StopMovingLeft()
     {
+        isMovingLeft = false;
+    }
+
+    public void StopMoving()
+    {
+        isMovingRight = false;
         isMovingLeft = false;
     }
 }

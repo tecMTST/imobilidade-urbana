@@ -25,7 +25,7 @@ public class Monster1 : MonoBehaviour
     private bool isNearPlayer = false;
     private int index = 0;
 
-    //Áudio:
+    //ï¿½udio:
     private AudioSource audioSource;
 
     //Lista de SFX:
@@ -33,11 +33,12 @@ public class Monster1 : MonoBehaviour
     [SerializeField] private AudioClip sfxVoice2;
     [SerializeField] private AudioClip sfxVoice3;
 
-    //Variáveis Áudio:
+    //Variï¿½veis ï¿½udio:
     [SerializeField] private float limitVoice = 8f;
     private float timerVoice = 0f;
     private int typeVoice = 1;
     private bool huntVoice = false;
+    private bool inDialogue = false;
 
     Animation fadeImage = null;
 
@@ -54,149 +55,169 @@ public class Monster1 : MonoBehaviour
 
     void Update()
     {
+        if(!inDialogue){
+            if (!light2D.gameObject.activeSelf) {
+                if (fadeImage.IsPlaying("fadePanelIn")) {
+                    fadeImage.CrossFade("fadePanelOut", 0.1f);
 
-       if (!light2D.gameObject.activeSelf) {
-            if (fadeImage.IsPlaying("fadePanelIn")) {
-                fadeImage.CrossFade("fadePanelOut", 0.1f);
-
-            }
-        }
-
-        List<Collider2D> colliders = new ();
-        ContactFilter2D contactFilter = new ContactFilter2D();
-        contactFilter.NoFilter();
-        
-        thisCollider.OverlapCollider(contactFilter, colliders);
-
-        bool sameRoom = (monsterRoomIndex == player.GetComponent<PlayerController>().GetRoomIndex());
-
-        if (Vector3.Distance(this.transform.position, player.transform.position) < 8) 
-        {
-            isNearPlayer = true;
-        }
-        else
-        {
-            isNearPlayer = false;
-        }
-
-        if (light2D.gameObject.activeSelf && isNearPlayer && sameRoom)
-        {
-            Vector3 direction = playerObject.position - transform.position;
-            direction.Normalize();
-            transform.Translate(direction * moveSpeedLight * Time.deltaTime, Space.World);
-
-            //Audio Perseguição Normal:
-            if (!huntVoice)
-            {
-                SoundManager.instance.playDinamicBGM(2, 3, 1);
-                SoundManager.instance.stopBGM(2);
-                audioSource.PlayOneShot(sfxVoice3);
-                huntVoice = true;
-            }
-
-            if (Mathf.Abs(playerObject.position.x - transform.position.x) > stoppingDistance) {
-
-                if (!light2D.gameObject.activeSelf)
-                {
-                   SoundManager.instance.stopDinamicBGM();
-                  
                 }
+            }
 
-                lightExpositionTime = 0;
+            List<Collider2D> colliders = new ();
+            ContactFilter2D contactFilter = new ContactFilter2D();
+            contactFilter.NoFilter();
+            
+            thisCollider.OverlapCollider(contactFilter, colliders);
 
+            bool sameRoom = (monsterRoomIndex == player.GetComponent<PlayerController>().GetRoomIndex());
+
+            if (Vector3.Distance(this.transform.position, player.transform.position) < 8) 
+            {
+                isNearPlayer = true;
             }
             else
             {
-                //print($"PlayerObject position: {playerObject.position}\nMonster Position: {transform.position}\n" +
-                //    $"Distance: {Mathf.Abs(playerObject.position.x - transform.position.x)} mg ={direction.magnitude} & sqrMg {direction.sqrMagnitude}\nExposition Time: {lightExpositionTime}");
-
-                if (light2D.gameObject.activeSelf)
-                {
-                    lightExpositionTime += Time.deltaTime;
-
-                    if(!fadeImage.IsPlaying("fadePanelIn"))
-                        fadeImage.Play("fadePanelIn");
-
-                }
-
-                if (lightExpositionTime > 5) {
-
-                    SoundManager.instance.stopDinamicBGM();
-                    GameManagement.Instance.SetPlayerPosition();
-                    lightExpositionTime = 0;
-                    if (fadeImage.IsPlaying("fadePanelIn")) 
-                        fadeImage.CrossFade("fadePanelOut", 0.01f);
-
-
-                }
-
+                isNearPlayer = false;
             }
 
-        }
-        else if (shouldMove)
-        {
-
-            Vector3 direction = targetObject[index].position - transform.position;
-
-            //SFX Perseguição:
-            if (huntVoice)
+            if (light2D.gameObject.activeSelf && isNearPlayer && sameRoom)
             {
-                huntVoice = false;
-                SoundManager.instance.stopDinamicBGM();
-            }
-
-            if (direction.magnitude > stoppingDistance)
-            {
+                Vector3 direction = playerObject.position - transform.position;
                 direction.Normalize();
-                transform.Translate(direction * moveSpeedNormal * Time.deltaTime, Space.World);
+                transform.Translate(direction * moveSpeedLight * Time.deltaTime, Space.World);
 
-            }
-            else
-            {
-                shouldMove = false;
-
-                lightExpositionTime = 0;
-
-                Invoke("StartMoving", delay);
-
-                if (index == targetObject.Length - 1)
+                //Audio Perseguiï¿½ï¿½o Normal:
+                if (!huntVoice)
                 {
-                    index = 0;
+                    SoundManager.instance.playDinamicBGM(2, 3, 1);
+                    SoundManager.instance.stopBGM(2);
+                    audioSource.PlayOneShot(sfxVoice3);
+                    huntVoice = true;
+                }
+
+                if (Mathf.Abs(playerObject.position.x - transform.position.x) > stoppingDistance) {
+
+                    if (!light2D.gameObject.activeSelf)
+                    {
+                    SoundManager.instance.stopDinamicBGM();
+                    
+                    }
+
+                    lightExpositionTime = 0;
+
                 }
                 else
                 {
-                    index++;
+                    //print($"PlayerObject position: {playerObject.position}\nMonster Position: {transform.position}\n" +
+                    //    $"Distance: {Mathf.Abs(playerObject.position.x - transform.position.x)} mg ={direction.magnitude} & sqrMg {direction.sqrMagnitude}\nExposition Time: {lightExpositionTime}");
+
+                    if (light2D.gameObject.activeSelf)
+                    {
+                        lightExpositionTime += Time.deltaTime;
+
+                        if(!fadeImage.IsPlaying("fadePanelIn"))
+                            fadeImage.Play("fadePanelIn");
+
+                    }
+
+                    if (lightExpositionTime > 5) {
+
+                        SoundManager.instance.stopDinamicBGM();
+                        GameManagement.Instance.SetPlayerPosition();
+                        lightExpositionTime = 0;
+                        if (fadeImage.IsPlaying("fadePanelIn")) 
+                            fadeImage.CrossFade("fadePanelOut", 0.01f);
+
+
+                    }
+
+                }
+
+            }
+            else if (shouldMove)
+            {
+
+                Vector3 direction = targetObject[index].position - transform.position;
+
+                //SFX Perseguiï¿½ï¿½o:
+                if (huntVoice)
+                {
+                    huntVoice = false;
+                    SoundManager.instance.stopDinamicBGM();
+                }
+
+                if (direction.magnitude > stoppingDistance)
+                {
+                    direction.Normalize();
+                    transform.Translate(direction * moveSpeedNormal * Time.deltaTime, Space.World);
+
+                }
+                else
+                {
+                    shouldMove = false;
+
+                    lightExpositionTime = 0;
+
+                    Invoke("StartMoving", delay);
+
+                    if (index == targetObject.Length - 1)
+                    {
+                        index = 0;
+                    }
+                    else
+                    {
+                        index++;
+                    }
                 }
             }
-        }
 
-        //SFX Grunindos:
-        timerVoice = timerVoice + Time.deltaTime;
-        if (timerVoice > limitVoice && !light2D.gameObject.activeSelf && shouldMove)
-        {
-            switch (typeVoice)
+            //SFX Grunindos:
+            timerVoice = timerVoice + Time.deltaTime;
+            if (timerVoice > limitVoice && !light2D.gameObject.activeSelf && shouldMove)
             {
-                case 1:
-                    audioSource.PlayOneShot(sfxVoice1);
-                    typeVoice = 2;
-                    timerVoice = 0f;
+                switch (typeVoice)
+                {
+                    case 1:
+                        audioSource.PlayOneShot(sfxVoice1);
+                        typeVoice = 2;
+                        timerVoice = 0f;
 
-                    break;
+                        break;
 
-                case 2:
-                    audioSource.PlayOneShot(sfxVoice2);
-                    typeVoice = 1;
-                    timerVoice = 0f;
-                    break;
+                    case 2:
+                        audioSource.PlayOneShot(sfxVoice2);
+                        typeVoice = 1;
+                        timerVoice = 0f;
+                        break;
+                }
             }
+
         }
+
+       
 
     }
 
-    void StartMoving()
+    public void StartMoving()
     {        
         shouldMove = true;
     }
+
+    public void StartDialogue()
+    {        
+        inDialogue = true;
+    }
+
+    public void StopDialogue()
+    {        
+        inDialogue = false;
+    }
+
+    public bool IsNearPlayer()
+    {
+        return isNearPlayer;
+    }
+
 
 
     Animation FindFadeImageByTag(string tag, bool includeInactive) {
