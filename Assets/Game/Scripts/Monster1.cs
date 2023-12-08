@@ -80,7 +80,20 @@ public class Monster1 : MonoBehaviour
                 isNearPlayer = false;
             }
 
-            if (light2D.gameObject.activeSelf && isNearPlayer && sameRoom)
+        }
+        else if (shouldMove)
+        {
+
+            Vector3 direction = targetObject[index].position - transform.position;
+
+            //SFX Persegui��o:
+            if (huntVoice)
+            {
+                huntVoice = false;
+                SoundManager.instance.stopDinamicBGM();
+            }
+
+            if (Mathf.Abs(playerObject.position.x - transform.position.x) > stoppingDistance)
             {
                 Vector3 direction = playerObject.position - transform.position;
                 direction.Normalize();

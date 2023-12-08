@@ -42,11 +42,11 @@ public class DialogueControl : MonoBehaviour
             print(sprites.Length);
         }
 
-        
+        ResetDialogue();
 
         if (names[0] == "Irmãos") {
 
-            ResetDialogue();
+           
             nextButton.SetActive(false);
             continueGroup.SetActive(true);
 

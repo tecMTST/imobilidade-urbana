@@ -30,8 +30,8 @@ public class Quest : MonoBehaviour{
     // Update is called once per frame
     void Update(){
 
-        isIluminated = IsIluminated();
-        questAlert.SetActive(isIluminated);
+       
+        questAlert.SetActive(isIluminated = IsIluminated());
 
         if (started)
             if (playerController.transform.position.x > this.transform.position.x)
@@ -66,6 +66,8 @@ public class Quest : MonoBehaviour{
     private void OnMouseDown() {
       if (isIluminated) {
 
+
+            print($"Started: {started}\nitemCaught: {itemCaught}\nConcluded: {concluded}");
             if (playerController.transform.position.x > this.transform.position.x)
                 this.transform.localScale = new Vector3(1, 1, 1);
             else
@@ -77,21 +79,38 @@ public class Quest : MonoBehaviour{
             }
 
             if (!started && !itemCaught && !concluded) {//Quest não iniciada
+                
+                print("Quest não iniciada");
+                
                 dialog.StartSpeech(dialog.profile.ToList<Sprite>().GetRange(dialogueIndexRangeStart[0], dialogueIndexRangeStart[1]).ToArray(),
                 dialog.speechTxt.ToList<string>().GetRange(dialogueIndexRangeStart[0], dialogueIndexRangeStart[1]).ToArray(),
                 dialog.actorName.ToList<string>().GetRange(dialogueIndexRangeStart[0], dialogueIndexRangeStart[1]).ToArray());
 
+                started = true;
+
             } else if (started && !itemCaught && !concluded) { //Quest iniciada, item NÃO pego
+
+                print("Quest iniciada, item NÃO pego");
+
                 dialog.StartSpeech(dialog.profile.ToList<Sprite>().GetRange(dialogueIndexRangeMiddle[0], dialogueIndexRangeMiddle[1]).ToArray(),
                 dialog.speechTxt.ToList<string>().GetRange(dialogueIndexRangeMiddle[0], dialogueIndexRangeMiddle[1]).ToArray(),
                 dialog.actorName.ToList<string>().GetRange(dialogueIndexRangeMiddle[0], dialogueIndexRangeMiddle[1]).ToArray());
 
+
             } else if (started && itemCaught && !concluded) { //Quest iniciada, item pego, NÃO concluída
+
+                print("Quest iniciada, item pego, NÃO concluída");
+
                 dialog.StartSpeech(dialog.profile.ToList<Sprite>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray(),
                 dialog.speechTxt.ToList<string>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray(),
                 dialog.actorName.ToList<string>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray());
 
+                concluded = true;
+
             } else if (started && itemCaught && concluded) { //Quest concluída
+
+                print("Quest concluída");
+
                 dialog.StartSpeech(dialog.profile.ToList<Sprite>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray(),
                 dialog.speechTxt.ToList<string>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray(),
                 dialog.actorName.ToList<string>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray());

@@ -23,15 +23,20 @@ public class QuestItem : MonoBehaviour
     // Update is called once per frame
     void Update() {
 
-        questAlert.SetActive(IsIluminated());
+        questAlert.SetActive(isIluminated = IsIluminated());
 
 
     }
 
     private void OnMouseDown() {
 
+        print("CLicked");
+
         if (isIluminated) {
+            print("Iluminated cicked");
+
             QuestContrroller.Instance.SetItemCaugh(quest);
+            this.gameObject.SetActive(false);
         }
 
     }

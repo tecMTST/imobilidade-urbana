@@ -10566,7 +10566,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &645468230
 Transform:
   m_ObjectHideFlags: 0
@@ -13869,7 +13869,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2253911629886400664, guid: 79997050a16251848bc933cbc32fe180, type: 3}
       propertyPath: m_Name
-      value: Terceiro NPC
+      value: Irmaos
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: 79997050a16251848bc933cbc32fe180, type: 3}
       propertyPath: m_Layer
@@ -13960,6 +13960,9 @@ PrefabInstance:
       addedObject: {fileID: 851173018}
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 79997050a16251848bc933cbc32fe180, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 851173021}
+    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 79997050a16251848bc933cbc32fe180, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 851173012}
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 79997050a16251848bc933cbc32fe180, type: 3}
       insertIndex: -1
@@ -13999,11 +14002,11 @@ MonoBehaviour:
   - As duas escolhas tem argumentos muito bons
   actorName:
   - "Irm\xE3os"
-  - 
-  - 
-  - 
-  - 
-  - 
+  - "Irm\xE3os"
+  - "Irm\xE3os"
+  - "Irm\xE3os"
+  - "Irm\xE3os"
+  - "Irm\xE3os"
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -14023,24 +14026,24 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.025000006, y: 0.315}
@@ -14077,6 +14080,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &851173021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851173011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abeba6488f42a5e4e85b8fc8f27e60a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  started: 0
+  concluded: 0
+  itemCaught: 0
+  item: {fileID: 0}
+  dialog: {fileID: 851173012}
+  dialogueIndexRangeStart: 0000000000000000
+  dialogueIndexRangeMiddle: 0000000000000000
+  dialogueIndexRangeEnd: 0000000000000000
+  dialogueIndexRangePostEnd: 0000000000000000
+  questAlert: {fileID: 770474561}
+  endQuestPositionX: 0
 --- !u!1 &857618057
 GameObject:
   m_ObjectHideFlags: 0
@@ -39785,11 +39811,11 @@ MonoBehaviour:
   started: 0
   concluded: 0
   itemCaught: 0
-  item: {fileID: 0}
+  item: {fileID: 1474421003}
   dialog: {fileID: 2134828601}
-  dialogueIndexRangeStart: 0000000001000000
-  dialogueIndexRangeMiddle: 0200000003000000
-  dialogueIndexRangeEnd: 0400000005000000
+  dialogueIndexRangeStart: 0000000002000000
+  dialogueIndexRangeMiddle: 0200000002000000
+  dialogueIndexRangeEnd: 0400000002000000
   dialogueIndexRangePostEnd: 0000000000000000
   questAlert: {fileID: 35830448}
   endQuestPositionX: 0
