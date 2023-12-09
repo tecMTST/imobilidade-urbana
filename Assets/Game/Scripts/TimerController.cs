@@ -10,23 +10,22 @@ public class TimerController : MonoBehaviour
     public float penalty;
     
     private float currentTime;
+    private bool isPaused = true;
     private string gameOverScene = "GameOverScene"; 
     
-    // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(gameObject);
         currentTime = initialTime;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(currentTime > 1)
+        if (!isPaused && currentTime > 1)
         {
             currentTime -= Time.deltaTime;
         }
-        else
+        else if (!isPaused)
         {
             SceneManager.LoadScene(gameOverScene);
         }
@@ -40,5 +39,15 @@ public class TimerController : MonoBehaviour
     public float GetCurrentTime()
     {
         return currentTime;
+    }
+
+    public void PauseTimer()
+    {
+        isPaused = true;
+    }
+
+    public void ResumeTimer()
+    {
+        isPaused = false;
     }
 }

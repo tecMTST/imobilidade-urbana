@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class TimerUpdateText : MonoBehaviour
 {
-    public Text timerObj;
+    public TMP_Text  timerObj;
     private GameObject timerController; 
     private float currentTime;
     // Start is called before the first frame update
@@ -21,6 +23,6 @@ public class TimerUpdateText : MonoBehaviour
         int minutes = Mathf.FloorToInt(currentTime / 60);
         int seconds = Mathf.FloorToInt(currentTime % 60);
         string formattedTime = string.Format("{0:00}:{1:00}", minutes, seconds);
-        timerObj.text = formattedTime;
+        timerObj.SetText(formattedTime);
     }
 }
