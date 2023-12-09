@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,10 @@ public class Quest : MonoBehaviour{
     public GameObject questAlert;
 
     public float endQuestPositionX;
+
+    public Action onStarted;
+    public Action onItemCaught;
+    public Action onConcluded;
 
     private bool isIluminated;
     private PlayerController playerController;
@@ -87,6 +92,7 @@ public class Quest : MonoBehaviour{
                 dialog.actorName.ToList<string>().GetRange(dialogueIndexRangeStart[0], dialogueIndexRangeStart[1]).ToArray());
 
                 started = true;
+                onStarted();
 
             } else if (started && !itemCaught && !concluded) { //Quest iniciada, item NÃO pego
 

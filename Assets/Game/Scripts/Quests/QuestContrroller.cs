@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+
 using UnityEngine;
 
 public class QuestContrroller : MonoBehaviour
 {
-    public InventoryItem[] mammaIcons, brosIcons, marretIcons;
+    public Sprite[] mammaIcons, brosIcons, marretIcons;
+    public Sprite mamma, bros, marret;
+    public GameObject mammaMapIcon, brosMapIcon, marretMapIcon;
 
-    InventoryController inventoryController;
 
     public QuestItem mammaItem, marretItem;
 
@@ -22,8 +21,9 @@ public class QuestContrroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
 
-      
+
 
     }
 
@@ -38,7 +38,8 @@ public class QuestContrroller : MonoBehaviour
         SetItemActive(item);
 
     }
-    public void EndQuest(Quest quest) { 
+    public void EndQuest(Quest quest) {
+
         quest.concluded = true; 
         quest.SetDialogue();
         quest.EndQuest();
@@ -47,6 +48,7 @@ public class QuestContrroller : MonoBehaviour
     public void SetItemCaugh(Quest quest) {
 
         quest.itemCaught = true;
+        quest.onItemCaught();
        
        
 

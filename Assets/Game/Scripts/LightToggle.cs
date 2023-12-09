@@ -8,7 +8,7 @@ public class LightToggle : MonoBehaviour
     public UnityEngine.Rendering.Universal.Light2D light2D;
     public UnityEngine.Rendering.Universal.Light2D light2D2; 
     
-    private Button button;
+    public Image lanternToggle;
     public Sprite imageOff;
     public Sprite imageOn;
 
@@ -17,25 +17,27 @@ public class LightToggle : MonoBehaviour
 
     private void Start()
     {
-        button = GetComponent<Button>();
-        button.onClick.AddListener(ToggleLight);
+    
+
+
+        
     }
 
-    private void ToggleLight()
+    public void ToggleLight(bool active)
     {
         //light2D.enabled = !light2D.enabled;
-        light2D.gameObject.SetActive(!light2D.gameObject.activeSelf);
-        light2D2.enabled = !light2D2.enabled;
+        light2D.gameObject.SetActive(active);
+        light2D2.enabled = active;
         SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.menuLuz);
         
-        if(light2D2.enabled) {
-            button.image.sprite = imageOn;
+        if(active) {
+            lanternToggle.sprite = imageOn;
         } else {
-            button.image.sprite = imageOff;
+            lanternToggle.sprite = imageOff;
         }
         
 
-        if (!light2D.gameObject.activeSelf) {
+        if (!active) {
             SoundManager.instance.stopDinamicBGM();
         }
 

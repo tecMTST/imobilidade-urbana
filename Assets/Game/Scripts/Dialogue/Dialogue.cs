@@ -60,6 +60,13 @@ public class Dialogue : MonoBehaviour
     
 
     public void StartSpeech() {
+
+        if (onDialogue) {
+            onDialogue = false;
+            dc.Close();
+            return;
+        }
+
         onDialogue = true;
         dc.Speech(profile, speechTxt, actorName);
     }
@@ -67,36 +74,35 @@ public class Dialogue : MonoBehaviour
     
 
     public void StartSpeech(Sprite[] Profile, string[] SpeechTxt, string[] ActorName) {
+
+        if (onDialogue) {
+            onDialogue = false;
+            dc.Close();
+            return;
+        }
+
         onDialogue = true;
         dc.Speech(Profile, SpeechTxt, ActorName);
     }
 
 
-    private void FixedUpdate()
-    {
-        Interact();
-    }
 
-    public void Interact()
-    {
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, radius, playerLayer);
 
-        if(hit != null)
-        {
-            onRadius = true;
-        }
-        else
-        {
-            onRadius = false;
-            if(onDialogue){
-                onDialogue = false;
-                dc.Close();
-            }
-        }
-    }
+    //public void Interact() {
+    //    Collider2D hit = Physics2D.OverlapCircle(transform.position, radius, playerLayer);
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireSphere(transform.position, radius);
-    }
+    //    if (hit != null) {
+    //        onRadius = true;
+    //    } else {
+    //        onRadius = false;
+    //        if (onDialogue) {
+    //            onDialogue = false;
+    //            dc.Close();
+    //        }
+    //    }
+    //}
+
+    //private void OnDrawGizmosSelected() {
+    //    Gizmos.DrawWireSphere(transform.position, radius);
+    //}
 }

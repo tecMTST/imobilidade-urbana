@@ -9,6 +9,7 @@ TagManager:
   - playerMapIcon
   - map
   - fadePanel
+  - questMapIcon
   layers:
   - Default
   - TransparentFX
