@@ -17,6 +17,7 @@ public class GameManagement : MonoBehaviour{
         DontDestroyOnLoad(this.gameObject);
 
         Instance = this;
+        Application.targetFrameRate = 60;
     }
 
     // Start is called before the first frame update
