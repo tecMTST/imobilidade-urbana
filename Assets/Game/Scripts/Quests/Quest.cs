@@ -19,9 +19,9 @@ public class Quest : MonoBehaviour{
 
     public float endQuestPositionX;
 
-    public Action onStarted;
-    public Action onItemCaught;
-    public Action onConcluded;
+    public Action onStarted = () => { };
+    public Action onItemCaught = ()=> { };
+    public Action onConcluded = () => { };
 
     private bool isIluminated;
     private PlayerController playerController;

@@ -23,9 +23,9 @@ public class DialogueControl : MonoBehaviour
     private string[] names;
     public int index;
 
-    public Action onDialogueClose;
-    public Action onBeforeSpeech;
-    public Action onSpeech;
+    public Action onDialogueClose = () => { };
+    public Action onBeforeSpeech = () => { };
+    public Action onSpeech = () => { };
 
     public static DialogueControl Instance;
 

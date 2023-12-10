@@ -19,7 +19,7 @@ public class Monster1 : MonoBehaviour
     public float expositionTimeLimit;
 
     private float lightExpositionTime;
-    private float stoppingDistance = 1f;
+    private float stoppingDistance = 0.5f;
     private bool shouldMove = false;
     private Collider2D thisCollider;
     private bool isNearPlayer = false;
@@ -55,10 +55,12 @@ public class Monster1 : MonoBehaviour
 
     void Update()
     {
+        print($"In Dialogue: {inDialogue}");
+
         if(!inDialogue){
             if (!light2D.gameObject.activeSelf) {
                 if (fadeImage.IsPlaying("fadePanelIn")) {
-                    fadeImage.CrossFade("fadePanelOut", 0.1f);
+                    fadeImage.CrossFade("fadePanelOut");
 
                 }
             }
@@ -126,7 +128,7 @@ public class Monster1 : MonoBehaviour
                         GameManagement.Instance.SetPlayerPosition();
                         lightExpositionTime = 0;
                         if (fadeImage.IsPlaying("fadePanelIn")) 
-                            fadeImage.CrossFade("fadePanelOut", 0.01f);
+                            fadeImage.CrossFade("fadePanelOut");
 
 
                     }
@@ -146,8 +148,8 @@ public class Monster1 : MonoBehaviour
                     SoundManager.instance.stopDinamicBGM();
                 }
 
-                if (direction.magnitude > stoppingDistance)
-                {
+                //if (direction.magnitude > stoppingDistance){
+                if (!light2D.gameObject.activeSelf) {
                     direction.Normalize();
                     transform.Translate(direction * moveSpeedNormal * Time.deltaTime, Space.World);
 

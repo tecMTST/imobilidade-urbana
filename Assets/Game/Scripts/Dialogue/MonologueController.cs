@@ -13,7 +13,7 @@ public class MonologueController : MonoBehaviour
     public GameObject timerController;
     public GameObject moveArrowRight;
     public GameObject moveArrowLeft;
-    public GameObject lightBtn;
+    public GameObject lightTgl;
 
     public GameObject player;
 
@@ -58,7 +58,7 @@ public class MonologueController : MonoBehaviour
         timer.SetActive(false);
         moveArrowRight.SetActive(false);
         moveArrowLeft.SetActive(false);
-        lightBtn.SetActive(false);
+        lightTgl.SetActive(false);
 
         Speech(falaInicial);
     }
@@ -174,7 +174,7 @@ public class MonologueController : MonoBehaviour
 
                     timerController.GetComponent<TimerController>().ResumeTimer();
 
-                    lightBtn.SetActive(true);
+                    lightTgl.SetActive(true);
                     moveArrowRight.SetActive(true);
                     moveArrowLeft.SetActive(true);
                     activeMonster.GetComponent<Monster1>().StopDialogue();
