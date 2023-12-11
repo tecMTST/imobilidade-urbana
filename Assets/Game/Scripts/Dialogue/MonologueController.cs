@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,7 +42,7 @@ public class MonologueController : MonoBehaviour
     private string[] sentences;
     public Sprite imagePlayer;
     public Sprite imageSound;
-    public string name;
+    public string nome;
     public string anunciante;
     private int index;
     private int controleDeFala = 0;
@@ -140,7 +137,7 @@ public class MonologueController : MonoBehaviour
         } else
         {
             profile.sprite = imagePlayer;
-            actorNameText.text = name;
+            actorNameText.text = nome;
         }
         
         foreach (char letter in sentences[index].ToCharArray())

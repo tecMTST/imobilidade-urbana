@@ -89,17 +89,18 @@ public class DialogueControl : MonoBehaviour
             }
             else
             {
-                speechText.text = "";
+                Close();
                
-                dialogueObj.SetActive(false);
             }
         }
     }
 
     public void Close()
     {
+        speechText.text = "";
         dialogueObj.SetActive(false);
         onDialogueClose();
+
         
     }
 

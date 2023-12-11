@@ -5,23 +5,29 @@ using UnityEngine.UI;
 
 public class GameManagement : MonoBehaviour{
 
+    public Transform[] interactableObjects;
+
     public static GameManagement Instance;
 
-    public Image panelFadeImage;
+    public Animation panelFadeImage;
 
     private PlayerController playerController;
     private Vector3 playerInitialPosition;
-    
 
-    private void Awake() {
-        DontDestroyOnLoad(this.gameObject);
+  
+        
 
-        Instance = this;
-        Application.targetFrameRate = 60;
-    }
 
     // Start is called before the first frame update
     void Start(){
+
+            DontDestroyOnLoad(this.gameObject);
+
+            Instance = this;
+            Application.targetFrameRate = 60;
+        
+
+
         playerController = PlayerController.Instance;
         playerInitialPosition = playerController.transform.position;
         
@@ -48,6 +54,26 @@ public class GameManagement : MonoBehaviour{
 
         playerController.transform.position = position == new Vector3(0, 0, 0) ? 
                                               playerInitialPosition : new Vector3(position.x, playerInitialPosition.y, position.z);
+
+        panelFadeImage.enabled = false;
+
+
+       
+    }
+
+    public void GambiarraDesgracadaDosNPCMaltitoCaralhoInferno() {
+
+
+        //foreach (Transform t in interactableObjects) {
+
+        //    Vector3 originalPosition = t.position;
+
+        //    t.position = new Vector3().normalized;
+
+        //    t.localPosition = originalPosition;
+
+        //}
+
 
     }
 

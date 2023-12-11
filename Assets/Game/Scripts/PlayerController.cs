@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
                 timerPassos = moveSpeed * moveSFX;
             }
             timerPassos = timerPassos - Time.deltaTime;
+
         }
         else if (isMovingLeft) 
         {
@@ -85,6 +86,8 @@ public class PlayerController : MonoBehaviour
 
             //SFX Passos:
             timerPassos = 0f;
+
+
         }
     }
 

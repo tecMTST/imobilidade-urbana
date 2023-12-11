@@ -20,6 +20,8 @@ public class QuestItem : MonoBehaviour
         
     }
 
+   
+
     // Update is called once per frame
     void Update() {
 
@@ -35,7 +37,7 @@ public class QuestItem : MonoBehaviour
         if (isIluminated) {
             print("Iluminated cicked");
 
-            QuestContrroller.Instance.SetItemCaugh(quest);
+            quest.itemCaught = true;
             this.gameObject.SetActive(false);
         }
 
@@ -46,7 +48,7 @@ public class QuestItem : MonoBehaviour
     public bool IsIluminated() {
 
         List<Collider2D> col = new();
-        Physics2D.OverlapCollider(this.GetComponent<PolygonCollider2D>(), new ContactFilter2D(), col);
+        Physics2D.OverlapCollider(this.GetComponent<Collider2D>(), new ContactFilter2D(), col);
 
         return col.Any<Collider2D>(item => item.gameObject.name == "Lantern");
 
