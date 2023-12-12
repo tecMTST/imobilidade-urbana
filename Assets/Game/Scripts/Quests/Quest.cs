@@ -12,8 +12,11 @@ public class Quest : MonoBehaviour{
     public Sprite icon;
     public Indicator indicator;
     public GameObject mapIcon;
-    
 
+    public Vector3 mainWagonPosition;
+    public Animation fadePanel;
+
+    public Animator animator;
 
 
     //------------------------------------------------------------------------------------
@@ -38,14 +41,19 @@ public class Quest : MonoBehaviour{
     private bool isIluminated;
     private PlayerController playerController;
 
+
     // Start is called before the first frame update
     void Start()
     {
         playerController = FindFirstObjectByType<PlayerController>();
+        fadePanel = GameManagement.Instance.panelFadeImage;
     }
 
     // Update is called once per frame
     void Update(){
+
+        
+        
 
         isIluminated = IsIluminated();
         questAlert.SetActive(isIluminated);
@@ -71,6 +79,8 @@ public class Quest : MonoBehaviour{
 
                 Collider2D hitCollider = Physics2D.OverlapPoint(clickPosition2D, dialogue.npcLayer);
 
+                print($"NPC {hitCollider.name}");
+
                 if (hitCollider != null && hitCollider.gameObject == gameObject) {
                     Questing();
                 }
@@ -84,30 +94,52 @@ public class Quest : MonoBehaviour{
 
     }
 
-    public void SetDialogue() {
 
 
-        
-    }
-
-
-    public void SetNPCposition(Vector3 position) { 
-
-    }
-
-
-    public void EndQuest() {
+    public IEnumerator EndQuest() {
 
         concluded = true;
-        SetNPCposition(new Vector3(-288.2f, -0.76f, 0));
 
+        animator.SetBool("concluded", concluded);
+
+        GameManagement.Instance.BlockAllInputs(true);
+
+        fadePanel.Play("whiteFadeIn");
+
+        yield return new WaitForSeconds(5);
+
+        this.setAtMainWagon();
+
+        GameManagement.Instance.BlockAllInputs(true);
+
+        fadePanel.Stop();
+        
+        fadePanel.Play("whiteFadeOut");
+
+        yield return new WaitForSeconds(1.1f);
+
+        fadePanel.Stop();
+
+        dialogue.dc.onDialogueClose -= EndThisQuest;
+        dialogue.dc.onBrosConcluded -= EndThisQuest;
+
+        GameManagement.Instance.BlockAllInputs(false);
+
+        StopCoroutine(nameof(EndQuest));
 
     }
-            
+
+    public void EndThisQuest() {
+        StartCoroutine(EndQuest());
+
+    }
+
 
     private void ChangeIndicators(int index) {
 
-        mapIcon.SetActive(true);
+        
+        mapIcon.SetActive(index == 0);
+       
         indicator.SetSpriteImage (icon);
         indicator.SetSpriteSubImage(subIcons[index]);
 
@@ -148,8 +180,26 @@ public class Quest : MonoBehaviour{
                 this.GetComponent<SpriteRenderer>().flipX = true;
 
             if (this.gameObject.name.Equals("Irmaos")) {
-                dialogue.StartSpeech();
-                return;
+
+                if (concluded == false) {
+
+                ChangeIndicators(0);
+                    //dialogue.dc.onRefuseBros = () => ChangeIndicators(0);
+                    dialogue.dc.onBrosConcluded = () => ChangeIndicators(1);
+                    dialogue.dc.onBrosConcluded += EndThisQuest;
+
+
+                    dialogue.StartSpeech(dialogue.profile.ToList<Sprite>().GetRange(dialogueIndexRangeStart[0], dialogueIndexRangeStart[1]).ToArray(),
+                    dialogue.speechTxt.ToList<string>().GetRange(dialogueIndexRangeStart[0], dialogueIndexRangeStart[1]).ToArray(),
+                    dialogue.actorName.ToList<string>().GetRange(dialogueIndexRangeStart[0], dialogueIndexRangeStart[1]).ToArray());
+
+                } else {
+                    dialogue.StartSpeech(dialogue.profile.ToList<Sprite>().GetRange(dialogueIndexRangePostEnd[0], dialogueIndexRangePostEnd[1]).ToArray(),
+                    dialogue.speechTxt.ToList<string>().GetRange(dialogueIndexRangePostEnd[0], dialogueIndexRangePostEnd[1]).ToArray(),
+                    dialogue.actorName.ToList<string>().GetRange(dialogueIndexRangePostEnd[0], dialogueIndexRangePostEnd[1]).ToArray());
+                }
+
+            return;
             }
 
             if (!started && !itemCaught && !concluded) {//Quest não iniciada
@@ -189,18 +239,25 @@ public class Quest : MonoBehaviour{
                 dialogue.actorName.ToList<string>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray());
 
                 ChangeIndicators(1);
-                concluded = true;
+
+                dialogue.dc.onDialogueClose += EndThisQuest;
 
             } else if (started && itemCaught && concluded) { //Quest concluída
 
                 print("Quest concluída");
 
-                dialogue.StartSpeech(dialogue.profile.ToList<Sprite>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray(),
-                dialogue.speechTxt.ToList<string>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray(),
-                dialogue.actorName.ToList<string>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray());
+                dialogue.StartSpeech(dialogue.profile.ToList<Sprite>().GetRange(dialogueIndexRangePostEnd[0], dialogueIndexRangePostEnd[1]).ToArray(),
+                dialogue.speechTxt.ToList<string>().GetRange(dialogueIndexRangePostEnd[0], dialogueIndexRangePostEnd[1]).ToArray(),
+                dialogue.actorName.ToList<string>().GetRange(dialogueIndexRangePostEnd[0], dialogueIndexRangePostEnd[1]).ToArray());
             }
         
 
+
+    }
+
+    public void setAtMainWagon() {
+
+        this.transform.position = mainWagonPosition;
 
     }
 

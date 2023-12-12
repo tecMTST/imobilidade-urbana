@@ -11,20 +11,29 @@ public class GameManagement : MonoBehaviour{
 
     public Animation panelFadeImage;
 
+    public GameObject blockInputPanel;
+    
     private PlayerController playerController;
     private Vector3 playerInitialPosition;
 
-  
-        
+
+
+
+    private void Awake() {
+        DontDestroyOnLoad(this.gameObject);
+
+        Instance = this;
+        Application.targetFrameRate = 60; DontDestroyOnLoad(this.gameObject);
+
+        Instance = this;
+        Application.targetFrameRate = 60;
+    }
 
 
     // Start is called before the first frame update
     void Start(){
 
-            DontDestroyOnLoad(this.gameObject);
-
-            Instance = this;
-            Application.targetFrameRate = 60;
+           
         
 
 
@@ -61,21 +70,11 @@ public class GameManagement : MonoBehaviour{
        
     }
 
-    public void GambiarraDesgracadaDosNPCMaltitoCaralhoInferno() {
-
-
-        //foreach (Transform t in interactableObjects) {
-
-        //    Vector3 originalPosition = t.position;
-
-        //    t.position = new Vector3().normalized;
-
-        //    t.localPosition = originalPosition;
-
-        //}
-
-
+    public void BlockAllInputs(bool block) {
+        blockInputPanel.SetActive(block);
     }
+
+    
 
     //public void StopCoroutines(string name = null) {
 

@@ -23,11 +23,15 @@ public class DialogueControl : MonoBehaviour
     private string[] names;
     public int index;
 
+    
+
     public Action onDialogueClose = () => { };
-    public Action onBeforeSpeech = () => { };
-    public Action onSpeech = () => { };
+    public Action onRefuseBros = () => { };
+    public Action onBrosConcluded = () => { };
 
     public static DialogueControl Instance;
+
+    public bool isBros = false;
 
     private void Start() {
         Instance = this;
@@ -35,7 +39,6 @@ public class DialogueControl : MonoBehaviour
 
     public void Speech(Sprite[] p, string[] txt, string[] actorName) {
 
-        onBeforeSpeech();
 
         speechText.text = "";
         dialogueObj.SetActive(true);
@@ -49,7 +52,7 @@ public class DialogueControl : MonoBehaviour
 
         ResetDialogue();
 
-        if (names[0] == "Irmãos") {
+        if (isBros) {
 
            
             nextButton.SetActive(false);
@@ -62,7 +65,6 @@ public class DialogueControl : MonoBehaviour
 
         StartCoroutine(TypeSentence());
 
-        onSpeech();
 
     }
 
@@ -101,13 +103,32 @@ public class DialogueControl : MonoBehaviour
         dialogueObj.SetActive(false);
         onDialogueClose();
 
-        
+        if (isBros)
+            onBrosConcluded();
+
+
+
     }
 
     public void ResetDialogue() {
+
+
         index = 0;
 
+        //speechText.text = "";
+        //dialogueObj.SetActive(false);
+        //onDialogueClose();
 
+
+    }
+
+    public void OnRefuseBros() {
+
+        speechText.text = "";
+        dialogueObj.SetActive(false);
+        onDialogueClose();
+
+        onRefuseBros();
     }
 
    

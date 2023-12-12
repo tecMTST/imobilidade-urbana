@@ -63,6 +63,11 @@ public class Dialogue : MonoBehaviour
         //    return;
         //}
 
+        if (this.gameObject.name == "Irmaos")
+            dc.isBros = true;
+        else
+            dc.isBros = false;
+
         onDialogue = true;
         dc.Speech(profile, speechTxt, actorName);
         dc.onDialogueClose =() => onDialogue = false;
@@ -77,6 +82,10 @@ public class Dialogue : MonoBehaviour
         //    dc.Close();
         //    return;
         //}
+        if (this.gameObject.name == "Irmaos")
+            dc.isBros = true;
+        else
+            dc.isBros = false;
 
         onDialogue = true;
         dc.Speech(Profile, SpeechTxt, ActorName);

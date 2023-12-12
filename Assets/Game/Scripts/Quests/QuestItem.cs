@@ -13,6 +13,8 @@ public class QuestItem : MonoBehaviour
 
     private bool isIluminated;
 
+    public LayerMask thisLayer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,19 +29,49 @@ public class QuestItem : MonoBehaviour
 
         questAlert.SetActive(isIluminated = IsIluminated());
 
+        if (isIluminated) {
+
+            print($"Is item iluminated {isIluminated}");
+
+
+            if ((Input.GetMouseButtonDown(0) || Input.touchCount > 0)) {
+                Vector3 clickPosition;
+
+
+                if (Input.touchCount > 0) {
+                    Touch touch = Input.GetTouch(Input.touchCount - 1);
+                    clickPosition = Camera.main.ScreenToWorldPoint(touch.position);
+                } else {
+                    clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                }
+
+                clickPosition.z = 0;
+
+                Vector2 clickPosition2D = new Vector2(clickPosition.x, clickPosition.y);
+
+                Collider2D hitCollider = Physics2D.OverlapPoint(clickPosition2D, thisLayer);
+
+                print($"HitCollider: {hitCollider.gameObject.name}");
+
+                if (hitCollider != null && hitCollider.gameObject == gameObject) {
+                    print("CLicked");
+
+                    
+
+                        quest.itemCaught = true;
+                        this.gameObject.SetActive(false);
+                    
+                }
+            }
+
+        }
+
 
     }
 
     private void OnMouseDown() {
 
-        print("CLicked");
-
-        if (isIluminated) {
-            print("Iluminated cicked");
-
-            quest.itemCaught = true;
-            this.gameObject.SetActive(false);
-        }
+      
 
     }
 
