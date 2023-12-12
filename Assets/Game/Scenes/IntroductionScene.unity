@@ -246,7 +246,7 @@ PrefabInstance:
     - target: {fileID: 4556975161427753873, guid: 00485d6ca9369da4d8e6f94faa5b9250, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -2425198670477278042, guid: de17d114c51f30a4e9c9711d5ad6fad4, type: 3}
+      objectReference: {fileID: 7242074247051109167, guid: de17d114c51f30a4e9c9711d5ad6fad4, type: 3}
     - target: {fileID: 4556975161427753873, guid: 00485d6ca9369da4d8e6f94faa5b9250, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -653,7 +653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -994,7 +994,7 @@ PrefabInstance:
     - target: {fileID: 4556975161427753873, guid: 00485d6ca9369da4d8e6f94faa5b9250, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 5493094890437778474, guid: de17d114c51f30a4e9c9711d5ad6fad4, type: 3}
+      objectReference: {fileID: 2049221568788291272, guid: de17d114c51f30a4e9c9711d5ad6fad4, type: 3}
     - target: {fileID: 4556975161427753873, guid: 00485d6ca9369da4d8e6f94faa5b9250, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -1098,7 +1098,7 @@ PrefabInstance:
     - target: {fileID: 4556975161427753873, guid: 00485d6ca9369da4d8e6f94faa5b9250, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 5493094890437778474, guid: de17d114c51f30a4e9c9711d5ad6fad4, type: 3}
+      objectReference: {fileID: 2049221568788291272, guid: de17d114c51f30a4e9c9711d5ad6fad4, type: 3}
     - target: {fileID: 4556975161427753873, guid: 00485d6ca9369da4d8e6f94faa5b9250, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -1427,7 +1427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1578,7 +1578,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7243020584119970231, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4294967295
+      value: 16777215
       objectReference: {fileID: 0}
     - target: {fileID: 7714290598204744738, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
       propertyPath: m_fontColor32.rgba
