@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,9 +8,11 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance;
 
     public float moveSpeed = 5f;
-    private bool isMovingRight = false;
-    private bool isMovingLeft = false;
+    public bool isMovingRight = false;
+    public bool isMovingLeft = false;
     private int roomIndex = 7;
+
+    public bool onLimit = false;
       
 
     [Header("Vagoes"), Tooltip("Aqui vao os coliders dos respectivos vagoes")]
@@ -89,6 +92,16 @@ public class PlayerController : MonoBehaviour
 
 
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.CompareTag("mapLimit"))
+            onLimit = true;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision) {
+        if (collision.gameObject.CompareTag("mapLimit"))
+            onLimit = false;
     }
 
     public void Die() {
