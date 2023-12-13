@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,9 +43,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -134,7 +134,700 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: explosao R01-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 21
+        width: 72
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a331048f9d61bd048aa4a0d896dd51cd
+      internalID: -1776123470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5bee0245dfd99e49a0db70b90768148
+      internalID: -1661068442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8833ba1e2224cc4a8d8eba2db77a50b
+      internalID: 232112829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dbb5c60ee5d91646a5b8565f18e24e7
+      internalID: -576231336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 1444
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24638ce9a3a7953468a6e8e17d7af8d0
+      internalID: 1101769209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 1805
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de5fc93e235af9d48bb73b0ccdb013b5
+      internalID: 566687943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 2166
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5398dac75d835314a87755322436fbb4
+      internalID: 1006016196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 2527
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2056319ce285374a911a179a5666cd0
+      internalID: -293049640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 2888
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4661815765fc8a84f9d76be089d55f06
+      internalID: 1795664665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 3249
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6183a772b6773924bbcd033bc917184a
+      internalID: -582114594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 3610
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 059a92f3cf5cd09499f6a4edb167e1ff
+      internalID: 391746746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 3971
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f63965a9bc2040e4a894bccb5606da6b
+      internalID: 122158911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 4332
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d46a07fcdfac1e48b72ec270165db54
+      internalID: -1449206519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 4693
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9ac61bdb00a44c4ead97b2be9dbf2ae
+      internalID: 536287887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 5054
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b553c634f1293f47bebfea237873d42
+      internalID: -1450015614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 5415
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3c5d4aa70f558b40ba0b1bdbc5a1c55
+      internalID: -411568462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 5776
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed1b8220c99edb04490e6b89f7d54d45
+      internalID: -796055375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 6137
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6234c472e63617b45b7dd8207e4ca425
+      internalID: 1650104790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 6498
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a52a4037bb168cf4dac2ae53bfb2ad6e
+      internalID: -477781469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 6859
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d91d0932cb8c2124f8a8b647bf9665d3
+      internalID: 954905933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 7220
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72fcc188a6eac98488ea0a0e75b7bca3
+      internalID: -1062259706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 7581
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17c940c4b95a4ca4bb1c889f32943532
+      internalID: -1487949454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 7942
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d8ea5f1616ffe649a9d502280af7c49
+      internalID: 1667852859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 8303
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1464ce96c47f4694faa9e6ef8a12418c
+      internalID: 1400132498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 8664
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1e4bf442335af2469dbf8b5544c7011
+      internalID: 2038237248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 9025
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e1085807bb809d4593ca40193069bfe
+      internalID: 998058387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 9386
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf07937af8432fa468b030cffd54310c
+      internalID: -191688415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 9747
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ed494a61b527a644b63407d78eb0942
+      internalID: -347823169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 10108
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9697d71fcf04b3743ac1fbc5a7d5d261
+      internalID: 1625488580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 10469
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c003f4b06f4b354d950dbaf2f534629
+      internalID: -684391556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_30
+      rect:
+        serializedVersion: 2
+        x: 10830
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5800afe33202ab847bb33eccb3d2ea2f
+      internalID: -361416622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_31
+      rect:
+        serializedVersion: 2
+        x: 11191
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d48adf98067004d4b840138ac4a11ee3
+      internalID: 1195600426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosao R01-Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 11552
+        y: 0
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 297381585c6f33e40975c210712a03a9
+      internalID: -748666944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +838,40 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      explosao R01-Sheet_0: -1776123470
+      explosao R01-Sheet_1: -1661068442
+      explosao R01-Sheet_10: 391746746
+      explosao R01-Sheet_11: 122158911
+      explosao R01-Sheet_12: -1449206519
+      explosao R01-Sheet_13: 536287887
+      explosao R01-Sheet_14: -1450015614
+      explosao R01-Sheet_15: -411568462
+      explosao R01-Sheet_16: -796055375
+      explosao R01-Sheet_17: 1650104790
+      explosao R01-Sheet_18: -477781469
+      explosao R01-Sheet_19: 954905933
+      explosao R01-Sheet_2: 232112829
+      explosao R01-Sheet_20: -1062259706
+      explosao R01-Sheet_21: -1487949454
+      explosao R01-Sheet_22: 1667852859
+      explosao R01-Sheet_23: 1400132498
+      explosao R01-Sheet_24: 2038237248
+      explosao R01-Sheet_25: 998058387
+      explosao R01-Sheet_26: -191688415
+      explosao R01-Sheet_27: -347823169
+      explosao R01-Sheet_28: 1625488580
+      explosao R01-Sheet_29: -684391556
+      explosao R01-Sheet_3: -576231336
+      explosao R01-Sheet_30: -361416622
+      explosao R01-Sheet_31: 1195600426
+      explosao R01-Sheet_32: -748666944
+      explosao R01-Sheet_4: 1101769209
+      explosao R01-Sheet_5: 566687943
+      explosao R01-Sheet_6: 1006016196
+      explosao R01-Sheet_7: -293049640
+      explosao R01-Sheet_8: 1795664665
+      explosao R01-Sheet_9: -582114594
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
