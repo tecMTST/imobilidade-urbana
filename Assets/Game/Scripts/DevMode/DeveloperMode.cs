@@ -65,28 +65,17 @@ public class DeveloperMode : MonoBehaviour{
     }
 
     private void LampsLightining() {
-        SetPostProcessing(false);
-        GlobalLightCity.enabled = false;
 
         foreach (Light2D lamp in lamps) 
-            lamp.enabled = true;
-        
-        cityBack.SetActive(false);  
+            lamp.enabled = true; 
     }
 
     private void CityLightining() {
-        SetPostProcessing(true);
-        GlobalLightCity.enabled = true;
 
         foreach (Light2D lamp in lamps) 
             lamp.enabled = false;
-        
-        cityBack.SetActive(true);
-
-
+     
     }
 
-    private void SetPostProcessing(bool on) {
-        volume.enabled = on;   
-    }
+   
 }
