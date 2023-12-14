@@ -79,19 +79,16 @@ public class Quest : MonoBehaviour{
 
                 Collider2D hitCollider = Physics2D.OverlapPoint(clickPosition2D, dialogue.npcLayer);
 
-                print($"NPC {hitCollider.name}");
+                if (hitCollider != null) {
+                    print($"NPC {hitCollider.name}");
 
-                if (hitCollider != null && hitCollider.gameObject == gameObject) {
-                    Questing();
+                    if (hitCollider.gameObject == gameObject) {
+                        Questing();
+                    }
                 }
             }
 
         }
-
-
-
-
-
     }
 
 
