@@ -1223,7 +1223,7 @@ Transform:
   m_GameObject: {fileID: 76270533}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -503.61874, y: 1.59804, z: -8.991622}
+  m_LocalPosition: {x: -295.76, y: -0.12001753, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2152,7 +2152,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 196.85211, y: 15.007263}
+  m_AnchoredPosition: {x: 196.85205, y: 15.007202}
   m_SizeDelta: {x: 82.40845, y: 172.12}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &99512290
@@ -3240,7 +3240,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.115356445, y: -0.00023651123}
+  m_AnchoredPosition: {x: 0.115478516, y: -0.00023651123}
   m_SizeDelta: {x: 0.23083, y: 0.791}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &185979533
@@ -5971,7 +5971,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -15.433228, y: 339.49182}
+  m_AnchoredPosition: {x: -15.43335, y: 339.49182}
   m_SizeDelta: {x: 7125.544, y: 4291.5635}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &304523800
@@ -7342,7 +7342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac1aea1da3af3d458eb04f54cb191bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 20
+  moveSpeed: 5
   isMovingRight: 0
   isMovingLeft: 0
   onLimit: 0
@@ -9891,7 +9891,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -291.64, y: 1.4999825, z: -8.991622}
+  m_LocalPosition: {x: -295.76, y: -0.12001777, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12454,7 +12454,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.115356445, y: -0.00023651123}
+  m_AnchoredPosition: {x: 0.115478516, y: -0.00023651123}
   m_SizeDelta: {x: 0.23083, y: 0.791}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &637645759
@@ -14329,7 +14329,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -79.141235, y: -31.50592}
+  m_AnchoredPosition: {x: -79.14111, y: -31.505981}
   m_SizeDelta: {x: 158.2823, y: -63.02213}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &722471631
@@ -15662,7 +15662,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -184.73956, y: 15.007263}
+  m_AnchoredPosition: {x: -184.7395, y: 15.007202}
   m_SizeDelta: {x: 82.4085, y: 172.12}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &811507867
@@ -24808,6 +24808,7 @@ MonoBehaviour:
   - {fileID: 528347082}
   - {fileID: 938808971}
   - {fileID: 76270537}
+  virtualCamera: {fileID: 1780359274}
 --- !u!1 &1183090759
 GameObject:
   m_ObjectHideFlags: 0
@@ -36184,7 +36185,8 @@ MonoBehaviour:
   - 1
   - 0.5
   - -1
-  velocityScale: 1
+  velocityScale: 0.751
+  virtualCamera: {fileID: 1780359274}
 --- !u!1 &1622372143
 GameObject:
   m_ObjectHideFlags: 0
@@ -40381,7 +40383,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -15.433228, y: 339.49182}
+  m_AnchoredPosition: {x: -15.433105, y: 339.49182}
   m_SizeDelta: {x: 7125.544, y: 4291.5635}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1784165038
@@ -43758,7 +43760,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.115356445, y: -0.00023651123}
+  m_AnchoredPosition: {x: 0.115478516, y: -0.00023651123}
   m_SizeDelta: {x: 0.23083, y: 0.791}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1964441645

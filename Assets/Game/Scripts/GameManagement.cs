@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.Profiling;
 using UnityEngine.Rendering.Universal;
@@ -246,6 +247,23 @@ public class GameManagement : MonoBehaviour{
         }
     }
 
+    public static void DebugCleaningLog(object message = null, bool clearError = false) {
+
+#if UNITY_EDITOR
+
+        var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
+        var type = assembly.GetType("UnityEditor.LogEntries");
+        var method = type.GetMethod("Clear");
+        method.Invoke(new object(), null);
+
+        if (clearError)
+            Debug.ClearDeveloperConsole();
+
+        if (message != null)
+            print(message);
+#endif
     }
+
+}
 
     
