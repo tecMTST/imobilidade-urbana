@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
-using UnityEngine.Profiling;
-using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
+using System.Timers;
+using System;
 
 public class GameManagement : MonoBehaviour{
 
@@ -73,10 +71,8 @@ public class GameManagement : MonoBehaviour{
         DontDestroyOnLoad(this.gameObject);
 
         Instance = this;
-        Application.targetFrameRate = 60; DontDestroyOnLoad(this.gameObject);
+        Application.targetFrameRate = 60; 
 
-        Instance = this;
-        Application.targetFrameRate = 60;
 
     }
 
@@ -111,10 +107,6 @@ public class GameManagement : MonoBehaviour{
 
         playerController.transform.position = position == new Vector3(0, 0, 0) ? 
                                               playerInitialPosition : new Vector3(position.x, playerInitialPosition.y, position.z);
-
-        panelFadeImage.enabled = false;
-
-
        
     }
 
