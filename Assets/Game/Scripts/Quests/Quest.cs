@@ -97,7 +97,7 @@ public class Quest : MonoBehaviour{
 
         concluded = true;
 
-        animator.SetBool("concluded", concluded);
+        animator.SetBool("questConcluded", concluded);
 
         GameManagement.Instance.BlockAllInputs(true);
 

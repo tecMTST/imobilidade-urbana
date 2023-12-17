@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ParallaxController : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class ParallaxController : MonoBehaviour
 
     private float parallaxEase;
 
+    
+
     // Start is called before the first frame update
     void Start() {
         for (int i = 0; i < planes.Length; i++) {
@@ -27,7 +30,7 @@ public class ParallaxController : MonoBehaviour
             if (planeVelocity[i] >= 1)
                 planes[i].GetComponent<SpriteRenderer>().size *= new Vector2(planeVelocity[i], 1);
 
-
+            
         }
     }
 

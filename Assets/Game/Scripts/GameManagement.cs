@@ -65,6 +65,7 @@ public class GameManagement : MonoBehaviour{
     public GameObject nextButtonMonolgueL;
 
 
+    //Renderer renderer = new(); renderer.material.SetFloat("_Cutoff", 0.5f) ;
 
 
 
@@ -76,6 +77,7 @@ public class GameManagement : MonoBehaviour{
 
         Instance = this;
         Application.targetFrameRate = 60;
+
     }
 
 
