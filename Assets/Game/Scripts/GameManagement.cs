@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Timers;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public class GameManagement : MonoBehaviour{
 
@@ -63,6 +65,11 @@ public class GameManagement : MonoBehaviour{
     public GameObject nextButtonMonolgueL;
 
 
+    public List<Quest> interactableNPCs = new();
+    public List<QuestItem> interactableItems = new();
+
+
+
     //Renderer renderer = new(); renderer.material.SetFloat("_Cutoff", 0.5f) ;
 
 
@@ -80,7 +87,6 @@ public class GameManagement : MonoBehaviour{
     // Start is called before the first frame update
     void Start(){
 
-
         playerController = PlayerController.Instance;
         playerInitialPosition = playerController.transform.position;
         
@@ -90,6 +96,52 @@ public class GameManagement : MonoBehaviour{
     void Update(){
         
     }
+
+    public void Interact() {
+
+        print(interactableItems.Count);
+        if (interactableItems.Count > 0)
+            print(interactableItems[0]);
+
+        if (interactableNPCs.Count > 0)
+            interactableNPCs[0].Questing();
+
+        if (interactableItems.Count > 0) {
+            interactableItems[0].Caught();
+            RemoveInteract(interactableItems[0]);
+        }
+    }
+
+    public void AddInteract(Quest quest) {
+
+        if (!interactableNPCs.Contains(quest))
+            interactableNPCs.Add(quest);
+
+    }
+
+    public void RemoveInteract(Quest quest) {
+
+        if (interactableNPCs.Contains(quest))
+            interactableNPCs.Remove(quest);
+    }
+
+    public void AddInteract(QuestItem item) {
+
+        if (!interactableItems.Contains(item))
+            interactableItems.Add(item);
+
+        print(interactableItems.Count);
+        print(interactableItems[0]);
+
+
+    }
+
+    public void RemoveInteract(QuestItem item) {
+
+        if (interactableItems.Contains(item))
+            interactableItems.Remove(item);
+    }
+
 
 
     /// <summary>

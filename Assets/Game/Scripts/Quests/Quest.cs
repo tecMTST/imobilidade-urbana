@@ -60,7 +60,9 @@ public class Quest : MonoBehaviour{
 
         if (isIluminated) {
 
-            
+            GameManagement.Instance.AddInteract(this);
+
+
 
             if ((Input.GetMouseButtonDown(0) || Input.touchCount > 0)) {
                 Vector3 clickPosition;
@@ -87,6 +89,9 @@ public class Quest : MonoBehaviour{
                     }
                 }
             }
+
+        } else {
+            GameManagement.Instance.RemoveInteract(this);
 
         }
     }
@@ -154,7 +159,7 @@ public class Quest : MonoBehaviour{
 
     }
 
-    private void Questing() {
+    public void Questing() {
 
         
 
@@ -164,10 +169,6 @@ public class Quest : MonoBehaviour{
 
         if (dialogue.onDialogue)
             return;
-
-
-
-
 
 
             print($"Started: {started}\nitemCaught: {itemCaught}\nConcluded: {concluded}");

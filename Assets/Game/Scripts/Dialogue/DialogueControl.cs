@@ -46,9 +46,9 @@ public class DialogueControl : MonoBehaviour
         sentences = txt;
         names = actorName;
 
-        foreach (object obj in sprites) {
-            print(sprites.Length);
-        }
+        //foreach (object obj in sprites) {
+        //    print(sprites.Length);
+        //}
 
         ResetDialogue();
 

@@ -31,6 +31,9 @@ public class QuestItem : MonoBehaviour
 
         if (isIluminated) {
 
+            GameManagement.Instance.AddInteract(this);
+
+
             print($"Is item iluminated {isIluminated}");
 
 
@@ -56,15 +59,17 @@ public class QuestItem : MonoBehaviour
                 if (hitCollider != null && hitCollider.gameObject == gameObject) {
                     print("CLicked");
 
-                    
 
-                        quest.itemCaught = true;
-                        this.gameObject.SetActive(false);
-                    
+                    Caught();
+
+
+
                 }
             }
 
-        }
+        } else
+            GameManagement.Instance.RemoveInteract(this);
+
 
 
     }
@@ -75,6 +80,10 @@ public class QuestItem : MonoBehaviour
 
     }
 
+    public void Caught() {
+        quest.itemCaught = true;
+        this.gameObject.SetActive(false);
+    }
    
 
     public bool IsIluminated() {
