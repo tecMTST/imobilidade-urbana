@@ -106,24 +106,25 @@ public class Quest : MonoBehaviour{
 
         GameManagement.Instance.BlockAllInputs(true);
 
-        fadePanel.Play("whiteFadeIn");
+        //fadePanel.Play("whiteFadeIn");
+        //yield return new WaitForSeconds(4);
 
-        yield return new WaitForSeconds(5);
+
+        yield return GameManagement.Instance.CircularOut(2);
 
         this.setAtMainWagon();
+        yield return new WaitForSeconds(2);
 
-        GameManagement.Instance.BlockAllInputs(true);
+        yield return GameManagement.Instance.CircularIn(2);
 
-        fadePanel.Stop();
-        
-        fadePanel.Play("whiteFadeOut");
 
-        yield return new WaitForSeconds(1.1f);
-
-        fadePanel.Stop();
+        //fadePanel.Play("whiteFadeOut");
+        //yield return new WaitForSeconds(1.1f);
+        //fadePanel.Stop();
 
         dialogue.dc.onDialogueClose -= EndThisQuest;
         dialogue.dc.onBrosConcluded -= EndThisQuest;
+
 
         GameManagement.Instance.BlockAllInputs(false);
 

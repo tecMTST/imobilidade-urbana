@@ -1,10 +1,9 @@
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Timers;
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Collections;
+using System;
 
 public class GameManagement : MonoBehaviour{
 
@@ -68,6 +67,10 @@ public class GameManagement : MonoBehaviour{
     public List<Quest> interactableNPCs = new();
     public List<QuestItem> interactableItems = new();
 
+    public Material circularCutout;
+
+    
+
 
 
     //Renderer renderer = new(); renderer.material.SetFloat("_Cutoff", 0.5f) ;
@@ -94,8 +97,60 @@ public class GameManagement : MonoBehaviour{
 
     // Update is called once per frame
     void Update(){
+
         
+
+        if (Input.GetKeyDown(KeyCode.I))
+            StartCoroutine(CircularIn(5));
+
+        if (Input.GetKeyDown(KeyCode.O))
+            StartCoroutine(CircularOut(5));
+
+
     }
+
+    public IEnumerator CircularIn(float duration, float step = 0.02f) {
+
+        if (step <= 0)
+            step = 0.02f;
+
+        float elapsedTime = 0;
+
+        while (elapsedTime <= duration) {
+            yield return new WaitForSeconds(elapsedTime/(duration/step)); //Sei lá porquê assim funciona
+            //yield return new WaitForSeconds(step); //E assim não (tempo quase dobrado)
+            elapsedTime += step;
+            print(elapsedTime);
+
+            circularCutout.SetFloat("_Cutoff", elapsedTime  / MathF.Round(duration));
+        }
+
+        StopAllCoroutines();
+
+    }
+
+
+    public IEnumerator CircularOut(float duration, float step = 0.02f) {
+
+        print("coroutine");
+
+        if (step <= 0)
+            step = 0.02f;
+
+        float UnelapsedTime = duration;
+
+        while (UnelapsedTime >= 0) {
+            yield return new WaitForSeconds(UnelapsedTime / (duration / step)); //Sei lá porquê assim funciona
+            //yield return new WaitForSeconds(step); //E assim não (tempo quase dobrado)
+            UnelapsedTime -= step;
+            print(UnelapsedTime);
+
+            circularCutout.SetFloat("_Cutoff", UnelapsedTime / MathF.Round(duration));
+        }
+
+        StopAllCoroutines();
+    }
+
 
     public void Interact() {
 
@@ -162,6 +217,10 @@ public class GameManagement : MonoBehaviour{
        
     }
 
+    /// <summary>
+    /// Actives or inactives the panel that block the UI input elements
+    /// </summary>
+    /// <param name="block"></param>
     public void BlockAllInputs(bool block) {
         blockInputPanel.SetActive(block);
     }
@@ -195,8 +254,6 @@ public class GameManagement : MonoBehaviour{
 
 
     }
-
-
 
     void SetDefaultLayout(bool value) {
 
@@ -261,8 +318,6 @@ public class GameManagement : MonoBehaviour{
         }
 
     }
-
-    
 
     void SetLeftHandedLayout(bool value) {
 
