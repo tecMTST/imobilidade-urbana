@@ -27688,7 +27688,7 @@ MonoBehaviour:
   itemCaught: 0
   item: {fileID: 0}
   dialogue: {fileID: 1293754581}
-  dialogueIndexRangeStart: 0000000001000000
+  dialogueIndexRangeStart: 0000000002000000
   dialogueIndexRangeMiddle: 0000000000000000
   dialogueIndexRangeEnd: 0000000000000000
   dialogueIndexRangePostEnd: 1500000001000000
