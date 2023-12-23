@@ -42,7 +42,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorMask: 15
-    - _Cutoff: -0.0039991597
+    - _Cutoff: 1.0099994
     - _EnableExternalAlpha: 0
     - _Stencil: 0
     - _StencilComp: 8

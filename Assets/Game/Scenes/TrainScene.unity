@@ -12864,7 +12864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &645468230
 Transform:
   m_ObjectHideFlags: 0
@@ -27688,7 +27688,7 @@ MonoBehaviour:
   itemCaught: 0
   item: {fileID: 0}
   dialogue: {fileID: 1293754581}
-  dialogueIndexRangeStart: 0000000015000000
+  dialogueIndexRangeStart: 0000000001000000
   dialogueIndexRangeMiddle: 0000000000000000
   dialogueIndexRangeEnd: 0000000000000000
   dialogueIndexRangePostEnd: 1500000001000000
@@ -27776,7 +27776,7 @@ Transform:
   m_GameObject: {fileID: 1293754579}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -301.02, y: -0.26, z: 0}
+  m_LocalPosition: {x: -299.8, y: -0.26, z: 0}
   m_LocalScale: {x: 1.293, y: 1.293, z: 1.293}
   m_ConstrainProportionsScale: 0
   m_Children:
