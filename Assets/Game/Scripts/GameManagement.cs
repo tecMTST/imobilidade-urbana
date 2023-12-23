@@ -125,7 +125,7 @@ public class GameManagement : MonoBehaviour{
             circularCutout.SetFloat("_Cutoff", elapsedTime  / MathF.Round(duration));
         }
 
-        StopAllCoroutines();
+        StopCoroutine(nameof(CircularIn));
 
     }
 
@@ -148,7 +148,7 @@ public class GameManagement : MonoBehaviour{
             circularCutout.SetFloat("_Cutoff", UnelapsedTime / MathF.Round(duration));
         }
 
-        StopAllCoroutines();
+        StopCoroutine(nameof(CircularOut));
     }
 
 
