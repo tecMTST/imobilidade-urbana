@@ -12,9 +12,11 @@ public class Dialogue : MonoBehaviour
     public LayerMask npcLayer;
     public float radius;
 
-    private DialogueControl dc;
+    [HideInInspector]
+    public DialogueControl dc;
+
     private bool onRadius;
-    private bool onDialogue;
+    public bool onDialogue;
 
     private void Start()
     {
@@ -23,32 +25,26 @@ public class Dialogue : MonoBehaviour
 
     private void Update() 
     {
-        #region Substituído pelo OnMouseDown na classe Quest
-        //if (onRadius)
-        //{
+        #region Inserido na classe Quest
+        //if (onRadius) {
 
-        //    if ((Input.GetMouseButtonDown(0) || Input.touchCount > 0) && onRadius && !onDialogue)
-        //    {
+        //    if ((Input.GetMouseButtonDown(0) || Input.touchCount > 0) && onRadius && !onDialogue) {
         //        Vector3 clickPosition;
 
-        //        if (Input.touchCount > 0)
-        //        {
+        //        if (Input.touchCount > 0) {
         //            Touch touch = Input.GetTouch(0);
         //            clickPosition = Camera.main.ScreenToWorldPoint(touch.position);
-        //        }
-        //        else
-        //        {
+        //        } else {
         //            clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //        }
 
-        //        clickPosition.z = 0; 
+        //        clickPosition.z = 0;
 
         //        Vector2 clickPosition2D = new Vector2(clickPosition.x, clickPosition.y);
 
         //        Collider2D hitCollider = Physics2D.OverlapPoint(clickPosition2D, npcLayer);
 
-        //        if (hitCollider != null && hitCollider.gameObject == gameObject)
-        //        {
+        //        if (hitCollider != null && hitCollider.gameObject == gameObject) {
 
         //        }
         //    }
@@ -57,32 +53,44 @@ public class Dialogue : MonoBehaviour
         #endregion
     }
 
-    
+
 
     public void StartSpeech() {
 
-        if (onDialogue) {
-            onDialogue = false;
-            dc.Close();
-            return;
-        }
+        //if (onDialogue) {
+        //    onDialogue = false;
+        //    dc.Close();
+        //    return;
+        //}
+
+        if (this.gameObject.name == "Irmaos")
+            dc.isBros = true;
+        else
+            dc.isBros = false;
 
         onDialogue = true;
         dc.Speech(profile, speechTxt, actorName);
+        dc.onDialogueClose =() => onDialogue = false;
     }
 
     
 
     public void StartSpeech(Sprite[] Profile, string[] SpeechTxt, string[] ActorName) {
 
-        if (onDialogue) {
-            onDialogue = false;
-            dc.Close();
-            return;
-        }
+        //if (onDialogue) {
+        //    onDialogue = false;
+        //    dc.Close();
+        //    return;
+        //}
+        if (this.gameObject.name == "Irmaos")
+            dc.isBros = true;
+        else
+            dc.isBros = false;
 
         onDialogue = true;
         dc.Speech(Profile, SpeechTxt, ActorName);
+        //dc.onDialogueClose = () => { this.onDialogue = false; print($"On Dialogue{onDialogue}"); };
+        dc.onDialogueClose = () => onDialogue = false;
     }
 
 
@@ -105,4 +113,10 @@ public class Dialogue : MonoBehaviour
     //private void OnDrawGizmosSelected() {
     //    Gizmos.DrawWireSphere(transform.position, radius);
     //}
+
+    public void p() {
+        print("foi");
+        
+    }
+
 }

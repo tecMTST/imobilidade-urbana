@@ -27,7 +27,7 @@ public class LightToggle : MonoBehaviour
     {
         //light2D.enabled = !light2D.enabled;
         light2D.gameObject.SetActive(active);
-        light2D2.enabled = active;
+        light2D2.gameObject.SetActive(active);
         SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.menuLuz);
         
         if(active) {

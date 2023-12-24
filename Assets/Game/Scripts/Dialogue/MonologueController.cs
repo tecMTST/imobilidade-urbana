@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,11 +10,13 @@ public class MonologueController : MonoBehaviour
     public GameObject timerController;
     public GameObject moveArrowRight;
     public GameObject moveArrowLeft;
+    public GameObject lightTgl;
 
     public GameObject player;
 
     public GameObject monster1;
     public GameObject monster2;
+    public GameObject soundManager;
     public Image profile;
     public Text speechText;
     public Text actorNameText;
@@ -41,8 +40,10 @@ public class MonologueController : MonoBehaviour
     public string[] desligarLanterna;
 
     private string[] sentences;
-    public Sprite sprite;
-    public string name;
+    public Sprite imagePlayer;
+    public Sprite imageSound;
+    public string nome;
+    public string anunciante;
     private int index;
     private int controleDeFala = 0;
 
@@ -52,11 +53,15 @@ public class MonologueController : MonoBehaviour
     private GameObject activeMonster;
     private bool monsterNear = false;
 
+    private bool falaAnunciante = true;
+    private bool jaFalouAnunciante = false;
+
 
     private void Start() {
         timer.SetActive(false);
         moveArrowRight.SetActive(false);
         moveArrowLeft.SetActive(false);
+        lightTgl.SetActive(false);
 
         Speech(falaInicial);
     }
@@ -118,15 +123,23 @@ public class MonologueController : MonoBehaviour
         sentences = txt;
         index = 0;
 
-        StartCoroutine(TypeSentence());
+        StartCoroutine(TypeSentence(false));
     }
 
 
 
-    IEnumerator TypeSentence()
+    IEnumerator TypeSentence(bool isAnunciante)
     {
-        profile.sprite = sprite;
-        actorNameText.text = name;
+        if (isAnunciante) {
+            profile.sprite = imageSound;
+            actorNameText.text = anunciante;
+            soundManager.GetComponent<SoundManager>().playAnuncioTimer();
+        } else
+        {
+            profile.sprite = imagePlayer;
+            actorNameText.text = nome;
+        }
+        
         foreach (char letter in sentences[index].ToCharArray())
         {
             speechText.text += letter;
@@ -142,7 +155,15 @@ public class MonologueController : MonoBehaviour
             {
                 index++;
                 speechText.text = "";
-                StartCoroutine(TypeSentence());
+
+                if (falaAnunciante && !jaFalouAnunciante){
+                    jaFalouAnunciante = true;
+                    StartCoroutine(TypeSentence(true));
+                } else
+                {
+                    StartCoroutine(TypeSentence(false));
+                }
+                
             }
             else
             {
@@ -172,6 +193,7 @@ public class MonologueController : MonoBehaviour
 
                     timerController.GetComponent<TimerController>().ResumeTimer();
 
+                    lightTgl.SetActive(true);
                     moveArrowRight.SetActive(true);
                     moveArrowLeft.SetActive(true);
                     activeMonster.GetComponent<Monster1>().StopDialogue();

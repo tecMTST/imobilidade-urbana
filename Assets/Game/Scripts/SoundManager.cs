@@ -8,7 +8,7 @@ public class SoundManager : MonoBehaviour
     //Scene Manager:
     private Scene currentScene;
 
-    //Lista de Músicas:
+    //Lista de Mï¿½sicas:
     [SerializeField] private AudioClip ambienteTrem;
     [SerializeField] private AudioClip sonoroTrem;
     [SerializeField] private AudioClip sonoroMonstroN;
@@ -22,10 +22,10 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip aununcioTrem6;
     [SerializeField] private AudioClip aununcioTrem7;
 
-    //Vetor Lista de Músicas:
+    //Vetor Lista de Mï¿½sicas:
     private AudioClip[] selectBGM;
 
-    //Vetor Auxiliar Lista de Músicas:
+    //Vetor Auxiliar Lista de Mï¿½sicas:
     public enum ListaBGM
     {
         ambienteTrem,
@@ -54,7 +54,7 @@ public class SoundManager : MonoBehaviour
         menuLuz
     };
 
-    //Lista de AudioSources Simultâneos:
+    //Lista de AudioSources Simultï¿½neos:
     public AudioSource bgmGame1;
     public AudioSource bgmGame2;
     public AudioSource bgmGame3;
@@ -62,21 +62,23 @@ public class SoundManager : MonoBehaviour
     public AudioSource sfxMenu;
     public AudioSource sfxGame;
 
-    //Outras Variáveis:
+    //Outras Variï¿½veis:
     public static SoundManager instance;
     private float anuncioSFX = 100.0f;
     private float timerAnuncio = 95.0f;
     private bool segurarAnuncio = false;
     private bool setFade = false;
+    private bool falouPrimeiroAnuncio = false;
+    private bool deveFalarPrimeiroAnuncio = false;
     private float timerFade = 0.95f;
 
-    //Iniciação do SoundManager:
+    //Iniciaï¿½ï¿½o do SoundManager:
     void Awake()
     {
         //Scene Manager:
         currentScene = SceneManager.GetActiveScene();
 
-        //Setar Instância:
+        //Setar Instï¿½ncia:
         if (instance == null)
         {
             instance = this;
@@ -118,24 +120,35 @@ public class SoundManager : MonoBehaviour
 
     void Update()
     {
-        //Tema do Trem e Anúncios:
+        //Tema do Trem e Anï¿½ncios:
         if (currentScene.name == "TrainScene")
         {
-            timerAnuncio = timerAnuncio + Time.deltaTime;
-            if (!segurarAnuncio && timerAnuncio >= anuncioSFX)
+            if (falouPrimeiroAnuncio)
             {
-                playBGM(1, 2);
-                segurarAnuncio = true;
-            }
-            else if (segurarAnuncio && !bgmGame2.isPlaying)
+                timerAnuncio = timerAnuncio + Time.deltaTime;
+                if (!segurarAnuncio && timerAnuncio >= anuncioSFX)
+                {
+                    playBGM(1, 2);
+                    segurarAnuncio = true;
+                }
+                else if (segurarAnuncio && !bgmGame2.isPlaying)
+                {
+                    playBGM(UnityEngine.Random.Range(3, 10), 2);
+                    segurarAnuncio = false;
+                    timerAnuncio = 0f;
+                }
+            } else if (deveFalarPrimeiroAnuncio)
             {
-                playBGM(UnityEngine.Random.Range(3, 10), 2);
+                deveFalarPrimeiroAnuncio = false;
+                falouPrimeiroAnuncio = true;
+                playBGM(4, 2);
                 segurarAnuncio = false;
                 timerAnuncio = 0f;
             }
+            
         }
 
-        //Fade BGM Dinâmica:
+        //Fade BGM Dinï¿½mica:
         if (setFade)
         {
             //Decrescer:
@@ -160,7 +173,7 @@ public class SoundManager : MonoBehaviour
         //Checar AudioSource BGM1:
         if (bgmGame1.clip != selectBGM[lista] && track == 1)
         {
-            //Tocar Nova Música:
+            //Tocar Nova Mï¿½sica:
             bgmGame1.clip = selectBGM[lista];
             bgmGame1.Play();
         }
@@ -168,7 +181,7 @@ public class SoundManager : MonoBehaviour
         //Checar AudioSource BGM2:
         if (bgmGame2.clip != selectBGM[lista] && track == 2)
         {
-            //Tocar Nova Música:
+            //Tocar Nova Mï¿½sica:
             bgmGame2.clip = selectBGM[lista];
             bgmGame2.Play();
         }
@@ -192,7 +205,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    //Tocar BGM Dinâmica:
+    //Tocar BGM Dinï¿½mica:
     public void playDinamicBGM(int lista1, int lista2, int track)
     {
         //Set Fade:
@@ -206,7 +219,7 @@ public class SoundManager : MonoBehaviour
             Debug.Log("Trilha 1");
         }
 
-        //Track Crítica:
+        //Track Crï¿½tica:
         if (track == 2)
         {
             bgmGame3.volume = 0.0f;
@@ -226,7 +239,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    //Parar BGM Dinâmica com Fade:
+    //Parar BGM Dinï¿½mica com Fade:
     public void stopDinamicBGM()
     {
         setFade = true;
@@ -253,5 +266,10 @@ public class SoundManager : MonoBehaviour
     {
         sfxGame.Stop();
         sfxGame.clip = null;
+    }
+
+    public void playAnuncioTimer()
+    {
+        deveFalarPrimeiroAnuncio = true;
     }
 }
