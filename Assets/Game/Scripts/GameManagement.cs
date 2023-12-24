@@ -112,8 +112,7 @@ public class GameManagement : MonoBehaviour{
     public IEnumerator CircularIn() {
 
         if (!circularMask.isPlaying)
-            circularMask.Play("circularIn");
-
+          
         yield return new WaitUntil(()=>!circularMask.IsPlaying("circularIn"));
                
         StopCoroutine(nameof(CircularIn));
