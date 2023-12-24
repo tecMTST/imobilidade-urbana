@@ -110,12 +110,12 @@ public class Quest : MonoBehaviour{
         //yield return new WaitForSeconds(4);
 
 
-        yield return GameManagement.Instance.CircularOut(2);
+        yield return GameManagement.Instance.CircularOut();
 
         this.setAtMainWagon();
         yield return new WaitForSeconds(2);
 
-        yield return GameManagement.Instance.CircularIn(2);
+        yield return GameManagement.Instance.CircularIn();
 
 
         //fadePanel.Play("whiteFadeOut");

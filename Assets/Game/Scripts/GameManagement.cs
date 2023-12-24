@@ -68,6 +68,7 @@ public class GameManagement : MonoBehaviour{
     public List<QuestItem> interactableItems = new();
 
     public Material circularCutout;
+    public Animation circularMask;
 
     
 
@@ -101,12 +102,32 @@ public class GameManagement : MonoBehaviour{
         
 
         if (Input.GetKeyDown(KeyCode.I))
-            StartCoroutine(CircularIn(5));
+            circularMask.Play("circularIn");
 
         if (Input.GetKeyDown(KeyCode.O))
-            StartCoroutine(CircularOut(5));
+            circularMask.Play("circularOut");
 
 
+    }
+    public IEnumerator CircularIn() {
+
+        if (!circularMask.isPlaying)
+            circularMask.Play("circularIn");
+
+        yield return new WaitUntil(()=>!circularMask.IsPlaying("circularIn"));
+               
+        StopCoroutine(nameof(CircularIn));
+
+    }
+
+    public IEnumerator CircularOut() {
+
+        if (!circularMask.isPlaying)
+            circularMask.Play("circularOut");
+
+        yield return new WaitUntil(() => !circularMask.IsPlaying("circularOut"));
+
+        StopCoroutine(nameof(CircularOut));
     }
 
     public IEnumerator CircularIn(float duration, float step = 0.02f) {
