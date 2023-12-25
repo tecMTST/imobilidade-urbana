@@ -7,7 +7,7 @@ public class Monster1 : MonoBehaviour
     public float delay = 2f;
 
     public UnityEngine.Rendering.Universal.Light2D light2D;
-    public Transform playerObject;
+    public Transform pivotPlayerObject;
     public Transform[] targetObject;
     public float moveSpeedNormal = 2f;
     public float moveSpeedLight = 5f;
@@ -81,9 +81,20 @@ public class Monster1 : MonoBehaviour
 
             if (light2D.gameObject.activeSelf && isNearPlayer && sameRoom)
             {
-                Vector3 direction = playerObject.position - transform.position;
+                Vector3 direction = pivotPlayerObject.position - transform.position;
                 direction.Normalize();
                 transform.Translate(direction * moveSpeedLight * Time.deltaTime, Space.World);
+
+                if (direction.x < 0)
+                {
+                    // Moving left, flip the object
+                    transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                }
+                else if (direction.x > 0)
+                {
+                    // Moving right, unflip the object
+                    transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                }
 
                 //Audio Persegui��o Normal:
                 if (!huntVoice)
@@ -94,7 +105,7 @@ public class Monster1 : MonoBehaviour
                     huntVoice = true;
                 }
 
-                if (Mathf.Abs(playerObject.position.x - transform.position.x) > stoppingDistance) {
+                if (Mathf.Abs(pivotPlayerObject.position.x - transform.position.x) > stoppingDistance) {
 
                     if (!light2D.gameObject.activeSelf)
                     {
@@ -107,8 +118,8 @@ public class Monster1 : MonoBehaviour
                 }
                 else
                 {
-                    //print($"PlayerObject position: {playerObject.position}\nMonster Position: {transform.position}\n" +
-                    //    $"Distance: {Mathf.Abs(playerObject.position.x - transform.position.x)} mg ={direction.magnitude} & sqrMg {direction.sqrMagnitude}\nExposition Time: {lightExpositionTime}");
+                    //print($"PlayerObject position: {pivotPlayerObject.position}\nMonster Position: {transform.position}\n" +
+                    //    $"Distance: {Mathf.Abs(pivotPlayerObject.position.x - transform.position.x)} mg ={direction.magnitude} & sqrMg {direction.sqrMagnitude}\nExposition Time: {lightExpositionTime}");
 
                     if (light2D.gameObject.activeSelf)
                     {
@@ -137,6 +148,18 @@ public class Monster1 : MonoBehaviour
             {
 
                 Vector3 direction = targetObject[index].position - transform.position;
+                
+                if (direction.x < 0)
+                {
+                    // Moving left, flip the object
+                    transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                }
+                else if (direction.x > 0)
+                {
+                    // Moving right, unflip the object
+                    transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                }
+
 
                 //SFX Persegui��o:
                 if (huntVoice)
