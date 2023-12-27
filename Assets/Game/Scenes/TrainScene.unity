@@ -289,7 +289,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1493070
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -433,7 +432,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &2347770
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -976,7 +974,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &44388558
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1875,7 +1872,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &85927652
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2024,7 +2020,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &96224649
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2674,7 +2669,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &114840045
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3170,7 +3164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &154701530
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4071,7 +4064,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &228992578
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4215,7 +4207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &232138891
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5043,7 +5034,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &259706888
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5680,7 +5670,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &294916142
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5795,7 +5784,7 @@ Transform:
   m_GameObject: {fileID: 297327652}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -288.3, y: -1.17, z: 0}
+  m_LocalPosition: {x: -417.2, y: -1.17, z: 0}
   m_LocalScale: {x: 1.293, y: 1.293, z: 1.293}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6188,7 +6177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &311971578
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6332,7 +6320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &312415378
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6476,7 +6463,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &315656991
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7135,7 +7121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &351679079
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7333,7 +7318,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Build 20231224-0
+  m_text: Build 20231227-0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8233,7 +8218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &419814233
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8483,7 +8467,7 @@ Transform:
   m_GameObject: {fileID: 430398967}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -282.79, y: -2.68, z: 0}
+  m_LocalPosition: {x: -518.3, y: -2.14, z: 0}
   m_LocalScale: {x: 4.2023, y: 4.2023, z: 4.2023}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -8927,7 +8911,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &451599307
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9071,7 +9054,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &464832840
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9215,7 +9197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &479259751
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9859,7 +9840,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &503854796
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10003,7 +9983,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &505736060
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10376,7 +10355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &521203336
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10749,7 +10727,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &528552499
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11204,7 +11181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &549832078
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11348,7 +11324,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &552057822
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11573,7 +11548,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &571241786
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11851,7 +11825,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &580690216
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11995,7 +11968,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &581901950
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12083,7 +12055,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0.010131836, y: -0.21008301}
+  m_AnchoredPosition: {x: 0.010253906, y: -0.21008301}
   m_SizeDelta: {x: 349.80005, y: 221.58002}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &596118299
@@ -12177,7 +12149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &596118303
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13786,7 +13757,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &678219177
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13930,7 +13900,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &691412515
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14528,7 +14497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &707488947
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14672,7 +14640,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &712123907
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15462,7 +15429,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &756993694
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15924,7 +15890,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &772113390
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16140,7 +16105,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.24578857}
+  m_AnchoredPosition: {x: 0, y: -0.24572754}
   m_SizeDelta: {x: 0.471, y: 0.49139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &811207611
@@ -16464,7 +16429,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &813405979
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16923,7 +16887,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &831105159
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17012,7 +16975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 2
   light2D: {fileID: 1553876204}
-  playerObject: {fileID: 381227605}
+  pivotPlayerObject: {fileID: 0}
   targetObject:
   - {fileID: 359159823}
   - {fileID: 1862661445}
@@ -17505,7 +17468,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &857618061
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20457,7 +20419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &974350978
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20684,7 +20645,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &986214158
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20828,7 +20788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &988345923
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20972,7 +20931,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &988905786
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21116,7 +21074,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &990663635
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21335,7 +21292,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &994470986
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21479,7 +21435,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &996750265
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21568,7 +21523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 2
   light2D: {fileID: 1553876204}
-  playerObject: {fileID: 381227605}
+  pivotPlayerObject: {fileID: 0}
   targetObject:
   - {fileID: 1730732426}
   - {fileID: 1695084273}
@@ -21929,7 +21884,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1010286158
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22231,7 +22185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1025690114
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22764,7 +22717,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1046501634
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22851,7 +22803,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.37451172, y: 0.0037231445}
+  m_AnchoredPosition: {x: 0.37451172, y: 0.0037841797}
   m_SizeDelta: {x: 0.74108887, y: -0.007537842}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1054705960
@@ -23066,7 +23018,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1067635174
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23310,7 +23261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1070822626
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24114,7 +24064,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1115104281
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24282,7 +24231,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.37451172, y: 0.0037231445}
+  m_AnchoredPosition: {x: 0.37451172, y: 0.0037841797}
   m_SizeDelta: {x: 0.7412, y: -0.0075684}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1122659088
@@ -24535,7 +24484,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1133933060
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24679,7 +24627,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1145650150
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24768,7 +24715,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.24578857}
+  m_AnchoredPosition: {x: 0, y: -0.24572754}
   m_SizeDelta: {x: 0.471, y: 0.49139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1155945684
@@ -24862,7 +24809,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1155945688
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -25317,7 +25263,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1183090763
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -25891,7 +25836,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1205741420
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26256,7 +26200,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1237673937
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26571,7 +26514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1254462461
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27033,7 +26975,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1264272946
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27333,7 +27274,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1277719906
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27422,7 +27362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 2
   light2D: {fileID: 1553876204}
-  playerObject: {fileID: 381227605}
+  pivotPlayerObject: {fileID: 0}
   targetObject:
   - {fileID: 952692010}
   - {fileID: 185979534}
@@ -27783,7 +27723,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1292218234
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28115,7 +28054,7 @@ Transform:
   m_GameObject: {fileID: 1293754579}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -299.8, y: -0.26, z: 0}
+  m_LocalPosition: {x: -59.98, y: -0.26, z: 0}
   m_LocalScale: {x: 1.293, y: 1.293, z: 1.293}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -28347,7 +28286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1296299279
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28851,7 +28789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 2
   light2D: {fileID: 1553876204}
-  playerObject: {fileID: 381227605}
+  pivotPlayerObject: {fileID: 0}
   targetObject:
   - {fileID: 246892935}
   - {fileID: 1298790762}
@@ -29451,7 +29389,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1350216699
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30204,7 +30141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1396706392
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30415,7 +30351,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1410291288
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30719,6 +30654,7 @@ MonoBehaviour:
   interactableItems: []
   circularCutout: {fileID: 2100000, guid: d75a6839fbec8714db9202b063b63fad, type: 2}
   circularMask: {fileID: 786270579}
+  jumpScareImage: {fileID: 0}
 --- !u!1 &1429324420
 GameObject:
   m_ObjectHideFlags: 0
@@ -31803,7 +31739,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1457080147
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -32214,7 +32149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1469842104
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -32367,7 +32301,7 @@ Transform:
   m_GameObject: {fileID: 1474421002}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -293.24, y: -0.64, z: 0}
+  m_LocalPosition: {x: -175.3, y: -1.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -32531,7 +32465,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1482793134
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -33060,7 +32993,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1498377988
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -33182,6 +33114,7 @@ MonoBehaviour:
   - Melhor ligar lanterna
   desligarLanterna:
   - Melhor desligar lanterna
+  primeiraCaptura: []
   imagePlayer: {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
   imageSound: {fileID: 21300000, guid: 721f3428018e08047afbbb33bf833ea3, type: 3}
   nome: 
@@ -33277,7 +33210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1502055957
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -33421,7 +33353,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1512062486
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -33640,7 +33571,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1515382595
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -33784,7 +33714,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1516943242
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -34943,7 +34872,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1551825125
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -35729,7 +35657,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1570701416
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36173,7 +36100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1579011119
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36317,7 +36243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1580675331
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36461,7 +36386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1594617718
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36951,7 +36875,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1631644062
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -37133,7 +37056,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1642302986
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -37316,7 +37238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1654550750
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -37594,7 +37515,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1664122096
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -38175,7 +38095,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1671649418
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -38486,7 +38405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1682154606
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -38661,7 +38579,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1705569719
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -39108,7 +39025,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 2
   light2D: {fileID: 1553876204}
-  playerObject: {fileID: 381227605}
+  pivotPlayerObject: {fileID: 0}
   targetObject:
   - {fileID: 1190344687}
   - {fileID: 429269327}
@@ -39625,7 +39542,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1737616348
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -39932,7 +39848,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1747070527
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -40076,7 +39991,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1753495045
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -40454,7 +40368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1778333667
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -40854,7 +40767,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -15.432983, y: 339.49182}
+  m_AnchoredPosition: {x: -15.433105, y: 339.49182}
   m_SizeDelta: {x: 7125.544, y: 4291.5635}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1784165038
@@ -41641,7 +41554,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1826729650
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -41864,7 +41776,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1848621025
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -42008,7 +41919,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1862302088
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -42267,7 +42177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1865641049
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -42600,7 +42509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1879506512
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -42828,7 +42736,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1887648426
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -43239,7 +43146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1902984083
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -43462,7 +43368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1923650899
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -44030,7 +43935,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &1949123298
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -44926,7 +44830,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.11779785, y: 0.0034179688}
+  m_AnchoredPosition: {x: -0.11791992, y: 0.0034179688}
   m_SizeDelta: {x: 0.23535, y: -0.0068359}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1986652856
@@ -45263,7 +45167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &2005479657
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -45407,7 +45310,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &2006053888
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -45551,7 +45453,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &2007602625
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -46228,7 +46129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &2074106485
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -46372,7 +46272,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &2080934857
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -46554,7 +46453,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &2106121108
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -46698,7 +46596,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce81cc596e33704d9a69547e6235398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainScene: TrainScene
 --- !u!212 &2108987337
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -47035,7 +46932,7 @@ Transform:
   m_GameObject: {fileID: 2134828599}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -296.55, y: -0.69, z: 0}
+  m_LocalPosition: {x: -228.6, y: -0.69, z: 0}
   m_LocalScale: {x: 1.1209, y: 1.1209, z: 1.1209}
   m_ConstrainProportionsScale: 0
   m_Children:
