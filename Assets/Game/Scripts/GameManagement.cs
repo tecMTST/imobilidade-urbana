@@ -70,6 +70,8 @@ public class GameManagement : MonoBehaviour{
     public Material circularCutout;
     public Animation circularMask;
 
+    public GameObject jumpScareImage;
+
     
 
 
@@ -137,8 +139,8 @@ public class GameManagement : MonoBehaviour{
         float elapsedTime = 0;
 
         while (elapsedTime <= duration) {
-            yield return new WaitForSeconds(elapsedTime/(duration/step)); //Sei lá porquê assim funciona
-            //yield return new WaitForSeconds(step); //E assim não (tempo quase dobrado)
+            yield return new WaitForSeconds(elapsedTime/(duration/step)); //Sei lï¿½ porquï¿½ assim funciona
+            //yield return new WaitForSeconds(step); //E assim nï¿½o (tempo quase dobrado)
             elapsedTime += step;
             print(elapsedTime);
 
@@ -160,8 +162,8 @@ public class GameManagement : MonoBehaviour{
         float UnelapsedTime = duration;
 
         while (UnelapsedTime >= 0) {
-            yield return new WaitForSeconds(UnelapsedTime / (duration / step)); //Sei lá porquê assim funciona
-            //yield return new WaitForSeconds(step); //E assim não (tempo quase dobrado)
+            yield return new WaitForSeconds(UnelapsedTime / (duration / step)); //Sei lï¿½ porquï¿½ assim funciona
+            //yield return new WaitForSeconds(step); //E assim nï¿½o (tempo quase dobrado)
             UnelapsedTime -= step;
             print(UnelapsedTime);
 
@@ -366,6 +368,10 @@ public class GameManagement : MonoBehaviour{
             monologueController.lightTgl = tglLightL;
             monologueController.nextButton = nextButtonMonolgueL;
         }
+    }
+
+    public GameObject JumpScareImage() {
+        return jumpScareImage;
     }
 
     public static void DebugCleaningLog(object message = null, bool clearError = false) {
