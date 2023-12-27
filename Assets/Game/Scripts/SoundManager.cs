@@ -42,6 +42,7 @@ public class SoundManager : MonoBehaviour
         aununcioTrem7,
     };
 
+
     //Lista de Efeitos:
     [SerializeField] private AudioClip menuLuz;
 
@@ -61,6 +62,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource bgmGame4;
     public AudioSource sfxMenu;
     public AudioSource sfxGame;
+    public AudioSource jumpScareScream;
 
     //Outras Vari�veis:
     public static SoundManager instance;
@@ -271,5 +273,9 @@ public class SoundManager : MonoBehaviour
     public void playAnuncioTimer()
     {
         deveFalarPrimeiroAnuncio = true;
+    }
+
+    public void playJumpScareScream() {
+        jumpScareScream.Play();
     }
 }

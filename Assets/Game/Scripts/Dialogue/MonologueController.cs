@@ -39,6 +39,9 @@ public class MonologueController : MonoBehaviour
     [Header("Fala de Desligar a Lanterna")]
     public string[] desligarLanterna;
 
+    [Header("Fala da Primeira Captura")]
+    public string[] primeiraCaptura;
+
     private string[] sentences;
     public Sprite imagePlayer;
     public Sprite imageSound;
@@ -55,6 +58,9 @@ public class MonologueController : MonoBehaviour
 
     private bool falaAnunciante = true;
     private bool jaFalouAnunciante = false;
+
+    private bool captured = false;
+    private bool alreadyCaptureOnce = false;
 
 
     private void Start() {
@@ -108,6 +114,15 @@ public class MonologueController : MonoBehaviour
 
         }
 
+        if (captured == true && alreadyCaptureOnce == false) {
+            alreadyCaptureOnce = true;
+            Speech(primeiraCaptura);
+        }
+
+    }
+
+    public void Captured() {
+        captured = true;
     }
 
     public void Speech(string[] txt) {
