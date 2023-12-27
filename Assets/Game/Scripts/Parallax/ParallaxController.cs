@@ -1,15 +1,19 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class ParallaxController : MonoBehaviour
 {
+
+    [HideInInspector]
+    public static ParallaxController Instance;
+    
     public PlayerController playerController;
 
     public Transform[] planes;
     public float[] planeVelocity;
+
+    [HideInInspector]
+    public Vector3[] planesPosition;
 
     [Range(0, 1)]
     public float velocityScale = 1;
@@ -22,6 +26,15 @@ public class ParallaxController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+
+        Instance = this;
+
+        planesPosition = new Vector3[planes.Length];
+        
+        for (int index = 0; index < planes.Length; index++)
+            planesPosition[index] = planes[index].position;
+        
+
         for (int i = 0; i < planes.Length; i++) {
 
             if (planes[i].CompareTag("moon"))
@@ -32,6 +45,7 @@ public class ParallaxController : MonoBehaviour
 
             
         }
+
     }
 
     // Update is called once per frame
