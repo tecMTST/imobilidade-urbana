@@ -251,6 +251,9 @@ public class GameManagement : MonoBehaviour{
         }
 
         
+        panelFadeImage.CrossFade("fadePanelIn", 0.01f);
+
+        
        
     }
 

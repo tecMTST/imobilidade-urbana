@@ -56,8 +56,8 @@ public class Monster1 : MonoBehaviour
     {
         if(!inDialogue){
             if (!light2D.gameObject.activeSelf) {
-                if (fadeImage.IsPlaying("fadePanelIn")) {
-                    fadeImage.CrossFade("fadePanelOut", 0.1f);
+                if (fadeImage.IsPlaying("fadePanelOut")) {
+                    fadeImage.CrossFade("fadePanelIn", 0.1f);
 
                 }
             }
@@ -125,8 +125,8 @@ public class Monster1 : MonoBehaviour
                     {
                         lightExpositionTime += Time.deltaTime;
 
-                        if(!fadeImage.IsPlaying("fadePanelIn"))
-                            fadeImage.Play("fadePanelIn");
+                        if(!fadeImage.IsPlaying("fadePanelOut"))
+                            fadeImage.Play("fadePanelOut");
 
                     }
 
@@ -135,8 +135,8 @@ public class Monster1 : MonoBehaviour
                         SoundManager.instance.stopDinamicBGM();
                         GameManagement.Instance.SetPlayerPosition();
                         lightExpositionTime = 0;
-                        if (fadeImage.IsPlaying("fadePanelIn")) 
-                            fadeImage.CrossFade("fadePanelOut", 0.01f);
+                        if (fadeImage.IsPlaying("fadePanelOut")) 
+                            fadeImage.CrossFade("fadePanelIn", 0.01f);
 
 
                     }
