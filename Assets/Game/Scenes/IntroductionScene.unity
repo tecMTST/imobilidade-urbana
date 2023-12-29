@@ -1214,6 +1214,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8505668010612615982, guid: 00485d6ca9369da4d8e6f94faa5b9250, type: 3}
   m_PrefabInstance: {fileID: 1420543195}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1544447366 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5475889735612422510, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
+  m_PrefabInstance: {fileID: 6993997273186955543}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1727031552
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1328,6 +1333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1875648267}
   - component: {fileID: 1875648266}
+  - component: {fileID: 1875648268}
   m_Layer: 0
   m_Name: Timeline
   m_TagString: Untagged
@@ -1395,6 +1401,36 @@ Transform:
   - {fileID: 208645340}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1875648268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875648265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: f30cc86f34fe44d4ab86a9caa209270e, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1544447366}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2081921706
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,11 +1809,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5878701724254322221, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4294967295
+      value: 16777215
       objectReference: {fileID: 0}
     - target: {fileID: 5886205855725245149, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164989201045384523, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6229443877397356253, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
       propertyPath: m_SortingOrder
