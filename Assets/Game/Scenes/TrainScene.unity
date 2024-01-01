@@ -7407,7 +7407,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -266.3, y: -40}
+  m_AnchoredPosition: {x: -272, y: -40}
   m_SizeDelta: {x: 420.2881, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &379717820
@@ -46521,8 +46521,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -2.3720016, y: -0.4090004, z: 0}
-    m_Extent: {x: 122.2824, y: 84.0874, z: 0}
+    m_Center: {x: -2.3793488, y: -0.41220093, z: 0}
+    m_Extent: {x: 122.28005, y: 84.0897, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.03
