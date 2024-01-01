@@ -12,6 +12,7 @@ TagManager:
   - questMapIcon
   - moon
   - mapLimit
+  - handsPanel
   layers:
   - Default
   - TransparentFX

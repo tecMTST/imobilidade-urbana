@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,34 +11,57 @@ public class LightToggle : MonoBehaviour
     public Sprite imageOff;
     public Sprite imageOn;
 
+
+    private bool lightActive;
+
+    private Toggle toggle;
     //Lista de SFX:
     [SerializeField] private AudioClip sfxLight;
 
     private void Start()
     {
-    
+        toggle = this.GetComponent<Toggle>();
 
 
-        
+
     }
 
-    public void ToggleLight(bool active)
-    {
-        //light2D.enabled = !light2D.enabled;
-        light2D.gameObject.SetActive(active);
-        light2D2.gameObject.SetActive(active);
-        SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.menuLuz);
+    
+
+    public void ToggleLight(bool active){
+
+        lightActive = active;
+        ToggleLight();
+
+        if (!active)     
+            toggle.interactable = false;
+            Invoke(nameof(AllowToggle), 1f);
         
-        if(active) {
+
+    }
+
+    void AllowToggle() {
+        toggle.interactable = true;
+    }
+
+    
+
+    private void ToggleLight() {
+
+        //light2D.enabled = !light2D.enabled;
+        light2D.gameObject.SetActive(lightActive);
+        light2D2.gameObject.SetActive(lightActive);
+        SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.menuLuz);
+
+        if (lightActive) {
             lanternToggle.sprite = imageOn;
         } else {
             lanternToggle.sprite = imageOff;
         }
-        
 
-        if (!active) {
+
+        if (!lightActive) {
             SoundManager.instance.stopDinamicBGM();
         }
-
     }
 }

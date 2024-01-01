@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Monster1 : MonoBehaviour
 {
@@ -40,6 +41,7 @@ public class Monster1 : MonoBehaviour
     private bool inDialogue = false;
 
     Animation fadeImage = null;
+    Animator hands = null;
 
     void Start()
     {
@@ -49,6 +51,9 @@ public class Monster1 : MonoBehaviour
 
         fadeImage = FindFadeImageByTag("fadePanel", true);
         fadeImage.gameObject.SetActive(true);
+
+        hands = FindAnimatorByTag("handsPanel", true);
+        hands.gameObject.SetActive(true);
     }
 
 
@@ -58,6 +63,7 @@ public class Monster1 : MonoBehaviour
             if (!light2D.gameObject.activeSelf) {
                 if (fadeImage.IsPlaying("fadePanelOut")) {
                     fadeImage.CrossFade("fadePanelIn", 0.1f);
+                    StartCoroutine(nameof(PlayIn));
 
                 }
             }
@@ -125,8 +131,10 @@ public class Monster1 : MonoBehaviour
                     {
                         lightExpositionTime += Time.deltaTime;
 
-                        if(!fadeImage.IsPlaying("fadePanelOut"))
+                        if (!fadeImage.IsPlaying("fadePanelOut")) {
                             fadeImage.Play("fadePanelOut");
+                            PlayOut();
+                        }
 
                     }
 
@@ -135,9 +143,11 @@ public class Monster1 : MonoBehaviour
                         SoundManager.instance.stopDinamicBGM();
                         GameManagement.Instance.SetPlayerPosition();
                         lightExpositionTime = 0;
-                        if (fadeImage.IsPlaying("fadePanelOut")) 
-                            fadeImage.CrossFade("fadePanelIn", 0.01f);
 
+                        if (fadeImage.IsPlaying("fadePanelOut")) {
+                            fadeImage.CrossFade("fadePanelIn", 0.01f);
+                            PlayIn();
+                        }
 
                     }
 
@@ -240,7 +250,42 @@ public class Monster1 : MonoBehaviour
         return isNearPlayer;
     }
 
+    void PlayIn() {
+    
+        hands.SetBool("handsIn", true);
+    
+        
+    }
 
+    void PlayOut() {
+
+        hands.SetBool("handsIn", false);
+        //hands.SetBool("handsIn", false);
+        hands.SetTrigger("handsOut");
+    }
+
+    Animator FindAnimatorByTag(string tag, bool includeInactive) {
+
+        Animator img = null;
+        Animator[] fadeImg = null;
+
+        if (includeInactive) {
+            fadeImg = Resources.FindObjectsOfTypeAll<Animator>();
+            foreach (Animator i in fadeImg) {
+                if (i.CompareTag(tag)) {
+                    img = i;
+                    break;
+                }
+            }
+        } else {
+
+            GameObject.FindGameObjectWithTag(tag).TryGetComponent<Animator>(out img);
+        }
+
+
+        return img;
+
+    }
 
     Animation FindFadeImageByTag(string tag, bool includeInactive) {
 
