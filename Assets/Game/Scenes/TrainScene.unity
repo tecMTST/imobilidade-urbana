@@ -7430,7 +7430,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Build 20240101-1
+  m_text: Build 20240101-2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -31328,6 +31328,7 @@ MonoBehaviour:
   - {fileID: 2134828604}
   - {fileID: 1474421005}
   panelFadeImage: {fileID: 1184050857}
+  hands: {fileID: 1889138994}
   blockInputPanel: {fileID: 1237537722}
   defaultControlLayout: {fileID: 1985430117}
   rightHandedControlLayout: {fileID: 1155041744}
@@ -46520,8 +46521,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -2.379799, y: -0.40939713, z: 0}
-    m_Extent: {x: 122.2801, y: 84.078, z: 0}
+    m_Center: {x: -2.3720016, y: -0.4090004, z: 0}
+    m_Extent: {x: 122.2824, y: 84.0874, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.03

@@ -13,6 +13,7 @@ public class GameManagement : MonoBehaviour{
     public static GameManagement Instance;
 
     public Animation panelFadeImage;
+    public Animator hands;
 
     public GameObject blockInputPanel;
     
@@ -252,9 +253,24 @@ public class GameManagement : MonoBehaviour{
 
         
         panelFadeImage.CrossFade("fadePanelIn", 0.01f);
+        PlayHandsIn();
 
         
        
+    }
+
+    void PlayHandsIn() {
+
+        hands.SetBool("handsIn", true);
+
+
+    }
+
+    void PlayHandsOut() {
+
+        hands.SetBool("handsIn", false);
+        //hands.SetBool("handsIn", false);
+        hands.SetTrigger("handsOut");
     }
 
     /// <summary>
