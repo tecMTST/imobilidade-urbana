@@ -63,7 +63,7 @@ public class Monster1 : MonoBehaviour
             if (!light2D.gameObject.activeSelf) {
                 if (fadeImage.IsPlaying("fadePanelOut")) {
                     fadeImage.CrossFade("fadePanelIn", 0.1f);
-                    StartCoroutine(nameof(PlayIn));
+                    PlayIn();
 
                 }
             }
