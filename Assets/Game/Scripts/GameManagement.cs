@@ -83,7 +83,7 @@ public class GameManagement : MonoBehaviour{
 
 
     private void Awake() {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
 
         Instance = this;
         Application.targetFrameRate = 60; 

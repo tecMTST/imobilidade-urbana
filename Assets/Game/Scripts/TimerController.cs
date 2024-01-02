@@ -24,7 +24,7 @@ public class TimerController : MonoBehaviour
     {
         Instance = this;
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         currentTime = initialTime;
     }
 

@@ -20,7 +20,7 @@ public class MapController : MonoBehaviour
 
         
 
-        GetDependencies();
+        //GetDependencies();
         reveledWagons = new bool[15];
 
         for (int i = 0; i < 15; i++) {
@@ -32,7 +32,7 @@ public class MapController : MonoBehaviour
         SetPlayerMapPosition(7);
 
         RevealMap();
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        //SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.sceneUnloaded += OnSceneUnload;
 
 
@@ -59,16 +59,13 @@ public class MapController : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
 
-
-        GetDependencies();
-        RevealMap();
-
         if (scene.name == "GameOverScene") {
             Destroy(this.gameObject);
             return;
         }
-            
 
+        GetDependencies();
+        RevealMap();
 
     }
 
