@@ -152,12 +152,22 @@ public class Quest : MonoBehaviour{
 
     public bool IsIluminated() {
 
-        List<Collider2D> col = new();
-        Physics2D.OverlapCollider(this.GetComponent<Collider2D>(), new ContactFilter2D(), col);
+        switch (concluded) {
 
-        return col.Any<Collider2D>(itm => itm.gameObject.name == "Lantern");
+            case true:
+                if (MathF.Abs(playerController.transform.position.x - this.transform.position.x) < 2.5f)
+                    return true;
+                else
+                    return false;
+               
+            case false:
 
+                List<Collider2D> col = new();
+                Physics2D.OverlapCollider(this.GetComponent<Collider2D>(), new ContactFilter2D(), col);
 
+                return col.Any<Collider2D>(itm => itm.gameObject.name == "Lantern"); 
+        }
+       
     }
 
     public void Questing() {
@@ -201,9 +211,9 @@ public class Quest : MonoBehaviour{
             return;
             }
 
-            if (!started && !itemCaught && !concluded) {//Quest não iniciada
+            if (!started && !itemCaught && !concluded) {//Quest nï¿½o iniciada
 
-                print("Quest não iniciada");
+                print("Quest nï¿½o iniciada");
 
                 dialogue.StartSpeech(dialogue.profile.ToList<Sprite>().GetRange(dialogueIndexRangeStart[0], dialogueIndexRangeStart[1]).ToArray(),
                 dialogue.speechTxt.ToList<string>().GetRange(dialogueIndexRangeStart[0], dialogueIndexRangeStart[1]).ToArray(),
@@ -220,18 +230,18 @@ public class Quest : MonoBehaviour{
 
 
 
-            } else if (started && !itemCaught && !concluded) { //Quest iniciada, item NÃO pego
+            } else if (started && !itemCaught && !concluded) { //Quest iniciada, item Nï¿½O pego
 
-                print("Quest iniciada, item NÃO pego");
+                print("Quest iniciada, item Nï¿½O pego");
 
                 dialogue.StartSpeech(dialogue.profile.ToList<Sprite>().GetRange(dialogueIndexRangeMiddle[0], dialogueIndexRangeMiddle[1]).ToArray(),
                 dialogue.speechTxt.ToList<string>().GetRange(dialogueIndexRangeMiddle[0], dialogueIndexRangeMiddle[1]).ToArray(),
                 dialogue.actorName.ToList<string>().GetRange(dialogueIndexRangeMiddle[0], dialogueIndexRangeMiddle[1]).ToArray());
 
 
-            } else if (started && itemCaught && !concluded) { //Quest iniciada, item pego, NÃO concluída
+            } else if (started && itemCaught && !concluded) { //Quest iniciada, item pego, Nï¿½O concluï¿½da
 
-                print("Quest iniciada, item pego, NÃO concluída");
+                print("Quest iniciada, item pego, Nï¿½O concluï¿½da");
 
                 dialogue.StartSpeech(dialogue.profile.ToList<Sprite>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray(),
                 dialogue.speechTxt.ToList<string>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray(),
@@ -241,9 +251,9 @@ public class Quest : MonoBehaviour{
 
                 dialogue.dc.onDialogueClose += EndThisQuest;
 
-            } else if (started && itemCaught && concluded) { //Quest concluída
+            } else if (started && itemCaught && concluded) { //Quest concluï¿½da
 
-                print("Quest concluída");
+                print("Quest concluï¿½da");
 
                 dialogue.StartSpeech(dialogue.profile.ToList<Sprite>().GetRange(dialogueIndexRangePostEnd[0], dialogueIndexRangePostEnd[1]).ToArray(),
                 dialogue.speechTxt.ToList<string>().GetRange(dialogueIndexRangePostEnd[0], dialogueIndexRangePostEnd[1]).ToArray(),
