@@ -123,6 +123,11 @@ public class PlayerController : MonoBehaviour
         return roomIndex;
     }
 
+    public bool IsInMainRoom()
+    {
+        return roomIndex == 7;
+    }
+
     public void StartMovingRight()
     {
         isMovingRight = true;

@@ -10,6 +10,7 @@ public class Quest : MonoBehaviour{
     public Sprite icon;
     public Indicator indicator;
     public GameObject mapIcon;
+    public GameObject player;
     public Vector3 mainWagonPosition;
     public Animation fadePanel;
     public Animator animator;
@@ -41,7 +42,8 @@ public class Quest : MonoBehaviour{
         isIluminated = IsIluminated();
         questAlert.SetActive(isIluminated);
 
-        if (!isIluminated) {
+        bool isInMainRoom = player != null && player.GetComponent<PlayerController>().IsInMainRoom();
+        if (!isIluminated && !isInMainRoom) {
             GameManagement.Instance.RemoveInteract(this);
             return;
         }
