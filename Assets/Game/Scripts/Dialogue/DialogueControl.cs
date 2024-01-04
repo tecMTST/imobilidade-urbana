@@ -39,6 +39,7 @@ public class DialogueControl : MonoBehaviour
 
     public void Speech(Sprite[] p, string[] txt, string[] actorName) {
 
+        TimerController.Instance.isPaused = true;
 
         speechText.text = "";
         dialogueObj.SetActive(true);
@@ -101,6 +102,9 @@ public class DialogueControl : MonoBehaviour
     {
         speechText.text = "";
         dialogueObj.SetActive(false);
+
+        TimerController.Instance.isPaused = false;
+
         onDialogueClose();
 
         if (isBros)
@@ -126,9 +130,13 @@ public class DialogueControl : MonoBehaviour
 
         speechText.text = "";
         dialogueObj.SetActive(false);
+
+        TimerController.Instance.isPaused = false;
         onDialogueClose();
 
         onRefuseBros();
+
+
     }
 
    

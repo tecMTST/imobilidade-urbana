@@ -114,9 +114,5 @@ public class Dialogue : MonoBehaviour
     //    Gizmos.DrawWireSphere(transform.position, radius);
     //}
 
-    public void p() {
-        print("foi");
-        
-    }
 
 }

@@ -6,16 +6,25 @@ using UnityEngine.SceneManagement;
 
 public class TimerController : MonoBehaviour
 {
+    
+    public static TimerController Instance;
+    
     public float initialTime;
     public float penalty;
-    
+
+    [HideInInspector]
+    public bool isPaused = true;
+
     private float currentTime;
-    private bool isPaused = true;
+
+    
     private string gameOverScene = "GameOverScene"; 
     
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        Instance = this;
+
+        //DontDestroyOnLoad(gameObject);
         currentTime = initialTime;
     }
 

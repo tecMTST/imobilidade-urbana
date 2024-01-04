@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 
+
 public class GameManagement : MonoBehaviour{
 
     public Transform[] interactableObjects;
@@ -12,6 +13,7 @@ public class GameManagement : MonoBehaviour{
     public static GameManagement Instance;
 
     public Animation panelFadeImage;
+    public Animator hands;
 
     public GameObject blockInputPanel;
     
@@ -81,7 +83,7 @@ public class GameManagement : MonoBehaviour{
 
 
     private void Awake() {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
 
         Instance = this;
         Application.targetFrameRate = 60; 
@@ -114,7 +116,8 @@ public class GameManagement : MonoBehaviour{
     public IEnumerator CircularIn() {
 
         if (!circularMask.isPlaying)
-          
+            circularMask.Play("circularIn");
+
         yield return new WaitUntil(()=>!circularMask.IsPlaying("circularIn"));
                
         StopCoroutine(nameof(CircularIn));
@@ -151,7 +154,6 @@ public class GameManagement : MonoBehaviour{
 
     }
 
-
     public IEnumerator CircularOut(float duration, float step = 0.02f) {
 
         print("coroutine");
@@ -172,7 +174,6 @@ public class GameManagement : MonoBehaviour{
 
         StopCoroutine(nameof(CircularOut));
     }
-
 
     public void Interact() {
 
@@ -219,8 +220,6 @@ public class GameManagement : MonoBehaviour{
             interactableItems.Remove(item);
     }
 
-
-
     /// <summary>
     /// Sets the player position in the wolrd scene
     /// </summary>
@@ -234,9 +233,44 @@ public class GameManagement : MonoBehaviour{
     ///</param>
     public void SetPlayerPosition(Vector3 position = new Vector3()) {
 
-        playerController.transform.position = position == new Vector3(0, 0, 0) ? 
-                                              playerInitialPosition : new Vector3(position.x, playerInitialPosition.y, position.z);
+        if (position == new Vector3(0, 0, 0)) {
+            playerController.transform.position = playerInitialPosition;
+
+            for (int index = 0; index < ParallaxController.Instance.planesPosition.Length; index++) {
+                SetPosition(ParallaxController.Instance.planes[index], ParallaxController.Instance.planesPosition[index]);
+            }
+
+        } else {
+            playerController.transform.position = new Vector3(position.x, playerInitialPosition.y, position.z);
+
+            for (int index = 0; index < ParallaxController.Instance.planesPosition.Length; index++) {
+                SetPosition(ParallaxController.Instance.planes[index], 
+                    new Vector3(position.x + (ParallaxController.Instance.planesPosition[index].x -playerInitialPosition.x), 
+                                ParallaxController.Instance.planesPosition[index].y,
+                                ParallaxController.Instance.planesPosition[index].z));
+            }
+        }
+
+        
+        panelFadeImage.CrossFade("fadePanelIn", 0.01f);
+        PlayHandsIn();
+
+        
        
+    }
+
+    void PlayHandsIn() {
+
+        hands.SetBool("handsIn", true);
+
+
+    }
+
+    void PlayHandsOut() {
+
+        hands.SetBool("handsIn", false);
+        //hands.SetBool("handsIn", false);
+        hands.SetTrigger("handsOut");
     }
 
     /// <summary>
@@ -246,7 +280,6 @@ public class GameManagement : MonoBehaviour{
     public void BlockAllInputs(bool block) {
         blockInputPanel.SetActive(block);
     }
-
 
     public void OnRightHandedToggle(bool value) {
 
@@ -372,6 +405,10 @@ public class GameManagement : MonoBehaviour{
 
     public GameObject JumpScareImage() {
         return jumpScareImage;
+    }
+
+    public void SetPosition(Transform transform, Vector3 position) {
+        transform.position = position;
     }
 
     public static void DebugCleaningLog(object message = null, bool clearError = false) {
