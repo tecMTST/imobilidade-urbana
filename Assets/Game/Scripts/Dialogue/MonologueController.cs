@@ -25,7 +25,7 @@ public class MonologueController : MonoBehaviour
     public GameObject nextButton;
 
     [Header("Settings")]
-    [Range(0, 0.5f)] public float typingSpeed;
+    public float typingSpeed;
 
     [Header("Fala Inicial")]
     public string[] falaInicial;
@@ -61,6 +61,11 @@ public class MonologueController : MonoBehaviour
 
     private bool captured = false;
     private bool alreadyCaptureOnce = false;
+    
+    private bool acceptInput;
+    private int lettersTyped;
+    private bool mouseClicked;
+    
 
 
     private void Start() {
@@ -83,10 +88,12 @@ public class MonologueController : MonoBehaviour
             if (playerRoom == 6) {
                 monster1.GetComponent<Monster1>().StartDialogue();
                 activeMonster = monster1;
+                falouPraLigarLanterna = true;
                 Speech(ligarLanterna);
             } else if (playerRoom == 8) {
                 monster2.GetComponent<Monster1>().StartDialogue();
                 activeMonster = monster2;
+                falouPraLigarLanterna = true;
                 Speech(ligarLanterna);
             }
             
@@ -105,10 +112,12 @@ public class MonologueController : MonoBehaviour
             if(monsterNear && playerRoom == 6) {
                 monster1.GetComponent<Monster1>().StartDialogue();
                 activeMonster = monster1;
+                falouPraDesligarLanterna = true;
                 Speech(desligarLanterna);
             } else if(monsterNear && playerRoom == 8) {
                 monster2.GetComponent<Monster1>().StartDialogue();
                 activeMonster = monster2;
+                falouPraDesligarLanterna = true;
                 Speech(desligarLanterna);
             }
 
@@ -145,26 +154,52 @@ public class MonologueController : MonoBehaviour
 
     IEnumerator TypeSentence(bool isAnunciante)
     {
-        if (isAnunciante) {
+        if (isAnunciante)
+        {
             profile.sprite = imageSound;
             actorNameText.text = anunciante;
             soundManager.GetComponent<SoundManager>().playAnuncioTimer();
-        } else
+        }
+        else
         {
             profile.sprite = imagePlayer;
             actorNameText.text = nome;
         }
-        
-        foreach (char letter in sentences[index].ToCharArray())
+
+        float elapsedTime = 0f;
+
+        for (int i = 0; i < sentences[index].Length; i++)
         {
-            speechText.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+            speechText.text += sentences[index][i];
+
+            
+
+            elapsedTime = 0f;
+            while (elapsedTime < typingSpeed)
+            {
+                elapsedTime += Time.deltaTime;
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    mouseClicked = true;
+                    break;
+                }
+
+                yield return null; 
+            }
+
+            if (mouseClicked)
+            {
+                speechText.text = sentences[index];
+                break;
+            }
         }
+            
     }
 
     public void NextSentence()
     {
-        if(speechText.text == sentences[index])
+        if(speechText.text == sentences[index] && mouseClicked == false)
         {
             if (index < sentences.Length - 1)
             {
@@ -224,5 +259,6 @@ public class MonologueController : MonoBehaviour
                 }
             }
         }
+        mouseClicked = false;
     }
 }

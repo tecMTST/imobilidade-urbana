@@ -73,6 +73,9 @@ public class SoundManager : MonoBehaviour
     private bool falouPrimeiroAnuncio = false;
     private bool deveFalarPrimeiroAnuncio = false;
     private float timerFade = 0.95f;
+    private bool isTimePaused;
+
+    public GameObject timerController;
 
     //Inicia��o do SoundManager:
     void Awake()
@@ -122,10 +125,11 @@ public class SoundManager : MonoBehaviour
 
     void Update()
     {
+        isTimePaused = timerController.GetComponent<TimerController>().GetIsPaused();
         //Tema do Trem e An�ncios:
         if (currentScene.name == "TrainScene")
         {
-            if (falouPrimeiroAnuncio)
+            if (falouPrimeiroAnuncio && isTimePaused == false)
             {
                 timerAnuncio = timerAnuncio + Time.deltaTime;
                 if (!segurarAnuncio && timerAnuncio >= anuncioSFX)

@@ -59,4 +59,9 @@ public class TimerController : MonoBehaviour
     {
         isPaused = false;
     }
+
+    public bool GetIsPaused()
+    {
+        return isPaused;
+    }
 }

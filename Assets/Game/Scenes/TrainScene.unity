@@ -7291,6 +7291,10 @@ PrefabInstance:
       propertyPath: jumpScareScream
       value: 
       objectReference: {fileID: 464795385}
+    - target: {fileID: 2061563550211042643, guid: e80a93c68517e5740976316bf45ab32e, type: 3}
+      propertyPath: timerController
+      value: 
+      objectReference: {fileID: 257905307}
     - target: {fileID: 5401185967225512402, guid: e80a93c68517e5740976316bf45ab32e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9485,7 +9489,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d34b30269616c734ba6992b2ad4dd89a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ed01f0268c7fe094fae351bea644d5f4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -34565,22 +34569,25 @@ MonoBehaviour:
   speechText: {fileID: 1919081541}
   actorNameText: {fileID: 2023828710}
   nextButton: {fileID: 1986652856}
-  typingSpeed: 0
+  typingSpeed: 0.025
   falaInicial:
-  - Quero ir pra casa.
+  - "Era s\xF3 o que faltava! Atrasos e aglomera\xE7\xE3o o dia todo, e at\xE9 de
+    madrugada o trabalhador tem que aguentar essas coisas. "
   - "{\xC1udio do anunciante}"
   portaEmperrada:
-  - Porta emperrada
-  - Preciso de gente pra me ajudar
+  - "Ai, as portas n\xE3o abrem; est\xE3o emperradas. Vou procurar mais gente para
+    ver se est\xE3o bem e tentar sair daqui logo."
   ligarLanterna:
-  - Melhor ligar lanterna
+  - Ufff, e agora tudo escuro. Melhor ligar a lanterna.
   desligarLanterna:
-  - Melhor desligar lanterna
+  - "O que \xE9 isso l\xE1 fora? Vou evitar ficar perto das janelas, e tapar a luz
+    da lanterna. "
   primeiraCaptura:
-  - Fui pega, agora tenho menos tempo.
+  - "Que sensa\xE7\xE3o estranha. N\xE3o lembro ter voltado pra c\xE1. Preciso pedir
+    ajuda!"
   imagePlayer: {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
   imageSound: {fileID: 21300000, guid: 721f3428018e08047afbbb33bf833ea3, type: 3}
-  nome: 
+  nome: "Gl\xF3ria"
   anunciante: Anunciante
 --- !u!1 &1502055953
 GameObject:
@@ -40316,7 +40323,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 128, y: 256}
+  m_SizeDelta: {x: 64, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1706410612
 MonoBehaviour:
@@ -40331,7 +40338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.078431375}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -40340,7 +40347,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: b42c6b40a05288443bf76d4098974239, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -42669,7 +42676,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 128, y: 256}
+  m_SizeDelta: {x: 64, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1805111470
 MonoBehaviour:
@@ -42684,7 +42691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.078431375}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -47352,7 +47359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.1171875, y: 0.00390625}
+  m_AnchoredPosition: {x: -0.1171875, y: 0.07141113}
   m_SizeDelta: {x: 0.23535, y: -0.0068359}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1986652856

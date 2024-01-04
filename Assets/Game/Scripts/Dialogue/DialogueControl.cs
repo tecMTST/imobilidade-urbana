@@ -16,9 +16,12 @@ public class DialogueControl : MonoBehaviour
     public GameObject continueGroup;
 
     [Header("Settings")]
-    [Range(0, 0.5f)] public float typingSpeed;
+    public float typingSpeed;
 
     private string[] sentences;
+    private bool acceptInput;
+    private int lettersTyped;
+    private bool mouseClicked;
     private Sprite[] sprites;
     private string[] names;
     public int index;
@@ -32,6 +35,7 @@ public class DialogueControl : MonoBehaviour
     public static DialogueControl Instance;
 
     public bool isBros = false;
+
 
     private void Start() {
         Instance = this;
@@ -71,18 +75,54 @@ public class DialogueControl : MonoBehaviour
 
     IEnumerator TypeSentence()
     {
+        acceptInput = false;
+        lettersTyped = 0;
+
         profile.sprite  = sprites[index];
         actorNameText.text = names[index];
-        foreach (char letter in sentences[index].ToCharArray())
+
+        float elapsedTime = 0f;
+        mouseClicked = false;
+
+        for (int i = 0; i < sentences[index].Length; i++)
         {
-            speechText.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+            
+
+            speechText.text += sentences[index][i];
+            lettersTyped++;
+
+            if (lettersTyped == 3)
+            {
+                acceptInput = true;
+            }
+
+            elapsedTime = 0f;
+            while (elapsedTime < typingSpeed)
+            {
+                elapsedTime += Time.deltaTime;
+
+                if (acceptInput && Input.GetMouseButtonDown(0))
+                {
+                    mouseClicked = true;
+                    break;
+                }
+
+                yield return null; 
+            }
+
+            if (mouseClicked)
+            {
+                speechText.text = sentences[index];
+                break;
+            }
+
+            
         }
     }
 
     public void NextSentence()
     {
-        if(speechText.text == sentences[index])
+        if(speechText.text == sentences[index] && mouseClicked == false)
         {
             if (index < sentences.Length - 1)
             {
@@ -96,6 +136,7 @@ public class DialogueControl : MonoBehaviour
                
             }
         }
+        mouseClicked = false;
     }
 
     public void Close()
