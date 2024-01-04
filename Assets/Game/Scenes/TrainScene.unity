@@ -3084,7 +3084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &126207975
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4869,7 +4869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b92bd6e47327e44bfd61803936aca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialTime: 2
+  initialTime: 600
   penalty: 60
   isPaused: 1
 --- !u!4 &257905309
@@ -30043,14 +30043,14 @@ MonoBehaviour:
   delay: 2
   startPosition: 14.47
   light2D: {fileID: 1553876204}
-  pivotPlayerObject: {fileID: 0}
+  pivotPlayerObject: {fileID: 962445656}
   targetObject:
   - {fileID: 246892935}
   - {fileID: 1298790762}
   moveSpeedNormal: 2
   moveSpeedLight: 5
   player: {fileID: 381227598}
-  monsterRoomIndex: 11
+  monsterRoomIndex: 12
   expositionTimeLimit: 0
   sfxVoice1: {fileID: 8300000, guid: caecfaa49e0f9bc4c9479c62451fecb7, type: 3}
   sfxVoice2: {fileID: 8300000, guid: e6343d0a961fcba43b4d31bda1002a18, type: 3}
@@ -47245,7 +47245,7 @@ MonoBehaviour:
   moveSpeedNormal: 2
   moveSpeedLight: 5
   player: {fileID: 381227598}
-  monsterRoomIndex: 4
+  monsterRoomIndex: 2
   expositionTimeLimit: 0
   sfxVoice1: {fileID: 8300000, guid: caecfaa49e0f9bc4c9479c62451fecb7, type: 3}
   sfxVoice2: {fileID: 8300000, guid: e6343d0a961fcba43b4d31bda1002a18, type: 3}
