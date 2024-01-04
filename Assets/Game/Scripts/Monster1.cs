@@ -7,6 +7,8 @@ public class Monster1 : MonoBehaviour
 {
     public float delay = 2f;
 
+    public float startPosition;
+
     public UnityEngine.Rendering.Universal.Light2D light2D;
     public Transform pivotPlayerObject;
     public Transform[] targetObject;
@@ -55,6 +57,30 @@ public class Monster1 : MonoBehaviour
         hands = FindAnimatorByTag("handsPanel", true);
         hands.gameObject.SetActive(true);
     }
+
+    private void OnEnable() {
+        if (Random.Range(0, 99) < 25) {
+            print("Desaparece");
+            this.transform.parent.gameObject.SetActive(false);
+        } else
+            print("Aparece");
+        
+    }
+
+    private void OnDisable() {
+        this.transform.localPosition = new Vector3(startPosition, this.transform.localPosition.y, this.transform.localPosition.z);
+
+        if (Random.Range(0, 99) % 2 == 0)
+            index = 0;
+        else 
+            index = 1;
+
+        print($"Index {index}");
+
+
+    }
+
+
 
 
     void Update()
@@ -229,6 +255,8 @@ public class Monster1 : MonoBehaviour
        
 
     }
+
+
 
     public void StartMoving()
     {        
