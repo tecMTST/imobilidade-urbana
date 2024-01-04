@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 824925ada3b55124e87efaa429bd9cd6
+guid: 4fa33f2aa4b292f46b9ada5603ed362e
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Mockup R05
+  - name: maos 02 R02-Sheet
     originalName: 
-    pivot: {x: 0.51304346, y: -0.25}
+    pivot: {x: 0.49833223, y: -0.25252524}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 460
-      height: 64
-    spriteID: 2a171475904dca444811989049acbf77
+      width: 1499
+      height: 99
+    spriteID: da0f7a8bc7761ba4fb5d7eb3d37f7654
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -138,27 +138,27 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: -17, y: -21}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1407877900
-    name: Mockup R05
+    guid: 946323138
+    name: maos 02 R02-Sheet
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Mockup R05
+    - name: maos 02 R02-Sheet
       frameIndex: 0
       cellRect:
-        x: 20
-        y: 16
-        width: 460
-        height: 64
-      spriteId: 2a171475904dca444811989049acbf77
+        x: 0
+        y: 0
+        width: 1536
+        height: 144
+      spriteId: da0f7a8bc7761ba4fb5d7eb3d37f7654
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 512, y: 96}
+  canvasSize: {x: 1536, y: 144}
