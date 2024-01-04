@@ -8857,7 +8857,7 @@ MonoBehaviour:
   moveSpeedNormal: 2
   moveSpeedLight: 5
   player: {fileID: 381227598}
-  monsterRoomIndex: 4
+  monsterRoomIndex: 1
   expositionTimeLimit: 0
   sfxVoice1: {fileID: 8300000, guid: caecfaa49e0f9bc4c9479c62451fecb7, type: 3}
   sfxVoice2: {fileID: 8300000, guid: e6343d0a961fcba43b4d31bda1002a18, type: 3}
@@ -40585,14 +40585,14 @@ MonoBehaviour:
   delay: 2
   startPosition: 14.47
   light2D: {fileID: 1553876204}
-  pivotPlayerObject: {fileID: 0}
+  pivotPlayerObject: {fileID: 962445656}
   targetObject:
   - {fileID: 1322325498}
   - {fileID: 560372368}
   moveSpeedNormal: 2
   moveSpeedLight: 5
   player: {fileID: 381227598}
-  monsterRoomIndex: 11
+  monsterRoomIndex: 14
   expositionTimeLimit: 0
   sfxVoice1: {fileID: 8300000, guid: caecfaa49e0f9bc4c9479c62451fecb7, type: 3}
   sfxVoice2: {fileID: 8300000, guid: e6343d0a961fcba43b4d31bda1002a18, type: 3}
@@ -48166,8 +48166,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 565.03, y: 82.190796}
-  m_SizeDelta: {x: 688.78, y: 45.5391}
+  m_AnchoredPosition: {x: 565.03, y: 81.672}
+  m_SizeDelta: {x: 688.78, y: 44.501495}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2023828709
 CanvasRenderer:
