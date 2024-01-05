@@ -54,15 +54,12 @@ public class QuestItem : MonoBehaviour
 
                 Collider2D hitCollider = Physics2D.OverlapPoint(clickPosition2D, thisLayer);
 
-                print($"HitCollider: {hitCollider.gameObject.name}");
+                //print($"HitCollider: {hitCollider.gameObject.name}");
 
                 if (hitCollider != null && hitCollider.gameObject == gameObject) {
-                    print("CLicked");
-
+                    //print("CLicked");
 
                     Caught();
-
-
 
                 }
             }

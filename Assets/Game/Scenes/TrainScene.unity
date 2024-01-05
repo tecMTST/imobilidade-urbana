@@ -3885,8 +3885,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 18.7, y: 12}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchoredPosition: {x: 7.3, y: -9.200014}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &212665984
 MonoBehaviour:
@@ -5844,10 +5844,10 @@ MonoBehaviour:
   itemCaught: 0
   item: {fileID: 430398970}
   dialogue: {fileID: 297327655}
-  dialogueIndexRangeStart: 000000000d000000
-  dialogueIndexRangeMiddle: 0d00000004000000
-  dialogueIndexRangeEnd: 1100000002000000
-  dialogueIndexRangePostEnd: 1300000002000000
+  dialogueIndexRangeStart: 0000000008000000
+  dialogueIndexRangeMiddle: 0800000002000000
+  dialogueIndexRangeEnd: 0a00000001000000
+  dialogueIndexRangePostEnd: 0b00000001000000
   questAlert: {fileID: 753691144}
   endQuestPositionX: 0
 --- !u!4 &297327654
@@ -5881,79 +5881,49 @@ MonoBehaviour:
   profile:
   - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
   - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
-  - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
-  - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
-  - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
-  - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
-  - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
-  - {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
-  - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
-  - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
   - {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
   - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
   - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
   - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
-  - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
-  - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
+  - {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
   - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
   - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
   - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
   - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
   - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
   speechTxt:
-  - "Ei, abaixa o farol que n\xE3o d\xE1 pra ver quem \xE9 contra a luz. Isso \xE9
-    uma lanterna de celular ou foco de est\xE1dio? "
-  - "Quase me deixa cego! Noite \u201Cloka\u201D, n\xE9 n\xE3o? Trem vazio e agora
-    a gente aqui parado. Bem-vinda a era dos engarrafamentos em trem!  "
-  - "Antigamente... esse trem bombava; voava de noite nesses trilhos brilhantes e
-    geral voltando da balada s\xF3 deixava o dinheiro cair na "
-  - "caixinha. Agora esse governo do estado a\xED t\xE1 de rosca, todo dia um BO.
-    \u201CAudaces fortuna juvat\u201D, j\xE1 dizia o poeta, mas a coisa"
-  - "t\xE1 feia pra gente agora. Trem largado..."
-  - "...e agora sem luz tamb\xE9m no meio dessa fria madrugada sinistra. T\xE1 ouvindo
-    isso l\xE1 fora? "
-  - "Audaz sim, mas louco n\xE3o..."
-  - " Oi. Voc\xEA pode me ajudar a abrir a porta pra gente sair daqui? Acho que com
-    mais gente podemos conseguir"
-  - "\xC9 o seguinte, tava saindo fora j\xE1, mas quando a luz apagou a roda do meu
-    carrinho saiu pra algum canto. Nem vi, nem ouvi, s\xF3 senti. "
-  - "Se andando por a\xED c\xEA encontrar ela, tem as moral de me trazer de volta
-    e me ajudar a colocar?"
-  - "De boa, demor\xF4. Rapid\xE3o eu acho e trago a rodinha pra voc\xEA. Deixa comigo!
-    Vamos sair dessa juntos"
-  - "S\xF3 n\xE3o vou com voc\xEA porque j\xE1 sabe, n\xE9; mercadoria sem dono no
-    escuro, voa sem asa. E isso aqui \xE9 meu sustento. "
-  - "Al\xE9m de ser de \xF3tima qualidade, como deve ser."
-  - "C\xE9loko! Tava aqui maquinando. Teve uma hora que o rapa entrou no trem. Putz,
-    fui ninja."
-  - "J\xE1 coloquei o carrinho pra baixo do banco e esperei a crise passar igual
-    pol\xEDtico, sem dar pala."
-  - "Esses cara devia dar um jeito desse trem funcionar direito, e n\xE3o vir atr\xE1s
-    de gente que s\xF3 quer ganhar o p\xE3o de cada dia."
-  - "Tinha uma tiazinha no outro vag\xE3o que n\xE3o tirava o olho de mim. "
-  - "\u201CA sorte favorece os ousados!\u201D Voc\xEA sim \xE9 ousadia, mina! "
-  - "Agora \xE9 s\xF3 dar um jeito de encaixar ela pra poder sair dessa gaiola. A
-    noite ainda \xE9 longa."
-  - "O que seria dos homens sem as mulheres, n\xE9, n\xE3o? Valeu! Agora \xE9 minha
-    vez de te ajudar. Uma m\xE3o lava a outra, como dizem."
-  - "E com quatro acho que d\xE1 pra abrir essas portas."
+  - "Ei,  noite  \u201Cloka\u201D,  n\xE9  n\xE3o?  Antigamente  esse  trem  bombava; 
+    voava  de  noite  nesses  trilhos  brilhantes  e  geral  voltando  da  balada 
+    s\xF3  deixava  o  dinheiro  cair  na  caixinha."
+  - "Agora  esse  governo  do  estado  a\xED  t\xE1  de  rosca,  todo  dia  um  BO. 
+    Deixa  a  gente  jogado  nessa  fria  madrugada  sinistra. "
+  - "\xC9  verdade,  cada  dia  t\xE1  pior.  Mas  pode  me  ajudar  a  abrir  a 
+    porta  pra  gente  sair  daqui  logo?  Acho  que  com  mais  gente  podemos 
+    conseguir."
+  - "Quis  o  destino  que  eu  tamb\xE9m  precisasse  de  ajuda.  A  roda  do  meu 
+    carrinho  saiu  pra  algum  canto."
+  - "Se  andando  por  a\xED  voc\xEA  encontrar  ela,  tem  as  moral  de  me  trazer 
+    de  volta?"
+  - "Assim  tamb\xE9m  posso  te  ajudar  depois."
+  - Claro.  Deixa  comigo!
+  - "S\xF3  n\xE3o  vou  com  voc\xEA  porque  j\xE1  sabe,  n\xE9;  mercadoria 
+    sem  dono  at\xE9  no  escuro  voa  sem  asa"
+  - "Tava  aqui  maquinando...  Trem  parado  e  cad\xEA  aqueles  rapa  pra  ajudar? 
+    N\xE9,  n\xE3o?"
+  - "Deviam  dar  um  jeito  desse  trem  funcionar  direito,  e  n\xE3o  vir  atr\xE1s 
+    de  gente  que  s\xF3  quer  ganhar  o  p\xE3o  de  cada  dia."
+  - "\u201CA  sorte  favorece  os  ousados!\u201D  Agora  \xE9  s\xF3  dar  um  jeito 
+    de  encaixar  ela  pra  poder  sair  dessa  gaiola."
+  - "Valeu!  Agora  \xE9  minha  vez  de  te  ajudar.  Uma  m\xE3o  lava  a  outra, 
+    como  dizem."
   actorName:
   - Wellington
   - Wellington
-  - Wellington
-  - Wellington
-  - Wellington
-  - Wellington
-  - Wellington
-  - Eu
-  - Wellington
-  - Wellington
   - Eu
   - Wellington
   - Wellington
   - Wellington
-  - Wellington
-  - Wellington
+  - Eu
   - Wellington
   - Wellington
   - Wellington
@@ -7632,7 +7602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac1aea1da3af3d458eb04f54cb191bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 20
   isMovingRight: 0
   isMovingLeft: 0
   onLimit: 0
@@ -7829,8 +7799,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 18.7, y: 12}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchoredPosition: {x: 4.9, y: -9.2}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &393693605
 MonoBehaviour:
@@ -15872,8 +15842,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -79.140625, y: -31.503906}
-  m_SizeDelta: {x: 158.2823, y: -63.02213}
+  m_AnchoredPosition: {x: -131.76978, y: -31.503906}
+  m_SizeDelta: {x: 263.5402, y: -63.0222}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &722471631
 MonoBehaviour:
@@ -19193,8 +19163,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 26.7}
-  m_SizeDelta: {x: 75, y: 75}
+  m_AnchoredPosition: {x: 0, y: -7.2}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &894989680
 MonoBehaviour:
@@ -19209,7 +19179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -25588,18 +25558,18 @@ RectTransform:
   - {fileID: 13651434}
   - {fileID: 22017840}
   - {fileID: 268054175}
-  - {fileID: 1186812991}
   - {fileID: 786270578}
   - {fileID: 1054705959}
   - {fileID: 1184050854}
   - {fileID: 1889138993}
-  - {fileID: 379717819}
-  - {fileID: 609582175}
   - {fileID: 1985430118}
   - {fileID: 1155041745}
   - {fileID: 798942069}
   - {fileID: 972370095}
   - {fileID: 1730634897}
+  - {fileID: 1186812991}
+  - {fileID: 379717819}
+  - {fileID: 609582175}
   - {fileID: 1559553287}
   - {fileID: 1565476447}
   - {fileID: 126207975}
@@ -26708,7 +26678,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.328125, y: -114}
+  m_AnchoredPosition: {x: -0.328125, y: -94.4}
   m_SizeDelta: {x: -330.8065, y: 46.7505}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1186812993
@@ -29115,13 +29085,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 281e6778a01440843a72af110599be6d, type: 3}
   - {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
   - {fileID: 21300000, guid: 6e3457e7258c31a4e86f53bd44ac2f1e, type: 3}
-  - {fileID: 21300000, guid: 6e3457e7258c31a4e86f53bd44ac2f1e, type: 3}
-  - {fileID: 21300000, guid: 281e6778a01440843a72af110599be6d, type: 3}
-  - {fileID: 21300000, guid: 6e3457e7258c31a4e86f53bd44ac2f1e, type: 3}
-  - {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
   - {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
   - {fileID: 21300000, guid: 6e3457e7258c31a4e86f53bd44ac2f1e, type: 3}
   - {fileID: 21300000, guid: 281e6778a01440843a72af110599be6d, type: 3}
+  - {fileID: 21300000, guid: 6e3457e7258c31a4e86f53bd44ac2f1e, type: 3}
   - {fileID: 21300000, guid: 6e3457e7258c31a4e86f53bd44ac2f1e, type: 3}
   - {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
   - {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
@@ -29129,60 +29096,50 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6e3457e7258c31a4e86f53bd44ac2f1e, type: 3}
   - {fileID: 21300000, guid: 6e3457e7258c31a4e86f53bd44ac2f1e, type: 3}
   speechTxt:
-  - "Oi, meninos! Voc\xEAs est\xE3o bem? Est\xE3o sozinhos?"
+  - "Oi,  meninos!  Voc\xEAs  est\xE3o  bem?  Est\xE3o  sozinhos?"
   - ...
   - ...
-  - "(Eles parecem receosos de falar com desconhecidos. O casula t\xE1 no celular
-    e finge nem me v\xEA :| )"
-  - "Est\xE3o machucados? Sou enfermeira, posso ajudar. Precisam de alguma coisa?"
-  - "Tamo bem. S\xF3 esperando aqui a luz voltar pra gente ir embora."
-  - "Acho que vi algum bicho l\xE1 fora\u2026"
-  - "O que est\xE3o fazendo aqui sozinhos a essa hora?"
-  - "Nossa m\xE3e t\xE1 em casa. A gente veio conseguir uns trocados aqui. Sempre
-    fazemos isso quando ela pede. "
-  - "Mas hoje parece que n\xE3o vai dar."
-  - "Ela t\xE1 doente..."
-  - SHHHT! Fica quieto
-  - "Entendi. Mas agora precisamos sair daqui. Posso ajudar voc\xEAs a chegarem em
-    casa, n\xE3o se preocupem. "
-  - "Primeiro temos que ir abrir juntos a porta que est\xE1 emperrada. Com a ajuda
-    de voc\xEAs podemos conseguir. Todo mundo conta."
-  - "Acho que nossa m\xE3e n\xE3o ia gostar se visse a gente saindo dum trem na marginal,
-    tarde da noite, com uma estranha"
-  - "Mas ela tamb\xE9m n\xE3o gostaria que a gente ficasse aqui sozinho. Nem internet
-    a gente tem pra ligar pra ela..."
-  - "\xC9... acho que pode ser..."
-  - (Eles parecem preocupados...)
-  - "J\xE1 se decidiram? Temos que sair daqui logo"
-  - "Tava conversando com meu irm\xE3o e ele tem raz\xE3o. Melhor te ajudar pra gente
-    sair daqui logo, apesar de n\xE3o te conhecer."
-  - "Nossa m\xE3e t\xE1 meio ruim e quanto mais cedo a gente voltar pra ficar com
-    ela, melhor. Vamos l\xE1 pra tr\xE1s ent\xE3o e te esperamos."
-  - "Quando for abrir a porta s\xF3 avisa que ajudamos. At\xE9 l\xE1 eu vou ficar
-    de olho no meu irm\xE3o"
+  - (Eles  parecem  receosos)
+  - "Est\xE3o  machucados?  Sou  enfermeira,  posso  ajudar. "
+  - "Tamo  bem.  S\xF3  esperando  aqui  a  luz  voltar  pra  gente  ir  embora."
+  - "Acho  que  vi  algum  bicho  l\xE1  fora\u2026"
+  - "O  que  est\xE3o  fazendo  aqui  sozinhos  a  essa  hora?"
+  - "Nossa  m\xE3e  t\xE1  em  casa.  A  gente  veio  conseguir  uns  trocados. 
+    Sempre  fazemos  isso  quando  ela  pede. "
+  - "Posso  ajudar  voc\xEAs  a  chegarem  em  casa.  Primeiro  temos  que  abrir 
+    juntos  a  porta  que  est\xE1  emperrada."
+  - "N\xE3o  te  conhecemos\u2026  e  nossa  m\xE3e  falou\u2026"
+  - "Ela  s\xF3  vai  ajudar  a  gente  a  sair  daqui,  Michael.  A  mam\xE3e  prefere 
+    a  gente  vivo"
+  - "\xC9..."
+  - Pode  ser...
+  - ...
+  - "Se  decidiram?  Temos  que  sair  daqui  j\xE1"
+  - "Tava  conversando  com  meu  irm\xE3o  e  ele  tem  raz\xE3o.  Nossa  m\xE3e 
+    t\xE1  meio  ruim"
+  - "e  quanto  mais  cedo  a  gente  voltar  pra  ficar  com  ela,  melhor.  Te 
+    esperamos  l\xE1  atr\xE1s."
+  - "Quando  for  abrir  a  porta  s\xF3  avisa  que  ajudamos. "
   actorName:
   - Eu
-  - Mais velho
+  - Mais  velho
   - "Ca\xE7ula"
   - Eu
   - Eu
-  - Mais velho
-  - "Ca\xE7ula"
+  - Michael
+  - Jackson
   - Eu
-  - Mais velho
-  - Mais velho
-  - "Ca\xE7ula"
-  - Mais velho
+  - Michael
   - Eu
-  - Eu
-  - Mais velho
-  - "Ca\xE7ula"
-  - Mais velho
+  - Michael
+  - Jackson
+  - Michael
+  - Michael
   - Eu
   - Eu
-  - Mais velho
-  - Mais velho
-  - Mais velho
+  - Michael
+  - Michael
+  - Michael
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -29219,10 +29176,10 @@ MonoBehaviour:
   itemCaught: 0
   item: {fileID: 0}
   dialogue: {fileID: 1293754581}
-  dialogueIndexRangeStart: 0000000015000000
+  dialogueIndexRangeStart: 0000000012000000
   dialogueIndexRangeMiddle: 0000000000000000
   dialogueIndexRangeEnd: 0000000000000000
-  dialogueIndexRangePostEnd: 1500000001000000
+  dialogueIndexRangePostEnd: 1200000001000000
   questAlert: {fileID: 1879799338}
   endQuestPositionX: 0
 --- !u!95 &1293754583
@@ -34571,23 +34528,23 @@ MonoBehaviour:
   nextButton: {fileID: 1986652856}
   typingSpeed: 0.025
   falaInicial:
-  - "Era s\xF3 o que faltava! Atrasos e aglomera\xE7\xE3o o dia todo, e at\xE9 de
-    madrugada o trabalhador tem que aguentar essas coisas. "
-  - "{\xC1udio do anunciante}"
+  - "Era  s\xF3  o  que  faltava!  Atrasos  e  aglomera\xE7\xE3o  o  dia  todo, 
+    e  at\xE9  de  madrugada  o  trabalhador  tem  que  aguentar  essas  coisas. "
+  - "{\xC1udio  do  anunciante}"
   portaEmperrada:
-  - "Ai, as portas n\xE3o abrem; est\xE3o emperradas. Vou procurar mais gente para
-    ver se est\xE3o bem e tentar sair daqui logo."
+  - "Ai,  as  portas  n\xE3o  abrem;  est\xE3o  emperradas.  Vou  procurar  mais 
+    gente  para  ver  se  est\xE3o  bem  e  tentar  sair  daqui  logo."
   ligarLanterna:
-  - Ufff, e agora tudo escuro. Melhor ligar a lanterna.
+  - Ufff,  e  agora  tudo  escuro.  Melhor  ligar  a  lanterna.
   desligarLanterna:
-  - "O que \xE9 isso l\xE1 fora? Vou evitar ficar perto das janelas, e tapar a luz
-    da lanterna. "
+  - "O  que  \xE9  isso  l\xE1  fora?  Vou  evitar  ficar  perto  das  janelas, 
+    e  tapar  a  luz  da  lanterna. "
   primeiraCaptura:
-  - "Que sensa\xE7\xE3o estranha. N\xE3o lembro ter voltado pra c\xE1. Preciso pedir
-    ajuda!"
+  - "Que  sensa\xE7\xE3o  estranha.  N\xE3o  lembro  ter  voltado  pra  c\xE1.  Preciso 
+    pedir  ajuda!"
   imagePlayer: {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
   imageSound: {fileID: 21300000, guid: 721f3428018e08047afbbb33bf833ea3, type: 3}
-  nome: Gloria
+  nome: Eu
   anunciante: Anunciante
 --- !u!1 &1502055953
 GameObject:
@@ -35785,8 +35742,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 18.7, y: 12}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchoredPosition: {x: 0.2, y: -9.200014}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1537362847
 MonoBehaviour:
@@ -39708,7 +39665,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 165.0748, y: 0}
+  m_SizeDelta: {x: 263.5402, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1676691037
 MonoBehaviour:
@@ -49492,79 +49449,40 @@ MonoBehaviour:
   profile:
   - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
   - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
-  - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
-  - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
   - {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
-  - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
-  - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
   - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
   - {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
   - {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
-  - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
-  - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
-  - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
-  - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
-  - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
-  - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
-  - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
   - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
   - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
   - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
   - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
   - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
   speechTxt:
-  - "J\xE1 n\xE3o bastava essa jo\xE7a vir lotada toda a manh\xE3, agora ainda para
-    no meio do trajeto!"
-  - "\xC9 revoltante, \u2018inda mais quando falaram que ia melhorar. Tanta mentira...
-    E quase que me machucam quando ca\xED com essa freada brusca"
-  - "Ai, e ainda por cima perdi minha bolsa nessa escurid\xE3o, com todo o dinheirinho
-    da igreja. Miseric\xF3rdia, Senhor!..."
-  - Estou andando sem saber para que lado vou...
-  - "Senhora, tudo bem? Que bom que encontrei mais algu\xE9m."
-  - "Oh, minha filha! Que bom que apareceu! Tava andando nessa escurid\xE3o, \xE9?"
-  - "Ah, voc\xEA tem a lanterna do celular. A minha t\xE1 quebrada. Por acaso n\xE3o
-    viu uma bolsa por onde veio? "
-  - "Viu n\xE3o? Ai, todas as minhas coisas..."
-  - "N\xE3o vi nenhuma bolsa, mas com a lanterna posso procurar. Precisamos tentar
-    abrir juntas a porta..."
-  - "...e sair daqui o mais r\xE1pido poss\xEDvel. J\xE1 volto."
-  - "\xC9 uma bolsa mais ou menos assim... Do tamanho de uma bolsa normal, mas parece
-    uma sacola."
-  - "Devo ter deixado cair perto daqui, mas preciso descansar, minhas pernas est\xE3o
-    doendo... Ai!"
-  - "Voc\xEA viu isso, minha filha? \u201CCreim Deus Pai!\u201D Bem que o pastor
-    disse..."
-  - "...que \u201Co coisa ruim\u201D t\xE1 solto por a\xED. Jesus tome conta!"
-  - "Que Deus te aben\xE7oe, minha filha! Que te d\xEA tudo de bom em dobro!"
-  - "Muito obrigada. J\xE1 tava pensando o que ia fazer sem esse dinheiro. Agora
-    essa jo\xE7a tem que voltar a andar pra eu chegar em casa logo"
-  - ' e ver meus filhos...'
-  - ' A noite inteira trabalhando e agora nem sei quando vou chegar em casa. Que
-    raiva!'
-  - "Olha, minha filha, que esse trem \xE9 uma porcaria muita gente sabia, mas a
-    esse ponto..."
-  - "...de deixar a gente trancada aqui ningu\xE9m esperava. Claro que vou te ajudar."
-  - "N\xE3o sou muito forte, mas como diz em Eclesiastes 4:9-12: \u201C\xC9 melhor
-    ter companhia do que estar sozinho\u201D."
-  - Pode contar com a minha ajuda.
+  - "J\xE1  n\xE3o  bastava  essa  jo\xE7a  vir  lotada  toda  a  manh\xE3,  e  agora 
+    isso!  \xC9  revoltante!"
+  - "E  perdi  minha  bolsa  com  todo  o  dinheiro  da  igreja\u2026  Miseric\xF3rdia!"
+  - "Senhora,  tudo  bem?  Que  bom  que  encontrei  mais  algu\xE9m."
+  - "Que  bom  que  apareceu,  minha  filha!  Por  acaso  n\xE3o  viu  uma  bolsa 
+    por  onde  veio? "
+  - "N\xE3o  vi  nenhuma  bolsa,  mas  com  a  lanterna  posso  procurar."
+  - "Precisamos  tentar  abrir  juntas  a  porta  e  sair  daqui  logo.  J\xE1  volto."
+  - "Devo  ter  deixado  cair  perto  daqui,  mas  minhas  pernas  est\xE3o  doendo... 
+    Ai!"
+  - "Voc\xEA  viu  isso,  minha  filha?  Bem  que  o  pastor  disse  que  \u201Co 
+    coisa  ruim\u201D  t\xE1  solto  por  a\xED."
+  - "Que  Deus  te  aben\xE7oe!  Muito  obrigada.  A  noite  inteira  trabalhando 
+    e  agora  nem  sei  quando  vou  chegar  em  casa. "
+  - "Que  esse  trem  \xE9  uma  porcaria  muita  gente  sabia,  mas  a  esse  ponto"
+  - "de  deixar  a  gente  trancada  aqui  ningu\xE9m  esperava.  Claro  que  vou 
+    te  ajudar."
   actorName:
   - Dona Maria
   - Dona Maria
-  - Dona Maria
-  - Dona Maria
   - Eu
-  - Dona Maria
-  - Dona Maria
   - Dona Maria
   - Eu
   - Eu
-  - Dona Maria
-  - Dona Maria
-  - Dona Maria
-  - Dona Maria
-  - Dona Maria
-  - Dona Maria
-  - Dona Maria
   - Dona Maria
   - Dona Maria
   - Dona Maria
@@ -49661,7 +49579,7 @@ Transform:
   m_GameObject: {fileID: 2134828599}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -228.6, y: -0.69, z: 0}
+  m_LocalPosition: {x: -228.23, y: -0.69, z: 0}
   m_LocalScale: {x: 1.1209, y: 1.1209, z: 1.1209}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -49695,10 +49613,10 @@ MonoBehaviour:
   itemCaught: 0
   item: {fileID: 1474421003}
   dialogue: {fileID: 2134828601}
-  dialogueIndexRangeStart: 000000000c000000
-  dialogueIndexRangeMiddle: 0c00000002000000
-  dialogueIndexRangeEnd: 0e00000004000000
-  dialogueIndexRangePostEnd: 1200000004000000
+  dialogueIndexRangeStart: 0000000007000000
+  dialogueIndexRangeMiddle: 0700000001000000
+  dialogueIndexRangeEnd: 0800000001000000
+  dialogueIndexRangePostEnd: 0900000002000000
   questAlert: {fileID: 35830448}
   endQuestPositionX: 0
 --- !u!1 &2136867816
@@ -49878,8 +49796,24 @@ PrefabInstance:
       value: playerMapIcon
       objectReference: {fileID: 0}
     - target: {fileID: 2527312401910245343, guid: 80a573658bdaf494db0ef32c759d1d68, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2527312401910245343, guid: 80a573658bdaf494db0ef32c759d1d68, type: 3}
       propertyPath: m_TagString
       value: playerMapIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3164820102257817535, guid: 80a573658bdaf494db0ef32c759d1d68, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3164820102257817535, guid: 80a573658bdaf494db0ef32c759d1d68, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3164820102257817535, guid: 80a573658bdaf494db0ef32c759d1d68, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3164820102257817535, guid: 80a573658bdaf494db0ef32c759d1d68, type: 3}
       propertyPath: m_PreserveAspect
@@ -49911,11 +49845,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7001344479399068540, guid: 80a573658bdaf494db0ef32c759d1d68, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 75
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7001344479399068540, guid: 80a573658bdaf494db0ef32c759d1d68, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 75
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7001344479399068540, guid: 80a573658bdaf494db0ef32c759d1d68, type: 3}
       propertyPath: m_LocalPosition.x
@@ -49951,7 +49885,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7001344479399068540, guid: 80a573658bdaf494db0ef32c759d1d68, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 26.7
+      value: -7.2
       objectReference: {fileID: 0}
     - target: {fileID: 7001344479399068540, guid: 80a573658bdaf494db0ef32c759d1d68, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -7,7 +7,12 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadScene()
     {
-        Debug.Log("Di");
+        //Debug.Log("Di");
         SceneManager.LoadScene(sceneToLoad);
+    }
+
+    public void LoadScene(string scene) {
+        //Debug.Log("Di");
+        SceneManager.LoadScene(scene);
     }
 }

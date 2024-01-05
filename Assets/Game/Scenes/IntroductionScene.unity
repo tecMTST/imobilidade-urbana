@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &110002609 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2799624005107471565, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
+  m_PrefabInstance: {fileID: 6993997273186955543}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &119484957
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -603,6 +608,19 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 8841018308479813864, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
   m_PrefabInstance: {fileID: 6993997273186955543}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &243234435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110002609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31f6c8be9546634ba333ab9c06b2f19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: TrainScene
 --- !u!1 &620197230
 GameObject:
   m_ObjectHideFlags: 0
@@ -827,7 +845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1060950226
 Transform:
   m_ObjectHideFlags: 0
@@ -1416,6 +1434,7 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: f30cc86f34fe44d4ab86a9caa209270e, type: 2}
+    - {fileID: 11400000, guid: 5d428df9e07bed348a69c11ad6872bbe, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -1429,6 +1448,20 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 243234435}
+          m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+          m_MethodName: LoadScene
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: TrainScene
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &2081921706
@@ -1808,6 +1841,10 @@ PrefabInstance:
       value: 0.41509432
       objectReference: {fileID: 0}
     - target: {fileID: 5878701724254322221, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
+      propertyPath: m_text
+      value: Enquanto  uma  parte  da  cidade  dorme...
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878701724254322221, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 16777215
       objectReference: {fileID: 0}
@@ -1816,8 +1853,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6164989201045384523, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
+      propertyPath: m_text
+      value: "...outra  se  locomove  dentro  de  um  trem  que  rasga  o  sil\xEAncio 
+        de  uma  noite  pesada"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164989201045384523, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4294967295
+      value: 16777215
       objectReference: {fileID: 0}
     - target: {fileID: 6229443877397356253, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
       propertyPath: m_SortingOrder
@@ -1846,6 +1888,10 @@ PrefabInstance:
     - target: {fileID: 7164441992383635718, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
       propertyPath: m_SortingOrder
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243020584119970231, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
+      propertyPath: m_text
+      value: "S\xE3o  Paulo,  qualquer  dia  em  uma  madrugada  qualquer. "
       objectReference: {fileID: 0}
     - target: {fileID: 7243020584119970231, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
       propertyPath: m_fontColor32.rgba
@@ -1900,6 +1946,10 @@ PrefabInstance:
       value: 282.57996
       objectReference: {fileID: 0}
     - target: {fileID: 7714290598204744738, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
+      propertyPath: m_text
+      value: "At\xE9  que..."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7714290598204744738, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 16777215
       objectReference: {fileID: 0}
@@ -1924,7 +1974,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 386773564868952695, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1007092220}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2799624005107471565, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 243234435}
   m_SourcePrefab: {fileID: 100100000, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
