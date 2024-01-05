@@ -1232,11 +1232,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8505668010612615982, guid: 00485d6ca9369da4d8e6f94faa5b9250, type: 3}
   m_PrefabInstance: {fileID: 1420543195}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1544447366 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5475889735612422510, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
-  m_PrefabInstance: {fileID: 6993997273186955543}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1727031552
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1398,6 +1393,12 @@ PlayableDirector:
     value: {fileID: 1420543196}
   - key: {fileID: -208651007317359561, guid: 9bec398fed77cc34b9ff22d946a72213, type: 2}
     value: {fileID: 208645344}
+  - key: {fileID: -1253734723132270920, guid: 9bec398fed77cc34b9ff22d946a72213, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -4637811800588138005, guid: 9bec398fed77cc34b9ff22d946a72213, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 3242606472792949254, guid: 9bec398fed77cc34b9ff22d946a72213, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - 0c37fa9e10d7a8046b84ac62e870b5b9: {fileID: 208645339}
@@ -1433,23 +1434,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Events:
     m_Signals:
-    - {fileID: 11400000, guid: f30cc86f34fe44d4ab86a9caa209270e, type: 2}
     - {fileID: 11400000, guid: 5d428df9e07bed348a69c11ad6872bbe, type: 2}
     m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1544447366}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 243234435}
