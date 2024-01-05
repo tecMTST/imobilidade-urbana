@@ -37,7 +37,7 @@ public class FOverBothObjectsCheck : MonoBehaviour
             GameManagement.Instance.SetPlayerPosition();
 
 
-            StartCoroutine(HideJumpScareImageAfterDelay(1.5f));
+            StartCoroutine(HideJumpScareImageAfterDelay(0.5f));
         }
     }
 
