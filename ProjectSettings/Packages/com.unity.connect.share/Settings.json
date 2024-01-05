@@ -19,7 +19,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"C:/Users/Danie/OneDrive/Documentos/GitHub/imobilidade-urbana/docs;C:/Users/heigo/Desktop/Unity Projects/conflito/imobilidade-urbana/Build;C:/Users/heigo/Desktop/Unity Projects/imobilidade-urbana/Build;C:/Users/heigo/Desktop/Unity Projects/Imobilidade Urbana/Build;C:/Users/heigo/Desktop/Unity Projects/Imobilidade Urbana/WebGL Builds/Build;C:/Users/heigo/Desktop/Unity Projects/Imobilidade Urbana/Build/Web;C:/Users/heigo/Desktop/Unity Projects/Imobilidade Urbana/WebGL Builds;;;\"}"
+                "value": "{\"m_Value\":\"/home/nawarian/projects/imobilidade-urbana/docs;C:/Users/Danie/OneDrive/Documentos/GitHub/imobilidade-urbana/docs;C:/Users/heigo/Desktop/Unity Projects/conflito/imobilidade-urbana/Build;C:/Users/heigo/Desktop/Unity Projects/imobilidade-urbana/Build;C:/Users/heigo/Desktop/Unity Projects/Imobilidade Urbana/Build;C:/Users/heigo/Desktop/Unity Projects/Imobilidade Urbana/WebGL Builds/Build;C:/Users/heigo/Desktop/Unity Projects/Imobilidade Urbana/Build/Web;C:/Users/heigo/Desktop/Unity Projects/Imobilidade Urbana/WebGL Builds;;\"}"
             }
         ]
     }
