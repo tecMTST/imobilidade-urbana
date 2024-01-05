@@ -27,18 +27,23 @@ public class Monster1 : MonoBehaviour
     private bool isNearPlayer = false;
     private int index = 0;
 
-    //�udio:
+    //Audio:
     private AudioSource audioSource;
 
-    //Lista de SFX:
-    [SerializeField] private AudioClip sfxVoice1;
-    [SerializeField] private AudioClip sfxVoice2;
-    [SerializeField] private AudioClip sfxVoice3;
+    //Vetor Lista de Falas:
+    private AudioClip[] sonoroFalaMonstro;
 
-    //Vari�veis �udio:
-    [SerializeField] private float limitVoice = 8f;
+    //Lista de SFX:
+    [SerializeField] private AudioClip sonoroScreamMonstro;
+    [SerializeField] private AudioClip sonoroFalaMonstro1;
+    [SerializeField] private AudioClip sonoroFalaMonstro2;
+    [SerializeField] private AudioClip sonoroFalaMonstro3;
+    [SerializeField] private AudioClip sonoroFalaMonstro4;
+    [SerializeField] private AudioClip sonoroFalaMonstro5;
+
+    //Variaveis Audio:
+    [SerializeField] private float limitVoice = 10f;
     private float timerVoice = 0f;
-    private int typeVoice = 1;
     private bool huntVoice = false;
     private bool inDialogue = false;
 
@@ -56,6 +61,17 @@ public class Monster1 : MonoBehaviour
 
         hands = FindAnimatorByTag("handsPanel", true);
         hands.gameObject.SetActive(true);
+
+        //Vetor de Falas:
+        sonoroFalaMonstro = new AudioClip[]
+        {
+            sonoroFalaMonstro1,
+            sonoroFalaMonstro2,
+            sonoroFalaMonstro3,
+            sonoroFalaMonstro4,
+            sonoroFalaMonstro5
+        };
+
     }
 
     private void OnEnable() {
@@ -77,11 +93,10 @@ public class Monster1 : MonoBehaviour
 
         print($"Index {index}");
 
-
+        //Parar BGM Preseguicao:
+        huntVoice = false;
+        SoundManager.instance.stopBGM(3);
     }
-
-
-
 
     void Update()
     {
@@ -128,12 +143,12 @@ public class Monster1 : MonoBehaviour
                     transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
                 }
 
-                //Audio Persegui��o Normal:
+                //Audio Perseguicao Normal:
                 if (!huntVoice)
                 {
-                    SoundManager.instance.playDinamicBGM(2, 3, 1);
+                    SoundManager.instance.playBGM(2, 3);
                     SoundManager.instance.stopBGM(2);
-                    audioSource.PlayOneShot(sfxVoice3);
+                    audioSource.PlayOneShot(sonoroScreamMonstro);
                     huntVoice = true;
                 }
 
@@ -141,8 +156,7 @@ public class Monster1 : MonoBehaviour
 
                     if (!light2D.gameObject.activeSelf)
                     {
-                    SoundManager.instance.stopDinamicBGM();
-                    
+                        SoundManager.instance.stopBGM(3);
                     }
 
                     lightExpositionTime = 0;
@@ -166,7 +180,7 @@ public class Monster1 : MonoBehaviour
 
                     if (lightExpositionTime > 5) {
 
-                        SoundManager.instance.stopDinamicBGM();
+                        SoundManager.instance.stopBGM(3);
                         GameManagement.Instance.SetPlayerPosition();
                         lightExpositionTime = 0;
 
@@ -196,14 +210,6 @@ public class Monster1 : MonoBehaviour
                     transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
                 }
 
-
-                //SFX Persegui��o:
-                if (huntVoice)
-                {
-                    huntVoice = false;
-                    SoundManager.instance.stopDinamicBGM();
-                }
-
                 if (direction.magnitude > stoppingDistance)
                 {
                     direction.Normalize();
@@ -227,27 +233,18 @@ public class Monster1 : MonoBehaviour
                         index++;
                     }
                 }
+
+                //Parar BGM Preseguicao:
+                huntVoice = false;
+                SoundManager.instance.stopBGM(3);
             }
 
             //SFX Grunindos:
             timerVoice = timerVoice + Time.deltaTime;
             if (timerVoice > limitVoice && !light2D.gameObject.activeSelf && shouldMove)
             {
-                switch (typeVoice)
-                {
-                    case 1:
-                        audioSource.PlayOneShot(sfxVoice1);
-                        typeVoice = 2;
-                        timerVoice = 0f;
-
-                        break;
-
-                    case 2:
-                        audioSource.PlayOneShot(sfxVoice2);
-                        typeVoice = 1;
-                        timerVoice = 0f;
-                        break;
-                }
+                audioSource.PlayOneShot(sonoroFalaMonstro[UnityEngine.Random.Range(0, 4)]);
+                timerVoice = 0f;
             }
 
         }
@@ -255,8 +252,6 @@ public class Monster1 : MonoBehaviour
        
 
     }
-
-
 
     public void StartMoving()
     {        

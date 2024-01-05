@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2615353438821834126}
   - component: {fileID: 6257070704591109202}
   m_Layer: 0
-  m_Name: bgmGame4
+  m_Name: bgmTela
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 8286330690698565338}
   - component: {fileID: 5043778032099231034}
   m_Layer: 0
-  m_Name: sfxGame
+  m_Name: sfxTexto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 4654308919367889129}
   - component: {fileID: 1153538312579061446}
   m_Layer: 0
-  m_Name: bgmGame2
+  m_Name: bgmAnuncios
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 155617780796384739}
   - component: {fileID: 8007368771704581211}
   m_Layer: 0
-  m_Name: bgmGame1
+  m_Name: bgmAmbiente
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -523,7 +523,7 @@ GameObject:
   - component: {fileID: 6189495791894088940}
   - component: {fileID: 9157604589738620346}
   m_Layer: 0
-  m_Name: bgmGame3
+  m_Name: bgmChase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -768,6 +768,134 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &8096854399795067864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3208907264559770998}
+  - component: {fileID: 5436967716910847704}
+  m_Layer: 0
+  m_Name: sfxScream
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3208907264559770998
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8096854399795067864}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5401185967225512402}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &5436967716910847704
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8096854399795067864}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 1
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 10000
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8833152679011947047
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,6 +932,7 @@ Transform:
   - {fileID: 2615353438821834126}
   - {fileID: 3760052030068678240}
   - {fileID: 8286330690698565338}
+  - {fileID: 3208907264559770998}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2061563550211042643
@@ -819,9 +948,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ambienteTrem: {fileID: 8300000, guid: 461d1a8f307425148800a764b91e020d, type: 3}
-  sonoroTrem: {fileID: 8300000, guid: 88de539c0696c8745ad1a854dcf6867f, type: 3}
-  sonoroMonstroN: {fileID: 8300000, guid: ee2232d8da6d0ea4c994a2b30c991668, type: 3}
-  sonoroMonstroC: {fileID: 8300000, guid: fcb431e917502d24cafe9f3d1bbd0981, type: 3}
+  musicaAnuncioTrem: {fileID: 8300000, guid: 88de539c0696c8745ad1a854dcf6867f, type: 3}
+  musicaChase: {fileID: 8300000, guid: 84d5c25c4344d8946b43d5e7fd6fdb33, type: 3}
+  musicaGameOver: {fileID: 8300000, guid: 328ebf14a1229d64abb099defa77da91, type: 3}
   aununcioTremInicio: {fileID: 8300000, guid: 25f9a14e8626b9e4ba17026e7909c1c0, type: 3}
   aununcioTrem1: {fileID: 8300000, guid: 956c1e5142b120d4c9ad697fd50b44a4, type: 3}
   aununcioTrem2: {fileID: 8300000, guid: 85c9a01b80e5f4a499dbe4bfa7de34c7, type: 3}
@@ -829,11 +958,14 @@ MonoBehaviour:
   aununcioTrem4: {fileID: 8300000, guid: d77984ca362d8a140a796913716eb6a3, type: 3}
   aununcioTrem5: {fileID: 8300000, guid: 5042da4fa677cf9469f42e615c07d9ac, type: 3}
   aununcioTrem6: {fileID: 8300000, guid: c009287f0906a1e4ebd8669b76695b14, type: 3}
-  aununcioTrem7: {fileID: 8300000, guid: 41f2126c565f4b6459a29acebfc49a9d, type: 3}
-  menuLuz: {fileID: 8300000, guid: a038f8efb230cfc45b6ac8bad9190d4f, type: 3}
-  bgmGame1: {fileID: 8007368771704581211}
-  bgmGame2: {fileID: 1153538312579061446}
-  bgmGame3: {fileID: 9157604589738620346}
-  bgmGame4: {fileID: 6257070704591109202}
+  sonoroLuz: {fileID: 8300000, guid: a038f8efb230cfc45b6ac8bad9190d4f, type: 3}
+  sonoroScream: {fileID: 8300000, guid: ed01f0268c7fe094fae351bea644d5f4, type: 3}
+  sonoroTimer: {fileID: 8300000, guid: 22e6fbcbdd1cf2843844c5d6fcabbc39, type: 3}
+  bgmAmbiente: {fileID: 8007368771704581211}
+  bgmAnuncios: {fileID: 1153538312579061446}
+  bgmChase: {fileID: 9157604589738620346}
+  bgmTela: {fileID: 6257070704591109202}
   sfxMenu: {fileID: 6665362728527035625}
-  sfxGame: {fileID: 5043778032099231034}
+  sfxTexto: {fileID: 5043778032099231034}
+  sfxScream: {fileID: 5436967716910847704}
+  timerController: {fileID: 0}

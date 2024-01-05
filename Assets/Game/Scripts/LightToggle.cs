@@ -51,17 +51,12 @@ public class LightToggle : MonoBehaviour
         //light2D.enabled = !light2D.enabled;
         light2D.gameObject.SetActive(lightActive);
         light2D2.gameObject.SetActive(lightActive);
-        SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.menuLuz);
+        SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.sonoroLuz);
 
         if (lightActive) {
             lanternToggle.sprite = imageOn;
         } else {
             lanternToggle.sprite = imageOff;
-        }
-
-
-        if (!lightActive) {
-            SoundManager.instance.stopDinamicBGM();
         }
     }
 }

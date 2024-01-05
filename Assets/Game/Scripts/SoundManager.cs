@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms;
 
 public class SoundManager : MonoBehaviour
 {
     //Scene Manager:
     private Scene currentScene;
 
-    //Lista de M�sicas:
+    //Lista de Musicas:
     [SerializeField] private AudioClip ambienteTrem;
-    [SerializeField] private AudioClip sonoroTrem;
-    [SerializeField] private AudioClip sonoroMonstroN;
-    [SerializeField] private AudioClip sonoroMonstroC;
+    [SerializeField] private AudioClip musicaAnuncioTrem;
+    [SerializeField] private AudioClip musicaChase;
+    [SerializeField] private AudioClip musicaGameOver;
     [SerializeField] private AudioClip aununcioTremInicio;
     [SerializeField] private AudioClip aununcioTrem1;
     [SerializeField] private AudioClip aununcioTrem2;
@@ -20,31 +21,31 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip aununcioTrem4;
     [SerializeField] private AudioClip aununcioTrem5;
     [SerializeField] private AudioClip aununcioTrem6;
-    [SerializeField] private AudioClip aununcioTrem7;
 
-    //Vetor Lista de M�sicas:
+    //Vetor Lista de Musicas:
     private AudioClip[] selectBGM;
 
-    //Vetor Auxiliar Lista de M�sicas:
+    //Vetor Auxiliar Lista de Musicas:
     public enum ListaBGM
     {
         ambienteTrem,
-        sonoroTrem,
-        sonoroMonstroN,
-        sonoroMonstroC,
+        musicaAnuncioTrem,
+        musicaChase,
+        musicaGameOver,
         aununcioTremInicio,
         aununcioTrem1,
         aununcioTrem2,
         aununcioTrem3,
         aununcioTrem4,
         aununcioTrem5,
-        aununcioTrem6,
-        aununcioTrem7,
+        aununcioTrem6
     };
 
 
     //Lista de Efeitos:
-    [SerializeField] private AudioClip menuLuz;
+    [SerializeField] private AudioClip sonoroLuz;
+    [SerializeField] private AudioClip sonoroScream;
+    [SerializeField] private AudioClip sonoroTimer;
 
     //Vetor Lista de Efeitos:
     private AudioClip[] selectSFX;
@@ -52,22 +53,24 @@ public class SoundManager : MonoBehaviour
     //Vetor Auxiliar Lista de Efeitos:
     public enum ListaSFX
     {
-        menuLuz
+        sonoroLuz,
+        sonoroScream,
+        sonoroTimer,
     };
 
-    //Lista de AudioSources Simult�neos:
-    public AudioSource bgmGame1;
-    public AudioSource bgmGame2;
-    public AudioSource bgmGame3;
-    public AudioSource bgmGame4;
+    //Lista de AudioSources Simultaneos:
+    public AudioSource bgmAmbiente;
+    public AudioSource bgmAnuncios;
+    public AudioSource bgmChase;
+    public AudioSource bgmTela;
     public AudioSource sfxMenu;
-    public AudioSource sfxGame;
-    public AudioSource jumpScareScream;
+    public AudioSource sfxTexto;
+    public AudioSource sfxScream;
 
-    //Outras Vari�veis:
+    //Outras Variaveis:
     public static SoundManager instance;
-    private float anuncioSFX = 100.0f;
-    private float timerAnuncio = 95.0f;
+    private float anuncioSFX = 200.0f;
+    private float timerAnuncio = 80.0f;
     private bool segurarAnuncio = false;
     private bool setFade = false;
     private bool falouPrimeiroAnuncio = false;
@@ -77,13 +80,13 @@ public class SoundManager : MonoBehaviour
 
     public GameObject timerController;
 
-    //Inicia��o do SoundManager:
+    //Iniciar SoundManager:
     void Awake()
     {
         //Scene Manager:
         currentScene = SceneManager.GetActiveScene();
 
-        //Setar Inst�ncia:
+        //Setar Instancia:
         if (instance == null)
         {
             instance = this;
@@ -97,23 +100,24 @@ public class SoundManager : MonoBehaviour
         selectBGM = new AudioClip[]
         {
             ambienteTrem,
-            sonoroTrem,
-            sonoroMonstroN,
-            sonoroMonstroC,
+            musicaAnuncioTrem,
+            musicaChase,
+            musicaGameOver,
             aununcioTremInicio,
             aununcioTrem1,
             aununcioTrem2,
             aununcioTrem3,
             aununcioTrem4,
             aununcioTrem5,
-            aununcioTrem6,
-            aununcioTrem7,
+            aununcioTrem6
         };
 
         //Setar Vetor de SFX:
         selectSFX = new AudioClip[]
         {
-            menuLuz
+            sonoroLuz,
+            sonoroScream,
+            sonoroTimer,
         };
 
         //Carregar BGM - Cena do Trem:
@@ -126,7 +130,7 @@ public class SoundManager : MonoBehaviour
     void Update()
     {
         isTimePaused = timerController.GetComponent<TimerController>().GetIsPaused();
-        //Tema do Trem e An�ncios:
+        //Tema do Trem e Anuncios:
         if (currentScene.name == "TrainScene")
         {
             if (falouPrimeiroAnuncio && isTimePaused == false)
@@ -137,7 +141,7 @@ public class SoundManager : MonoBehaviour
                     playBGM(1, 2);
                     segurarAnuncio = true;
                 }
-                else if (segurarAnuncio && !bgmGame2.isPlaying)
+                else if (segurarAnuncio && !bgmAnuncios.isPlaying)
                 {
                     playBGM(UnityEngine.Random.Range(3, 10), 2);
                     segurarAnuncio = false;
@@ -151,24 +155,20 @@ public class SoundManager : MonoBehaviour
                 segurarAnuncio = false;
                 timerAnuncio = 0f;
             }
-            
         }
 
-        //Fade BGM Din�mica:
+        //Fade AudioSource Chase:
         if (setFade)
         {
             //Decrescer:
-            bgmGame3.volume = (float)bgmGame3.volume * timerFade;
-            bgmGame4.volume = (float)bgmGame4.volume * timerFade;
+            bgmChase.volume = (float)bgmChase.volume * timerFade;
 
             //Desligar:
-            if (bgmGame3.volume < 0.01f && bgmGame4.volume < 0.01f)
+            if (bgmChase.volume < 0.01f)
             {
                 setFade = false;
-                bgmGame3.Stop();
-                bgmGame4.Stop();
-                bgmGame3.clip = null;
-                bgmGame4.clip = null;
+                bgmChase.Stop();
+                bgmChase.clip = null;
             }
         }
     }
@@ -176,79 +176,55 @@ public class SoundManager : MonoBehaviour
     //Tocar BGM:
     public void playBGM(int lista,int track)
     {
-        //Checar AudioSource BGM1:
-        if (bgmGame1.clip != selectBGM[lista] && track == 1)
+        //AudioSource Ambiente:
+        if (bgmAmbiente.clip != selectBGM[lista] && track == 1)
         {
-            //Tocar Nova M�sica:
-            bgmGame1.clip = selectBGM[lista];
-            bgmGame1.Play();
+            //Tocar Nova Musica:
+            bgmAmbiente.clip = selectBGM[lista];
+            bgmAmbiente.Play();
         }
 
-        //Checar AudioSource BGM2:
-        if (bgmGame2.clip != selectBGM[lista] && track == 2)
+        //AudioSource Anuncios:
+        if (bgmAnuncios.clip != selectBGM[lista] && track == 2)
         {
-            //Tocar Nova M�sica:
-            bgmGame2.clip = selectBGM[lista];
-            bgmGame2.Play();
+            //Tocar Nova Musica:
+            bgmAnuncios.clip = selectBGM[lista];
+            bgmAnuncios.Play();
+        }
+
+        //AudioSource Chase:
+        if (track == 3)
+        {
+            //Tocar Nova Musica:
+            bgmChase.clip = selectBGM[lista];
+            bgmChase.Play();
+            bgmChase.volume = 1;
+            setFade = false;
         }
     }
 
     //Parar BGM:
     public void stopBGM(int track)
     {
-        //Checar AudioSource BGM1:
+        //AudioSource Ambiente:
         if (track == 1)
         {
-            bgmGame1.Stop();
-            bgmGame1.clip = null;
+            bgmAmbiente.Stop();
+            bgmAmbiente.clip = null;
         }
 
-        //Checar AudioSource BGM2:
+        //AudioSource Anuncios:
         if (track == 2)
         {
-            bgmGame2.Stop();
-            bgmGame2.clip = null;
+            bgmAnuncios.Stop();
+            bgmAnuncios.clip = null;
         }
-    }
 
-    //Tocar BGM Din�mica:
-    public void playDinamicBGM(int lista1, int lista2, int track)
-    {
-        //Set Fade:
-        setFade = false;
-
-        //Track Normal:
-        if (track == 1)
+        //AudioSource Chase:
+        if (track == 3)
         {
-            bgmGame3.volume = 1.0f;
-            bgmGame4.volume = 0.0f;
-            Debug.Log("Trilha 1");
+            setFade = true;
         }
-
-        //Track Cr�tica:
-        if (track == 2)
-        {
-            bgmGame3.volume = 0.0f;
-            bgmGame4.volume = 1.0f;
-            Debug.Log("Trilha 2");
-        }
-
-        //AudioSource Zerado:
-        if (bgmGame3.clip != selectBGM[lista1] && bgmGame4.clip != selectBGM[lista2])
-        {
-            //Ligar BGM:
-            bgmGame3.clip = selectBGM[lista1];
-            bgmGame4.clip = selectBGM[lista2];
-
-            bgmGame3.Play();
-            bgmGame4.Play();
-        }
-    }
-
-    //Parar BGM Din�mica com Fade:
-    public void stopDinamicBGM()
-    {
-        setFade = true;
     }
 
     //Tocar SFX Menu:
@@ -257,29 +233,21 @@ public class SoundManager : MonoBehaviour
         sfxMenu.PlayOneShot(selectSFX[lista]);
     }
 
-    //Tocar SFX Game:
-    public void playSFX(int lista)
+    //Tocar SFX Texto:
+    public void playTextSFX(int lista)
     {
-        if (!sfxGame.isPlaying)
-        {
-            sfxGame.clip = selectBGM[lista];
-            sfxGame.Play();
-        }
+        sfxTexto.PlayOneShot(selectSFX[lista]);
     }
 
-    //Parar SFX Game:
-    public void stopSFX()
+    //Tocar SFX Scream:
+    public void playScreamSFX()
     {
-        sfxGame.Stop();
-        sfxGame.clip = null;
+        sfxScream.PlayOneShot(selectSFX[1]);
     }
 
+    //Timer:
     public void playAnuncioTimer()
     {
         deveFalarPrimeiroAnuncio = true;
-    }
-
-    public void playJumpScareScream() {
-        jumpScareScream.Play();
     }
 }

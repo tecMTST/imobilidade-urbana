@@ -7333,10 +7333,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2061563550211042643, guid: e80a93c68517e5740976316bf45ab32e, type: 3}
-      propertyPath: jumpScareScream
-      value: 
-      objectReference: {fileID: 464795385}
-    - target: {fileID: 2061563550211042643, guid: e80a93c68517e5740976316bf45ab32e, type: 3}
       propertyPath: timerController
       value: 
       objectReference: {fileID: 257905307}
@@ -7386,10 +7382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 5401185967225512402, guid: e80a93c68517e5740976316bf45ab32e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 464795386}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e80a93c68517e5740976316bf45ab32e, type: 3}
 --- !u!1 &379717818
@@ -8808,7 +8801,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 5
-  MaxDistance: 15
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -8979,9 +8972,12 @@ MonoBehaviour:
   player: {fileID: 381227598}
   monsterRoomIndex: 1
   expositionTimeLimit: 0
-  sfxVoice1: {fileID: 8300000, guid: caecfaa49e0f9bc4c9479c62451fecb7, type: 3}
-  sfxVoice2: {fileID: 8300000, guid: e6343d0a961fcba43b4d31bda1002a18, type: 3}
-  sfxVoice3: {fileID: 8300000, guid: 1f5000c6f346f7a4698ef335bbb7dce7, type: 3}
+  sonoroScreamMonstro: {fileID: 8300000, guid: b73e32a05d64e6546adcab5c394ef6d9, type: 3}
+  sonoroFalaMonstro1: {fileID: 8300000, guid: 1d68ccedad9247c4f858e9bc88afae1e, type: 3}
+  sonoroFalaMonstro2: {fileID: 8300000, guid: 54aa2337798723e41a8133c579eb1361, type: 3}
+  sonoroFalaMonstro3: {fileID: 8300000, guid: 1c2cec9f3f03ad243aca08ebfd4196d3, type: 3}
+  sonoroFalaMonstro4: {fileID: 8300000, guid: bd8f83baf22716649b04a89f779741df, type: 3}
+  sonoroFalaMonstro5: {fileID: 8300000, guid: e35470cd2a741a342a531fbf10cb9126, type: 3}
   limitVoice: 8
 --- !u!95 &438493718
 Animator:
@@ -9582,134 +9578,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461574265}
   m_CullTransparentMesh: 1
---- !u!1 &464795384
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 464795386}
-  - component: {fileID: 464795385}
-  m_Layer: 0
-  m_Name: scream
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!82 &464795385
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 464795384}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ed01f0268c7fe094fae351bea644d5f4, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 1
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 1
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!4 &464795386
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 464795384}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2146384418}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &464832836
 GameObject:
   m_ObjectHideFlags: 0
@@ -17936,9 +17804,12 @@ MonoBehaviour:
   player: {fileID: 381227598}
   monsterRoomIndex: 4
   expositionTimeLimit: 0
-  sfxVoice1: {fileID: 8300000, guid: caecfaa49e0f9bc4c9479c62451fecb7, type: 3}
-  sfxVoice2: {fileID: 8300000, guid: e6343d0a961fcba43b4d31bda1002a18, type: 3}
-  sfxVoice3: {fileID: 8300000, guid: 1f5000c6f346f7a4698ef335bbb7dce7, type: 3}
+  sonoroScreamMonstro: {fileID: 8300000, guid: b73e32a05d64e6546adcab5c394ef6d9, type: 3}
+  sonoroFalaMonstro1: {fileID: 8300000, guid: 1d68ccedad9247c4f858e9bc88afae1e, type: 3}
+  sonoroFalaMonstro2: {fileID: 8300000, guid: 54aa2337798723e41a8133c579eb1361, type: 3}
+  sonoroFalaMonstro3: {fileID: 8300000, guid: 1c2cec9f3f03ad243aca08ebfd4196d3, type: 3}
+  sonoroFalaMonstro4: {fileID: 8300000, guid: bd8f83baf22716649b04a89f779741df, type: 3}
+  sonoroFalaMonstro5: {fileID: 8300000, guid: e35470cd2a741a342a531fbf10cb9126, type: 3}
   limitVoice: 8
 --- !u!212 &838039335
 SpriteRenderer:
@@ -18101,7 +17972,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 5
-  MaxDistance: 15
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -22670,9 +22541,12 @@ MonoBehaviour:
   player: {fileID: 381227598}
   monsterRoomIndex: 9
   expositionTimeLimit: 0
-  sfxVoice1: {fileID: 8300000, guid: caecfaa49e0f9bc4c9479c62451fecb7, type: 3}
-  sfxVoice2: {fileID: 8300000, guid: e6343d0a961fcba43b4d31bda1002a18, type: 3}
-  sfxVoice3: {fileID: 8300000, guid: 1f5000c6f346f7a4698ef335bbb7dce7, type: 3}
+  sonoroScreamMonstro: {fileID: 8300000, guid: b73e32a05d64e6546adcab5c394ef6d9, type: 3}
+  sonoroFalaMonstro1: {fileID: 8300000, guid: 1d68ccedad9247c4f858e9bc88afae1e, type: 3}
+  sonoroFalaMonstro2: {fileID: 8300000, guid: 54aa2337798723e41a8133c579eb1361, type: 3}
+  sonoroFalaMonstro3: {fileID: 8300000, guid: 1c2cec9f3f03ad243aca08ebfd4196d3, type: 3}
+  sonoroFalaMonstro4: {fileID: 8300000, guid: bd8f83baf22716649b04a89f779741df, type: 3}
+  sonoroFalaMonstro5: {fileID: 8300000, guid: e35470cd2a741a342a531fbf10cb9126, type: 3}
   limitVoice: 8
 --- !u!212 &998742403
 SpriteRenderer:
@@ -22836,7 +22710,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 5
-  MaxDistance: 15
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -28548,9 +28422,12 @@ MonoBehaviour:
   player: {fileID: 381227598}
   monsterRoomIndex: 8
   expositionTimeLimit: 0
-  sfxVoice1: {fileID: 8300000, guid: caecfaa49e0f9bc4c9479c62451fecb7, type: 3}
-  sfxVoice2: {fileID: 8300000, guid: e6343d0a961fcba43b4d31bda1002a18, type: 3}
-  sfxVoice3: {fileID: 8300000, guid: 1f5000c6f346f7a4698ef335bbb7dce7, type: 3}
+  sonoroScreamMonstro: {fileID: 8300000, guid: b73e32a05d64e6546adcab5c394ef6d9, type: 3}
+  sonoroFalaMonstro1: {fileID: 8300000, guid: 1d68ccedad9247c4f858e9bc88afae1e, type: 3}
+  sonoroFalaMonstro2: {fileID: 8300000, guid: 54aa2337798723e41a8133c579eb1361, type: 3}
+  sonoroFalaMonstro3: {fileID: 8300000, guid: 1c2cec9f3f03ad243aca08ebfd4196d3, type: 3}
+  sonoroFalaMonstro4: {fileID: 8300000, guid: bd8f83baf22716649b04a89f779741df, type: 3}
+  sonoroFalaMonstro5: {fileID: 8300000, guid: e35470cd2a741a342a531fbf10cb9126, type: 3}
   limitVoice: 8
 --- !u!212 &1286605416
 SpriteRenderer:
@@ -28714,7 +28591,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 5
-  MaxDistance: 15
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -29965,9 +29842,12 @@ MonoBehaviour:
   player: {fileID: 381227598}
   monsterRoomIndex: 12
   expositionTimeLimit: 0
-  sfxVoice1: {fileID: 8300000, guid: caecfaa49e0f9bc4c9479c62451fecb7, type: 3}
-  sfxVoice2: {fileID: 8300000, guid: e6343d0a961fcba43b4d31bda1002a18, type: 3}
-  sfxVoice3: {fileID: 8300000, guid: 1f5000c6f346f7a4698ef335bbb7dce7, type: 3}
+  sonoroScreamMonstro: {fileID: 8300000, guid: b73e32a05d64e6546adcab5c394ef6d9, type: 3}
+  sonoroFalaMonstro1: {fileID: 8300000, guid: 1d68ccedad9247c4f858e9bc88afae1e, type: 3}
+  sonoroFalaMonstro2: {fileID: 8300000, guid: 54aa2337798723e41a8133c579eb1361, type: 3}
+  sonoroFalaMonstro3: {fileID: 8300000, guid: 1c2cec9f3f03ad243aca08ebfd4196d3, type: 3}
+  sonoroFalaMonstro4: {fileID: 8300000, guid: bd8f83baf22716649b04a89f779741df, type: 3}
+  sonoroFalaMonstro5: {fileID: 8300000, guid: e35470cd2a741a342a531fbf10cb9126, type: 3}
   limitVoice: 8
 --- !u!212 &1304711224
 SpriteRenderer:
@@ -30131,7 +30011,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 5
-  MaxDistance: 15
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -40261,7 +40141,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 5
-  MaxDistance: 15
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -40432,9 +40312,12 @@ MonoBehaviour:
   player: {fileID: 381227598}
   monsterRoomIndex: 14
   expositionTimeLimit: 0
-  sfxVoice1: {fileID: 8300000, guid: caecfaa49e0f9bc4c9479c62451fecb7, type: 3}
-  sfxVoice2: {fileID: 8300000, guid: e6343d0a961fcba43b4d31bda1002a18, type: 3}
-  sfxVoice3: {fileID: 8300000, guid: 1f5000c6f346f7a4698ef335bbb7dce7, type: 3}
+  sonoroScreamMonstro: {fileID: 8300000, guid: b73e32a05d64e6546adcab5c394ef6d9, type: 3}
+  sonoroFalaMonstro1: {fileID: 8300000, guid: 1d68ccedad9247c4f858e9bc88afae1e, type: 3}
+  sonoroFalaMonstro2: {fileID: 8300000, guid: 54aa2337798723e41a8133c579eb1361, type: 3}
+  sonoroFalaMonstro3: {fileID: 8300000, guid: 1c2cec9f3f03ad243aca08ebfd4196d3, type: 3}
+  sonoroFalaMonstro4: {fileID: 8300000, guid: bd8f83baf22716649b04a89f779741df, type: 3}
+  sonoroFalaMonstro5: {fileID: 8300000, guid: e35470cd2a741a342a531fbf10cb9126, type: 3}
   limitVoice: 8
 --- !u!95 &1710221434
 Animator:
@@ -40705,9 +40588,12 @@ MonoBehaviour:
   player: {fileID: 381227598}
   monsterRoomIndex: 6
   expositionTimeLimit: 0
-  sfxVoice1: {fileID: 8300000, guid: caecfaa49e0f9bc4c9479c62451fecb7, type: 3}
-  sfxVoice2: {fileID: 8300000, guid: e6343d0a961fcba43b4d31bda1002a18, type: 3}
-  sfxVoice3: {fileID: 8300000, guid: 1f5000c6f346f7a4698ef335bbb7dce7, type: 3}
+  sonoroScreamMonstro: {fileID: 8300000, guid: b73e32a05d64e6546adcab5c394ef6d9, type: 3}
+  sonoroFalaMonstro1: {fileID: 8300000, guid: 1d68ccedad9247c4f858e9bc88afae1e, type: 3}
+  sonoroFalaMonstro2: {fileID: 8300000, guid: 54aa2337798723e41a8133c579eb1361, type: 3}
+  sonoroFalaMonstro3: {fileID: 8300000, guid: 1c2cec9f3f03ad243aca08ebfd4196d3, type: 3}
+  sonoroFalaMonstro4: {fileID: 8300000, guid: bd8f83baf22716649b04a89f779741df, type: 3}
+  sonoroFalaMonstro5: {fileID: 8300000, guid: e35470cd2a741a342a531fbf10cb9126, type: 3}
   limitVoice: 8
 --- !u!61 &1723965215
 BoxCollider2D:
@@ -40802,7 +40688,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 5
-  MaxDistance: 15
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -46839,7 +46725,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 5
-  MaxDistance: 15
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -47010,9 +46896,12 @@ MonoBehaviour:
   player: {fileID: 381227598}
   monsterRoomIndex: 2
   expositionTimeLimit: 0
-  sfxVoice1: {fileID: 8300000, guid: caecfaa49e0f9bc4c9479c62451fecb7, type: 3}
-  sfxVoice2: {fileID: 8300000, guid: e6343d0a961fcba43b4d31bda1002a18, type: 3}
-  sfxVoice3: {fileID: 8300000, guid: 1f5000c6f346f7a4698ef335bbb7dce7, type: 3}
+  sonoroScreamMonstro: {fileID: 8300000, guid: b73e32a05d64e6546adcab5c394ef6d9, type: 3}
+  sonoroFalaMonstro1: {fileID: 8300000, guid: 1d68ccedad9247c4f858e9bc88afae1e, type: 3}
+  sonoroFalaMonstro2: {fileID: 8300000, guid: 54aa2337798723e41a8133c579eb1361, type: 3}
+  sonoroFalaMonstro3: {fileID: 8300000, guid: 1c2cec9f3f03ad243aca08ebfd4196d3, type: 3}
+  sonoroFalaMonstro4: {fileID: 8300000, guid: bd8f83baf22716649b04a89f779741df, type: 3}
+  sonoroFalaMonstro5: {fileID: 8300000, guid: e35470cd2a741a342a531fbf10cb9126, type: 3}
   limitVoice: 8
 --- !u!95 &1983411456
 Animator:
@@ -49582,11 +49471,6 @@ CanvasRenderer:
 --- !u!1 &2146384416 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8833152679011947047, guid: e80a93c68517e5740976316bf45ab32e, type: 3}
-  m_PrefabInstance: {fileID: 377483221}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2146384418 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5401185967225512402, guid: e80a93c68517e5740976316bf45ab32e, type: 3}
   m_PrefabInstance: {fileID: 377483221}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4031503203355453331
