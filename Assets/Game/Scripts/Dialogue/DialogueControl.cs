@@ -86,7 +86,8 @@ public class DialogueControl : MonoBehaviour
 
         for (int i = 0; i < sentences[index].Length; i++)
         {
-            
+            //SFX Fala:
+            SoundManager.instance.playTextSFX((int)SoundManager.ListaSFX.sonoroTexto, actorNameText.text);
 
             speechText.text += sentences[index][i];
             lettersTyped++;
@@ -122,7 +123,10 @@ public class DialogueControl : MonoBehaviour
 
     public void NextSentence()
     {
-        if(speechText.text == sentences[index] && mouseClicked == false)
+        //SFX Click:
+        SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.sonoroClick);
+
+        if (speechText.text == sentences[index] && mouseClicked == false)
         {
             if (index < sentences.Length - 1)
             {

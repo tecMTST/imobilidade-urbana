@@ -31,7 +31,7 @@ public class FOverBothObjectsCheck : MonoBehaviour
         if (colliders.Exists(item => item.CompareTag("Player")) && colliders.Exists(item => item.CompareTag("Enemy")))
         {
             jumpScareImage.SetActive(true);
-            SoundManager.instance.playScreamSFX();
+            SoundManager.instance.playScreamSFX((int)SoundManager.ListaSFX.sonoroScream);
             timerController.GetComponent<TimerController>().Captured();
             timerController.GetComponent<TimerController>().PauseTimer();
             GameManagement.Instance.SetPlayerPosition();
