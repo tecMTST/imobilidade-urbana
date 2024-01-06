@@ -512,6 +512,134 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &4375186782181336854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6285303568436706494}
+  - component: {fileID: 7230132347908768539}
+  m_Layer: 0
+  m_Name: sfxTimer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6285303568436706494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4375186782181336854}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5401185967225512402}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &7230132347908768539
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4375186782181336854}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 10000
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4905738970641810550
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,6 +1060,7 @@ Transform:
   - {fileID: 2615353438821834126}
   - {fileID: 3760052030068678240}
   - {fileID: 8286330690698565338}
+  - {fileID: 6285303568436706494}
   - {fileID: 3208907264559770998}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -948,9 +1077,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ambienteTrem: {fileID: 8300000, guid: 461d1a8f307425148800a764b91e020d, type: 3}
-  musicaAnuncioTrem: {fileID: 8300000, guid: 88de539c0696c8745ad1a854dcf6867f, type: 3}
   musicaChase: {fileID: 8300000, guid: 84d5c25c4344d8946b43d5e7fd6fdb33, type: 3}
   musicaGameOver: {fileID: 8300000, guid: 328ebf14a1229d64abb099defa77da91, type: 3}
+  musicaFinal: {fileID: 8300000, guid: 835f21bebe39fd24fa55b0f11ddc7a9f, type: 3}
+  aununcioTema: {fileID: 8300000, guid: d1017bf3b95f0294abf6825edae1c7b4, type: 3}
   aununcioTremInicio: {fileID: 8300000, guid: 25f9a14e8626b9e4ba17026e7909c1c0, type: 3}
   aununcioTrem1: {fileID: 8300000, guid: 956c1e5142b120d4c9ad697fd50b44a4, type: 3}
   aununcioTrem2: {fileID: 8300000, guid: 85c9a01b80e5f4a499dbe4bfa7de34c7, type: 3}
@@ -958,9 +1088,11 @@ MonoBehaviour:
   aununcioTrem4: {fileID: 8300000, guid: d77984ca362d8a140a796913716eb6a3, type: 3}
   aununcioTrem5: {fileID: 8300000, guid: 5042da4fa677cf9469f42e615c07d9ac, type: 3}
   aununcioTrem6: {fileID: 8300000, guid: c009287f0906a1e4ebd8669b76695b14, type: 3}
-  sonoroLuz: {fileID: 8300000, guid: a038f8efb230cfc45b6ac8bad9190d4f, type: 3}
+  sonoroLuz: {fileID: 8300000, guid: d40c85be273eeb549b6a537ff9e8f0fd, type: 3}
   sonoroScream: {fileID: 8300000, guid: ed01f0268c7fe094fae351bea644d5f4, type: 3}
-  sonoroTimer: {fileID: 8300000, guid: 22e6fbcbdd1cf2843844c5d6fcabbc39, type: 3}
+  sonoroTimer: {fileID: 8300000, guid: 6f52805d6924a4243846e1a9062cc953, type: 3}
+  sonoroClick: {fileID: 8300000, guid: 072d7d247ba561945ae2fbe572237f26, type: 3}
+  sonoroTexto: {fileID: 8300000, guid: 0757fbac8c83d3d4d89b135647685d4c, type: 3}
   bgmAmbiente: {fileID: 8007368771704581211}
   bgmAnuncios: {fileID: 1153538312579061446}
   bgmChase: {fileID: 9157604589738620346}
@@ -968,4 +1100,5 @@ MonoBehaviour:
   sfxMenu: {fileID: 6665362728527035625}
   sfxTexto: {fileID: 5043778032099231034}
   sfxScream: {fileID: 5436967716910847704}
+  sfxTimer: {fileID: 7230132347908768539}
   timerController: {fileID: 0}

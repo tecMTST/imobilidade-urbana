@@ -11,9 +11,11 @@ public class SoundManager : MonoBehaviour
 
     //Lista de Musicas:
     [SerializeField] private AudioClip ambienteTrem;
-    [SerializeField] private AudioClip musicaAnuncioTrem;
+
     [SerializeField] private AudioClip musicaChase;
     [SerializeField] private AudioClip musicaGameOver;
+    [SerializeField] private AudioClip musicaFinal;
+    [SerializeField] private AudioClip aununcioTema;
     [SerializeField] private AudioClip aununcioTremInicio;
     [SerializeField] private AudioClip aununcioTrem1;
     [SerializeField] private AudioClip aununcioTrem2;
@@ -29,9 +31,10 @@ public class SoundManager : MonoBehaviour
     public enum ListaBGM
     {
         ambienteTrem,
-        musicaAnuncioTrem,
         musicaChase,
         musicaGameOver,
+        musicaFinal,
+        aununcioTema,
         aununcioTremInicio,
         aununcioTrem1,
         aununcioTrem2,
@@ -46,6 +49,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip sonoroLuz;
     [SerializeField] private AudioClip sonoroScream;
     [SerializeField] private AudioClip sonoroTimer;
+    [SerializeField] private AudioClip sonoroClick;
+    [SerializeField] private AudioClip sonoroTexto;
 
     //Vetor Lista de Efeitos:
     private AudioClip[] selectSFX;
@@ -56,6 +61,8 @@ public class SoundManager : MonoBehaviour
         sonoroLuz,
         sonoroScream,
         sonoroTimer,
+        sonoroClick,
+        sonoroTexto
     };
 
     //Lista de AudioSources Simultaneos:
@@ -66,11 +73,12 @@ public class SoundManager : MonoBehaviour
     public AudioSource sfxMenu;
     public AudioSource sfxTexto;
     public AudioSource sfxScream;
+    public AudioSource sfxTimer;
 
     //Outras Variaveis:
     public static SoundManager instance;
-    private float anuncioSFX = 200.0f;
-    private float timerAnuncio = 80.0f;
+    private float anuncioSFX = 100.0f;
+    private float timerAnuncio = 0.0f;
     private bool segurarAnuncio = false;
     private bool setFade = false;
     private bool falouPrimeiroAnuncio = false;
@@ -100,9 +108,10 @@ public class SoundManager : MonoBehaviour
         selectBGM = new AudioClip[]
         {
             ambienteTrem,
-            musicaAnuncioTrem,
             musicaChase,
             musicaGameOver,
+            musicaFinal,
+            aununcioTema,
             aununcioTremInicio,
             aununcioTrem1,
             aununcioTrem2,
@@ -118,12 +127,14 @@ public class SoundManager : MonoBehaviour
             sonoroLuz,
             sonoroScream,
             sonoroTimer,
+            sonoroClick,
+            sonoroTexto
         };
 
         //Carregar BGM - Cena do Trem:
         if (currentScene.name == "TrainScene")
         {
-            playBGM(0, 1);
+            playBGM((int)ListaBGM.ambienteTrem, 1);
         }
     }
 
@@ -138,12 +149,12 @@ public class SoundManager : MonoBehaviour
                 timerAnuncio = timerAnuncio + Time.deltaTime;
                 if (!segurarAnuncio && timerAnuncio >= anuncioSFX)
                 {
-                    playBGM(1, 2);
+                    playBGM((int)ListaBGM.aununcioTema, 2);
                     segurarAnuncio = true;
                 }
                 else if (segurarAnuncio && !bgmAnuncios.isPlaying)
                 {
-                    playBGM(UnityEngine.Random.Range(3, 10), 2);
+                    playBGM(UnityEngine.Random.Range(6, 10), 2);
                     segurarAnuncio = false;
                     timerAnuncio = 0f;
                 }
@@ -151,7 +162,7 @@ public class SoundManager : MonoBehaviour
             {
                 deveFalarPrimeiroAnuncio = false;
                 falouPrimeiroAnuncio = true;
-                playBGM(4, 2);
+                playBGM((int)ListaBGM.aununcioTremInicio, 2);
                 segurarAnuncio = false;
                 timerAnuncio = 0f;
             }
@@ -234,18 +245,50 @@ public class SoundManager : MonoBehaviour
     }
 
     //Tocar SFX Texto:
-    public void playTextSFX(int lista)
+    public void playTextSFX(int lista, string actorName)
     {
+        if (actorName == "Eu")
+        {
+            sfxTexto.pitch = 1.0f;
+        }
+        else if (actorName == "Anunciante")
+        {
+            sfxTexto.pitch = 1.0f;
+        }
+        else if (actorName == "Dona Maria")
+        {
+            sfxTexto.pitch = 1.2f;
+        }
+        else if (actorName == "Wellington")
+        {
+            sfxTexto.pitch = 0.85f;
+        }
+        else if (actorName == "Mais velho" || actorName == "Michael")
+        {
+            sfxTexto.pitch = 0.95f;
+        }
+        else if (actorName == "Caçula" || actorName == "Jackson")
+        {
+            sfxTexto.pitch = 1.1f;
+        }
+
         sfxTexto.PlayOneShot(selectSFX[lista]);
+
     }
 
     //Tocar SFX Scream:
-    public void playScreamSFX()
+    public void playScreamSFX(int lista)
     {
-        sfxScream.PlayOneShot(selectSFX[1]);
+        sfxScream.PlayOneShot(selectSFX[lista]);
     }
 
-    //Timer:
+    //Tocar SFX Timer:
+    public void playTimerSFX(int lista)
+    {
+        sfxTimer.PlayOneShot(selectSFX[lista]);
+    }
+
+    //SFX Primeiro Anúncio:
     public void playAnuncioTimer()
     {
         deveFalarPrimeiroAnuncio = true;

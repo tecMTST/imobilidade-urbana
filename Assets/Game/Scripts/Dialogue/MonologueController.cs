@@ -170,9 +170,10 @@ public class MonologueController : MonoBehaviour
 
         for (int i = 0; i < sentences[index].Length; i++)
         {
-            speechText.text += sentences[index][i];
+            //SFX Fala:
+            SoundManager.instance.playTextSFX((int)SoundManager.ListaSFX.sonoroTexto, actorNameText.text);
 
-            
+            speechText.text += sentences[index][i];
 
             elapsedTime = 0f;
             while (elapsedTime < typingSpeed)
@@ -199,7 +200,10 @@ public class MonologueController : MonoBehaviour
 
     public void NextSentence()
     {
-        if(speechText.text == sentences[index] && mouseClicked == false)
+        //SFX Click:
+        SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.sonoroClick);
+
+        if (speechText.text == sentences[index] && mouseClicked == false)
         {
             if (index < sentences.Length - 1)
             {

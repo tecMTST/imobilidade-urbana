@@ -146,7 +146,7 @@ public class Monster1 : MonoBehaviour
                 //Audio Perseguicao Normal:
                 if (!huntVoice)
                 {
-                    SoundManager.instance.playBGM(2, 3);
+                    SoundManager.instance.playBGM((int)SoundManager.ListaBGM.musicaChase, 3);
                     SoundManager.instance.stopBGM(2);
                     audioSource.PlayOneShot(sonoroScreamMonstro);
                     huntVoice = true;
