@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7b9a84cd3e61b9f43b26d4a0583c8edf
+guid: 0e55e7f8a437b9d45ba3ae1420e77ad4
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: variacoes R03
+  - name: viamob.aseprite R14 ext_porta_aberta
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.499501, y: -0.121212125}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 496
-      height: 352
-    spriteID: 9cc10da7e00fb84428a6e6d7dc06f75d
+      width: 2004
+      height: 132
+    spriteID: 0e2fc631f8db36f49a26fc8493749c25
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,23 +142,23 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1033199604
-    name: variacoes R03
+    guid: 410284282
+    name: viamob.aseprite R14 ext_porta_aberta
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: variacoes R03
+    - name: viamob.aseprite R14 ext_porta_aberta
       frameIndex: 0
       cellRect:
-        x: 0
-        y: 0
-        width: 496
-        height: 352
-      spriteId: 9cc10da7e00fb84428a6e6d7dc06f75d
+        x: 7
+        y: 16
+        width: 2004
+        height: 132
+      spriteId: 0e2fc631f8db36f49a26fc8493749c25
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 496, y: 352}
+  canvasSize: {x: 2016, y: 176}
