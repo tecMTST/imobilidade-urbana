@@ -878,7 +878,7 @@ Transform:
   m_GameObject: {fileID: 3894651394551467188}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22, y: 0, z: 0}
+  m_LocalPosition: {x: -30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -951,8 +951,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "...outra  se  locomove  dentro  de  um  trem  que  rasga  o  sil\xEAncio 
-    de  uma  noite  pesada"
+  m_text: "Em  um  jogo,  essa  privatiza\xE7\xE3o  nunca  vai  ser  vencida,  mas 
+    no  mundo  real  pode  ser  vencida  com  organiza\xE7\xE3o  popular  e  constante 
+    press\xE3o  sobre  os  pol\xEDticos."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ee23820a1d02b34a88634f35868a948, type: 2}
   m_sharedMaterial: {fileID: 484548313740243758, guid: 0ee23820a1d02b34a88634f35868a948, type: 2}
@@ -1178,7 +1179,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 26
+  m_SortingOrder: 27
   m_Sprite: {fileID: -1738570312, guid: aea5c0aa394bef34c946fe7824be8702, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1276,7 +1277,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enquanto  uma  parte  da  cidade  dorme...
+  m_text: "A  privatiza\xE7\xE3o  apenas  visa  o  lucro  de  um  lobby,  e  o  cidad\xE3o 
+    \xE9  apenas  um  cliente."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ee23820a1d02b34a88634f35868a948, type: 2}
   m_sharedMaterial: {fileID: 484548313740243758, guid: 0ee23820a1d02b34a88634f35868a948, type: 2}
@@ -1582,7 +1584,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "At\xE9  que..."
+  m_text: "Organizem-se  e  lutem  por  um  servi\xE7o  p\xFAblico  de  qualidade 
+    para  todos!!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ee23820a1d02b34a88634f35868a948, type: 2}
   m_sharedMaterial: {fileID: 484548313740243758, guid: 0ee23820a1d02b34a88634f35868a948, type: 2}
@@ -2347,7 +2350,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "S\xE3o  Paulo,  qualquer  dia  em  uma  madrugada  qualquer. "
+  m_text: "Nossa  protagonista,  com  a  uni\xE3o  de  todos  os  outros  cidad\xE3os, 
+    evitou  o  que  poderia  ter  sido  uma  trag\xE9dia  muito  maior."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ee23820a1d02b34a88634f35868a948, type: 2}
   m_sharedMaterial: {fileID: 484548313740243758, guid: 0ee23820a1d02b34a88634f35868a948, type: 2}
@@ -2782,7 +2786,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 25
+  m_SortingOrder: 26
   m_Sprite: {fileID: -1502173867, guid: 02f2e0263302a7c448cc97e168e14e54, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

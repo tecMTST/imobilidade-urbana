@@ -121,15 +121,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Mockup R05
     originalName: 
-    pivot: {x: 0.51304346, y: -0.25}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 460
-      height: 64
+      width: 512
+      height: 96
     spriteID: 2a171475904dca444811989049acbf77
     spriteBone: []
     spriteOutline: []
@@ -151,10 +151,10 @@ ScriptedImporter:
     - name: Mockup R05
       frameIndex: 0
       cellRect:
-        x: 20
-        y: 16
-        width: 460
-        height: 64
+        x: 0
+        y: 0
+        width: 512
+        height: 96
       spriteId: 2a171475904dca444811989049acbf77
     linkedCells: []
     parentIndex: -1

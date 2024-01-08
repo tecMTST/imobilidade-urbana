@@ -10,7 +10,7 @@ public class ShakeTrainIntrod : MonoBehaviour
     
     void Update()
     {
-        transform.position = new Vector3(this.transform.position.x, (Mathf.Sin(Time.time * speed) * amount) - 3.5f, this.transform.position.z);
+        transform.position = new Vector3(this.transform.position.x, (Mathf.Sin(Time.time * speed) * amount) - 2.15f, this.transform.position.z);
     }
  
 }
