@@ -78,9 +78,7 @@ public class MonologueController : MonoBehaviour
     }
 
     void Update()
-    {
-        
-
+    {   
         if (falouPraLigarLanterna == false) {
 
             int playerRoom = player.GetComponent<PlayerController>().GetRoomIndex();
