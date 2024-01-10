@@ -68,6 +68,7 @@ public class GameManagement : MonoBehaviour{
 
     public List<Quest> interactableNPCs = new();
     public List<QuestItem> interactableItems = new();
+    public Door interactableDoor;
 
     public Material circularCutout;
     public Animation circularMask;
@@ -177,16 +178,21 @@ public class GameManagement : MonoBehaviour{
 
     public void Interact() {
 
-        print(interactableItems.Count);
-        if (interactableItems.Count > 0)
-            print(interactableItems[0]);
+        if (interactableDoor.isInteractable) {
+            interactableDoor.Interact();
+            return;
+        }
 
-        if (interactableNPCs.Count > 0)
+        if (interactableNPCs.Count > 0) {
             interactableNPCs[0].Questing();
+            RemoveInteract(interactableNPCs[0]);
+            return;
+        }
 
         if (interactableItems.Count > 0) {
             interactableItems[0].Caught();
             RemoveInteract(interactableItems[0]);
+
         }
     }
 
