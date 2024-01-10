@@ -74,6 +74,9 @@ public class GameManagement : MonoBehaviour{
     public Animation circularMask;
 
     public GameObject jumpScareImage;
+    public GameObject jumpScareDialogue;
+
+    private bool firstTimeCaught = true;
 
     
 
@@ -411,6 +414,18 @@ public class GameManagement : MonoBehaviour{
 
     public GameObject JumpScareImage() {
         return jumpScareImage;
+    }
+
+    public GameObject GetJumpScareDialogue() {
+        return jumpScareDialogue;
+    }
+
+    public void WasCaught() {
+        firstTimeCaught = false;
+    }
+
+    public bool GetFirstTimeCaught() {
+        return firstTimeCaught;
     }
 
     public void SetPosition(Transform transform, Vector3 position) {
