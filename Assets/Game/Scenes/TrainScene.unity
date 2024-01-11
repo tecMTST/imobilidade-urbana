@@ -11295,7 +11295,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
   - {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
   speechTxt:
-  - Preciso de todos
+  - "Sozinha n\xE3o consigo abri-la. Preciso de ajuda."
   - Vamos abrir, gente!
   actorName:
   - Player
