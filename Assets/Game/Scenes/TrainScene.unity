@@ -11298,8 +11298,8 @@ MonoBehaviour:
   - "Sozinha n\xE3o consigo abri-la. Preciso de ajuda."
   - Vamos abrir, gente!
   actorName:
-  - Player
-  - Player
+  - Eu
+  - Eu
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
