@@ -62,7 +62,7 @@ public class Quest : MonoBehaviour{
             Vector2 clickPosition2D = new Vector2(clickPosition.x, clickPosition.y);
             Collider2D hitCollider = Physics2D.OverlapPoint(clickPosition2D, dialogue.npcLayer);
             if (hitCollider != null) {
-                print($"NPC {hitCollider.name}");
+                
 
                 if (hitCollider.gameObject == gameObject) {
                     Questing();
@@ -114,14 +114,12 @@ public class Quest : MonoBehaviour{
     }
 
     public void Questing() {
-        print($"Is Iluminated: {isIluminated}");
-        print($"On Dialogue: {dialogue.onDialogue}");
+    
 
         if (dialogue.onDialogue) {
             return;
         }
 
-        print($"Started: {started}\nitemCaught: {itemCaught}\nConcluded: {concluded}");
         this.GetComponent<SpriteRenderer>().flipX = true;
         if (playerController.transform.position.x > this.transform.position.x) {
             this.GetComponent<SpriteRenderer>().flipX = false;

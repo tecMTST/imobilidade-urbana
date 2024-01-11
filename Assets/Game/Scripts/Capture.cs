@@ -7,7 +7,8 @@ public class FOverBothObjectsCheck : MonoBehaviour
 {
     private GameObject timerController;
     private GameObject monologueController;
-    private GameObject jumpScareImage; 
+    private GameObject jumpScareImage;
+    private GameObject jumpScareDialogue;
     private Collider2D thisCollider;
 
     private bool firstTimeCaught;
@@ -15,6 +16,7 @@ public class FOverBothObjectsCheck : MonoBehaviour
     private void Start()
     {
         jumpScareImage = GameManagement.Instance.JumpScareImage();
+        jumpScareDialogue = GameManagement.Instance.GetJumpScareDialogue();
         timerController = GameObject.Find("TimerController");
         monologueController = GameObject.Find("MonologueController");
         thisCollider = this.GetComponent<Collider2D>();
@@ -22,6 +24,8 @@ public class FOverBothObjectsCheck : MonoBehaviour
 
     private void Update()
     {
+        firstTimeCaught = GameManagement.Instance.GetFirstTimeCaught();
+
         List<Collider2D> colliders = new List<Collider2D>();
         ContactFilter2D contactFilter = new ContactFilter2D();
         contactFilter.NoFilter();
@@ -36,8 +40,14 @@ public class FOverBothObjectsCheck : MonoBehaviour
             timerController.GetComponent<TimerController>().PauseTimer();
             GameManagement.Instance.SetPlayerPosition();
 
-
-            StartCoroutine(HideJumpScareImageAfterDelay(0.5f));
+            if(firstTimeCaught) {
+                jumpScareDialogue.SetActive(true);
+                StartCoroutine(HideJumpScareImageAfterDelay(3f));
+                GameManagement.Instance.WasCaught();
+            }
+            else {
+                StartCoroutine(HideJumpScareImageAfterDelay(0.5f));
+            } 
         }
     }
 
@@ -47,6 +57,7 @@ public class FOverBothObjectsCheck : MonoBehaviour
 
         monologueController.GetComponent<MonologueController>().Captured();
         jumpScareImage.SetActive(false);
+        jumpScareDialogue.SetActive(false);
         timerController.GetComponent<TimerController>().ResumeTimer();
         
     }

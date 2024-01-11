@@ -62,6 +62,9 @@ TagManager:
   - name: QuestAlert
     uniqueID: 2870207237
     locked: 0
+  - name: DoorAlert
+    uniqueID: 3045207267
+    locked: 0
   - name: Ground
     uniqueID: 1104302791
     locked: 0

@@ -57,16 +57,14 @@ public class DialogueControl : MonoBehaviour
 
         ResetDialogue();
 
-        if (isBros) {
+        // if (isBros) {
+        //     nextButton.SetActive(false);
+        //     continueGroup.SetActive(true);
 
-           
-            nextButton.SetActive(false);
-            continueGroup.SetActive(true);
-
-        } else {
-            continueGroup.SetActive(false);
-            nextButton.SetActive(true);
-        }
+        // } else {
+        //     continueGroup.SetActive(false);
+        //     nextButton.SetActive(true);
+        // }
 
         StartCoroutine(TypeSentence());
 
@@ -126,8 +124,20 @@ public class DialogueControl : MonoBehaviour
         //SFX Click:
         SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.sonoroClick);
 
+        
+
+
         if (speechText.text == sentences[index] && mouseClicked == false)
         {
+            if (isBros && (index == 2 || index == 5 || index == 7 || index == 13)) {
+                nextButton.SetActive(false);
+                continueGroup.SetActive(true);
+
+            } else {
+                continueGroup.SetActive(false);
+                nextButton.SetActive(true);
+            }
+
             if (index < sentences.Length - 1)
             {
                 index++;
