@@ -1380,6 +1380,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: Anim_Intro_Train
       objectReference: {fileID: 0}
+    - target: {fileID: 5878701724254322221, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164989201045384523, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
+      propertyPath: m_text
+      value: "...outra  se  locomove  dentro  de  um  trem  que  rasga  o sil\xEAncio 
+        noturno..."
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164989201045384523, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243020584119970231, guid: 5376029e9ed2ef44b9e7d75661bbdd9a, type: 3}
+      propertyPath: m_text
+      value: "S\xE3o  Paulo, em uma noite qualquer."
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
