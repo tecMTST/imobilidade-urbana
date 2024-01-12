@@ -31869,7 +31869,7 @@ MonoBehaviour:
   circularCutout: {fileID: 2100000, guid: d75a6839fbec8714db9202b063b63fad, type: 2}
   circularMask: {fileID: 786270579}
   jumpScareImage: {fileID: 752645959}
-  jumpScareDialogue: {fileID: 0}
+  jumpScareDialogue: {fileID: 2009685600}
 --- !u!1 &1416935841
 GameObject:
   m_ObjectHideFlags: 0
