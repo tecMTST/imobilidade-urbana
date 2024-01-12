@@ -9767,7 +9767,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 479, y: 499}
-  m_SizeDelta: {x: 1045.1494, y: 561.47485}
+  m_SizeDelta: {x: 1108.4475, y: 594.4343}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &461574267
 MonoBehaviour:
@@ -15696,7 +15696,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -490, y: -406}
-  m_SizeDelta: {x: 989.0403, y: 806.459}
+  m_SizeDelta: {x: 1116.4045, y: 880.196}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &710291500
 MonoBehaviour:
@@ -19982,7 +19982,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 343.99988, y: 445.09998}
-  m_SizeDelta: {x: 922.86017, y: 453.6827}
+  m_SizeDelta: {x: 952.5215, y: 453.6829}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &917366543
 MonoBehaviour:
@@ -31945,7 +31945,7 @@ MonoBehaviour:
   circularCutout: {fileID: 2100000, guid: d75a6839fbec8714db9202b063b63fad, type: 2}
   circularMask: {fileID: 786270579}
   jumpScareImage: {fileID: 752645959}
-  jumpScareDialogue: {fileID: 2009685600}
+  jumpScareDialogue: {fileID: 0}
 --- !u!1 &1416935841
 GameObject:
   m_ObjectHideFlags: 0
@@ -44987,7 +44987,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: -490, y: 30}
-  m_SizeDelta: {x: 1061.4604, y: 532.26404}
+  m_SizeDelta: {x: 1379.0342, y: 532.264}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1939488740
 MonoBehaviour:
