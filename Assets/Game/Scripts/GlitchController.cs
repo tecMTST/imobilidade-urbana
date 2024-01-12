@@ -10,6 +10,13 @@ public class GlitchController : MonoBehaviour
     public float scanLinesStrength;
 
 
+    void Awake()
+    {
+        glitchMat.SetFloat("_NoiseAmount", 0);
+        glitchMat.SetFloat("_GlitchStrength", 0);
+        glitchMat.SetFloat("_ScanlinesStrength", 1);
+    }
+
     void Update()
     {
         glitchMat.SetFloat("_NoiseAmount", noiseAmount);
