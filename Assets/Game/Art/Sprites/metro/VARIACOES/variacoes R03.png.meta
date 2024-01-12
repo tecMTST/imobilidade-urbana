@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -134,7 +134,1309 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: variacoes R03_0
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 1220
+        width: 131
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eec4a3e20a35579439847e05b2d9e6d8
+      internalID: 1289374050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_1
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 1082
+        width: 144
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 680779a7b2390f34582b7b140420526a
+      internalID: -836598508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_2
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 876
+        width: 177
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fffa96d929097f742a0f4c55e0f2825b
+      internalID: -1885852787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_3
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 812
+        width: 517
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 799467a3231027940b4a5a9db250941d
+      internalID: 819927130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_4
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 1004
+        width: 422
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98501ab9d3d66f84681311ea1fc4b6b5
+      internalID: -1114486361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_5
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 1209
+        width: 436
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8513c6de3cf32d546ae2af79c200b9f3
+      internalID: -1056857303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_6
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 1152
+        width: 553
+        height: 198
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e1c15de0c4398440b753441fc24034d
+      internalID: 783442859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_7
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 826
+        width: 393
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 768ea77d5e5df5d4391bfbcce5a590d1
+      internalID: 1584070543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_8
+      rect:
+        serializedVersion: 2
+        x: 1448
+        y: 814
+        width: 349
+        height: 342
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4731cb41a8cc31e4e867bd9416f8f61e
+      internalID: -1941179303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_9
+      rect:
+        serializedVersion: 2
+        x: 1458
+        y: 1164
+        width: 474
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3073672c3b25a846a01e05ae535a210
+      internalID: 416552506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_10
+      rect:
+        serializedVersion: 2
+        x: 1766
+        y: 598
+        width: 179
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ee3f1da5f8a7c848bdef4dace184213
+      internalID: 598185638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_11
+      rect:
+        serializedVersion: 2
+        x: 1564
+        y: 591
+        width: 193
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08711b3022bd55a4581a852318bb2fc1
+      internalID: 770740146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_12
+      rect:
+        serializedVersion: 2
+        x: 1389
+        y: 591
+        width: 160
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72606449e9eefe54d891fc948448a4d9
+      internalID: -467655436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_13
+      rect:
+        serializedVersion: 2
+        x: 1210
+        y: 587
+        width: 158
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4888a4e791871094d8a62eeed0ff99a1
+      internalID: 886224633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_14
+      rect:
+        serializedVersion: 2
+        x: 999
+        y: 576
+        width: 179
+        height: 198
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c28a5be67249674dbd269f31a0e6037
+      internalID: -64153556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_15
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 629
+        width: 71
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cb43c7bfccf5f14d85a75e90e8fb22d
+      internalID: -1893215455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_16
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 707
+        width: 133
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 736beb24124c8684882156440d5d8d15
+      internalID: -628214222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_17
+      rect:
+        serializedVersion: 2
+        x: 716
+        y: 634
+        width: 40
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aceafb01d9d57354d8f9df9fa97939b8
+      internalID: -514561444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_18
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 705
+        width: 52
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a5adce9191086d42ba4394e1f33cf06
+      internalID: 2069172412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_19
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 631
+        width: 43
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb6b316731800bf46901edcd7e5dcbb0
+      internalID: 935752486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_20
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 713
+        width: 66
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1e6fcedaf1f6494c9f5e6bf851c43f7
+      internalID: -331884964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_21
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 640
+        width: 34
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5ced9de97d76064691ce5b6698b61cd
+      internalID: 1148412338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_22
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 699
+        width: 40
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bfee5230a0535b4fbbc4db4f3a38b72
+      internalID: -1808722385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_23
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 646
+        width: 46
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57c2716e53e1f1f46a01ad53ce6a5818
+      internalID: 810817350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_24
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 707
+        width: 49
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d261d15c2d851664ba7308d644c1677e
+      internalID: 978737824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_25
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 641
+        width: 43
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 280038a497727574b846607f432c361c
+      internalID: 1150484776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_26
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 702
+        width: 42
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8257812b4bc5a574f9f082d8f518ccd9
+      internalID: -315322584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_27
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 646
+        width: 60
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e971207b8ad8a28469c9d3736c9bae3d
+      internalID: 420781190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_28
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 637
+        width: 47
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d7b4dd793dbaf0468c8ab0bc3bf3952
+      internalID: -740257002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_29
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 715
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a353cf3e470044a4dafa8d3c645b2f26
+      internalID: -1706997055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_30
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 640
+        width: 229
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5853dc85d9a54b7468d6423d6bd07619
+      internalID: -1836504300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_31
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 317
+        width: 429
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8debae3c1d1ac9e48a56299949c1bf68
+      internalID: -1234447603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_32
+      rect:
+        serializedVersion: 2
+        x: 761
+        y: 367
+        width: 198
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a569195a674f5da4f8af475d663e7a8a
+      internalID: -218273095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_33
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 339
+        width: 187
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4b215aae8059904ca0486babef94770
+      internalID: -1598928945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_34
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 141
+        width: 164
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdd432886da4c694bae98478d00c4dfd
+      internalID: 2008615880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_35
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 86
+        width: 162
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b57bb879b4fe39147be237a5711008df
+      internalID: -1116340544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_36
+      rect:
+        serializedVersion: 2
+        x: 961
+        y: 203
+        width: 67
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d40652305a8d36f4d9d0bf4701beb74c
+      internalID: -2113429923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_37
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 193
+        width: 46
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdb62ea9cbf2bfe4baa3f18dc33cd254
+      internalID: 846261696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_38
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 193
+        width: 58
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 837015a472861e144a771eff9cb4504d
+      internalID: -393100382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_39
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 189
+        width: 61
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aad707b7b3d06204a9e5931552d591bf
+      internalID: 686898422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_40
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 194
+        width: 60
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a5d78901c177974ca3d7cc0f1b0b016
+      internalID: -678938481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_41
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 188
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 775da4840d1f2364e870935523396d18
+      internalID: -1249375761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_42
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 189
+        width: 52
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7fed1d78ea3204458dd0c0daedbdc5a
+      internalID: 520912764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_43
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 189
+        width: 60
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edead0ff08d124b42943955f47f24a86
+      internalID: 432502936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_44
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 138
+        width: 60
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58ec915468f28d24d92591f70bf23836
+      internalID: 1121413630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_45
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 138
+        width: 55
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 140afd41b0c926c4d8eae459dc99e2f5
+      internalID: 143513066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_46
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 128
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8306f009b2bacae40a15af719bba4c79
+      internalID: 1819702066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_47
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 132
+        width: 62
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a505ff163ad35ba43bda345f5b9fb675
+      internalID: -1631287997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_48
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 136
+        width: 65
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58378b976cdc9f74ea7814a2ba35a536
+      internalID: -1537387942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_49
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 151
+        width: 57
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7ff6633ccf0cc64f957c3b965278407
+      internalID: -1789981314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_50
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 142
+        width: 67
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14bd65c211007404bbd2f04061879947
+      internalID: -1795981507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_51
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 141
+        width: 52
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dfafb3413108194eb88c2b06a5104f9
+      internalID: 537293206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_52
+      rect:
+        serializedVersion: 2
+        x: 1768
+        y: 320
+        width: 164
+        height: 196
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 379ddd848b1a15d428aff512f290d42e
+      internalID: -2038162430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_53
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 332
+        width: 144
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32d006d9ddcee304081518d90e89d585
+      internalID: 798219210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_54
+      rect:
+        serializedVersion: 2
+        x: 1405
+        y: 330
+        width: 152
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df957ff9d43424f41a5c60bd513429e4
+      internalID: -827568908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_55
+      rect:
+        serializedVersion: 2
+        x: 1195
+        y: 315
+        width: 180
+        height: 209
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1f5c3bb282940f44b21d2d6946d63d2
+      internalID: 240430749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_56
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 327
+        width: 149
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e026dc3b096f9549b8db8a7ce685524
+      internalID: 1153134169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_57
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 123
+        width: 140
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 153ab87827207ba49b3b5477e865b84c
+      internalID: 1410787804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_58
+      rect:
+        serializedVersion: 2
+        x: 1206
+        y: 98
+        width: 152
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f091dcac7d765904592b188302462ce3
+      internalID: -567010179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_59
+      rect:
+        serializedVersion: 2
+        x: 1401
+        y: 91
+        width: 140
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 612508abb1da47e46bdbe81b6aa1b8af
+      internalID: -1566968019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_60
+      rect:
+        serializedVersion: 2
+        x: 1555
+        y: 93
+        width: 192
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f0be7540da640f49a27e9f5a4cfa11b
+      internalID: -1286339990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: variacoes R03_61
+      rect:
+        serializedVersion: 2
+        x: 1766
+        y: 105
+        width: 165
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddc9aaff315b15544838b5e48a68e8c5
+      internalID: 1380618566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +1447,69 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      variacoes R03_0: 1520521742
+      variacoes R03_1: 1289374050
+      variacoes R03_10: 598185638
+      variacoes R03_11: 770740146
+      variacoes R03_12: -467655436
+      variacoes R03_13: 886224633
+      variacoes R03_14: -64153556
+      variacoes R03_15: -1893215455
+      variacoes R03_16: -628214222
+      variacoes R03_17: -514561444
+      variacoes R03_18: 2069172412
+      variacoes R03_19: 935752486
+      variacoes R03_2: -836598508
+      variacoes R03_20: -331884964
+      variacoes R03_21: 1148412338
+      variacoes R03_22: -1808722385
+      variacoes R03_23: 810817350
+      variacoes R03_24: 978737824
+      variacoes R03_25: 1150484776
+      variacoes R03_26: -315322584
+      variacoes R03_27: 420781190
+      variacoes R03_28: -740257002
+      variacoes R03_29: -1706997055
+      variacoes R03_3: -1885852787
+      variacoes R03_30: -1836504300
+      variacoes R03_31: -1234447603
+      variacoes R03_32: -218273095
+      variacoes R03_33: -1598928945
+      variacoes R03_34: 2008615880
+      variacoes R03_35: -1116340544
+      variacoes R03_36: -2113429923
+      variacoes R03_37: 846261696
+      variacoes R03_38: -393100382
+      variacoes R03_39: 686898422
+      variacoes R03_4: 819927130
+      variacoes R03_40: -678938481
+      variacoes R03_41: -1249375761
+      variacoes R03_42: 520912764
+      variacoes R03_43: 432502936
+      variacoes R03_44: 1121413630
+      variacoes R03_45: 143513066
+      variacoes R03_46: 1819702066
+      variacoes R03_47: -1631287997
+      variacoes R03_48: -1537387942
+      variacoes R03_49: -1789981314
+      variacoes R03_5: -1114486361
+      variacoes R03_50: -1795981507
+      variacoes R03_51: 537293206
+      variacoes R03_52: -2038162430
+      variacoes R03_53: 798219210
+      variacoes R03_54: -827568908
+      variacoes R03_55: 240430749
+      variacoes R03_56: 1153134169
+      variacoes R03_57: 1410787804
+      variacoes R03_58: -567010179
+      variacoes R03_59: -1566968019
+      variacoes R03_6: 783442859
+      variacoes R03_60: -1286339990
+      variacoes R03_61: 1380618566
+      variacoes R03_7: 1584070543
+      variacoes R03_8: -1941179303
+      variacoes R03_9: 416552506
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
