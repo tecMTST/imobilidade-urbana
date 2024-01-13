@@ -254,7 +254,7 @@ public class SoundManager : MonoBehaviour
         //AudioSource Tela:
         if (track == 4)
         {
-            bgmAmbiente.Stop();
+            bgmTela.Stop();
             bgmTela.clip = null;
         }
     }
