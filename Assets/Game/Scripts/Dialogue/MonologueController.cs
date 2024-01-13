@@ -198,11 +198,12 @@ public class MonologueController : MonoBehaviour
 
     public void NextSentence()
     {
-        //SFX Click:
-        SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.sonoroClick);
 
         if (speechText.text == sentences[index] && mouseClicked == false)
         {
+            //SFX Click:
+            SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.sonoroClick);
+
             if (index < sentences.Length - 1)
             {
                 index++;
@@ -219,6 +220,7 @@ public class MonologueController : MonoBehaviour
             }
             else
             {
+
                 speechText.text = "";
                
                 monologueObj.SetActive(false);

@@ -121,22 +121,26 @@ public class DialogueControl : MonoBehaviour
 
     public void NextSentence()
     {
-        //SFX Click:
-        SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.sonoroClick);
 
         if (speechText.text == sentences[index] && mouseClicked == false)
         {
+            //SFX Click:
+            SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.sonoroClick);
+
             if (isBros && (index == 2 || index == 5 || index == 7 || index == 13)) {
+
                 nextButton.SetActive(false);
                 continueGroup.SetActive(true);
 
             } else {
+
                 continueGroup.SetActive(false);
                 nextButton.SetActive(true);
             }
 
             if (index < sentences.Length - 1)
             {
+
                 index++;
                 speechText.text = "";
                 StartCoroutine(TypeSentence());
@@ -144,7 +148,6 @@ public class DialogueControl : MonoBehaviour
             else
             {
                 Close();
-               
             }
         }
         mouseClicked = false;
@@ -152,6 +155,7 @@ public class DialogueControl : MonoBehaviour
 
     public void Close()
     {
+
         speechText.text = "";
         dialogueObj.SetActive(false);
 
@@ -161,8 +165,6 @@ public class DialogueControl : MonoBehaviour
 
         if (isBros)
             onBrosConcluded();
-
-
 
     }
 
