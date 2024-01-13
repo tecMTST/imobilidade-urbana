@@ -56,8 +56,11 @@ public class MonologueController : MonoBehaviour
     private GameObject activeMonster;
     private bool monsterNear = false;
 
-    private bool falaAnunciante = true;
-    private bool jaFalouAnunciante = false;
+    private bool falaAnunciante1 = true;
+    private bool jaFalouAnunciante1 = false;
+    private bool fimFalaAnunciante1 = false;
+
+    private bool fimFalaAnunciante2 = false;
 
     private bool captured = false;
     private bool alreadyCaptureOnce = false;
@@ -145,19 +148,26 @@ public class MonologueController : MonoBehaviour
         sentences = txt;
         index = 0;
 
-        StartCoroutine(TypeSentence(false));
+        StartCoroutine(TypeSentence(false, false));
     }
 
 
 
-    IEnumerator TypeSentence(bool isAnunciante)
+    IEnumerator TypeSentence(bool isAnunciante, bool isAnunciante2)
     {
         if (isAnunciante)
         {
             profile.sprite = imageSound;
             actorNameText.text = anunciante;
             soundManager.GetComponent<SoundManager>().playAnuncioTimer();
+            fimFalaAnunciante1 = true;
         }
+        else if(isAnunciante2)
+        {
+            profile.sprite = imageSound;
+            actorNameText.text = anunciante;
+            fimFalaAnunciante2 = true;
+        } 
         else
         {
             profile.sprite = imagePlayer;
@@ -209,12 +219,19 @@ public class MonologueController : MonoBehaviour
                 index++;
                 speechText.text = "";
 
-                if (falaAnunciante && !jaFalouAnunciante){
-                    jaFalouAnunciante = true;
-                    StartCoroutine(TypeSentence(true));
-                } else
+                if (falaAnunciante1 && !jaFalouAnunciante1 && !fimFalaAnunciante2)
                 {
-                    StartCoroutine(TypeSentence(false));
+                    jaFalouAnunciante1 = true;
+                    StartCoroutine(TypeSentence(true, false));
+                    
+        
+                } else if(fimFalaAnunciante1 && !fimFalaAnunciante2)
+                {
+                    StartCoroutine(TypeSentence(false, true));
+                }
+                else
+                {
+                    StartCoroutine(TypeSentence(false, false));
                 }
                 
             }
