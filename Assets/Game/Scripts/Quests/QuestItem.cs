@@ -79,6 +79,7 @@ public class QuestItem : MonoBehaviour
 
     public void Caught() {
         quest.itemCaught = true;
+        SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.sonoroCatch);
         this.gameObject.SetActive(false);
     }
    

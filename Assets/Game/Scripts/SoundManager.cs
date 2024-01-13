@@ -23,6 +23,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip aununcioTrem4;
     [SerializeField] private AudioClip aununcioTrem5;
     [SerializeField] private AudioClip aununcioTrem6;
+    [SerializeField] private AudioClip musicaNPCSalvo;
 
     //Vetor Lista de Musicas:
     private AudioClip[] selectBGM;
@@ -41,7 +42,8 @@ public class SoundManager : MonoBehaviour
         aununcioTrem3,
         aununcioTrem4,
         aununcioTrem5,
-        aununcioTrem6
+        aununcioTrem6,
+        musicaNPCSalvo
     };
 
 
@@ -51,6 +53,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip sonoroTimer;
     [SerializeField] private AudioClip sonoroClick;
     [SerializeField] private AudioClip sonoroTexto;
+    [SerializeField] private AudioClip sonoroCatch;
 
     //Vetor Lista de Efeitos:
     private AudioClip[] selectSFX;
@@ -62,7 +65,8 @@ public class SoundManager : MonoBehaviour
         sonoroScream,
         sonoroTimer,
         sonoroClick,
-        sonoroTexto
+        sonoroTexto,
+        sonoroCatch
     };
 
     //Lista de AudioSources Simultaneos:
@@ -118,7 +122,8 @@ public class SoundManager : MonoBehaviour
             aununcioTrem3,
             aununcioTrem4,
             aununcioTrem5,
-            aununcioTrem6
+            aununcioTrem6,
+            musicaNPCSalvo
         };
 
         //Setar Vetor de SFX:
@@ -128,7 +133,8 @@ public class SoundManager : MonoBehaviour
             sonoroScream,
             sonoroTimer,
             sonoroClick,
-            sonoroTexto
+            sonoroTexto,
+            sonoroCatch
         };
 
         //Carregar BGM - Cena do Trem:
@@ -212,6 +218,14 @@ public class SoundManager : MonoBehaviour
             bgmChase.volume = 1;
             setFade = false;
         }
+
+        //AudioSource Tela:
+        if (bgmTela.clip != selectBGM[lista] && track == 4)
+        {
+            //Tocar Nova Musica:
+            bgmTela.clip = selectBGM[lista];
+            bgmTela.Play();
+        }
     }
 
     //Parar BGM:
@@ -235,6 +249,13 @@ public class SoundManager : MonoBehaviour
         if (track == 3)
         {
             setFade = true;
+        }
+
+        //AudioSource Tela:
+        if (track == 4)
+        {
+            bgmAmbiente.Stop();
+            bgmTela.clip = null;
         }
     }
 
