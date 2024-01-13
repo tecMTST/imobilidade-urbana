@@ -76,6 +76,8 @@ public class Quest : MonoBehaviour{
         animator.SetBool("questConcluded", concluded);
         GameManagement.Instance.BlockAllInputs(true);
 
+        SoundManager.instance.playBGM((int)SoundManager.ListaBGM.musicaNPCSalvo, 4);
+
         yield return GameManagement.Instance.CircularOut();
 
         this.setAtMainWagon();
@@ -88,12 +90,12 @@ public class Quest : MonoBehaviour{
 
         GameManagement.Instance.BlockAllInputs(false);
 
+        SoundManager.instance.stopBGM(4);
+
         StopCoroutine(nameof(EndQuest));
     }
 
     public void EndThisQuest() {
-
-        SoundManager.instance.playBGM((int)SoundManager.ListaBGM.musicaNPCSalvo, 4);
 
         StartCoroutine(EndQuest());
     }
