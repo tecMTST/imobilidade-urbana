@@ -243,7 +243,7 @@ public class Monster1 : MonoBehaviour
             timerVoice = timerVoice + Time.deltaTime;
             if (timerVoice > limitVoice && !light2D.gameObject.activeSelf && shouldMove)
             {
-                audioSource.PlayOneShot(sonoroFalaMonstro[UnityEngine.Random.Range(0, 4)]);
+                audioSource.PlayOneShot(sonoroFalaMonstro[UnityEngine.Random.Range(0, 5)]);
                 timerVoice = 0f;
             }
 
