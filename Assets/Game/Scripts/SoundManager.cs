@@ -54,6 +54,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip sonoroClick;
     [SerializeField] private AudioClip sonoroTexto;
     [SerializeField] private AudioClip sonoroCatch;
+    [SerializeField] private AudioClip sonoroPortaTravada;
+    [SerializeField] private AudioClip sonoroPortaAbrindo;
 
     //Vetor Lista de Efeitos:
     private AudioClip[] selectSFX;
@@ -66,7 +68,9 @@ public class SoundManager : MonoBehaviour
         sonoroTimer,
         sonoroClick,
         sonoroTexto,
-        sonoroCatch
+        sonoroCatch,
+        sonoroPortaTravada,
+        sonoroPortaAbrindo
     };
 
     //Lista de AudioSources Simultaneos:
@@ -134,7 +138,9 @@ public class SoundManager : MonoBehaviour
             sonoroTimer,
             sonoroClick,
             sonoroTexto,
-            sonoroCatch
+            sonoroCatch,
+            sonoroPortaTravada,
+            sonoroPortaAbrindo
         };
 
         //Carregar BGM - Cena do Trem:
