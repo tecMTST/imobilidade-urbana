@@ -59,6 +59,9 @@ TagManager:
   - name: Background
     uniqueID: 3079148925
     locked: 0
+  - name: Decoration
+    uniqueID: 2861638063
+    locked: 0
   - name: QuestAlert
     uniqueID: 2870207237
     locked: 0
