@@ -77,13 +77,18 @@ public class Door : MonoBehaviour
         if (!VerifyQuests()) {//Quests não concluídas
             print("Quests não concluídas");
 
+            SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.sonoroPortaTravada);
+
             dialogue.StartSpeech(dialogue.profile.ToList<Sprite>().GetRange(dialogueIndexRangeStart[0], dialogueIndexRangeStart[1]).ToArray(),
             dialogue.speechTxt.ToList<string>().GetRange(dialogueIndexRangeStart[0], dialogueIndexRangeStart[1]).ToArray(),
-            dialogue.actorName.ToList<string>().GetRange(dialogueIndexRangeStart[0], dialogueIndexRangeStart[1]).ToArray());            
+            dialogue.actorName.ToList<string>().GetRange(dialogueIndexRangeStart[0], dialogueIndexRangeStart[1]).ToArray());
         
         }else {
 
             print("Quests concluídas!!!");
+
+            //ATENÇÃO. Colocar esse som após um fade tela escura. Ele tem que tocar quando a tela estiver 100% escura e após o termino dele, tocar a cutscene final.
+            SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.sonoroPortaAbrindo);
 
             dialogue.StartSpeech(dialogue.profile.ToList<Sprite>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray(),
             dialogue.speechTxt.ToList<string>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray(),

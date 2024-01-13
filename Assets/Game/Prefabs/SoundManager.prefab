@@ -1095,6 +1095,8 @@ MonoBehaviour:
   sonoroClick: {fileID: 8300000, guid: 072d7d247ba561945ae2fbe572237f26, type: 3}
   sonoroTexto: {fileID: 8300000, guid: 0757fbac8c83d3d4d89b135647685d4c, type: 3}
   sonoroCatch: {fileID: 8300000, guid: 929fb7b9edc8fa045ab8cec247f265f7, type: 3}
+  sonoroPortaTravada: {fileID: 8300000, guid: 6508ccd8d979d1d43bc3cae51c35dc26, type: 3}
+  sonoroPortaAbrindo: {fileID: 8300000, guid: 8cf430ccf4409a14781f6f6f451a36da, type: 3}
   bgmAmbiente: {fileID: 8007368771704581211}
   bgmAnuncios: {fileID: 1153538312579061446}
   bgmChase: {fileID: 9157604589738620346}
