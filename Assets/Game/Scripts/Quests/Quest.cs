@@ -92,6 +92,9 @@ public class Quest : MonoBehaviour{
     }
 
     public void EndThisQuest() {
+
+        SoundManager.instance.playBGM((int)SoundManager.ListaBGM.musicaNPCSalvo, 4);
+
         StartCoroutine(EndQuest());
     }
 

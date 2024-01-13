@@ -154,6 +154,7 @@ public class GameManagement : MonoBehaviour{
             circularCutout.SetFloat("_Cutoff", elapsedTime  / MathF.Round(duration));
         }
 
+
         StopCoroutine(nameof(CircularIn));
 
     }
@@ -295,6 +296,8 @@ public class GameManagement : MonoBehaviour{
         if (dialogueControl.dialogueObj.activeSelf || monologueController.monologueObj.activeSelf)
             return;
 
+        SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.sonoroClick);
+
         SetDefaultLayout(!value);
         
         SetLeftHandedLayout(false);
@@ -309,6 +312,8 @@ public class GameManagement : MonoBehaviour{
 
         if (dialogueControl.dialogueObj.activeSelf || monologueController.monologueObj.activeSelf)
             return;
+
+        SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.sonoroClick);
 
         SetDefaultLayout(!value);
         

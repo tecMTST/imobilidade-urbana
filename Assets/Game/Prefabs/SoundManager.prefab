@@ -46,7 +46,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1088,11 +1088,13 @@ MonoBehaviour:
   aununcioTrem4: {fileID: 8300000, guid: d77984ca362d8a140a796913716eb6a3, type: 3}
   aununcioTrem5: {fileID: 8300000, guid: 5042da4fa677cf9469f42e615c07d9ac, type: 3}
   aununcioTrem6: {fileID: 8300000, guid: c009287f0906a1e4ebd8669b76695b14, type: 3}
+  musicaNPCSalvo: {fileID: 8300000, guid: 79cd86b0263f5d74e83ab8045d1f1ed1, type: 3}
   sonoroLuz: {fileID: 8300000, guid: d40c85be273eeb549b6a537ff9e8f0fd, type: 3}
-  sonoroScream: {fileID: 8300000, guid: ed01f0268c7fe094fae351bea644d5f4, type: 3}
+  sonoroScream: {fileID: 8300000, guid: 9415ba1e76717f64395b1f0e3de47d2b, type: 3}
   sonoroTimer: {fileID: 8300000, guid: 6f52805d6924a4243846e1a9062cc953, type: 3}
   sonoroClick: {fileID: 8300000, guid: 072d7d247ba561945ae2fbe572237f26, type: 3}
   sonoroTexto: {fileID: 8300000, guid: 0757fbac8c83d3d4d89b135647685d4c, type: 3}
+  sonoroCatch: {fileID: 8300000, guid: 929fb7b9edc8fa045ab8cec247f265f7, type: 3}
   bgmAmbiente: {fileID: 8007368771704581211}
   bgmAnuncios: {fileID: 1153538312579061446}
   bgmChase: {fileID: 9157604589738620346}
