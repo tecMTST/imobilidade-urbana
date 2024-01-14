@@ -8469,7 +8469,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Build 20240114-1
+  m_text: Build 20240114-3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -40343,7 +40343,7 @@ MonoBehaviour:
     daqui!"
   imagePlayer: {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
   imageSound: {fileID: 21300000, guid: 51925e9c4f5f5694ebf09c5a629749be, type: 3}
-  nome: Eu
+  nome: "Gl\xF3ria"
   anunciante: Anunciante
 --- !u!1 &1502055953
 GameObject:
