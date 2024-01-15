@@ -28944,8 +28944,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6e3457e7258c31a4e86f53bd44ac2f1e, type: 3}
   - {fileID: 21300000, guid: 281e6778a01440843a72af110599be6d, type: 3}
   - {fileID: 21300000, guid: 6e3457e7258c31a4e86f53bd44ac2f1e, type: 3}
-  - {fileID: 21300000, guid: 6e3457e7258c31a4e86f53bd44ac2f1e, type: 3}
-  - {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
   - {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
   - {fileID: 21300000, guid: 6e3457e7258c31a4e86f53bd44ac2f1e, type: 3}
   - {fileID: 21300000, guid: 6e3457e7258c31a4e86f53bd44ac2f1e, type: 3}
@@ -29027,7 +29025,7 @@ MonoBehaviour:
   itemCaught: 0
   item: {fileID: 0}
   dialogue: {fileID: 1293754581}
-  dialogueIndexRangeStart: 0000000012000000
+  dialogueIndexRangeStart: 0000000011000000
   dialogueIndexRangeMiddle: 0000000000000000
   dialogueIndexRangeEnd: 0000000000000000
   dialogueIndexRangePostEnd: 1200000001000000
