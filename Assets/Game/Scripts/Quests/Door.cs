@@ -94,6 +94,8 @@ public class Door : MonoBehaviour
             dialogue.speechTxt.ToList<string>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray(),
             dialogue.actorName.ToList<string>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray());
 
+            dialogue.dc.onDialogueClose = ()=> { };
+
         }
 
         return;

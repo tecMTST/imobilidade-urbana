@@ -274,7 +274,7 @@ public class SoundManager : MonoBehaviour
     //Tocar SFX Texto:
     public void playTextSFX(int lista, string actorName)
     {
-        if (actorName == "Eu")
+        if (actorName == "Eu" || actorName == "GlÃ³ria")
         {
             sfxTexto.pitch = 1.0f;
         }
@@ -294,7 +294,7 @@ public class SoundManager : MonoBehaviour
         {
             sfxTexto.pitch = 0.95f;
         }
-        else if (actorName == "Caçula" || actorName == "Jackson")
+        else if (actorName == "CaÃ§ula" || actorName == "Jackson")
         {
             sfxTexto.pitch = 1.1f;
         }
@@ -315,7 +315,7 @@ public class SoundManager : MonoBehaviour
         sfxTimer.PlayOneShot(selectSFX[lista]);
     }
 
-    //SFX Primeiro Anúncio:
+    //SFX Primeiro Anï¿½ncio:
     public void playAnuncioTimer()
     {
         deveFalarPrimeiroAnuncio = true;

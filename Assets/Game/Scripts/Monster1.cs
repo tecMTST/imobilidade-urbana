@@ -75,11 +75,9 @@ public class Monster1 : MonoBehaviour
     }
 
     private void OnEnable() {
-        if (Random.Range(0, 99) < 25) {
-            print("Desaparece");
+        if (Random.Range(0, 99) < 25)
             this.transform.parent.gameObject.SetActive(false);
-        } else
-            print("Aparece");
+        
         
     }
 
@@ -91,8 +89,7 @@ public class Monster1 : MonoBehaviour
         else 
             index = 1;
 
-        print($"Index {index}");
-
+        
         //Parar BGM Preseguicao:
         huntVoice = false;
         SoundManager.instance.stopBGM(3);

@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSFX = 0.1f;
     private float timerPassos = 0f;
 
+    private RoomTrigger[] roomTriggers;
+
     void Awake() {
         Instance = this;
     }
@@ -41,6 +43,7 @@ public class PlayerController : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
+        roomTriggers = GameObject.FindObjectsOfType<RoomTrigger>();
     }
 
     private void Update()
@@ -101,6 +104,8 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("mapLimit"))
             onLimit = false;
+
+
     }
 
     public void Die() {
@@ -115,6 +120,34 @@ public class PlayerController : MonoBehaviour
             cameraController.SwitchRoom(roomIndex);
             mapController.SetPlayerMapPosition(roomIndex);
             mapController.RevealMap();
+
+
+            if (roomIndex == 7) {
+
+                other.GetComponent<SpriteRenderer>().enabled = true;
+
+                foreach (Transform child in other.GetComponentInChildren<Transform>(true))
+                    child.gameObject.SetActive(true);
+
+            } else
+                foreach (RoomTrigger room in roomTriggers) {
+                    if (room.roomIndex != roomIndex) {
+
+                        room.GetComponent<SpriteRenderer>().enabled = false;
+
+                        foreach (Transform child in room.GetComponentInChildren<Transform>())
+                            child.gameObject.SetActive(false);
+
+
+                    } else{
+                        room.GetComponent<SpriteRenderer>().enabled = true;
+
+                        foreach (Transform child in room.GetComponentInChildren<Transform>(true)) 
+                            child.gameObject.SetActive(true);
+                    
+                    }
+
+                }
         }
     }
 

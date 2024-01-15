@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class FOverBothObjectsCheck : MonoBehaviour
 {
@@ -39,26 +38,49 @@ public class FOverBothObjectsCheck : MonoBehaviour
             timerController.GetComponent<TimerController>().Captured();
             timerController.GetComponent<TimerController>().PauseTimer();
             GameManagement.Instance.SetPlayerPosition();
+            
 
-            if(firstTimeCaught) {
+
+            if (firstTimeCaught) {
+
                 jumpScareDialogue.SetActive(true);
+
+
+                //Invoke(nameof(HideJumpScareImageAfterDelay), 3f);
                 StartCoroutine(HideJumpScareImageAfterDelay(3f));
+
                 GameManagement.Instance.WasCaught();
             }
             else {
+
+                //Invoke(nameof(HideJumpScareImageAfterDelay), 0.3f);
                 StartCoroutine(HideJumpScareImageAfterDelay(0.5f));
             } 
         }
     }
 
-    private IEnumerator HideJumpScareImageAfterDelay(float delay)
-    {
+    private IEnumerator HideJumpScareImageAfterDelay(float delay){
+
         yield return new WaitForSeconds(delay);
+
+
+        print("desgraça do infern0 2");
 
         monologueController.GetComponent<MonologueController>().Captured();
         jumpScareImage.SetActive(false);
         jumpScareDialogue.SetActive(false);
         timerController.GetComponent<TimerController>().ResumeTimer();
+
+        StopCoroutine(nameof(HideJumpScareImageAfterDelay));
         
+    }
+
+    private void HideJumpScareImageAfterDelay() {
+
+        monologueController.GetComponent<MonologueController>().Captured();
+        jumpScareImage.SetActive(false);
+        jumpScareDialogue.SetActive(false);
+        timerController.GetComponent<TimerController>().ResumeTimer();
+
     }
 }
