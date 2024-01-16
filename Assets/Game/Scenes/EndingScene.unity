@@ -439,7 +439,7 @@ PlayableDirector:
   - key: {fileID: 4233903253574779311, guid: e9506e75d656a6745a522b52ddf4bea4, type: 2}
     value: {fileID: 856122295}
   - key: {fileID: 4053148067423766708, guid: e9506e75d656a6745a522b52ddf4bea4, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 856122294}
   m_ExposedReferences:
     m_References:
     - dd8624509b9fdfb408af3627ab299054: {fileID: 1397521568}
@@ -577,6 +577,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Anim_End_Epilogue
       objectReference: {fileID: 0}
+    - target: {fileID: 331735331226713891, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973208228548390243, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973208228548390243, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973208228548390243, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973208228548390243, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973208228548390243, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973208228548390243, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2831516806702668522, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -617,10 +645,102 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3606005271996398376, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 4044901518551646687, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4044901518551646687, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4044901518551646687, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4044901518551646687, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4044901518551646687, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4044901518551646687, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6181087849546262455, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6181087849546262455, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6181087849546262455, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6181087849546262455, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6181087849546262455, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6181087849546262455, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485222321169297825, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071236041254733022, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388033652833270542, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388033652833270542, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388033652833270542, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388033652833270542, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388033652833270542, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388033652833270542, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8655349602437465513, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 241763870}
+    - target: {fileID: 9166399897736428901, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 9183286738538287166, guid: 5af895e737e5a034ead4376e70304f90, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -674,13 +794,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3854044887247916156, guid: 2917f6e3acc6d3a42a9fff543ef9bf5d, type: 3}
+      propertyPath: m_text
+      value: "Organizem-se  e  lutem  por  um  servi\xE7o  p\xFAblico  de  qualidade!!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853743939576633883, guid: 2917f6e3acc6d3a42a9fff543ef9bf5d, type: 3}
+      propertyPath: m_text
+      value: "Por  pouco  esse  acidente  n\xE3o  virou  uma  trag\xE9dia  maior 
+        para  todos  e o  monstro  da  privatiza\xE7\xE3o  e  da  gan\xE2ncia  sem 
+        fim  foi  vencido  no  jogo  com  a  uni\xE3o  dos  passageiros."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853743939576633883, guid: 2917f6e3acc6d3a42a9fff543ef9bf5d, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 5993834677424992136, guid: 2917f6e3acc6d3a42a9fff543ef9bf5d, type: 3}
+      propertyPath: m_text
+      value: Unidos  faremos  a  vida  seguir  sendo  mais  importante  que  o  lucro.
+      objectReference: {fileID: 0}
     - target: {fileID: 6246176066435103435, guid: 2917f6e3acc6d3a42a9fff543ef9bf5d, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7254408637456883607, guid: 2917f6e3acc6d3a42a9fff543ef9bf5d, type: 3}
+      propertyPath: m_text
+      value: "Na  vida  real  esse  monstro  tamb\xE9m  est\xE1  presente  e  pode 
+        ser  derrotado.\nS\xF3  basta  uni\xE3o  e  organiza\xE7\xE3o popular,  porque 
+        ele  n\xE3o  \xE9  invenc\xEDvel; s\xF3  d\xE1  medo  quando  estamos  sozinhos."
+      objectReference: {fileID: 0}
     - target: {fileID: 8647286206440806584, guid: 2917f6e3acc6d3a42a9fff543ef9bf5d, type: 3}
       propertyPath: m_Name
       value: Anim_End_Train
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647286206440806584, guid: 2917f6e3acc6d3a42a9fff543ef9bf5d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
