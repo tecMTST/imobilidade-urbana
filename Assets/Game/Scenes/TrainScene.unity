@@ -4937,6 +4937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b92bd6e47327e44bfd61803936aca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerTextAnimator: {fileID: 1559553290}
   initialTime: 600
   penalty: 30
   isPaused: 1
@@ -18898,8 +18899,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -140.06561, y: 160.19}
-  m_SizeDelta: {x: 256.4454, y: 109.6773}
+  m_AnchoredPosition: {x: -171.5871, y: 160.19}
+  m_SizeDelta: {x: 319.4886, y: 109.6773}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &891556192
 MonoBehaviour:
@@ -29025,10 +29026,10 @@ MonoBehaviour:
   itemCaught: 0
   item: {fileID: 0}
   dialogue: {fileID: 1293754581}
-  dialogueIndexRangeStart: 0000000011000000
+  dialogueIndexRangeStart: 0000000010000000
   dialogueIndexRangeMiddle: 0000000000000000
   dialogueIndexRangeEnd: 0000000000000000
-  dialogueIndexRangePostEnd: 1200000001000000
+  dialogueIndexRangePostEnd: 1000000001000000
   questAlert: {fileID: 1879799338}
   endQuestPositionX: 0
 --- !u!95 &1293754583
@@ -36590,7 +36591,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559553286}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f120c8658de57b3448dcc84fd21aa6ca, type: 2}
   m_CullingMode: 0
@@ -42172,8 +42173,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1468.1079, y: 52.675}
-  m_SizeDelta: {x: 240.9839, y: 105.35}
+  m_AnchoredPosition: {x: 1599.9543, y: 52.675}
+  m_SizeDelta: {x: 309.4752, y: 105.35}
   m_Pivot: {x: 0.49999994, y: 0.49999994}
 --- !u!114 &1819152953
 MonoBehaviour:
