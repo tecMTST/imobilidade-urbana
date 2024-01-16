@@ -4937,6 +4937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b92bd6e47327e44bfd61803936aca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerTextAnimator: {fileID: 1559553290}
   initialTime: 600
   penalty: 30
   isPaused: 1
@@ -7039,7 +7040,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Build 20240115-2
+  m_text: Build 20240115-1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -36590,7 +36591,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559553286}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f120c8658de57b3448dcc84fd21aa6ca, type: 2}
   m_CullingMode: 0

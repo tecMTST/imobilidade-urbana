@@ -8,6 +8,7 @@ public class TimerController : MonoBehaviour
 {
     
     public static TimerController Instance;
+    public Animator timerTextAnimator;
     
     public float initialTime;
     public float penalty;
@@ -32,7 +33,12 @@ public class TimerController : MonoBehaviour
     {
         if (!isPaused && currentTime > 1)
         {
+            print(currentTime);
             currentTime -= Time.deltaTime;
+            if (currentTime < 180)
+            {
+                timerTextAnimator.enabled = true;
+            }
         }
         else if (!isPaused)
         {
