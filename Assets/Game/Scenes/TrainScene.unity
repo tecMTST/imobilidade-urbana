@@ -11879,7 +11879,7 @@ MonoBehaviour:
   - {fileID: 297327653}
   - {fileID: 1293754582}
   dialogueIndexRangeStart: 0000000001000000
-  dialogueIndexRangeEnd: 0100000001000000
+  dialogueIndexRangeEnd: 0100000004000000
   isInteractable: 0
   dialogueIndexRangeMiddle: 0000000000000000
   dialogueIndexRangePostEnd: 0000000000000000
@@ -11898,12 +11898,21 @@ MonoBehaviour:
   profile:
   - {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
   - {fileID: 21300000, guid: 83ed5a5fafdc3954492d5cc8e9c6d2bd, type: 3}
+  - {fileID: 21300000, guid: 7e12f3faa032db24982091df0298855b, type: 3}
+  - {fileID: 21300000, guid: c310d6f1bc03a774e9fac7a8d5ff1578, type: 3}
+  - {fileID: 21300000, guid: 6e3457e7258c31a4e86f53bd44ac2f1e, type: 3}
   speechTxt:
-  - "Sozinha n\xE3o consigo abri-la. Preciso de ajuda."
-  - Vamos abrir, gente!
+  - "Ainda n\xE3o consigo abrir. Preciso de ajuda."
+  - Agora  que  estamos  todos  juntos,  tenho  certeza  de  que  vamos  sair  daqui.
+  - Dentro  do  meu  isopor  tenho  uma  ferramenta  que  pode  ajudar.
+  - "N\xE3o  tenho  muita for\xE7a,  mas  posso  ajudar  empurrando."
+  - "Cada  um  de  n\xF3s  pode  empurrar  uma  porta."
   actorName:
-  - Eu
-  - Eu
+  - "Gl\xF3ria"
+  - "Gl\xF3ria"
+  - Wellington
+  - "Ja\xEDlta"
+  - "Irm\xE3os"
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -41945,7 +41954,7 @@ Transform:
   m_GameObject: {fileID: 1780359269}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -292.24, y: -0.12001777, z: -8.991622}
+  m_LocalPosition: {x: -291.24847, y: -0.1201, z: -8.991622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

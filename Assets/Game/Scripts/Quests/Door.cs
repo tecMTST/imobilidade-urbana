@@ -24,6 +24,7 @@ public class Door : MonoBehaviour {
 
    SceneLoader sceneLoader;
 
+    Animation finalFade;
 
     //-------------------------------------------------------------------
     [HideInInspector] public int[] dialogueIndexRangeMiddle = new int[2];
@@ -32,7 +33,8 @@ public class Door : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
 
-        DontDestroyOnLoad(this);
+      
+        
 
         playerController = PlayerController.Instance;
 
@@ -97,7 +99,7 @@ public class Door : MonoBehaviour {
             print("Quests concluídas!!!");
 
             //ATENÇÃO. Colocar esse som após um fade tela escura. Ele tem que tocar quando a tela estiver 100% escura e após o termino dele, tocar a cutscene final.
-            SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.sonoroPortaAbrindo);
+           
 
             dialogue.StartSpeech(dialogue.profile.ToList<Sprite>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray(),
             dialogue.speechTxt.ToList<string>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray(),
@@ -129,41 +131,37 @@ public class Door : MonoBehaviour {
 
 
     public void End() {
+        SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.sonoroPortaAbrindo);
         StartCoroutine(GoToTheEnd());
     }
     public IEnumerator GoToTheEnd() {
 
         foreach (Transform child in GetComponentsInChildren<Transform>()) {
             
-            if(child.name == "door")
-                continue;
-            print(child.name);
-            child.gameObject.SetActive(false);
+            if(child.gameObject.name != "door")
+                child.gameObject.SetActive(false);
+            
         }
 
         this.GetComponent<SpriteRenderer>().enabled = false;
         this.GetComponent<Animator>().enabled = false;
         this.GetComponent<Collider2D>().enabled = false;
-                
 
-        Animation finalFade = GameManagement.FindFadeImageByTag("FinalFade", true);
+
+        finalFade = GameManagement.FindFadeImageByTag("FinalFade", true);
+
 
         finalFade.gameObject.SetActive(true);
+
+        finalFade.GetComponent<RectTransform>().SetParent(GameObject.FindFirstObjectByType<Canvas>().GetComponent<RectTransform>());
+        finalFade.GetComponent<RectTransform>().SetAsLastSibling();
+
         finalFade.Play("FinalFadeOut");
 
         yield return new WaitUntil(() => !finalFade.IsPlaying("FinalFadeOut"));
 
         sceneLoader.AllowSceneActivation(true);
-        finalFade.Play("FinalFadeIn");
-
-        yield return new WaitUntil(() => !finalFade.IsPlaying("FinalFadeIn"));
-
-        sceneLoader.AllowSceneActivation(false);
-
-        StopCoroutine(nameof(GoToTheEnd));
-
-        Destroy(this.gameObject);
-
+       
     }
 
 

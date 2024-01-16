@@ -38,6 +38,7 @@ public class PreventPortrait : MonoBehaviour
             } else {
                 if (!GameObject.FindGameObjectWithTag("DontPortrait"))
                     Instantiate(dontPortraitPanel, rectTransform);
+                       
 
                 Time.timeScale = 0;
             }

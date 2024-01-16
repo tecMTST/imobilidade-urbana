@@ -130,7 +130,7 @@ ScriptedImporter:
       y: 4
       width: 49
       height: 28
-    spriteID: 98386f3a146f5b742991319d8bd5e9fc
+    spriteID: 1918893458d9e9c489c1aeb141c0233c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -150,7 +150,7 @@ ScriptedImporter:
       y: 40
       width: 49
       height: 28
-    spriteID: 99ce5ccff2218eb4daff80f21b0aacb2
+    spriteID: 1b0beb81718be594fbbef2a9614008b0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -170,7 +170,7 @@ ScriptedImporter:
       y: 76
       width: 49
       height: 28
-    spriteID: a5b4d35b5bea9ea4ca5face269811e66
+    spriteID: c416482a5faa002418a9ed8fdcfe4c45
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -190,7 +190,7 @@ ScriptedImporter:
       y: 4
       width: 40
       height: 40
-    spriteID: 1a30e0c784110aa4d9cbaa5a1e6027f1
+    spriteID: 7b3bbae2d4aba3d489c50071c5133282
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -210,7 +210,7 @@ ScriptedImporter:
       y: 112
       width: 25
       height: 45
-    spriteID: 245125729dc25ef46ae7d1f0b477e9ae
+    spriteID: 3ffd995440d6c814b8ed330fdf683092
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -230,7 +230,7 @@ ScriptedImporter:
       y: 165
       width: 19
       height: 55
-    spriteID: 44f34284ee3b846439358306bb26eb1d
+    spriteID: ee80524973ea1df4d8768a8209fc98d7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -255,7 +255,7 @@ ScriptedImporter:
         y: 1
         width: 49
         height: 28
-      spriteId: 98386f3a146f5b742991319d8bd5e9fc
+      spriteId: 1918893458d9e9c489c1aeb141c0233c
     - name: Protagonista R06 levantando_Frame_1
       frameIndex: 1
       cellRect:
@@ -263,7 +263,7 @@ ScriptedImporter:
         y: 1
         width: 49
         height: 28
-      spriteId: 99ce5ccff2218eb4daff80f21b0aacb2
+      spriteId: 1b0beb81718be594fbbef2a9614008b0
     - name: Protagonista R06 levantando_Frame_2
       frameIndex: 2
       cellRect:
@@ -271,7 +271,7 @@ ScriptedImporter:
         y: 1
         width: 49
         height: 28
-      spriteId: a5b4d35b5bea9ea4ca5face269811e66
+      spriteId: c416482a5faa002418a9ed8fdcfe4c45
     - name: Protagonista R06 levantando_Frame_3
       frameIndex: 3
       cellRect:
@@ -279,7 +279,7 @@ ScriptedImporter:
         y: 0
         width: 40
         height: 40
-      spriteId: 1a30e0c784110aa4d9cbaa5a1e6027f1
+      spriteId: 7b3bbae2d4aba3d489c50071c5133282
     - name: Protagonista R06 levantando_Frame_4
       frameIndex: 4
       cellRect:
@@ -287,7 +287,7 @@ ScriptedImporter:
         y: 0
         width: 25
         height: 45
-      spriteId: 245125729dc25ef46ae7d1f0b477e9ae
+      spriteId: 3ffd995440d6c814b8ed330fdf683092
     - name: Protagonista R06 levantando_Frame_5
       frameIndex: 5
       cellRect:
@@ -295,7 +295,7 @@ ScriptedImporter:
         y: 0
         width: 19
         height: 55
-      spriteId: 44f34284ee3b846439358306bb26eb1d
+      spriteId: ee80524973ea1df4d8768a8209fc98d7
     linkedCells: []
     parentIndex: -1
   platformSettings: []
