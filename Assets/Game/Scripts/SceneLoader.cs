@@ -5,24 +5,24 @@ public class SceneLoader : MonoBehaviour
 {
 
     public static SceneLoader Instance;
+
+    
     
     public string sceneToLoad = "TrainScene";
     AsyncOperation operation;
 
-
+    public bool LoadAsyncOnStart;
 
 
     private void Start() {
 
+        if (LoadAsyncOnStart)
+            LoadSceneAsync(sceneToLoad);
 
 
-        print(this.gameObject.name);
     }
 
-    
-
-    public void LoadScene()
-    {
+    public void LoadScene(){
         //Debug.Log("Di");
         SceneManager.LoadScene(sceneToLoad);
     }
@@ -42,3 +42,6 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 }
+
+
+

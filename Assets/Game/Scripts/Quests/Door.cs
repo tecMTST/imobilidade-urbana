@@ -5,8 +5,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-public class Door : MonoBehaviour
-{
+public class Door : MonoBehaviour {
     PlayerController playerController;
 
     public Dialogue dialogue;
@@ -18,12 +17,12 @@ public class Door : MonoBehaviour
     public int[] dialogueIndexRangeStart = new int[2];
     public int[] dialogueIndexRangeEnd = new int[2];
 
-   
+
 
     [HideInInspector]
     public bool isInteractable;
 
-    SceneLoader sceneLoader = new();
+   SceneLoader sceneLoader;
 
 
     //-------------------------------------------------------------------
@@ -37,7 +36,11 @@ public class Door : MonoBehaviour
 
         playerController = PlayerController.Instance;
 
-        sceneLoader.LoadSceneAsync("EndingScene");
+        try {
+            sceneLoader = new();
+            sceneLoader.LoadSceneAsync("EndingScene");
+        } catch { }
+        
         
     }
 
@@ -130,13 +133,18 @@ public class Door : MonoBehaviour
     }
     public IEnumerator GoToTheEnd() {
 
+        foreach (Transform child in GetComponentsInChildren<Transform>()) {
+            
+            if(child.name == "door")
+                continue;
+            print(child.name);
+            child.gameObject.SetActive(false);
+        }
+
         this.GetComponent<SpriteRenderer>().enabled = false;
         this.GetComponent<Animator>().enabled = false;
         this.GetComponent<Collider2D>().enabled = false;
-
-        foreach (Transform child in GetComponentInChildren<Transform>()) {
-            child.gameObject.SetActive(false);
-        }
+                
 
         Animation finalFade = GameManagement.FindFadeImageByTag("FinalFade", true);
 
