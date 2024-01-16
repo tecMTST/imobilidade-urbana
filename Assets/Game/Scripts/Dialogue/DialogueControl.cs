@@ -127,7 +127,7 @@ public class DialogueControl : MonoBehaviour
             //SFX Click:
             SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.sonoroClick);
 
-            if (isBros && (index == 2 || index == 5 || index == 7 || index == 13)) {
+            if (isBros && (index == 2 || index == 5 || index == 7 || index == 11)) {
 
                 nextButton.SetActive(false);
                 continueGroup.SetActive(true);
@@ -147,6 +147,7 @@ public class DialogueControl : MonoBehaviour
             }
             else
             {
+                
                 Close();
             }
         }
@@ -157,6 +158,8 @@ public class DialogueControl : MonoBehaviour
     {
 
         speechText.text = "";
+        continueGroup.SetActive(false);
+        nextButton.SetActive(true);
         dialogueObj.SetActive(false);
 
         TimerController.Instance.isPaused = false;
@@ -183,6 +186,8 @@ public class DialogueControl : MonoBehaviour
     public void OnRefuseBros() {
 
         speechText.text = "";
+        continueGroup.SetActive(false);
+        nextButton.SetActive(true);
         dialogueObj.SetActive(false);
 
         TimerController.Instance.isPaused = false;
