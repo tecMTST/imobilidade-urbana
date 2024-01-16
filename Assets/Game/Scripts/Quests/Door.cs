@@ -23,6 +23,7 @@ public class Door : MonoBehaviour
     [HideInInspector]
     public bool isInteractable;
 
+    SceneLoader sceneLoader = new();
 
 
     //-------------------------------------------------------------------
@@ -30,9 +31,14 @@ public class Door : MonoBehaviour
     [HideInInspector] public int[] dialogueIndexRangePostEnd = new int[2];
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
+
+        DontDestroyOnLoad(this);
+
         playerController = PlayerController.Instance;
+
+        sceneLoader.LoadSceneAsync("EndingScene");
+        
     }
 
     // Update is called once per frame
@@ -94,7 +100,8 @@ public class Door : MonoBehaviour
             dialogue.speechTxt.ToList<string>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray(),
             dialogue.actorName.ToList<string>().GetRange(dialogueIndexRangeEnd[0], dialogueIndexRangeEnd[1]).ToArray());
 
-            dialogue.dc.onDialogueClose = ()=> { };
+            dialogue.dc.onDialogueClose = End;
+            
 
         }
 
@@ -115,6 +122,40 @@ public class Door : MonoBehaviour
 
     public bool IsInteractable() {
         return MathF.Abs(playerController.transform.position.x - this.transform.position.x) < 2.5f;
+    }
+
+
+    public void End() {
+        StartCoroutine(GoToTheEnd());
+    }
+    public IEnumerator GoToTheEnd() {
+
+        this.GetComponent<SpriteRenderer>().enabled = false;
+        this.GetComponent<Animator>().enabled = false;
+        this.GetComponent<Collider2D>().enabled = false;
+
+        foreach (Transform child in GetComponentInChildren<Transform>()) {
+            child.gameObject.SetActive(false);
+        }
+
+        Animation finalFade = GameManagement.FindFadeImageByTag("FinalFade", true);
+
+        finalFade.gameObject.SetActive(true);
+        finalFade.Play("FinalFadeOut");
+
+        yield return new WaitUntil(() => !finalFade.IsPlaying("FinalFadeOut"));
+
+        sceneLoader.AllowSceneActivation(true);
+        finalFade.Play("FinalFadeIn");
+
+        yield return new WaitUntil(() => !finalFade.IsPlaying("FinalFadeIn"));
+
+        sceneLoader.AllowSceneActivation(false);
+
+        StopCoroutine(nameof(GoToTheEnd));
+
+        Destroy(this.gameObject);
+
     }
 
 
