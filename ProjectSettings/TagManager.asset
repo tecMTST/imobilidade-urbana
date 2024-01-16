@@ -13,6 +13,7 @@ TagManager:
   - moon
   - mapLimit
   - handsPanel
+  - FinalFade
   layers:
   - Default
   - TransparentFX

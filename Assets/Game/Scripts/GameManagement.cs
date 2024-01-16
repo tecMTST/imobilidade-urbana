@@ -454,6 +454,31 @@ public class GameManagement : MonoBehaviour{
 #endif
     }
 
+
+
+    public static Animation FindFadeImageByTag(string tag, bool includeInactive) {
+
+        Animation img = null;
+        Animation[] fadeImg = null;
+
+        if (includeInactive) {
+            fadeImg = Resources.FindObjectsOfTypeAll<Animation>();
+            foreach (Animation i in fadeImg) {
+                if (i.CompareTag(tag)) {
+                    img = i;
+                    break;
+                }
+            }
+        } else {
+
+            GameObject.FindGameObjectWithTag(tag).TryGetComponent<Animation>(out img);
+        }
+
+
+        return img;
+
+    }
+
 }
 
     
