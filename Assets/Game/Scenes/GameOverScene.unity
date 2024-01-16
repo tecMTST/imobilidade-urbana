@@ -1209,6 +1209,7 @@ GameObject:
   - component: {fileID: 1790351797}
   - component: {fileID: 1790351802}
   - component: {fileID: 1790351801}
+  - component: {fileID: 1790351803}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1336,6 +1337,19 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!114 &1790351803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790351796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e4d64e6ba892d43a8c6e2e7cb04549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontPortraitPanel: {fileID: 1295634757654269046, guid: dfa93e1477e24134e92b3e0ecf5a2819, type: 3}
 --- !u!1 &2010629652
 GameObject:
   m_ObjectHideFlags: 0

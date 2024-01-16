@@ -8,6 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game/Scenes/TitleScreen.unity
     guid: e0e6cc3ded6d4b44aa8b51c8475a2333
+  - enabled: 1
+    path: Assets/Game/Scenes/IntroductionScene.unity
+    guid: 0568a13d9fbfdf642aa2b0fb14d5fe13
+  - enabled: 1
+    path: Assets/Game/Scenes/TrainScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Game/Scenes/GameOverScene.unity
+    guid: 96090f589747830429459746f81317fa
+  - enabled: 1
+    path: Assets/Game/Scenes/EndingScene.unity
+    guid: b6abb45d9c6eda94eb0e7ea671566f2a
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: c9ff94fc3dc32964a838f816d632f1dd, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: a0127ca629429274eb00c02cdb535ab9, type: 2}

@@ -3185,6 +3185,7 @@ GameObject:
   - component: {fileID: 7118085878897945794}
   - component: {fileID: 7118085878897945795}
   - component: {fileID: 7118085878897945796}
+  - component: {fileID: 7118085878897945797}
   m_Layer: 5
   m_Name: TitleScreen
   m_TagString: Untagged
@@ -3364,6 +3365,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: IntroductionScene
+--- !u!114 &7118085878897945797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4916023460676137125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e4d64e6ba892d43a8c6e2e7cb04549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontPortraitPanel: {fileID: 1295634757654269046, guid: dfa93e1477e24134e92b3e0ecf5a2819, type: 3}
 --- !u!1 &7166398127498256924
 GameObject:
   m_ObjectHideFlags: 0

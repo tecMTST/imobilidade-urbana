@@ -48,17 +48,17 @@ public class TimerUpdateText : MonoBehaviour
             SoundManager.instance.playTimerSFX((int)SoundManager.ListaSFX.sonoroTimer);
             aviso3 = true;
         }
-        else if (formattedTime == "01:00" && !aviso4)
+        else if (formattedTime == "03:00" && !aviso4)
         {
             SoundManager.instance.playTimerSFX((int)SoundManager.ListaSFX.sonoroTimer);
             aviso4 = true;
         }
-        else if (formattedTime == "00:59" && !aviso5)
+        else if (formattedTime == "02:59" && !aviso5)
         {
             SoundManager.instance.playTimerSFX((int)SoundManager.ListaSFX.sonoroTimer);
             aviso5 = true;
         }
-        else if (formattedTime == "00:58" && !aviso6)
+        else if (formattedTime == "02:58" && !aviso6)
         {
             SoundManager.instance.playTimerSFX((int)SoundManager.ListaSFX.sonoroTimer);
             aviso6 = true;

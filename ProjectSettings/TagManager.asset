@@ -14,6 +14,7 @@ TagManager:
   - mapLimit
   - handsPanel
   - FinalFade
+  - DontPortrait
   layers:
   - Default
   - TransparentFX

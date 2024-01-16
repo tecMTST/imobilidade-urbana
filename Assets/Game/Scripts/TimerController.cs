@@ -33,7 +33,6 @@ public class TimerController : MonoBehaviour
     {
         if (!isPaused && currentTime > 1)
         {
-            print(currentTime);
             currentTime -= Time.deltaTime;
             if (currentTime < 180)
             {
