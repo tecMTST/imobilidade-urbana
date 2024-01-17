@@ -1,13 +1,13 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
-{
+public class SceneLoader : MonoBehaviour {
 
     public static SceneLoader Instance;
 
-    
-    
+
+
     public string sceneToLoad = "TrainScene";
     AsyncOperation operation;
 
@@ -22,12 +22,13 @@ public class SceneLoader : MonoBehaviour
 
     }
 
-    public void LoadScene(){
+    public void LoadScene() {
         //Debug.Log("Di");
         SceneManager.LoadScene(sceneToLoad);
     }
 
     public void LoadSceneAsync(string scene) {
+
         operation = SceneManager.LoadSceneAsync(scene);
         operation.allowSceneActivation = false;
 
@@ -40,6 +41,17 @@ public class SceneLoader : MonoBehaviour
     public void LoadScene(string scene) {
         //Debug.Log("Di");
         SceneManager.LoadScene(scene);
+    }
+
+    public IEnumerator LoadSceneAsync(string scene, bool allow) {
+       
+        operation = SceneManager.LoadSceneAsync(scene);
+        operation.allowSceneActivation = allow;
+
+        yield return null;
+        //StopCoroutine(nameof(LoadSceneAsync));
+
+        
     }
 }
 
