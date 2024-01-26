@@ -3,10 +3,12 @@ using UnityEngine;
 
 public class UpDownMovement : MonoBehaviour
 {
+
     public float moveSpeed = 2.0f;
     public float maxYOffset = 5.0f;
     public float topStopTime = 2.0f;
     public float bottomStopTime = 1.0f;
+
 
     private Vector3 initialPosition;
     private bool movingUp = true;
