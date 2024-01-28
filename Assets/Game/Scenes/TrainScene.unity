@@ -49627,7 +49627,7 @@ MonoBehaviour:
   indicator: {fileID: 894268288}
   mapIcon: {fileID: 393693603}
   player: {fileID: 0}
-  mainWagonPosition: {x: -288.77, y: -0.62, z: 0}
+  mainWagonPosition: {x: -292, y: -0.62, z: 0}
   fadePanel: {fileID: 0}
   animator: {fileID: 2134828602}
   started: 0
