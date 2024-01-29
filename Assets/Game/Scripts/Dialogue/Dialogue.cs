@@ -18,9 +18,12 @@ public class Dialogue : MonoBehaviour
     private bool onRadius;
     public bool onDialogue;
 
+    private Dialogue[] dialogues;
+
     private void Start()
     {
         dc = FindObjectOfType<DialogueControl>();
+        dialogues = FindObjectsOfType<Dialogue>();
     }
 
     private void Update() 
@@ -76,12 +79,11 @@ public class Dialogue : MonoBehaviour
     
 
     public void StartSpeech(Sprite[] Profile, string[] SpeechTxt, string[] ActorName) {
+        // NoOp if already on dialogue
+        if (isAlreadySpeaking()) {
+            return;
+        }
 
-        //if (onDialogue) {
-        //    onDialogue = false;
-        //    dc.Close();
-        //    return;
-        //}
         if (this.gameObject.name == "Irmaos")
             dc.isBros = true;
         else
@@ -94,6 +96,21 @@ public class Dialogue : MonoBehaviour
     }
 
 
+    private bool isAlreadySpeaking() {
+        Dialogue curr;
+        for (var i = 0; i < dialogues.Length; ++i) {
+            curr = dialogues[i];
+            if (curr == this) {
+                continue;
+            }
+
+            if (curr.onDialogue) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 
     //public void Interact() {

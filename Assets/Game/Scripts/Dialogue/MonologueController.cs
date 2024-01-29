@@ -68,10 +68,12 @@ public class MonologueController : MonoBehaviour
     private bool acceptInput;
     private int lettersTyped;
     private bool mouseClicked;
-    
+    private Dialogue[] dialogues;
 
 
     private void Start() {
+        dialogues = FindObjectsOfType<Dialogue>();
+
         timer.SetActive(false);
         moveArrowRight.SetActive(false);
         moveArrowLeft.SetActive(false);
@@ -136,6 +138,10 @@ public class MonologueController : MonoBehaviour
     }
 
     public void Speech(string[] txt) {
+        // NoOp if talking to someone else
+        if (isAlreadySpeaking()) {
+            return;
+        }
 
         timerController.GetComponent<TimerController>().PauseTimer();
         player.GetComponent<PlayerController>().StopMoving();
@@ -151,7 +157,15 @@ public class MonologueController : MonoBehaviour
         StartCoroutine(TypeSentence(false, false));
     }
 
+    private bool isAlreadySpeaking() {
+        for (var i = 0; i < dialogues.Length; ++i) {
+            if (dialogues[i].onDialogue == true) {
+                return true;
+            }
+        }
 
+        return false;
+    }
 
     IEnumerator TypeSentence(bool isAnunciante, bool isAnunciante2)
     {
