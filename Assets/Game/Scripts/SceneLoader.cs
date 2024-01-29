@@ -30,7 +30,6 @@ public class SceneLoader : MonoBehaviour {
     public void LoadSceneAsync(string scene) {
         operation = SceneManager.LoadSceneAsync(scene);
         operation.allowSceneActivation = false;
-
     }
 
     public void AllowSceneActivation(bool allow) {
