@@ -84,6 +84,7 @@ public class Door : MonoBehaviour {
         if (dialogue.onDialogue) {
             return;
         }
+        TimerController.Instance.PauseTimer();
 
         if (!VerifyQuests()) {//Quests não concluídas
             print("Quests não concluídas");
@@ -93,8 +94,11 @@ public class Door : MonoBehaviour {
             dialogue.StartSpeech(dialogue.profile.ToList<Sprite>().GetRange(dialogueIndexRangeStart[0], dialogueIndexRangeStart[1]).ToArray(),
             dialogue.speechTxt.ToList<string>().GetRange(dialogueIndexRangeStart[0], dialogueIndexRangeStart[1]).ToArray(),
             dialogue.actorName.ToList<string>().GetRange(dialogueIndexRangeStart[0], dialogueIndexRangeStart[1]).ToArray());
-        
-        }else {
+
+            dialogue.dc.onDialogueClose = TimerController.Instance.ResumeTimer;
+
+
+        } else {
 
             print("Quests concluídas!!!");
 
@@ -131,6 +135,7 @@ public class Door : MonoBehaviour {
 
 
     public void End() {
+        TimerController.Instance.PauseTimer();
         SoundManager.instance.playMenuSFX((int)SoundManager.ListaSFX.sonoroPortaAbrindo);
         StartCoroutine(GoToTheEnd());
     }
