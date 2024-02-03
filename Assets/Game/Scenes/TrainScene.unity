@@ -2283,6 +2283,7 @@ MonoBehaviour:
   lanternToggle: {fileID: 99512292}
   imageOff: {fileID: 21300000, guid: 23910c4b05bf0ad4e8f4f21a113a1910, type: 3}
   imageOn: {fileID: 21300000, guid: a3cc5ffe8dc5e4341be7ebaa8d4454cd, type: 3}
+  lightActive: 0
   sfxLight: {fileID: 0}
 --- !u!114 &99512291
 MonoBehaviour:
@@ -17900,6 +17901,7 @@ MonoBehaviour:
   lanternToggle: {fileID: 811507869}
   imageOff: {fileID: 21300000, guid: 23910c4b05bf0ad4e8f4f21a113a1910, type: 3}
   imageOn: {fileID: 21300000, guid: a3cc5ffe8dc5e4341be7ebaa8d4454cd, type: 3}
+  lightActive: 0
   sfxLight: {fileID: 0}
 --- !u!114 &811507868
 MonoBehaviour:
@@ -28398,6 +28400,7 @@ MonoBehaviour:
   lanternToggle: {fileID: 1259128020}
   imageOff: {fileID: 21300000, guid: 23910c4b05bf0ad4e8f4f21a113a1910, type: 3}
   imageOn: {fileID: 21300000, guid: a3cc5ffe8dc5e4341be7ebaa8d4454cd, type: 3}
+  lightActive: 0
   sfxLight: {fileID: 0}
 --- !u!114 &1259128020
 MonoBehaviour:
@@ -31659,7 +31662,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Build 20240126-0
+  m_text: Build 20240203-0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -32285,6 +32288,7 @@ GameObject:
   - component: {fileID: 1415330338}
   - component: {fileID: 1415330337}
   - component: {fileID: 1415330339}
+  - component: {fileID: 1415330340}
   m_Layer: 0
   m_Name: GameManagement
   m_TagString: Untagged
@@ -32425,6 +32429,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: TrainScene
   LoadAsyncOnStart: 0
+--- !u!114 &1415330340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415330334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6e69faece4640942bf1afe20ae9b74d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockInputPanels:
+  - {fileID: 1237537722}
+  - {fileID: 1565476446}
+  - {fileID: 126207974}
+  dialogueObject: {fileID: 1565476446}
+  monologueObject: {fileID: 126207974}
 --- !u!1 &1416935841
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,9 +1,13 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MonologueController : MonoBehaviour
 {
+    public static MonologueController Instance;
+
     [Header("Components")]
     public GameObject monologueObj;
     public GameObject timer;
@@ -72,7 +76,15 @@ public class MonologueController : MonoBehaviour
 
 
     private void Start() {
+
+        Instance = this;
+
         dialogues = FindObjectsOfType<Dialogue>();
+        
+        List<Dialogue> dialoguesList = dialogues.ToList();
+        dialoguesList.RemoveAll(item => item.gameObject.TryGetComponent<Door>(out Door component));
+        dialogues = dialoguesList.ToArray();
+        dialoguesList = null;
 
         timer.SetActive(false);
         moveArrowRight.SetActive(false);
@@ -202,7 +214,7 @@ public class MonologueController : MonoBehaviour
             {
                 elapsedTime += Time.deltaTime;
 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) || Input.GetAxis("Interact") > 0)
                 {
                     mouseClicked = true;
                     break;

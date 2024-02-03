@@ -95,7 +95,7 @@ public class Door : MonoBehaviour {
             dialogue.speechTxt.ToList<string>().GetRange(dialogueIndexRangeStart[0], dialogueIndexRangeStart[1]).ToArray(),
             dialogue.actorName.ToList<string>().GetRange(dialogueIndexRangeStart[0], dialogueIndexRangeStart[1]).ToArray());
 
-            dialogue.dc.onDialogueClose = TimerController.Instance.ResumeTimer;
+            dialogue.dc.onDialogueClose += TimerController.Instance.ResumeTimer;
 
 
         } else {

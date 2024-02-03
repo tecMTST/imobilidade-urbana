@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class LightToggle : MonoBehaviour
 {
+
+    public static LightToggle Instance;
+
     public UnityEngine.Rendering.Universal.Light2D light2D;
     public UnityEngine.Rendering.Universal.Light2D light2D2; 
     
@@ -11,8 +14,8 @@ public class LightToggle : MonoBehaviour
     public Sprite imageOff;
     public Sprite imageOn;
 
-
-    private bool lightActive;
+    [HideInInspector]
+    public bool lightActive;
 
     private Toggle toggle;
     //Lista de SFX:
@@ -20,6 +23,8 @@ public class LightToggle : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
+
         toggle = this.GetComponent<Toggle>();
 
 

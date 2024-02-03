@@ -100,7 +100,7 @@ public class DialogueControl : MonoBehaviour
             {
                 elapsedTime += Time.deltaTime;
 
-                if (acceptInput && Input.GetMouseButtonDown(0))
+                if (acceptInput && (Input.GetMouseButtonDown(0) || Input.GetAxis("Interact") > 0))
                 {
                     mouseClicked = true;
                     break;
