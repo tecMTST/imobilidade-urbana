@@ -119,9 +119,7 @@ public class Quest : MonoBehaviour{
     }
 
     public void Questing() {
-    
-
-        if (dialogue.onDialogue) {
+        if (dialogue.onDialogue || concluded) {
             return;
         }
 
