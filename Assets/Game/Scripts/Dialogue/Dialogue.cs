@@ -19,15 +19,21 @@ public class Dialogue : MonoBehaviour
     public bool onDialogue;
 
     private Dialogue[] dialogues;
+    private PlayerController playerController;
 
     private void Start()
     {
         dc = FindObjectOfType<DialogueControl>();
         dialogues = FindObjectsOfType<Dialogue>();
+        playerController = FindObjectOfType<PlayerController>();
     }
 
     private void Update() 
     {
+        if (onDialogue) {
+            playerController.StopMoving();
+        }
+
         #region Inserido na classe Quest
         //if (onRadius) {
 
