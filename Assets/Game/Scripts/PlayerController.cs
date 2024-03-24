@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public bool isMovingRight = false;
     public bool isMovingLeft = false;
-    private int roomIndex = 7;
+    public int roomIndex = 7;
 
     public bool onLimit = false;
       

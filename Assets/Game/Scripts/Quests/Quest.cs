@@ -119,7 +119,7 @@ public class Quest : MonoBehaviour{
     }
 
     public void Questing() {
-        if (dialogue.onDialogue || concluded) {
+        if (dialogue.onDialogue || (concluded && playerController.roomIndex != 7)) {
             return;
         }
 
