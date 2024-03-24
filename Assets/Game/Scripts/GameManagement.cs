@@ -106,17 +106,8 @@ public class GameManagement : MonoBehaviour{
 
     // Update is called once per frame
     void Update(){
-
-        
-
-        if (Input.GetKeyDown(KeyCode.I))
-            circularMask.Play("circularIn");
-
-        if (Input.GetKeyDown(KeyCode.O))
-            circularMask.Play("circularOut");
-
-
     }
+
     public IEnumerator CircularIn() {
 
         if (!circularMask.isPlaying)
